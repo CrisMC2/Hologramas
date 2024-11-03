@@ -1667,19 +1667,19 @@ class Ui_fondoMain(object):
         self.textEdit_12.setText("")
         self.textEdit_13.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_13))
         self.textEdit_13.setText("")
-        self.textEdit.textChanged.connect(lambda: self.validateTextInput(self.textEdit))
-        self.textEdit_2.textChanged.connect(lambda: self.validateTextInput(self.textEdit_2))
-        self.textEdit_3.textChanged.connect(lambda: self.validateTextInput(self.textEdit_3))
-        self.textEdit_4.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_4))
-        self.textEdit_5.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_5))
-        self.textEdit_6.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_6))
-        self.textEdit_7.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_7))
-        self.textEdit_8.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_8))
-        self.textEdit_9.textChanged.connect(lambda: self.validateTextInput(self.textEdit_9))
-        self.textEdit_10.textChanged.connect(lambda: self.validateTextInput(self.textEdit_10))
-        self.textEdit_11.textChanged.connect(lambda: self.validateTextInput(self.textEdit_11))
-        self.textEdit_12.textChanged.connect(lambda: self.validateTextInput(self.textEdit_12))
-        self.textEdit_13.textChanged.connect(lambda: self.validateTextInput(self.textEdit_13))
+        self.textEdit.textChanged.connect(lambda: self.validateTextInput(self.textEdit, 42))
+        self.textEdit_2.textChanged.connect(lambda: self.validateTextInput(self.textEdit_2, 42))
+        self.textEdit_3.textChanged.connect(lambda: self.validateTextInput(self.textEdit_3, 42))
+        self.textEdit_4.textChanged.connect(lambda: self.validateTextInput(self.textEdit_4, 1))
+        self.textEdit_5.textChanged.connect(lambda: self.validateTextInput(self.textEdit_5, 1))
+        self.textEdit_6.textChanged.connect(lambda: self.validateTextInput(self.textEdit_6, 1))
+        self.textEdit_7.textChanged.connect(lambda: self.validateTextInput(self.textEdit_7, 1))
+        self.textEdit_8.textChanged.connect(lambda: self.validateTextInput(self.textEdit_8, 1))
+        self.textEdit_9.textChanged.connect(lambda: self.validateTextInput(self.textEdit_9, 42))
+        self.textEdit_10.textChanged.connect(lambda: self.validateTextInput(self.textEdit_10, 42))
+        self.textEdit_11.textChanged.connect(lambda: self.validateTextInput(self.textEdit_11, 42))
+        self.textEdit_12.textChanged.connect(lambda: self.validateTextInput(self.textEdit_12, 42))
+        self.textEdit_13.textChanged.connect(lambda: self.validateTextInput(self.textEdit_13, 42))
         self.textEdit_4.textChanged.connect(lambda: self.autoFocusNext(self.textEdit_4, self.textEdit_5))
         self.textEdit_5.textChanged.connect(lambda: self.autoFocusNext(self.textEdit_5, self.textEdit_6))
         self.textEdit_6.textChanged.connect(lambda: self.autoFocusNext(self.textEdit_6, self.textEdit_7))
@@ -1725,23 +1725,11 @@ class Ui_fondoMain(object):
         textEdit.setTextCursor(cursor)
         textEdit.blockSignals(False)
 
-    def validateTextInput(self, textEdit):
+    def validateTextInput(self, textEdit, n):
         textEdit.blockSignals(True)
         text = textEdit.toPlainText()
-        if len(text) > 42:
-                text = text[:42]
-        text = text.replace(" ", "").replace("\n", "").replace("\t", "")
-        textEdit.setPlainText(text)
-        cursor = textEdit.textCursor()
-        cursor.movePosition(cursor.End)
-        textEdit.setTextCursor(cursor)
-        textEdit.blockSignals(False)
-        
-    def validateTextInput_2(self, textEdit):
-        textEdit.blockSignals(True)
-        text = textEdit.toPlainText()
-        if len(text) > 1:
-                text = text[:1]
+        if len(text) > n:
+                text = text[:n]
         text = text.replace(" ", "").replace("\n", "").replace("\t", "")
         textEdit.setPlainText(text)
         cursor = textEdit.textCursor()
