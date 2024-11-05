@@ -535,7 +535,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon11.setText("")
-        self.profileIcon11.setPixmap(QtGui.QPixmap("icon/candado.png"))
+        self.profileIcon11.setPixmap(QtGui.QPixmap("C:/6TO_SEMESTRE/Hologramas/icon/candado.png"))
         self.profileIcon11.setScaledContents(True)
         self.profileIcon11.setObjectName("profileIcon11")
         self.profileIcon12 = QtWidgets.QLabel(self.pag04Login)
@@ -546,7 +546,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon12.setText("")
-        self.profileIcon12.setPixmap(QtGui.QPixmap("icon/email.png"))
+        self.profileIcon12.setPixmap(QtGui.QPixmap("C:/6TO_SEMESTRE/Hologramas/icon/email.png"))
         self.profileIcon12.setScaledContents(True)
         self.profileIcon12.setObjectName("profileIcon12")
         self.profileIcon13 = QtWidgets.QLabel(self.pag04Login)
@@ -557,7 +557,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon13.setText("")
-        self.profileIcon13.setPixmap(QtGui.QPixmap("icon/usericon2.png"))
+        self.profileIcon13.setPixmap(QtGui.QPixmap("C:/6TO_SEMESTRE/Hologramas/icon/usericon2.png"))
         self.profileIcon13.setScaledContents(True)
         self.profileIcon13.setObjectName("profileIcon13")
         self.label_10 = QtWidgets.QLabel(self.pag04Login)
@@ -599,7 +599,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.imagenHospitalCarrion.setText("")
-        self.imagenHospitalCarrion.setPixmap(QtGui.QPixmap("icon/carrionhospital.jpg"))
+        self.imagenHospitalCarrion.setPixmap(QtGui.QPixmap("C:/6TO_SEMESTRE/Hologramas/icon/carrionhospital.jpg"))
         self.imagenHospitalCarrion.setScaledContents(True)
         self.imagenHospitalCarrion.setObjectName("imagenHospitalCarrion")
         self.cambianteTodo.addWidget(self.login)
