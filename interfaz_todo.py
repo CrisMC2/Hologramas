@@ -921,7 +921,7 @@ class Ui_fondoMain(object):
 "}")
         self.Boton_Atras_3.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../Users/MSI/Downloads/back1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("C:\6TO_SEMESTRE\Hologramas\icon/back1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Boton_Atras_3.setIcon(icon)
         self.Boton_Atras_3.setObjectName("Boton_Atras_3")
         self.pushButton_24 = QtWidgets.QPushButton(self.pag_ver_paciente)
