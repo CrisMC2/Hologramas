@@ -621,7 +621,7 @@ class Ui_fondoMain(object):
         self.botonHome.setGeometry(QtCore.QRect(10, 60, 131, 51))
         self.botonHome.setMinimumSize(QtCore.QSize(131, 0))
         self.botonHome.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"C:/6TO SEMESTRE/Hologramas/icon/home.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"C:/6TO_SEMESTRE/Hologramas/icon/home.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
@@ -638,7 +638,7 @@ class Ui_fondoMain(object):
         self.botonEdit.setGeometry(QtCore.QRect(10, 160, 131, 51))
         self.botonEdit.setMinimumSize(QtCore.QSize(131, 0))
         self.botonEdit.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"C:/6TO SEMESTRE/Hologramas/icon/edit.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"C:/6TO_SEMESTRE/Hologramas/icon/edit.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
@@ -655,7 +655,7 @@ class Ui_fondoMain(object):
         self.botonUser.setGeometry(QtCore.QRect(10, 920, 131, 51))
         self.botonUser.setMinimumSize(QtCore.QSize(131, 0))
         self.botonUser.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"C:/6TO SEMESTRE/Hologramas/icon/user.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"C:/6TO_SEMESTRE/Hologramas/icon/user.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
@@ -692,7 +692,7 @@ class Ui_fondoMain(object):
         self.label_17.setGeometry(QtCore.QRect(60, 70, 101, 101))
         self.label_17.setStyleSheet("border: none;")
         self.label_17.setText("")
-        self.label_17.setPixmap(QtGui.QPixmap("C:/6TO SEMESTRE/Hologramas/icon/agregar_paciente.png"))
+        self.label_17.setPixmap(QtGui.QPixmap("C:/6TO_SEMESTRE/Hologramas/icon/agregar_paciente.png"))
         self.label_17.setScaledContents(True)
         self.label_17.setObjectName("label_17")
         self.label_23 = QtWidgets.QLabel(self.agregar_paciente)
@@ -731,7 +731,7 @@ class Ui_fondoMain(object):
         self.label_20.setGeometry(QtCore.QRect(60, 70, 101, 101))
         self.label_20.setStyleSheet("border: none;")
         self.label_20.setText("")
-        self.label_20.setPixmap(QtGui.QPixmap("C:/6TO SEMESTRE/Hologramas/icon/eliminar.png"))
+        self.label_20.setPixmap(QtGui.QPixmap("C:/6TO_SEMESTRE/Hologramas/icon/eliminar.png"))
         self.label_20.setScaledContents(True)
         self.label_20.setObjectName("label_20")
         self.label_21 = QtWidgets.QLabel(self.eliminar_paciente)
@@ -770,7 +770,7 @@ class Ui_fondoMain(object):
         self.label_15.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.label_15.setStyleSheet("border: none;")
         self.label_15.setText("")
-        self.label_15.setPixmap(QtGui.QPixmap("C:/6TO SEMESTRE/Hologramas/icon/userlmn_f3df7cf278fc232357f70b0055f234bb.png"))
+        self.label_15.setPixmap(QtGui.QPixmap("C:/6TO_SEMESTRE/Hologramas/icon/userlmn_f3df7cf278fc232357f70b0055f234bb.png"))
         self.label_15.setScaledContents(True)
         self.label_15.setObjectName("label_15")
         self.label_16 = QtWidgets.QLabel(self.ver_paciente)
@@ -813,7 +813,7 @@ class Ui_fondoMain(object):
         self.label_19.setGeometry(QtCore.QRect(50, 70, 101, 101))
         self.label_19.setStyleSheet("border: none;")
         self.label_19.setText("")
-        self.label_19.setPixmap(QtGui.QPixmap("C:/6TO SEMESTRE/Hologramas/icon/metabolism_15052497.png"))
+        self.label_19.setPixmap(QtGui.QPixmap("C:/6TO_SEMESTRE/Hologramas/icon/metabolism_15052497.png"))
         self.label_19.setScaledContents(True)
         self.label_19.setObjectName("label_19")
         self.pushButton_8 = QtWidgets.QPushButton(self.editar_paciente)
@@ -969,7 +969,7 @@ class Ui_fondoMain(object):
         self.label_49.setGeometry(QtCore.QRect(200, 160, 61, 41))
         self.label_49.setStyleSheet("border: none;")
         self.label_49.setText("")
-        self.label_49.setPixmap(QtGui.QPixmap("C:/6TO SEMESTRE/Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
+        self.label_49.setPixmap(QtGui.QPixmap("C:/6TO_SEMESTRE/Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
         self.label_49.setScaledContents(True)
         self.label_49.setObjectName("label_49")
         self.tableWidget_3 = QtWidgets.QTableWidget(self.pag_ver_paciente)
