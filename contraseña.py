@@ -1,31 +1,19 @@
 import bcrypt
-import os
 
-class User:
-    def __init__(self):
-        self.password_hash = None
-        self.password_salt = None
-        self.encrypted_password = None
+def set_password(password):
+    password_salt = bcrypt.gensalt()
+    password_hash = bcrypt.hashpw(password.encode('utf-8'), password_salt)
+    return password_hash
 
-    def set_password(self, password):
-        self.set_password_salt()
-        self.set_password_hash(password)
-        self.set_password_encrypted()
+def check_password(stored_password_hash, input_password):
+    return bcrypt.checkpw(input_password.encode('utf-8'), stored_password_hash)
 
-    def set_password_salt(self):
-        # Generar una sal aleatoria de 16 bytes
-        self.password_salt = bcrypt.gensalt()
+password = "mi_contraseña_segura"
+stored_password_hash = set_password(password)
+print("Hash de la contraseña almacenado:", stored_password_hash)
 
-    def set_password_hash(self, password):
-        # Hash de la contraseña utilizando la sal
-        self.password_hash = bcrypt.hashpw(password.encode('utf-8'), self.password_salt)
-
-    def set_password_encrypted(self):
-        # Encriptar la contraseña hash para almacenamiento (opcional, dependiendo de tu diseño)
-        self.encrypted_password = self.password_hash  # En este caso, solo almacenamos el hash
-
-# Uso del código
-user = User()
-user.set_password("mi_contraseña_segura")
-print("Hash de la contraseña:", user.password_hash)
-print("Sal de la contraseña:", user.password_salt)
+input_password = "mi_contraseña_segura"
+if check_password(stored_password_hash, input_password):
+    print("La contraseña es correcta.")
+else:
+    print("La contraseña es incorrecta.")
