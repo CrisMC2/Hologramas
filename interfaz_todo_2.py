@@ -12862,15 +12862,6 @@ class Ui_fondoMain(object):
                 """)
                 textEdit.setPlaceholderText("")
 
-    def verify_code(self, code):
-        return verificar_codigo(code)
-
-    def verify_password(self, password):
-        return consulta_acceso_usuario(self.correo, password)
-
-    def verify_user(self, user):
-        return consulta_correo(user)
-
     def action_button(self, button_id):
         if button_id == 1:
                 self.PaginasLogin.setCurrentWidget(self.pag02Login)
@@ -12903,10 +12894,10 @@ class Ui_fondoMain(object):
                 self.pushButton_13.hide()
         elif button_id == 4:
                 self.correo = self.textEdit.toPlainText()
-                password_text = self.real_text
+                self.password = self.real_text
                 if self.verify_user(self.correo):
                         self.label_13.hide()
-                        if self.verify_password(password_text):
+                        if consulta_acceso_usuario(self.correo, self.password):
                                 self.cambianteTodo.setCurrentWidget(self.home)
                                 self.label_14.hide()
                         else: 
@@ -12915,7 +12906,7 @@ class Ui_fondoMain(object):
                         self.label_13.show()
         elif button_id == 5:
                 user_text = self.textEdit_3.toPlainText()
-                if self.verify_user(user_text):
+                if consulta_correo(user_text):
                         enviar_codigo_verificacion(self.textEdit_3.toPlainText())
                         self.label_4.show()
                         self.label_6.show()
@@ -12930,7 +12921,7 @@ class Ui_fondoMain(object):
                         self.label_5.show()
         elif button_id == 6:
                 code = self.textEdit_4.toPlainText() + self.textEdit_5.toPlainText() + self.textEdit_6.toPlainText() + self.textEdit_7.toPlainText() + self.textEdit_8.toPlainText()
-                if self.verify_code(code):
+                if verificar_codigo(code):
                         self.PaginasLogin.setCurrentWidget(self.pag03Login)
                         self.textEdit_4.setText("")
                         self.textEdit_5.setText("")
@@ -12983,28 +12974,31 @@ class Ui_fondoMain(object):
                                         self.user = self.textEdit_11.toPlainText()
                                         self.correo = self.textEdit_12.toPlainText()
                                         self.password = self.real_text_4
-                                        #Crear funcionalidad si existe un correo igual en la base de datos
-                                        #msg = QMessageBox()
-                                        #msg.setIcon(QMessageBox.Information)
-                                        #msg.setWindowTitle("Correo ya registrado")
-                                        #msg.setText(f"Lo siento. \nEl correo {self.correo} ya ha sido registrado por otro usuario.\nIntentelo de nuevo con otro correo.")
-                                        #msg.setStandardButtons(QMessageBox.Ok)
-                                        #msg.exec_()
-                                        if enviar_codigo_verificacion(self.correo):
-                                                self.PaginasLogin.setCurrentWidget(self.pag05Login)
-                                                self.textEdit_11.setText("")
-                                                self.textEdit_12.setText("")
-                                                self.textEdit_13.setText("")
-                                                self.label_12.hide()
-                                        else:
+                                        if consulta_correo(self.correo):
                                                 msg = QMessageBox()
                                                 msg.setIcon(QMessageBox.Information)
-                                                msg.setWindowTitle("Error de cuenta")
-                                                msg.setText(f"Lo siento. \nEl correo {self.correo} es inválido y no se pudo enviar el código de verificación.\nIntentelo de nuevo con otro correo.")
+                                                msg.setWindowTitle("Correo ya registrado")
+                                                msg.setText(f"Lo siento. \nEl correo {self.correo} ya ha sido registrado por otro usuario.\nIntentelo de nuevo con otro correo.")
                                                 msg.setStandardButtons(QMessageBox.Ok)
                                                 msg.exec_()
                                                 self.textEdit_12.setText("")
                                                 self.label_11.show()
+                                        else:
+                                                if enviar_codigo_verificacion(self.correo):
+                                                        self.PaginasLogin.setCurrentWidget(self.pag05Login)
+                                                        self.textEdit_11.setText("")
+                                                        self.textEdit_12.setText("")
+                                                        self.textEdit_13.setText("")
+                                                        self.label_12.hide()
+                                                else:
+                                                        msg = QMessageBox()
+                                                        msg.setIcon(QMessageBox.Information)
+                                                        msg.setWindowTitle("Error de cuenta")
+                                                        msg.setText(f"Lo siento. \nEl correo {self.correo} es inválido y no se pudo enviar el código de verificación.\nIntentelo de nuevo con otro correo.")
+                                                        msg.setStandardButtons(QMessageBox.Ok)
+                                                        msg.exec_()
+                                                        self.textEdit_12.setText("")
+                                                        self.label_11.show()
                                 else:
                                         self.label_12.show()
                         else:
@@ -13016,10 +13010,8 @@ class Ui_fondoMain(object):
                 self.PaginasHome.setCurrentWidget(self.pag_opciones)
         elif button_id == 10:
                 #Agregar a la base de datos
-                #Ingresar con los datos del usuario
                 code = self.textEdit_52.toPlainText() + self.textEdit_53.toPlainText() + self.textEdit_51.toPlainText() + self.textEdit_49.toPlainText() + self.textEdit_50.toPlainText()
-                if self.verify_code(code):
-                        #Crear funcionalidad si existe un correo igual en la base de datos
+                if verificar_codigo(code):
                         msg = QMessageBox()
                         msg.setIcon(QMessageBox.Information)
                         msg.setWindowTitle("Creación de cuenta")
