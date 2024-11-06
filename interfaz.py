@@ -12720,12 +12720,10 @@ class Ui_fondoMain(object):
         self.botonHome.clicked.connect(lambda: self.action_button(9))
         self.pushButton_106.clicked.connect(lambda: self.action_button(10))
         self.Boton_Atras_12.clicked.connect(lambda: self.action_button(12))
-        self.Boton_Atras_15.clicked.connect(lambda: self.action_button(12))
         self.Boton_Atras_24.clicked.connect(lambda: self.action_button(12))
         self.Boton_Atras_72.clicked.connect(lambda: self.action_button(12))
         self.Boton_Atras_10.clicked.connect(lambda: self.action_button(13))
         self.Boton_Atras_26.clicked.connect(lambda: self.action_button(13))
-        self.Boton_Atras_25.clicked.connect(lambda: self.action_button(13))
         self.Boton_Atras_69.clicked.connect(lambda: self.action_button(13))
         self.textEdit.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit))
         self.textEdit.setText("")
@@ -12790,11 +12788,9 @@ class Ui_fondoMain(object):
         self.textEdit_51.textChanged.connect(lambda: self.autoFocusNext(self.textEdit_51, self.textEdit_49))
         self.textEdit_49.textChanged.connect(lambda: self.autoFocusNext(self.textEdit_49, self.textEdit_50))
         self.textEdit_2.textChanged.connect(lambda: self.mask_password(self.textEdit_2, 'real_text'))
-        self.textEdit_9.textChanged.connect(lambda: self.mask_password(self.textEdit_9, 'real_text_2'))
         self.textEdit_10.textChanged.connect(lambda: self.mask_password(self.textEdit_10, 'real_text_3'))
         self.textEdit_13.textChanged.connect(lambda: self.mask_password(self.textEdit_13, 'real_text_4'))
         self.real_text = ""
-        self.real_text_2 = ""
         self.real_text_3 = ""
         self.real_text_4 = ""
         self.label_4.hide()
@@ -12818,6 +12814,7 @@ class Ui_fondoMain(object):
         self.Boton_Atras_15.hide()
         self.Boton_Atras_24.hide()
         self.Boton_Atras_72.hide()
+        self.Boton_Atras_25.hide()
 
     def autoFocusNext(self, currentTextEdit, nextTextEdit):
         if len(currentTextEdit.toPlainText()) >= 1:
@@ -13001,9 +12998,9 @@ class Ui_fondoMain(object):
                         self.textEdit_7.setText("")
                         self.textEdit_8.setText("")
         elif button_id == 7:
-                if len(self.real_text_2)>7:
+                if len(self.textEdit_9.toPlainText())>7:
                         self.label_8.hide()
-                        if self.real_text_2 == self.real_text_3:
+                        if self.textEdit_9.toPlainText() == self.real_text_3:
                                 cambiar_contraseña(self.correo, self.password)
                                 msg = QMessageBox()
                                 msg.setIcon(QMessageBox.Information)
@@ -13015,9 +13012,7 @@ class Ui_fondoMain(object):
                                 self.textEdit_9.setText("")
                                 self.textEdit_10.setText("")
                                 self.label_25.hide()
-                                self.Boton_Atras_25.show()
                                 self.Boton_Atras_26.show()
-                                self.Boton_Atras_15.hide()
                                 self.Boton_Atras_24.hide()
                         else:
                                 self.label_25.show()
@@ -13098,56 +13093,43 @@ class Ui_fondoMain(object):
                 self.textEdit_53.setText("")
         elif button_id == 12:
                 self.Boton_Atras_10.show()
-                self.Boton_Atras_25.show()
                 self.Boton_Atras_26.show()
                 self.Boton_Atras_69.show()
                 self.Boton_Atras_12.hide()
-                self.Boton_Atras_15.hide()
                 self.Boton_Atras_24.hide()
                 self.Boton_Atras_72.hide()
                 self.textEdit_2.textChanged.disconnect()
-                self.textEdit_9.textChanged.disconnect()
                 self.textEdit_10.textChanged.disconnect()
                 self.textEdit_13.textChanged.disconnect()
                 self.textEdit_2.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_2))
-                self.textEdit_9.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_9))
                 self.textEdit_10.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_10))
                 self.textEdit_13.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_13))
                 self.textEdit_2.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_2, 42))
-                self.textEdit_9.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_9, 42))
                 self.textEdit_10.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_10, 42))
                 self.textEdit_13.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_13, 42))
                 self.textEdit_2.textChanged.connect(lambda: self.mask_password(self.textEdit_2, 'real_text'))
-                self.textEdit_9.textChanged.connect(lambda: self.mask_password(self.textEdit_9, 'real_text_2'))
                 self.textEdit_10.textChanged.connect(lambda: self.mask_password(self.textEdit_10, 'real_text_3'))
                 self.textEdit_13.textChanged.connect(lambda: self.mask_password(self.textEdit_13, 'real_text_4'))
                 self.textEdit_2.setText(self.real_text)
-                self.textEdit_9.setText(self.real_text_2)
                 self.textEdit_10.setText(self.real_text_3)
                 self.textEdit_13.setText(self.real_text_4)
         elif button_id == 13:
                 self.Boton_Atras_10.hide()
-                self.Boton_Atras_25.hide()
                 self.Boton_Atras_26.hide()
                 self.Boton_Atras_69.hide()
                 self.Boton_Atras_12.show()
-                self.Boton_Atras_15.show()
                 self.Boton_Atras_24.show()
                 self.Boton_Atras_72.show()
                 self.textEdit_2.textChanged.disconnect()
-                self.textEdit_9.textChanged.disconnect()
                 self.textEdit_10.textChanged.disconnect()
                 self.textEdit_13.textChanged.disconnect()
                 self.textEdit_2.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_2))
-                self.textEdit_9.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_9))
                 self.textEdit_10.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_10))
                 self.textEdit_13.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_13))
                 self.textEdit_2.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_2, 42))
-                self.textEdit_9.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_9, 42))
                 self.textEdit_10.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_10, 42))
                 self.textEdit_13.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_13, 42))
                 self.textEdit_2.setText(self.real_text)
-                self.textEdit_9.setText(self.real_text_2)
                 self.textEdit_10.setText(self.real_text_3)
                 self.textEdit_13.setText(self.real_text_4)
 
