@@ -53,6 +53,9 @@
        <string notr="true">border-radius: 30px; /* Ajusta el valor para el radio de los bordes */
 background-color:#242525;</string>
       </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
       <widget class="QWidget" name="pag01Login">
        <property name="styleSheet">
         <string notr="true">border-radius: 30px; /* Ajusta el valor para el radio de los bordes */
@@ -1605,6 +1608,78 @@ QPushButton:hover {
         </property>
         <property name="text">
          <string>CREATE</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Boton_Atras_69">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>430</y>
+          <width>31</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-size: contain;
+    background-color: transparent;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */
+    border: none;                   /* Elimina el borde del botón */
+}
+QPushButton:hover {
+    background-color: #2980b9;  /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;               /* Color del texto al hacer hover */
+    border: none;  /* Cambiar el color del borde al hacer hover */
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>Hologramas/icon/iconojoabierto.png</normaloff>Hologramas/icon/iconojoabierto.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="Boton_Atras_72">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>430</y>
+          <width>31</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-size: contain;
+    background-color: transparent;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */
+    border: none;                   /* Elimina el borde del botón */
+}
+QPushButton:hover {
+    background-color: #2980b9;  /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;               /* Color del texto al hacer hover */
+    border: none;  /* Cambiar el color del borde al hacer hover */
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>Hologramas/icon/iconojocerrado.png</normaloff>Hologramas/icon/iconojocerrado.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
         </property>
        </widget>
       </widget>

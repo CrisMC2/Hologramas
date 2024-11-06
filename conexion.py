@@ -26,7 +26,7 @@ def crear_tabla_medicos():
         nombre VARCHAR(100) NOT NULL,
         contraseña VARCHAR(100) NOT NULL,
         email VARCHAR(100) NOT NULL UNIQUE,
-        description TEXT
+        description TEXT DEFAULT 'No hay descripción previa'
     )
     """
     cursor.execute(crear_tabla_sql)
@@ -81,16 +81,16 @@ def consulta_acceso_usuario(correo, contraseña):
     conn.close()
     return resultado[0] > 0
 
-def cambiar_contraseña(tabla, correo, nueva_contraseña):
+def cambiar_contraseña(correo, nueva_contraseña):
     conn = conectar()
     cursor = conn.cursor()
-    actualizar_sql = f"UPDATE {tabla} SET contraseña = %s WHERE email = %s"
+    actualizar_sql = f"UPDATE MEDICOS SET contraseña = %s WHERE email = %s"
     cursor.execute(actualizar_sql, (nueva_contraseña, correo))
     conn.commit()
     conn.close()
     return cursor.rowcount > 0
 
-def agregar_medico(nombre, contraseña, email, description):
+def agregar_medico(nombre, contraseña, email, description='No hay descripción previa'):
     conn = conectar()
     cursor = conn.cursor()
     cursor.execute("SELECT COUNT(*) FROM MEDICOS WHERE email = %s", (email,))
@@ -118,6 +118,7 @@ def eliminar_todo():
     eliminar_tabla_medicos()
     eliminar_tabla_pacientes()
 
+eliminar_todo()
 # Ejecutar la creación de la base de datos y las tablas
 crear_base_de_datos()
 iniciar()

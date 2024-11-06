@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'interfaz_todo.ui'
+# Form implementation generated from reading ui file 'interfaz_todo - copia1.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -12,6 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLineEdit, QMessageBox
 from Gmail import enviar_codigo_verificacion, verificar_codigo
 from conexion import *
+
 
 class Ui_fondoMain(object):
     def setupUi(self, fondoMain):
@@ -64,7 +65,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon.setText("")
-        self.profileIcon.setPixmap(QtGui.QPixmap("icon/profile.png"))
+        self.profileIcon.setPixmap(QtGui.QPixmap("Hologramas/icon/profile.png"))
         self.profileIcon.setScaledContents(True)
         self.profileIcon.setObjectName("profileIcon")
         self.textEdit = QtWidgets.QTextEdit(self.pag01Login)
@@ -126,7 +127,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon3.setText("")
-        self.profileIcon3.setPixmap(QtGui.QPixmap("icon/email.png"))
+        self.profileIcon3.setPixmap(QtGui.QPixmap("Hologramas/icon/email.png"))
         self.profileIcon3.setScaledContents(True)
         self.profileIcon3.setObjectName("profileIcon3")
         self.profileIcon4 = QtWidgets.QLabel(self.pag01Login)
@@ -137,7 +138,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon4.setText("")
-        self.profileIcon4.setPixmap(QtGui.QPixmap("icon/candado.png"))
+        self.profileIcon4.setPixmap(QtGui.QPixmap("Hologramas/icon/candado.png"))
         self.profileIcon4.setScaledContents(True)
         self.profileIcon4.setObjectName("profileIcon4")
         self.pushButton_11 = QtWidgets.QPushButton(self.pag01Login)
@@ -171,7 +172,7 @@ class Ui_fondoMain(object):
 "}")
         self.Boton_Atras_10.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icon/iconojoabierto.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("Hologramas/icon/iconojoabierto.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Boton_Atras_10.setIcon(icon)
         self.Boton_Atras_10.setIconSize(QtCore.QSize(30, 30))
         self.Boton_Atras_10.setObjectName("Boton_Atras_10")
@@ -210,7 +211,7 @@ class Ui_fondoMain(object):
 "}")
         self.Boton_Atras_12.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icon/iconojocerrado.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("Hologramas/icon/iconojocerrado.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Boton_Atras_12.setIcon(icon1)
         self.Boton_Atras_12.setIconSize(QtCore.QSize(30, 30))
         self.Boton_Atras_12.setObjectName("Boton_Atras_12")
@@ -254,7 +255,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.Profile_icon_6.setText("")
-        self.Profile_icon_6.setPixmap(QtGui.QPixmap("icon/profile.png"))
+        self.Profile_icon_6.setPixmap(QtGui.QPixmap("Hologramas/icon/profile.png"))
         self.Profile_icon_6.setScaledContents(True)
         self.Profile_icon_6.setObjectName("Profile_icon_6")
         self.pushButton_3 = QtWidgets.QPushButton(self.widget_2)
@@ -290,7 +291,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon7.setText("")
-        self.profileIcon7.setPixmap(QtGui.QPixmap("icon/email.png"))
+        self.profileIcon7.setPixmap(QtGui.QPixmap("Hologramas/icon/email.png"))
         self.profileIcon7.setScaledContents(True)
         self.profileIcon7.setObjectName("profileIcon7")
         self.label_4 = QtWidgets.QLabel(self.pag02Login)
@@ -304,7 +305,7 @@ class Ui_fondoMain(object):
 "}")
         self.label_4.setObjectName("label_4")
         self.textEdit_4 = QtWidgets.QTextEdit(self.pag02Login)
-        self.textEdit_4.setGeometry(QtCore.QRect(260, 500, 41, 31))
+        self.textEdit_4.setGeometry(QtCore.QRect(170, 487, 61, 45))
         self.textEdit_4.setStyleSheet("QTextEdit {\n"
 "    border-top:none;\n"
 "    border-left: none;\n"
@@ -313,7 +314,7 @@ class Ui_fondoMain(object):
 "}")
         self.textEdit_4.setObjectName("textEdit_4")
         self.textEdit_5 = QtWidgets.QTextEdit(self.pag02Login)
-        self.textEdit_5.setGeometry(QtCore.QRect(320, 500, 41, 31))
+        self.textEdit_5.setGeometry(QtCore.QRect(260, 487, 61, 45))
         self.textEdit_5.setStyleSheet("QTextEdit {\n"
 "    border-top:none;\n"
 "    border-left: none;\n"
@@ -322,7 +323,7 @@ class Ui_fondoMain(object):
 "}")
         self.textEdit_5.setObjectName("textEdit_5")
         self.textEdit_6 = QtWidgets.QTextEdit(self.pag02Login)
-        self.textEdit_6.setGeometry(QtCore.QRect(380, 500, 41, 31))
+        self.textEdit_6.setGeometry(QtCore.QRect(350, 487, 61, 45))
         self.textEdit_6.setStyleSheet("QTextEdit {\n"
 "    border-top:none;\n"
 "    border-left: none;\n"
@@ -331,7 +332,7 @@ class Ui_fondoMain(object):
 "}")
         self.textEdit_6.setObjectName("textEdit_6")
         self.textEdit_7 = QtWidgets.QTextEdit(self.pag02Login)
-        self.textEdit_7.setGeometry(QtCore.QRect(440, 500, 41, 31))
+        self.textEdit_7.setGeometry(QtCore.QRect(440, 487, 61, 45))
         self.textEdit_7.setStyleSheet("QTextEdit {\n"
 "    border-top:none;\n"
 "    border-left: none;\n"
@@ -340,7 +341,7 @@ class Ui_fondoMain(object):
 "}")
         self.textEdit_7.setObjectName("textEdit_7")
         self.textEdit_8 = QtWidgets.QTextEdit(self.pag02Login)
-        self.textEdit_8.setGeometry(QtCore.QRect(500, 500, 41, 31))
+        self.textEdit_8.setGeometry(QtCore.QRect(530, 487, 61, 45))
         self.textEdit_8.setStyleSheet("QTextEdit {\n"
 "    border-top:none;\n"
 "    border-left: none;\n"
@@ -359,7 +360,7 @@ class Ui_fondoMain(object):
 "}")
         self.label_5.setObjectName("label_5")
         self.label_6 = QtWidgets.QLabel(self.pag02Login)
-        self.label_6.setGeometry(QtCore.QRect(260, 530, 351, 31))
+        self.label_6.setGeometry(QtCore.QRect(170, 530, 351, 31))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.label_6.setFont(font)
@@ -427,7 +428,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon8.setText("")
-        self.profileIcon8.setPixmap(QtGui.QPixmap("icon/profile.png"))
+        self.profileIcon8.setPixmap(QtGui.QPixmap("Hologramas/icon/profile.png"))
         self.profileIcon8.setScaledContents(True)
         self.profileIcon8.setObjectName("profileIcon8")
         self.pushButton_4 = QtWidgets.QPushButton(self.widget_3)
@@ -463,7 +464,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon9.setText("")
-        self.profileIcon9.setPixmap(QtGui.QPixmap("icon/candado.png"))
+        self.profileIcon9.setPixmap(QtGui.QPixmap("Hologramas/icon/candado.png"))
         self.profileIcon9.setScaledContents(True)
         self.profileIcon9.setObjectName("profileIcon9")
         self.label_8 = QtWidgets.QLabel(self.pag03Login)
@@ -607,7 +608,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon10.setText("")
-        self.profileIcon10.setPixmap(QtGui.QPixmap("icon/profile.png"))
+        self.profileIcon10.setPixmap(QtGui.QPixmap("Hologramas/icon/profile.png"))
         self.profileIcon10.setScaledContents(True)
         self.profileIcon10.setObjectName("profileIcon10")
         self.pushButton_5 = QtWidgets.QPushButton(self.widget_4)
@@ -663,7 +664,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon11.setText("")
-        self.profileIcon11.setPixmap(QtGui.QPixmap("icon/candado.png"))
+        self.profileIcon11.setPixmap(QtGui.QPixmap("Hologramas/icon/candado.png"))
         self.profileIcon11.setScaledContents(True)
         self.profileIcon11.setObjectName("profileIcon11")
         self.profileIcon12 = QtWidgets.QLabel(self.pag04Login)
@@ -674,7 +675,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon12.setText("")
-        self.profileIcon12.setPixmap(QtGui.QPixmap("icon/email.png"))
+        self.profileIcon12.setPixmap(QtGui.QPixmap("Hologramas/icon/email.png"))
         self.profileIcon12.setScaledContents(True)
         self.profileIcon12.setObjectName("profileIcon12")
         self.profileIcon13 = QtWidgets.QLabel(self.pag04Login)
@@ -685,7 +686,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon13.setText("")
-        self.profileIcon13.setPixmap(QtGui.QPixmap("icon/usericon2.png"))
+        self.profileIcon13.setPixmap(QtGui.QPixmap("Hologramas/icon/usericon2.png"))
         self.profileIcon13.setScaledContents(True)
         self.profileIcon13.setObjectName("profileIcon13")
         self.label_10 = QtWidgets.QLabel(self.pag04Login)
@@ -734,6 +735,40 @@ class Ui_fondoMain(object):
 "    color: white;                              \n"
 "}")
         self.pushButton_36.setObjectName("pushButton_36")
+        self.Boton_Atras_69 = QtWidgets.QPushButton(self.pag04Login)
+        self.Boton_Atras_69.setGeometry(QtCore.QRect(680, 430, 31, 25))
+        self.Boton_Atras_69.setStyleSheet("QPushButton {\n"
+"    background-position: center;    /* Centrar la imagen */\n"
+"    background-size: contain;\n"
+"    background-color: transparent;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
+"    border: none;                   /* Elimina el borde del botón */\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #2980b9;  /* Color de fondo cuando el mouse está sobre el botón */\n"
+"    color: white;               /* Color del texto al hacer hover */\n"
+"    border: none;  /* Cambiar el color del borde al hacer hover */\n"
+"}")
+        self.Boton_Atras_69.setText("")
+        self.Boton_Atras_69.setIcon(icon)
+        self.Boton_Atras_69.setIconSize(QtCore.QSize(30, 30))
+        self.Boton_Atras_69.setObjectName("Boton_Atras_69")
+        self.Boton_Atras_72 = QtWidgets.QPushButton(self.pag04Login)
+        self.Boton_Atras_72.setGeometry(QtCore.QRect(680, 430, 31, 25))
+        self.Boton_Atras_72.setStyleSheet("QPushButton {\n"
+"    background-position: center;    /* Centrar la imagen */\n"
+"    background-size: contain;\n"
+"    background-color: transparent;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
+"    border: none;                   /* Elimina el borde del botón */\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #2980b9;  /* Color de fondo cuando el mouse está sobre el botón */\n"
+"    color: white;               /* Color del texto al hacer hover */\n"
+"    border: none;  /* Cambiar el color del borde al hacer hover */\n"
+"}")
+        self.Boton_Atras_72.setText("")
+        self.Boton_Atras_72.setIcon(icon1)
+        self.Boton_Atras_72.setIconSize(QtCore.QSize(30, 30))
+        self.Boton_Atras_72.setObjectName("Boton_Atras_72")
         self.PaginasLogin.addWidget(self.pag04Login)
         self.pag05Login = QtWidgets.QWidget()
         self.pag05Login.setObjectName("pag05Login")
@@ -759,7 +794,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.profileIcon10_2.setText("")
-        self.profileIcon10_2.setPixmap(QtGui.QPixmap("icon/profile.png"))
+        self.profileIcon10_2.setPixmap(QtGui.QPixmap("Hologramas/icon/profile.png"))
         self.profileIcon10_2.setScaledContents(True)
         self.profileIcon10_2.setObjectName("profileIcon10_2")
         self.pushButton_88 = QtWidgets.QPushButton(self.widget_118)
@@ -788,7 +823,7 @@ class Ui_fondoMain(object):
 "}")
         self.label_385.setObjectName("label_385")
         self.textEdit_49 = QtWidgets.QTextEdit(self.pag05Login)
-        self.textEdit_49.setGeometry(QtCore.QRect(440, 300, 41, 31))
+        self.textEdit_49.setGeometry(QtCore.QRect(440, 300, 61, 45))
         self.textEdit_49.setStyleSheet("QTextEdit {\n"
 "    border-top:none;\n"
 "    border-left: none;\n"
@@ -797,7 +832,7 @@ class Ui_fondoMain(object):
 "}")
         self.textEdit_49.setObjectName("textEdit_49")
         self.textEdit_50 = QtWidgets.QTextEdit(self.pag05Login)
-        self.textEdit_50.setGeometry(QtCore.QRect(500, 300, 41, 31))
+        self.textEdit_50.setGeometry(QtCore.QRect(530, 300, 61, 45))
         self.textEdit_50.setStyleSheet("QTextEdit {\n"
 "    border-top:none;\n"
 "    border-left: none;\n"
@@ -806,7 +841,7 @@ class Ui_fondoMain(object):
 "}")
         self.textEdit_50.setObjectName("textEdit_50")
         self.textEdit_51 = QtWidgets.QTextEdit(self.pag05Login)
-        self.textEdit_51.setGeometry(QtCore.QRect(380, 300, 41, 31))
+        self.textEdit_51.setGeometry(QtCore.QRect(350, 300, 61, 45))
         self.textEdit_51.setStyleSheet("QTextEdit {\n"
 "    border-top:none;\n"
 "    border-left: none;\n"
@@ -815,7 +850,7 @@ class Ui_fondoMain(object):
 "}")
         self.textEdit_51.setObjectName("textEdit_51")
         self.textEdit_52 = QtWidgets.QTextEdit(self.pag05Login)
-        self.textEdit_52.setGeometry(QtCore.QRect(260, 300, 41, 31))
+        self.textEdit_52.setGeometry(QtCore.QRect(170, 300, 61, 45))
         self.textEdit_52.setStyleSheet("QTextEdit {\n"
 "    border-top:none;\n"
 "    border-left: none;\n"
@@ -824,7 +859,7 @@ class Ui_fondoMain(object):
 "}")
         self.textEdit_52.setObjectName("textEdit_52")
         self.textEdit_53 = QtWidgets.QTextEdit(self.pag05Login)
-        self.textEdit_53.setGeometry(QtCore.QRect(320, 300, 41, 31))
+        self.textEdit_53.setGeometry(QtCore.QRect(260, 300, 61, 45))
         self.textEdit_53.setStyleSheet("QTextEdit {\n"
 "    border-top:none;\n"
 "    border-left: none;\n"
@@ -833,7 +868,7 @@ class Ui_fondoMain(object):
 "}")
         self.textEdit_53.setObjectName("textEdit_53")
         self.label_386 = QtWidgets.QLabel(self.pag05Login)
-        self.label_386.setGeometry(QtCore.QRect(260, 340, 351, 31))
+        self.label_386.setGeometry(QtCore.QRect(170, 350, 351, 31))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.label_386.setFont(font)
@@ -867,7 +902,7 @@ class Ui_fondoMain(object):
 "    background-size: contain; /* Ajusta la imagen al QLabel */\n"
 "}")
         self.imagenHospitalCarrion.setText("")
-        self.imagenHospitalCarrion.setPixmap(QtGui.QPixmap("icon/carrionhospital.jpg"))
+        self.imagenHospitalCarrion.setPixmap(QtGui.QPixmap("Hologramas/icon/carrionhospital.jpg"))
         self.imagenHospitalCarrion.setScaledContents(True)
         self.imagenHospitalCarrion.setObjectName("imagenHospitalCarrion")
         self.cambianteTodo.addWidget(self.login)
@@ -11897,6 +11932,7 @@ class Ui_fondoMain(object):
 
         self.retranslateUi(fondoMain)
         self.cambianteTodo.setCurrentIndex(0)
+        self.PaginasLogin.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(fondoMain)
 
     def retranslateUi(self, fondoMain):
@@ -12683,6 +12719,14 @@ class Ui_fondoMain(object):
         self.pushButton_88.clicked.connect(lambda: self.action_button(11))
         self.botonHome.clicked.connect(lambda: self.action_button(9))
         self.pushButton_106.clicked.connect(lambda: self.action_button(10))
+        self.Boton_Atras_12.clicked.connect(lambda: self.action_button(12))
+        self.Boton_Atras_15.clicked.connect(lambda: self.action_button(12))
+        self.Boton_Atras_24.clicked.connect(lambda: self.action_button(12))
+        self.Boton_Atras_72.clicked.connect(lambda: self.action_button(12))
+        self.Boton_Atras_10.clicked.connect(lambda: self.action_button(13))
+        self.Boton_Atras_26.clicked.connect(lambda: self.action_button(13))
+        self.Boton_Atras_25.clicked.connect(lambda: self.action_button(13))
+        self.Boton_Atras_69.clicked.connect(lambda: self.action_button(13))
         self.textEdit.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit))
         self.textEdit.setText("")
         self.textEdit_2.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_2))
@@ -12770,6 +12814,10 @@ class Ui_fondoMain(object):
         self.textEdit_7.hide()
         self.textEdit_8.hide()
         self.pushButton_13.hide()
+        self.Boton_Atras_12.hide()
+        self.Boton_Atras_15.hide()
+        self.Boton_Atras_24.hide()
+        self.Boton_Atras_72.hide()
 
     def autoFocusNext(self, currentTextEdit, nextTextEdit):
         if len(currentTextEdit.toPlainText()) >= 1:
@@ -12843,8 +12891,9 @@ class Ui_fondoMain(object):
                 self.textEdit_10: "Confirma la contraseña",
                 self.textEdit_11: "Ingresa tus apellidos y nombres",
                 self.textEdit_12: "Ingresa tu correo electrónico",
+                self.textEdit_13: "Crea una contraseña"
                 }
-                textEdit.setPlaceholderText(placeholders.get(textEdit, "Crea una contraseña"))
+                textEdit.setPlaceholderText(placeholders.get(textEdit, "0"))
         else:
                 textEdit.setStyleSheet("""
                 QTextEdit {
@@ -12865,8 +12914,12 @@ class Ui_fondoMain(object):
     def action_button(self, button_id):
         if button_id == 1:
                 self.PaginasLogin.setCurrentWidget(self.pag02Login)
+                self.Boton_Atras_10.show()
+                self.Boton_Atras_12.hide()
         elif button_id == 2:
                 self.PaginasLogin.setCurrentWidget(self.pag04Login)
+                self.Boton_Atras_10.show()
+                self.Boton_Atras_12.hide()
         elif button_id == 3:
                 self.PaginasLogin.setCurrentWidget(self.pag01Login)
                 self.textEdit.setText("")
@@ -12900,6 +12953,8 @@ class Ui_fondoMain(object):
                         if consulta_acceso_usuario(self.correo, self.password):
                                 self.cambianteTodo.setCurrentWidget(self.home)
                                 self.label_14.hide()
+                                self.Boton_Atras_10.show()
+                                self.Boton_Atras_12.hide()
                         else: 
                                 self.label_14.show()
                 else:
@@ -12933,6 +12988,7 @@ class Ui_fondoMain(object):
                         self.textEdit_6.hide()
                         self.textEdit_7.hide()
                         self.textEdit_8.hide()
+                        self.label_4.hide()
                         self.label_6.hide()
                         self.textEdit_3.setText("")
                         self.label_5.hide()
@@ -12945,21 +13001,24 @@ class Ui_fondoMain(object):
                         self.textEdit_7.setText("")
                         self.textEdit_8.setText("")
         elif button_id == 7:
-                #agregar funcionalidad de cambiar la contraseña
                 if len(self.real_text_2)>7:
                         self.label_8.hide()
                         if self.real_text_2 == self.real_text_3:
-                                #Ingresar con los datos del usuario
-                                self.cambianteTodo.setCurrentWidget(self.home)
+                                cambiar_contraseña(self.correo, self.password)
                                 msg = QMessageBox()
                                 msg.setIcon(QMessageBox.Information)
                                 msg.setWindowTitle("Cambio de contraseña")
                                 msg.setText("¡Contraseña cambiada exitosamente!")
                                 msg.setStandardButtons(QMessageBox.Ok)
                                 msg.exec_()
+                                self.cambianteTodo.setCurrentWidget(self.home)
                                 self.textEdit_9.setText("")
                                 self.textEdit_10.setText("")
                                 self.label_25.hide()
+                                self.Boton_Atras_25.show()
+                                self.Boton_Atras_26.show()
+                                self.Boton_Atras_15.hide()
+                                self.Boton_Atras_24.hide()
                         else:
                                 self.label_25.show()
                 else:
@@ -12990,6 +13049,8 @@ class Ui_fondoMain(object):
                                                         self.textEdit_12.setText("")
                                                         self.textEdit_13.setText("")
                                                         self.label_12.hide()
+                                                        self.Boton_Atras_69.show()
+                                                        self.Boton_Atras_72.hide()
                                                 else:
                                                         msg = QMessageBox()
                                                         msg.setIcon(QMessageBox.Information)
@@ -13009,9 +13070,9 @@ class Ui_fondoMain(object):
                 self.cambianteTodo.setCurrentWidget(self.home)
                 self.PaginasHome.setCurrentWidget(self.pag_opciones)
         elif button_id == 10:
-                #Agregar a la base de datos
                 code = self.textEdit_52.toPlainText() + self.textEdit_53.toPlainText() + self.textEdit_51.toPlainText() + self.textEdit_49.toPlainText() + self.textEdit_50.toPlainText()
                 if verificar_codigo(code):
+                        agregar_medico(self.user, self.password, self.correo)
                         msg = QMessageBox()
                         msg.setIcon(QMessageBox.Information)
                         msg.setWindowTitle("Creación de cuenta")
@@ -13028,13 +13089,67 @@ class Ui_fondoMain(object):
                 else:
                         self.label_386.show()
         elif button_id == 11:
-                self.PaginasLogin.setCurrentWidget(self.pag04login)
+                self.PaginasLogin.setCurrentWidget(self.pag04Login)
                 self.label_386.hide()
                 self.textEdit_49.setText("")
                 self.textEdit_50.setText("")
                 self.textEdit_51.setText("")
                 self.textEdit_52.setText("")
                 self.textEdit_53.setText("")
+        elif button_id == 12:
+                self.Boton_Atras_10.show()
+                self.Boton_Atras_25.show()
+                self.Boton_Atras_26.show()
+                self.Boton_Atras_69.show()
+                self.Boton_Atras_12.hide()
+                self.Boton_Atras_15.hide()
+                self.Boton_Atras_24.hide()
+                self.Boton_Atras_72.hide()
+                self.textEdit_2.textChanged.disconnect()
+                self.textEdit_9.textChanged.disconnect()
+                self.textEdit_10.textChanged.disconnect()
+                self.textEdit_13.textChanged.disconnect()
+                self.textEdit_2.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_2))
+                self.textEdit_9.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_9))
+                self.textEdit_10.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_10))
+                self.textEdit_13.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_13))
+                self.textEdit_2.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_2, 42))
+                self.textEdit_9.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_9, 42))
+                self.textEdit_10.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_10, 42))
+                self.textEdit_13.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_13, 42))
+                self.textEdit_2.textChanged.connect(lambda: self.mask_password(self.textEdit_2, 'real_text'))
+                self.textEdit_9.textChanged.connect(lambda: self.mask_password(self.textEdit_9, 'real_text_2'))
+                self.textEdit_10.textChanged.connect(lambda: self.mask_password(self.textEdit_10, 'real_text_3'))
+                self.textEdit_13.textChanged.connect(lambda: self.mask_password(self.textEdit_13, 'real_text_4'))
+                self.textEdit_2.setText(self.real_text)
+                self.textEdit_9.setText(self.real_text_2)
+                self.textEdit_10.setText(self.real_text_3)
+                self.textEdit_13.setText(self.real_text_4)
+        elif button_id == 13:
+                self.Boton_Atras_10.hide()
+                self.Boton_Atras_25.hide()
+                self.Boton_Atras_26.hide()
+                self.Boton_Atras_69.hide()
+                self.Boton_Atras_12.show()
+                self.Boton_Atras_15.show()
+                self.Boton_Atras_24.show()
+                self.Boton_Atras_72.show()
+                self.textEdit_2.textChanged.disconnect()
+                self.textEdit_9.textChanged.disconnect()
+                self.textEdit_10.textChanged.disconnect()
+                self.textEdit_13.textChanged.disconnect()
+                self.textEdit_2.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_2))
+                self.textEdit_9.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_9))
+                self.textEdit_10.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_10))
+                self.textEdit_13.textChanged.connect(lambda: self.updateTextEditStyle(self.textEdit_13))
+                self.textEdit_2.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_2, 42))
+                self.textEdit_9.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_9, 42))
+                self.textEdit_10.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_10, 42))
+                self.textEdit_13.textChanged.connect(lambda: self.validateTextInput_2(self.textEdit_13, 42))
+                self.textEdit_2.setText(self.real_text)
+                self.textEdit_9.setText(self.real_text_2)
+                self.textEdit_10.setText(self.real_text_3)
+                self.textEdit_13.setText(self.real_text_4)
 
 if __name__ == "__main__":
     import sys
@@ -13042,5 +13157,6 @@ if __name__ == "__main__":
     fondoMain = QtWidgets.QMainWindow()
     ui = Ui_fondoMain()
     ui.setupUi(fondoMain)
+    ui.PaginasLogin.setCurrentWidget(ui.pag01Login)
     fondoMain.show()
     sys.exit(app.exec_())
