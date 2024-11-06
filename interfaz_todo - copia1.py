@@ -13029,7 +13029,7 @@ class Ui_fondoMain(object):
                 else:
                         self.label_386.show()
         elif button_id == 11:
-                self.PaginasLogin.setCurrentWidget(self.pag04login)
+                self.PaginasLogin.setCurrentWidget(self.pag04Login)
                 self.label_386.hide()
                 self.textEdit_49.setText("")
                 self.textEdit_50.setText("")
