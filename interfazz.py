@@ -13716,9 +13716,10 @@ class Ui_fondoMain(object):
 
     def setup_connections(self):
         self.listWidget.itemClicked.connect(self.onItemClicked)
+        #self.listWidget.hide()
         self.textEdit.textChanged.connect(self.hideListWidget)
-        self.textEdit.mousePressEvent = self.showListWidget
-
+        #self.textEdit.mousePressEvent = self.showListWidget
+    
     def showListWidget(self, event):
         print("showListWidget ejecutado")  # Depuración: Verificar que se ejecuta el evento
         if not self.textEdit.toPlainText():
@@ -13734,10 +13735,10 @@ class Ui_fondoMain(object):
 
     def onItemClicked(self, item):
         print("Item seleccionado:", item.text())  # Depuración: Verificar el texto del item seleccionado
-        self.textEdit.setText(item.text())
+        self.textEdit.setText(item.text()) # Asigna el texto del item al QTextEdit
         
         # Usamos QTimer para ocultar el listWidget después de un pequeño retraso
-        QTimer.singleShot(100, self.listWidget.hide)  # Ocultamos después de 100 ms
+        #QTimer.singleShot(100, self.listWidget.hide)  # Ocultamos después de 100 ms
 
     def hideListWidget(self):
         print("Ocultando listWidget")  # Depuración: Verificar cuando se oculta el listWidget
