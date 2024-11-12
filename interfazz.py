@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+#a
 # Form implementation generated from reading ui file 'interfaz_todo - copia1.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
@@ -12782,6 +12782,7 @@ class Ui_fondoMain(object):
         QtCore.QMetaObject.connectSlotsByName(fondoMain)
         self.textEdit.mousePressEvent = self.showListWidget
         self.textEdit.textChanged.connect(self.hideListWidget)
+
         self.listWidget.itemClicked.connect(self.onItemClicked)
 
     def retranslateUi(self, fondoMain):
@@ -13715,10 +13716,10 @@ class Ui_fondoMain(object):
         self.setup_connections()
 
     def setup_connections(self):
-        self.listWidget.itemClicked.connect(self.onItemClicked)
+        self.listWidget.currentItemChanged.connect(self.onItemClicked)
         #self.listWidget.hide()
-        self.textEdit.textChanged.connect(self.hideListWidget)
-        self.textEdit.mousePressEvent = self.showListWidget
+        self.textEdit.textChanged.connect(self.showListWidget)
+        #self.textEdit.focusInEvent = self.showListWidget
     
     def showListWidget(self, event):
         print("showListWidget ejecutado")  # Depuración: Verificar que se ejecuta el evento
@@ -13734,12 +13735,10 @@ class Ui_fondoMain(object):
                 self.listWidget.hide()
 
     def onItemClicked(self, item):
-        print("Item seleccionado:", item.text())  # Depuración: Verificar el texto del item seleccionado
-        self.textEdit.setText(item.text()) # Asigna el texto del item al QTextEdit
+        print("Item seleccionado:", item.text())
+        self.textEdit.setText(item.text())
+        QTimer.singleShot(100, self.listWidget.hide)  # Descomenta esto si quieres ocultar después de un tiempo
         
-        # Usamos QTimer para ocultar el listWidget después de un pequeño retraso
-        #QTimer.singleShot(100, self.listWidget.hide)  # Ocultamos después de 100 ms
-
     def hideListWidget(self):
         print("Ocultando listWidget")  # Depuración: Verificar cuando se oculta el listWidget
         self.listWidget.hide()
@@ -14081,3 +14080,5 @@ if __name__ == "__main__":
     ui.setupUi(fondoMain)
     fondoMain.show()
     sys.exit(app.exec_())
+    
+    
