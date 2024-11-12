@@ -13718,7 +13718,7 @@ class Ui_fondoMain(object):
         self.listWidget.itemClicked.connect(self.onItemClicked)
         #self.listWidget.hide()
         self.textEdit.textChanged.connect(self.hideListWidget)
-        #self.textEdit.mousePressEvent = self.showListWidget
+        self.textEdit.mousePressEvent = self.showListWidget
     
     def showListWidget(self, event):
         print("showListWidget ejecutado")  # Depuración: Verificar que se ejecuta el evento
