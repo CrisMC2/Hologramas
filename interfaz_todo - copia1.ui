@@ -54,7 +54,7 @@
 background-color:#242525;</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pag01Login">
        <property name="styleSheet">
@@ -445,6 +445,29 @@ QPushButton:hover {
          </size>
         </property>
        </widget>
+       <widget class="QListWidget" name="listWidget">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>270</y>
+          <width>461</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+        background-color: white;  /* Fondo blanco */
+        color: black;             /* Letra negra */
+        border: 1px solid;             /* Sin borde */
+border-radius: 0px;</string>
+        </property>
+       </widget>
        <zorder>textEdit</zorder>
        <zorder>textEdit_2</zorder>
        <zorder>radioButton</zorder>
@@ -458,6 +481,7 @@ QPushButton:hover {
        <zorder>label_13</zorder>
        <zorder>label_14</zorder>
        <zorder>Boton_Atras_12</zorder>
+       <zorder>listWidget</zorder>
       </widget>
       <widget class="QWidget" name="pag02Login">
        <property name="styleSheet">
@@ -4288,7 +4312,7 @@ QPushButton:pressed {
        <widget class="QPushButton" name="pushButton_51">
         <property name="geometry">
          <rect>
-          <x>600</x>
+          <x>510</x>
           <y>690</y>
           <width>51</width>
           <height>41</height>
@@ -4323,7 +4347,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_52">
         <property name="geometry">
          <rect>
-          <x>500</x>
+          <x>450</x>
           <y>690</y>
           <width>51</width>
           <height>41</height>
@@ -4358,7 +4382,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_53">
         <property name="geometry">
          <rect>
-          <x>670</x>
+          <x>600</x>
           <y>690</y>
           <width>51</width>
           <height>41</height>
@@ -4393,7 +4417,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_54">
         <property name="geometry">
          <rect>
-          <x>740</x>
+          <x>720</x>
           <y>690</y>
           <width>111</width>
           <height>41</height>
@@ -4429,7 +4453,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_55">
         <property name="geometry">
          <rect>
-          <x>370</x>
+          <x>330</x>
           <y>690</y>
           <width>111</width>
           <height>41</height>
@@ -4492,6 +4516,41 @@ QPushButton:hover {
          <string>...</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="pushButton_178">
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>690</y>
+          <width>51</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+        </property>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="pag_ver_paciente">
        <property name="styleSheet">
@@ -4503,7 +4562,7 @@ border-radius: 20px;</string>
        <widget class="QPushButton" name="pushButton_30">
         <property name="geometry">
          <rect>
-          <x>690</x>
+          <x>680</x>
           <y>670</y>
           <width>111</width>
           <height>41</height>
@@ -4539,7 +4598,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_28">
         <property name="geometry">
          <rect>
-          <x>550</x>
+          <x>460</x>
           <y>670</y>
           <width>51</width>
           <height>41</height>
@@ -4638,7 +4697,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_27">
         <property name="geometry">
          <rect>
-          <x>450</x>
+          <x>400</x>
           <y>670</y>
           <width>51</width>
           <height>41</height>
@@ -4673,8 +4732,8 @@ QPushButton:hover {
        <widget class="QLabel" name="label_50">
         <property name="geometry">
          <rect>
-          <x>500</x>
-          <y>670</y>
+          <x>510</x>
+          <y>680</y>
           <width>55</width>
           <height>31</height>
          </rect>
@@ -4732,7 +4791,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_29">
         <property name="geometry">
          <rect>
-          <x>620</x>
+          <x>560</x>
           <y>670</y>
           <width>51</width>
           <height>41</height>
@@ -5696,7 +5755,7 @@ QPushButton:pressed {
        <widget class="QPushButton" name="pushButton_31">
         <property name="geometry">
          <rect>
-          <x>320</x>
+          <x>280</x>
           <y>670</y>
           <width>111</width>
           <height>41</height>
@@ -5727,6 +5786,41 @@ QPushButton:hover {
         </property>
         <property name="text">
          <string>&lt;&lt;PREV</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_179">
+        <property name="geometry">
+         <rect>
+          <x>620</x>
+          <y>670</y>
+          <width>51</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+        </property>
+        <property name="text">
+         <string>4</string>
         </property>
        </widget>
       </widget>
@@ -5776,8 +5870,8 @@ QPushButton:hover {
        <widget class="QLabel" name="label_47">
         <property name="geometry">
          <rect>
-          <x>500</x>
-          <y>670</y>
+          <x>520</x>
+          <y>680</y>
           <width>41</width>
           <height>31</height>
          </rect>
@@ -5835,7 +5929,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_21">
         <property name="geometry">
          <rect>
-          <x>550</x>
+          <x>470</x>
           <y>670</y>
           <width>51</width>
           <height>41</height>
@@ -5870,7 +5964,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_20">
         <property name="geometry">
          <rect>
-          <x>450</x>
+          <x>410</x>
           <y>670</y>
           <width>51</width>
           <height>41</height>
@@ -5939,7 +6033,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_22">
         <property name="geometry">
          <rect>
-          <x>620</x>
+          <x>570</x>
           <y>670</y>
           <width>51</width>
           <height>41</height>
@@ -6933,7 +7027,7 @@ QPushButton:pressed {
        <widget class="QPushButton" name="pushButton_40">
         <property name="geometry">
          <rect>
-          <x>320</x>
+          <x>290</x>
           <y>670</y>
           <width>111</width>
           <height>41</height>
@@ -6964,6 +7058,41 @@ QPushButton:hover {
         </property>
         <property name="text">
          <string>&lt;&lt;PREV</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_177">
+        <property name="geometry">
+         <rect>
+          <x>630</x>
+          <y>670</y>
+          <width>51</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+        </property>
+        <property name="text">
+         <string>4</string>
         </property>
        </widget>
       </widget>
@@ -10406,7 +10535,7 @@ QPushButton:hover {
          <widget class="QPushButton" name="pushButton_91">
           <property name="geometry">
            <rect>
-            <x>360</x>
+            <x>310</x>
             <y>680</y>
             <width>111</width>
             <height>41</height>
@@ -10610,7 +10739,7 @@ QPushButton:hover {
          <widget class="QPushButton" name="pushButton_94">
           <property name="geometry">
            <rect>
-            <x>700</x>
+            <x>710</x>
             <y>680</y>
             <width>111</width>
             <height>41</height>
@@ -10646,7 +10775,7 @@ QPushButton:hover {
          <widget class="QPushButton" name="pushButton_95">
           <property name="geometry">
            <rect>
-            <x>480</x>
+            <x>430</x>
             <y>680</y>
             <width>51</width>
             <height>41</height>
@@ -10681,7 +10810,7 @@ QPushButton:hover {
          <widget class="QPushButton" name="pushButton_96">
           <property name="geometry">
            <rect>
-            <x>580</x>
+            <x>490</x>
             <y>680</y>
             <width>51</width>
             <height>41</height>
@@ -10716,7 +10845,7 @@ QPushButton:hover {
          <widget class="QPushButton" name="pushButton_97">
           <property name="geometry">
            <rect>
-            <x>640</x>
+            <x>590</x>
             <y>680</y>
             <width>51</width>
             <height>41</height>
@@ -10751,8 +10880,8 @@ QPushButton:hover {
          <widget class="QLabel" name="label_216">
           <property name="geometry">
            <rect>
-            <x>530</x>
-            <y>680</y>
+            <x>540</x>
+            <y>690</y>
             <width>41</width>
             <height>31</height>
            </rect>
@@ -10776,6 +10905,41 @@ QPushButton:hover {
           </property>
           <property name="text">
            <string>...</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_175">
+          <property name="geometry">
+           <rect>
+            <x>650</x>
+            <y>680</y>
+            <width>51</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+          </property>
+          <property name="text">
+           <string>4</string>
           </property>
          </widget>
         </widget>
@@ -12520,7 +12684,7 @@ QPushButton:hover {
          <widget class="QPushButton" name="pushButton_92">
           <property name="geometry">
            <rect>
-            <x>360</x>
+            <x>320</x>
             <y>680</y>
             <width>111</width>
             <height>41</height>
@@ -12556,7 +12720,7 @@ QPushButton:hover {
          <widget class="QPushButton" name="pushButton_114">
           <property name="geometry">
            <rect>
-            <x>700</x>
+            <x>710</x>
             <y>680</y>
             <width>111</width>
             <height>41</height>
@@ -12592,7 +12756,7 @@ QPushButton:hover {
          <widget class="QPushButton" name="pushButton_115">
           <property name="geometry">
            <rect>
-            <x>480</x>
+            <x>440</x>
             <y>680</y>
             <width>51</width>
             <height>41</height>
@@ -12627,7 +12791,7 @@ QPushButton:hover {
          <widget class="QPushButton" name="pushButton_116">
           <property name="geometry">
            <rect>
-            <x>580</x>
+            <x>500</x>
             <y>680</y>
             <width>51</width>
             <height>41</height>
@@ -12662,7 +12826,7 @@ QPushButton:hover {
          <widget class="QPushButton" name="pushButton_117">
           <property name="geometry">
            <rect>
-            <x>640</x>
+            <x>590</x>
             <y>680</y>
             <width>51</width>
             <height>41</height>
@@ -12697,8 +12861,8 @@ QPushButton:hover {
          <widget class="QLabel" name="label_223">
           <property name="geometry">
            <rect>
-            <x>530</x>
-            <y>680</y>
+            <x>550</x>
+            <y>690</y>
             <width>41</width>
             <height>31</height>
            </rect>
@@ -12722,6 +12886,41 @@ QPushButton:hover {
           </property>
           <property name="text">
            <string>...</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_176">
+          <property name="geometry">
+           <rect>
+            <x>650</x>
+            <y>680</y>
+            <width>51</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+          </property>
+          <property name="text">
+           <string>4</string>
           </property>
          </widget>
         </widget>
@@ -13493,6 +13692,1306 @@ QPushButton:pressed {
           </property>
          </widget>
         </widget>
+        <widget class="QWidget" name="PagInicioEditar">
+         <widget class="QPushButton" name="Boton_Atras_73">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>71</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-size: contain;
+    background-color: transparent;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */
+    border: none;                   /* Elimina el borde del botón */
+}
+QPushButton:hover {
+    background-color: #2980b9;  /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;               /* Color del texto al hacer hover */
+    border: none;  /* Cambiar el color del borde al hacer hover */
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../Users/MSI/Downloads/back1.png</normaloff>../Users/MSI/Downloads/back1.png</iconset>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_107">
+          <property name="geometry">
+           <rect>
+            <x>90</x>
+            <y>30</y>
+            <width>241</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    border: none;                         /* Sin borde */
+    border-radius: 10px;                  /* Bordes redondeados */
+    padding: 5px;                         /* Espacio interno */
+    background-color: transparent;        /* Fondo transparente */
+    color: #e6cab8;                         /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);  /* Fondo blanco semi-transparente al hacer hover */
+    color: white;                                /* Color del texto en hover */
+}</string>
+          </property>
+          <property name="text">
+           <string>Opciones Generales</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_188">
+          <property name="geometry">
+           <rect>
+            <x>330</x>
+            <y>30</y>
+            <width>61</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>20</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: 10px;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+;  /* Fondo blanco semi-transparente (opcional) */
+}</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; color:#e6cab8;&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_108">
+          <property name="geometry">
+           <rect>
+            <x>390</x>
+            <y>30</y>
+            <width>221</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    border: none;                         /* Sin borde */
+    border-radius: 10px;                  /* Bordes redondeados */
+    padding: 5px;                         /* Espacio interno */
+    background-color: transparent;        /* Fondo transparente */
+    color: #e6cab8;                         /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);  /* Fondo blanco semi-transparente al hacer hover */
+    color: white;                                /* Color del texto en hover */
+}</string>
+          </property>
+          <property name="text">
+           <string>Editar Pacientes</string>
+          </property>
+         </widget>
+         <widget class="QWidget" name="widget_108" native="true">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>100</y>
+            <width>1071</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+    background-color: #242525;
+    border: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid gray; /* Borde inferior gris, recto y más grueso */</string>
+          </property>
+          <widget class="QLabel" name="label_189">
+           <property name="geometry">
+            <rect>
+             <x>50</x>
+             <y>10</y>
+             <width>61</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>10</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#e6cab8;&quot;&gt;Foto&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_190">
+           <property name="geometry">
+            <rect>
+             <x>190</x>
+             <y>10</y>
+             <width>81</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#e6cab8;&quot;&gt;N° Exp&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_293">
+           <property name="geometry">
+            <rect>
+             <x>380</x>
+             <y>10</y>
+             <width>201</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#e6cab8;&quot;&gt;Nombres y Apellidos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_350">
+           <property name="geometry">
+            <rect>
+             <x>730</x>
+             <y>10</y>
+             <width>101</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#e6cab8;&quot;&gt;Recursos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_351">
+           <property name="geometry">
+            <rect>
+             <x>950</x>
+             <y>10</y>
+             <width>81</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#e6cab8;&quot;&gt;Acción&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="widget_109" native="true">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>180</y>
+            <width>1071</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+    background-color:black;
+    border: none;</string>
+          </property>
+          <widget class="QLabel" name="label_352">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>10</y>
+             <width>61</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_353">
+           <property name="geometry">
+            <rect>
+             <x>190</x>
+             <y>10</y>
+             <width>81</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e6cab8;&quot;&gt;EXP725&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_354">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>10</y>
+             <width>281</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e6cab8;&quot;&gt;Maria del Carmen Gonzales Perez&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_355">
+           <property name="geometry">
+            <rect>
+             <x>710</x>
+             <y>10</y>
+             <width>141</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e63d1f;&quot;&gt;Faltan recursos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_111">
+           <property name="geometry">
+            <rect>
+             <x>950</x>
+             <y>20</y>
+             <width>93</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: white;  /* Fondo transparente */
+    border: none;              /* Borde blanco */
+    border-radius: 15px;                  /* Bordes redondeados */
+    color:  black;                         /* Color del texto */
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */
+}
+QPushButton:pressed {
+    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */
+}</string>
+           </property>
+           <property name="text">
+            <string>Edit</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="widget_110" native="true">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>270</y>
+            <width>1071</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+    background-color:black;
+    border: none;</string>
+          </property>
+          <widget class="QLabel" name="label_406">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>10</y>
+             <width>61</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_407">
+           <property name="geometry">
+            <rect>
+             <x>190</x>
+             <y>10</y>
+             <width>81</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e6cab8;&quot;&gt;EXP725&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_408">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>10</y>
+             <width>281</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e6cab8;&quot;&gt;Maria del Carmen Gonzales Perez&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_409">
+           <property name="geometry">
+            <rect>
+             <x>710</x>
+             <y>10</y>
+             <width>141</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e63d1f;&quot;&gt;Faltan recursos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_165">
+           <property name="geometry">
+            <rect>
+             <x>950</x>
+             <y>20</y>
+             <width>93</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: white;  /* Fondo transparente */
+    border: none;              /* Borde blanco */
+    border-radius: 15px;                  /* Bordes redondeados */
+    color:  black;                         /* Color del texto */
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */
+}
+QPushButton:pressed {
+    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */
+}</string>
+           </property>
+           <property name="text">
+            <string>Edit</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="widget_122" native="true">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>360</y>
+            <width>1071</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+    background-color:black;
+    border: none;</string>
+          </property>
+          <widget class="QLabel" name="label_410">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>10</y>
+             <width>61</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_411">
+           <property name="geometry">
+            <rect>
+             <x>190</x>
+             <y>10</y>
+             <width>81</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e6cab8;&quot;&gt;EXP725&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_412">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>10</y>
+             <width>281</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e6cab8;&quot;&gt;Maria del Carmen Gonzales Perez&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_413">
+           <property name="geometry">
+            <rect>
+             <x>710</x>
+             <y>10</y>
+             <width>141</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e63d1f;&quot;&gt;Faltan recursos&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_166">
+           <property name="geometry">
+            <rect>
+             <x>950</x>
+             <y>20</y>
+             <width>93</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: white;  /* Fondo transparente */
+    border: none;              /* Borde blanco */
+    border-radius: 15px;                  /* Bordes redondeados */
+    color:  black;                         /* Color del texto */
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */
+}
+QPushButton:pressed {
+    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */
+}</string>
+           </property>
+           <property name="text">
+            <string>Edit</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="widget_123" native="true">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>450</y>
+            <width>1071</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+    background-color:black;
+    border: none;</string>
+          </property>
+          <widget class="QLabel" name="label_414">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>10</y>
+             <width>61</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_415">
+           <property name="geometry">
+            <rect>
+             <x>190</x>
+             <y>10</y>
+             <width>81</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e6cab8;&quot;&gt;EXP725&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_416">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>10</y>
+             <width>281</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e6cab8;&quot;&gt;Maria del Carmen Gonzales Perez&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_167">
+           <property name="geometry">
+            <rect>
+             <x>950</x>
+             <y>20</y>
+             <width>93</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: white;  /* Fondo transparente */
+    border: none;              /* Borde blanco */
+    border-radius: 15px;                  /* Bordes redondeados */
+    color:  black;                         /* Color del texto */
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */
+}
+QPushButton:pressed {
+    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */
+}</string>
+           </property>
+           <property name="text">
+            <string>Edit</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_417">
+           <property name="geometry">
+            <rect>
+             <x>740</x>
+             <y>10</y>
+             <width>61</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#319c00;&quot;&gt;Apto&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="widget_124" native="true">
+          <property name="geometry">
+           <rect>
+            <x>40</x>
+            <y>540</y>
+            <width>1071</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+    background-color:black;
+    border: none;</string>
+          </property>
+          <widget class="QLabel" name="label_418">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>10</y>
+             <width>61</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg</pixmap>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_419">
+           <property name="geometry">
+            <rect>
+             <x>190</x>
+             <y>10</y>
+             <width>81</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e6cab8;&quot;&gt;EXP725&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_420">
+           <property name="geometry">
+            <rect>
+             <x>340</x>
+             <y>10</y>
+             <width>281</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#e6cab8;&quot;&gt;Maria del Carmen Gonzales Perez&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_168">
+           <property name="geometry">
+            <rect>
+             <x>950</x>
+             <y>20</y>
+             <width>93</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: white;  /* Fondo transparente */
+    border: none;              /* Borde blanco */
+    border-radius: 15px;                  /* Bordes redondeados */
+    color:  black;                         /* Color del texto */
+}
+QPushButton:hover {
+    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */
+}
+QPushButton:pressed {
+    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */
+}</string>
+           </property>
+           <property name="text">
+            <string>Edit</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_421">
+           <property name="geometry">
+            <rect>
+             <x>740</x>
+             <y>10</y>
+             <width>61</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: none;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+}</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:400; color:#319c00;&quot;&gt;Apto&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QPushButton" name="pushButton_169">
+          <property name="geometry">
+           <rect>
+            <x>320</x>
+            <y>650</y>
+            <width>111</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+    background-color:#e04949;
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+          </property>
+          <property name="text">
+           <string>&lt;&lt;PREV</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_170">
+          <property name="geometry">
+           <rect>
+            <x>440</x>
+            <y>650</y>
+            <width>51</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+          </property>
+          <property name="text">
+           <string>1</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_171">
+          <property name="geometry">
+           <rect>
+            <x>500</x>
+            <y>650</y>
+            <width>51</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+          </property>
+          <property name="text">
+           <string>2</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_422">
+          <property name="geometry">
+           <rect>
+            <x>550</x>
+            <y>660</y>
+            <width>41</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>16</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel {
+    border: none;           /* Borde color violeta */
+    border-radius: 10px;                 /* Bordes redondeados */
+    padding: 5px;                        /* Espacio interno */
+    background-color: transparent;
+    color: white;
+;  /* Fondo blanco semi-transparente (opcional) */
+}</string>
+          </property>
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_172">
+          <property name="geometry">
+           <rect>
+            <x>600</x>
+            <y>650</y>
+            <width>51</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+          </property>
+          <property name="text">
+           <string>3</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_173">
+          <property name="geometry">
+           <rect>
+            <x>660</x>
+            <y>650</y>
+            <width>51</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+          </property>
+          <property name="text">
+           <string>4</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButton_174">
+          <property name="geometry">
+           <rect>
+            <x>720</x>
+            <y>650</y>
+            <width>111</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+    background-color:#009dff;
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+          </property>
+          <property name="text">
+           <string>NEXT &gt;&gt;</string>
+          </property>
+         </widget>
+        </widget>
        </widget>
       </widget>
      </widget>
@@ -14116,7 +15615,7 @@ border-radius: 20px;</string>
        <widget class="QPushButton" name="pushButton_125">
         <property name="geometry">
          <rect>
-          <x>550</x>
+          <x>470</x>
           <y>660</y>
           <width>51</width>
           <height>41</height>
@@ -14151,7 +15650,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_126">
         <property name="geometry">
          <rect>
-          <x>320</x>
+          <x>290</x>
           <y>660</y>
           <width>111</width>
           <height>41</height>
@@ -14837,7 +16336,7 @@ QPushButton:pressed {
        <widget class="QPushButton" name="pushButton_131">
         <property name="geometry">
          <rect>
-          <x>450</x>
+          <x>410</x>
           <y>660</y>
           <width>51</width>
           <height>41</height>
@@ -14872,8 +16371,8 @@ QPushButton:hover {
        <widget class="QLabel" name="label_141">
         <property name="geometry">
          <rect>
-          <x>500</x>
-          <y>660</y>
+          <x>520</x>
+          <y>670</y>
           <width>41</width>
           <height>31</height>
          </rect>
@@ -14902,7 +16401,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_132">
         <property name="geometry">
          <rect>
-          <x>690</x>
+          <x>680</x>
           <y>660</y>
           <width>111</width>
           <height>41</height>
@@ -15246,7 +16745,7 @@ QPushButton:pressed {
        <widget class="QPushButton" name="pushButton_135">
         <property name="geometry">
          <rect>
-          <x>620</x>
+          <x>560</x>
           <y>660</y>
           <width>51</width>
           <height>41</height>
@@ -15306,6 +16805,41 @@ QPushButton:hover {
         <property name="icon">
          <iconset>
           <normaloff>../Users/MSI/Downloads/back1.png</normaloff>../Users/MSI/Downloads/back1.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_181">
+        <property name="geometry">
+         <rect>
+          <x>620</x>
+          <y>660</y>
+          <width>51</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+        </property>
+        <property name="text">
+         <string>4</string>
         </property>
        </widget>
       </widget>
@@ -17176,8 +18710,8 @@ QPushButton:hover {
        <widget class="QLabel" name="label_155">
         <property name="geometry">
          <rect>
-          <x>550</x>
-          <y>670</y>
+          <x>560</x>
+          <y>680</y>
           <width>41</width>
           <height>31</height>
          </rect>
@@ -17206,7 +18740,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_149">
         <property name="geometry">
          <rect>
-          <x>500</x>
+          <x>450</x>
           <y>670</y>
           <width>51</width>
           <height>41</height>
@@ -17241,7 +18775,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_150">
         <property name="geometry">
          <rect>
-          <x>370</x>
+          <x>330</x>
           <y>670</y>
           <width>111</width>
           <height>41</height>
@@ -17277,7 +18811,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_151">
         <property name="geometry">
          <rect>
-          <x>740</x>
+          <x>730</x>
           <y>670</y>
           <width>111</width>
           <height>41</height>
@@ -17313,7 +18847,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_152">
         <property name="geometry">
          <rect>
-          <x>670</x>
+          <x>610</x>
           <y>670</y>
           <width>51</width>
           <height>41</height>
@@ -17348,7 +18882,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_153">
         <property name="geometry">
          <rect>
-          <x>600</x>
+          <x>510</x>
           <y>670</y>
           <width>51</width>
           <height>41</height>
@@ -17454,6 +18988,41 @@ QPushButton:pressed {
         </property>
         <property name="text">
          <string>Cancel</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_180">
+        <property name="geometry">
+         <rect>
+          <x>670</x>
+          <y>670</y>
+          <width>51</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+        </property>
+        <property name="text">
+         <string>4</string>
         </property>
        </widget>
       </widget>
@@ -20639,7 +22208,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_141">
         <property name="geometry">
          <rect>
-          <x>410</x>
+          <x>370</x>
           <y>660</y>
           <width>111</width>
           <height>41</height>
@@ -20675,7 +22244,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_142">
         <property name="geometry">
          <rect>
-          <x>630</x>
+          <x>550</x>
           <y>660</y>
           <width>51</width>
           <height>41</height>
@@ -20710,7 +22279,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_143">
         <property name="geometry">
          <rect>
-          <x>530</x>
+          <x>490</x>
           <y>660</y>
           <width>51</width>
           <height>41</height>
@@ -20745,7 +22314,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_144">
         <property name="geometry">
          <rect>
-          <x>750</x>
+          <x>760</x>
           <y>660</y>
           <width>111</width>
           <height>41</height>
@@ -20781,7 +22350,7 @@ QPushButton:hover {
        <widget class="QPushButton" name="pushButton_145">
         <property name="geometry">
          <rect>
-          <x>690</x>
+          <x>640</x>
           <y>660</y>
           <width>51</width>
           <height>41</height>
@@ -20816,8 +22385,8 @@ QPushButton:hover {
        <widget class="QLabel" name="label_152">
         <property name="geometry">
          <rect>
-          <x>580</x>
-          <y>660</y>
+          <x>600</x>
+          <y>670</y>
           <width>41</width>
           <height>31</height>
          </rect>
@@ -20841,6 +22410,41 @@ QPushButton:hover {
         </property>
         <property name="text">
          <string>...</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_182">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>660</y>
+          <width>51</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-position: center;    /* Centrar la imagen */
+    background-repeat: no-repeat;   /* Evitar que se repita la imagen */
+    background-size: contain;       /* Cambiar el tamaño de la imagen */
+    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */
+    color: white;                   /* Color del texto */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */
+    color: white;                   /* Color del texto al hacer hover */
+    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */
+}</string>
+        </property>
+        <property name="text">
+         <string>4</string>
         </property>
        </widget>
       </widget>
@@ -23118,8 +24722,8 @@ border-radius: 20px;</string>
       <widget class="QLabel" name="label_440">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>80</y>
+         <x>20</x>
+         <y>60</y>
          <width>1091</width>
          <height>641</height>
         </rect>
