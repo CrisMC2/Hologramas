@@ -12780,6 +12780,9 @@ class Ui_fondoMain(object):
         self.cambianteTodo.setCurrentIndex(0)
         self.PaginasLogin.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(fondoMain)
+        self.textEdit.mousePressEvent = self.showListWidget
+        self.textEdit.textChanged.connect(self.hideListWidget)
+        self.listWidget.itemClicked.connect(self.onItemClicked)
 
     def retranslateUi(self, fondoMain):
         _translate = QtCore.QCoreApplication.translate
@@ -13705,30 +13708,39 @@ class Ui_fondoMain(object):
         self.Boton_Atras_72.hide()
         self.Boton_Atras_25.hide()
         #fondoMain.setMouseTracking(True)
-        self.textEdit.mousePressEvent = self.showListWidget
-        self.textEdit.textChanged.connect(self.hideListWidget)
-        self.listWidget.itemClicked.connect(self.onItemClicked)
-        print("Conexión establecida correctamente")
         self.listWidget.hide()
         #fondoMain.mousePressEvent = self.onMousePressOutside
+        print("Conexión establecida correctamente")
+        self.listWidget.hide()
+        self.setup_connections()
+
+    def setup_connections(self):
+        self.listWidget.itemClicked.connect(self.onItemClicked)
+        self.textEdit.textChanged.connect(self.hideListWidget)
+        self.textEdit.mousePressEvent = self.showListWidget
 
     def showListWidget(self, event):
+        print("showListWidget ejecutado")  # Depuración: Verificar que se ejecuta el evento
         if not self.textEdit.toPlainText():
-            self.listWidget.show()
-            self.listWidget.clear() 
-            self.elements = obtener_guardados()
-            for element in self.elements:
-                    self.listWidget.addItem(element[0])
+                self.listWidget.show()
+                self.listWidget.clear() 
+                self.elements = obtener_guardados()
+                print("Elementos obtenidos:", self.elements)  # Depuración: Verificar los datos obtenidos
+                for element in self.elements:
+                        print("Añadiendo item:", element)  # Depuración: Verificar que los elementos se añaden correctamente
+                        self.listWidget.addItem(element)
         else:
-            self.listWidget.hide()
+                self.listWidget.hide()
 
     def onItemClicked(self, item):
+        print("Item seleccionado:", item.text())  # Depuración: Verificar el texto del item seleccionado
         self.textEdit.setText(item.text())
-        print("showListWidget ejecutado")
-        print("Texto seleccionado:", item.text())
-        self.listWidget.hide()
+        
+        # Usamos QTimer para ocultar el listWidget después de un pequeño retraso
+        QTimer.singleShot(100, self.listWidget.hide)  # Ocultamos después de 100 ms
 
     def hideListWidget(self):
+        print("Ocultando listWidget")  # Depuración: Verificar cuando se oculta el listWidget
         self.listWidget.hide()
 
     #def onMousePressOutside(self, event):

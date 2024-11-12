@@ -156,13 +156,13 @@ def obtener_guardados():
     conn = conectar()
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT g.email, m.contraseña 
-        FROM GUARDADOS g
-        JOIN MEDICOS m ON g.email = m.email
+        SELECT email
+        FROM GUARDADOS 
     """)
     resultado = cursor.fetchall()  # Trae todos los resultados en una lista de tuplas
+    emails = [fila[0] for fila in resultado] 
     conn.close()
-    return resultado  # Retorna la lista de tuplas (correo, contraseña)
+    return emails  # Retorna la lista de tuplas (correo, contraseña)
 
 def eliminar_todo():
     eliminar_tabla_medicos()
