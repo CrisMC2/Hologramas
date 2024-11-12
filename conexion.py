@@ -48,6 +48,17 @@ def crear_tabla_pacientes():
     """
     cursor.execute(crear_tabla_sql)
     conn.close()
+    
+def crear_tabla_guardados():
+    conn = conectar()
+    cursor = conn.cursor()
+    crear_tabla_sql = """
+    CREATE TABLE IF NOT EXISTS GUARDADOS (
+        email VARCHAR(100) NOT NULL UNIQUE
+    )
+    """
+    cursor.execute(crear_tabla_sql)
+    conn.close()
 
 def eliminar_tabla_medicos():
     conn = conectar()
@@ -62,6 +73,15 @@ def eliminar_tabla_pacientes():
     eliminar_tabla_sql = "DROP TABLE IF EXISTS PACIENTES"
     cursor.execute(eliminar_tabla_sql)
     conn.close()
+
+def eliminar_tabla_guardados():
+    conn = conectar()
+    cursor = conn.cursor()
+    eliminar_tabla_sql = "DROP TABLE IF EXISTS GUARDADOS"
+    cursor.execute(eliminar_tabla_sql)
+    conn.close()
+
+
 
 def consulta_correo(correo):
     conn = conectar()
@@ -104,21 +124,51 @@ def agregar_medico(nombre, contraseña, email, description='No hay descripción 
     conn.commit()
     conn.close()
 
+def agregar_guardados(email):
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM GUARDADOS WHERE email = %s", (email,))
+    resultado = cursor.fetchone()
+    if resultado[0] > 0:
+        print(f"El correo {email} ya está registrado. No se añadirá este correo.")
+        conn.close()
+        return
+    agregar_sql = "INSERT INTO GUARDADOS (email) VALUES (%s)"
+    cursor.execute(agregar_sql, (email,))
+    conn.commit()
+    conn.close()
+
 def iniciar():
     crear_tabla_medicos()
     crear_tabla_pacientes()
+    crear_tabla_guardados()
     medicos = [
         ('Olenka', 'stivenss', 'olenkaanna23@gmail.com', 'Amarilla'),
         ('Cristhian', 'ingriddd', 'cristhianmartinezcasas@gmail.com', 'Yo')
     ]
     for medico in medicos:
         agregar_medico(*medico)
+    guardados = [('olenkaanna23@gmail.com'),('cristhianmartinezcasas@gmail.com')]
+    for guardado in guardados:
+        agregar_guardados(guardado)
+
+def obtener_guardados():
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT g.email, m.contraseña 
+        FROM GUARDADOS g
+        JOIN MEDICOS m ON g.email = m.email
+    """)
+    resultado = cursor.fetchall()  # Trae todos los resultados en una lista de tuplas
+    conn.close()
+    return resultado  # Retorna la lista de tuplas (correo, contraseña)
 
 def eliminar_todo():
     eliminar_tabla_medicos()
     eliminar_tabla_pacientes()
+    eliminar_tabla_guardados()
 
-eliminar_todo()
 # Ejecutar la creación de la base de datos y las tablas
 crear_base_de_datos()
 iniciar()
