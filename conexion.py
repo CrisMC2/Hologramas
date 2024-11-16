@@ -148,6 +148,7 @@ def iniciar():
     ]
     for medico in medicos:
         agregar_medico(*medico)
+    global guardados
     guardados = [('olenkaanna23@gmail.com'),('cristhianmartinezcasas@gmail.com')]
     for guardado in guardados:
         agregar_guardados(guardado)
