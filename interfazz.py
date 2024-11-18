@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+#a
 # Form implementation generated from reading ui file 'interfaz_todo - copia1.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
@@ -12,6 +12,8 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QListWidget, Q
 from Gmail import enviar_codigo_verificacion, verificar_codigo
 from PyQt5.QtCore import QTimer
 from conexion import *
+from conexion import obtener_guardados
+from PyQt5.QtCore import Qt
 
 class Ui_fondoMain(object):
     def setupUi(self, fondoMain):
@@ -214,16 +216,18 @@ class Ui_fondoMain(object):
         self.Boton_Atras_12.setIcon(icon1)
         self.Boton_Atras_12.setIconSize(QtCore.QSize(30, 30))
         self.Boton_Atras_12.setObjectName("Boton_Atras_12")
-        self.listWidget = QtWidgets.QListWidget(self.pag01Login)
-        self.listWidget.setEnabled(False)
-        self.listWidget.setGeometry(QtCore.QRect(110, 270, 461, 101))
-        self.listWidget.setAutoFillBackground(False)
-        self.listWidget.setStyleSheet("\n"
-"        background-color: white;  /* Fondo blanco */\n"
-"        color: black;             /* Letra negra */\n"
-"        border: 1px solid;             /* Sin borde */\n"
-"border-radius: 0px;")
-        self.listWidget.setObjectName("listWidget")
+        #self.listWidget = QtWidgets.QListWidget(self.pag01Login)
+        #self.listWidget.setEnabled(False)
+        #self.listWidget.setGeometry(QtCore.QRect(110, 270, 461, 101))
+        #self.listWidget.setAutoFillBackground(False)
+
+        #self.listWidget.setStyleSheet("\n"
+#"        background-color: white;  /* Fondo blanco */\n"
+#"        color: black;             /* Letra negra */\n"
+#"        border: 1px solid;             /* Sin borde */\n"
+#"border-radius: 0px;")
+        #self.listWidget.setObjectName("listWidget")
+
         self.textEdit.raise_()
         self.textEdit_2.raise_()
         self.radioButton.raise_()
@@ -237,7 +241,7 @@ class Ui_fondoMain(object):
         self.label_13.raise_()
         self.label_14.raise_()
         self.Boton_Atras_12.raise_()
-        self.listWidget.raise_()
+        #self.listWidget.raise_()
         self.PaginasLogin.addWidget(self.pag01Login)
         self.pag02Login = QtWidgets.QWidget()
         self.pag02Login.setStyleSheet("border-radius: 30px; /* Ajusta el valor para el radio de los bordes */\n"
@@ -12780,9 +12784,10 @@ class Ui_fondoMain(object):
         self.cambianteTodo.setCurrentIndex(0)
         self.PaginasLogin.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(fondoMain)
-        self.textEdit.mousePressEvent = self.showListWidget
-        self.textEdit.textChanged.connect(self.hideListWidget)
-        self.listWidget.itemClicked.connect(self.onItemClicked)
+        #self.textEdit.mousePressEvent = self.showListWidget
+        #self.textEdit.textChanged.connect(self.hideListWidget)
+
+        #self.listWidget.itemClicked.connect(self.onItemClicked)
 
     def retranslateUi(self, fondoMain):
         _translate = QtCore.QCoreApplication.translate
@@ -13708,38 +13713,51 @@ class Ui_fondoMain(object):
         self.Boton_Atras_72.hide()
         self.Boton_Atras_25.hide()
         #fondoMain.setMouseTracking(True)
-        self.listWidget.hide()
+        #self.listWidget.hide()
         #fondoMain.mousePressEvent = self.onMousePressOutside
         print("Conexión establecida correctamente")
-        self.listWidget.hide()
-        self.setup_connections()
-
-    def setup_connections(self):
-        self.listWidget.itemClicked.connect(self.onItemClicked)
         #self.listWidget.hide()
-        self.textEdit.textChanged.connect(self.hideListWidget)
-        #self.textEdit.mousePressEvent = self.showListWidget
+        #self.setup_connections()
+        self.listWidget = QListWidget(fondoMain)
+        self.listWidget.setWindowFlags(Qt.Popup)
+        
     
+    def setup_connections(self):
+        """Conecta las señales y eventos a los métodos correspondientes."""
+        # Conectar el evento de clic en el campo de correo con el método que muestra la lista
+        self.textEdit.mousePressEvent = self.showListWidget
+
+        # Conectar el clic en un elemento de la lista con el método que gestiona la selección
+        self.listWidget.itemClicked.connect(self.onItemClicked)
+
+        # Conectar el botón de inicio de sesión con el método que gestiona la lógica de inicio de sesión
+        #self.pushButton_11.clicked.connect(self.login)
+
     def showListWidget(self, event):
-        print("showListWidget ejecutado")  # Depuración: Verificar que se ejecuta el evento
-        if not self.textEdit.toPlainText():
-                self.listWidget.show()
-                self.listWidget.clear() 
-                self.elements = obtener_guardados()
-                print("Elementos obtenidos:", self.elements)  # Depuración: Verificar los datos obtenidos
-                for element in self.elements:
-                        print("Añadiendo item:", element)  # Depuración: Verificar que los elementos se añaden correctamente
-                        self.listWidget.addItem(element)
-        else:
-                self.listWidget.hide()
+        """Muestra el listWidget flotante cerca del campo de texto."""
+        print("showListWidget ejecutado")  # Mensaje para depuración
+        self.listWidget.clear()  # Limpiar el contenido actual del listWidget
+        
+        # Obtener los correos guardados solo cuando se necesiten
+        self.saved_emails = obtener_guardados()  # Llamar a la función para obtener los correos guardados
+        print(f"Correos guardados cargados: {self.saved_emails}")  # Para depuración
+        # Verificar si hay correos guardados para mostrar
+        if self.saved_emails:
+            self.listWidget.addItems(self.saved_emails)  # Añadir los correos a la lista
+
+            # Calcular la posición para que el listWidget aparezca justo debajo del campo de correo
+            pos = self.textEdit.mapToGlobal(self.textEdit.rect().bottomLeft())
+            self.listWidget.move(pos)  # Mover el listWidget a la posición calculada
+            self.listWidget.show()  # Mostrar el listWidget
 
     def onItemClicked(self, item):
-        print("Item seleccionado:", item.text())  # Depuración: Verificar el texto del item seleccionado
-        self.textEdit.setText(item.text()) # Asigna el texto del item al QTextEdit
-        
-        # Usamos QTimer para ocultar el listWidget después de un pequeño retraso
-        #QTimer.singleShot(100, self.listWidget.hide)  # Ocultamos después de 100 ms
+        """Establece el correo seleccionado en el campo de texto."""
+        print("Texto seleccionado:", item.text())  # Imprimir el correo seleccionado (depuración)
+        self.textEdit.setText(item.text())  # Establecer el correo seleccionado en el campo de texto
+        self.listWidget.hide()  # Ocultar el listWidget después de seleccionar un correo
 
+
+  
     def hideListWidget(self):
         print("Ocultando listWidget")  # Depuración: Verificar cuando se oculta el listWidget
         self.listWidget.hide()
@@ -14080,4 +14098,7 @@ if __name__ == "__main__":
     ui = Ui_fondoMain()
     ui.setupUi(fondoMain)
     fondoMain.show()
+    ui.setup_connections()
     sys.exit(app.exec_())
+    
+    
