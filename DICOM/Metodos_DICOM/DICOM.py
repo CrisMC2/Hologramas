@@ -8,7 +8,7 @@ import dicom2nifti
 from PIL import Image
 from glob import glob
 
-from Abstract_DICOM import DicomOrder_, DicomInformation_, DicomAnonimize_, DicomConvert_, FeaturesVideo_, DicomViews_, DicomExtract_
+from Metodos_DICOM.Abstract_DICOM import DicomOrder_, DicomInformation_, DicomAnonimize_, DicomConvert_, FeaturesVideo_, DicomViews_, DicomExtract_
 
 ########################################################################################
 #INFORMACIÓN

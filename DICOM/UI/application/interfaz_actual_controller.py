@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 application = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(application)
 
-dicoms = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../Metodos_DICOM"))
+dicoms = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.append(dicoms)
 
-from DICOM import ViewAxial, ViewSagittal, ViewCoronal, InformationPatient, InformationImage
+from Metodos_DICOM.DICOM import ViewAxial, ViewSagittal, ViewCoronal, InformationPatient, InformationImage
 
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QAction, QMenu, QFileDialog, QWidget, QLabel, QGraphicsView, QGraphicsScene, QGraphicsPixmapItem
@@ -17,7 +17,7 @@ from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtCore import Qt
 from application.interfaz_actual import Ui_WindowMain
 
-class Main_UI(QMainWindow):
+class Main_UI(QMainWindow, Ui_WindowMain):
     def __init__(self):
         super(Main_UI, self).__init__()
 
@@ -48,35 +48,21 @@ class Main_UI(QMainWindow):
         
         
         #valor del dicom
-        self.value_dicom = 0
+        self.value_dicom = 0             
+    def create_menu(self):
+        menuUploadFiles = QMenu()
         
-        #Configuramos la vista del PIXMAP
-        self.create_QGraphicsImage()
-        self.ui.widget_5.setAttribute(Qt.WA_TransparentForMouseEvents)
-        self.ui.widget_7.setAttribute(Qt.WA_TransparentForMouseEvents)
+        self.UploadFolder = QAction("Upload Folder", self)
+        self.UploadFile = QAction("Upload File", self)
         
-    
-    def create_QGraphicsImage(self):
-        self.one_View_Image = QGraphicsView(self.ui.frame_OneView)
-        self.one_View_Image.setGeometry(0, 0, 400, 400)
-        
-        self.one_View_Image.setDragMode(QGraphicsView.ScrollHandDrag)
-        self.one_View_Image.setResizeAnchor(QGraphicsView.AnchorUnderMouse) 
-        self.Scene_one_View_Image = QGraphicsScene()
-        self.Item_Pixmap = QGraphicsPixmapItem()
-        self.one_View_Image.setScene(self.Scene_one_View_Image)
-        self.Scene_one_View_Image.addItem(self.Item_Pixmap)
-        
-        self.Item_Pixmap.setPixmap(QPixmap())
-        
-        self.one_View_Image.lower()
-        
-        
-        
+        menuUploadFiles.addAction(self.UploadFolder)
+        menuUploadFiles.addAction(self.UploadFile)
+
+        return menuUploadFiles 
     #Función de conexiones
     def connections(self):
         #Funciones del Menú de subida
-        self.menuUploadFile = self.menu_upload_files()
+        self.menuUploadFile = self.create_menu()
         self.ui.UploadFiles.setMenu(self.menuUploadFile)
         self.menuUploadFile.triggered.connect(self.upload)
         
@@ -107,7 +93,36 @@ class Main_UI(QMainWindow):
         self.ui.SliderOneView.valueChanged.connect(self.changeSlider)
         # self.ui.Info_Paciente_2.connect(self.changeText)
         # self.ui.Number_Variable.connect(self.changeText)
+    def menu_cant_views(self):
+        menu_cant_views = QMenu()
         
+        self.one_view = QAction("1 View", self)
+        self.two_view = QAction("2 Views", self)
+        self.four_view = QAction("4 Views", self)
+        
+        #Colocamos a todos como checkable (que tengan el check al lado)
+        self.one_view.setCheckable(True)
+        self.two_view.setCheckable(True)
+        self.four_view.setCheckable(True)
+        
+        menu_cant_views.addActions([self.one_view, self.two_view, self.four_view])
+        return menu_cant_views
+    
+    def menu_views(self):
+        menuViews = QMenu()
+        
+        self.action_AxialView = QAction("Axial View", self)
+        self.action_SagittalView = QAction("Sagittal View", self)
+        self.action_CoronalView = QAction("Coronal View", self)
+        
+        #Colocamos a todos como checkable
+        self.action_AxialView.setCheckable(True)
+        self.action_SagittalView.setCheckable(True)
+        self.action_CoronalView.setCheckable(True)
+        
+        menuViews.addActions([self.action_AxialView, self.action_SagittalView, self.action_CoronalView])
+        
+        return menuViews
     def pantalla(self, value: QAction):
         if value=="Empty":
             self.ui.StackedViews.setCurrentWidget(self.ui.EmptyView)
@@ -124,49 +139,6 @@ class Main_UI(QMainWindow):
         elif value.text()=="4 Vistas":
             if self.ui.StackedViews.currentWidget != self.ui.FourViews:
                 self.ui.StackedViews.setCurrentWidget(self.ui.FourViews)
-            
-        
-    def menu_upload_files(self):
-        menuUploadFiles = QMenu()
-        
-        UploadFolder = QAction("Upload Folder", self)
-        UploadFile = QAction("Upload File", self)
-        
-        menuUploadFiles.addAction(UploadFolder)
-        menuUploadFiles.addAction(UploadFile)
-        
-        return menuUploadFiles
-    
-    def menu_cant_views(self):
-        menu_cant_views = QMenu()
-        
-        self.one_view = QAction("1 Vista", self)
-        self.two_view = QAction("2 Vistas", self)
-        self.four_view = QAction("4 Vistas", self)
-        
-        #Colocamos a todos como checkable (que tengan el check al lado)
-        self.one_view.setCheckable(True)
-        self.two_view.setCheckable(True)
-        self.four_view.setCheckable(True)
-        
-        menu_cant_views.addActions([self.one_view, self.two_view, self.four_view])
-        return menu_cant_views
-        
-    def menu_views(self):
-        menuViews = QMenu()
-        
-        self.action_AxialView = QAction("Axial View", self)
-        self.action_SagittalView = QAction("Sagittal View", self)
-        self.action_CoronalView = QAction("Coronal View", self)
-        
-        #Colocamos a todos como checkable
-        self.action_AxialView.setCheckable(True)
-        self.action_SagittalView.setCheckable(True)
-        self.action_CoronalView.setCheckable(True)
-        
-        menuViews.addActions([self.action_AxialView, self.action_SagittalView, self.action_CoronalView])
-        
-        return menuViews
         
     def checkableActions(self, action_use, group_actions):
         for i in group_actions:
@@ -288,7 +260,10 @@ class Main_UI(QMainWindow):
             
         
 if __name__ == "__main__":
-    app = QApplication([])
-    window = Main_UI()
-    window.show()
-    app.exec_()    
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    WindowMain = QtWidgets.QWidget()
+    ui = Main_UI()
+    ui.setupUi(WindowMain)
+    WindowMain.show()
+    sys.exit(app.exec_())
