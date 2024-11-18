@@ -2,7 +2,11 @@ import os
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
-dicoms = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+application = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(application)
+
+dicoms = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../Metodos_DICOM"))
 sys.path.append(dicoms)
 
 from DICOM import ViewAxial, ViewSagittal, ViewCoronal, InformationPatient, InformationImage
@@ -11,17 +15,17 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QAction, QMenu, QFileDialog, QWidget, QLabel, QGraphicsView, QGraphicsScene, QGraphicsPixmapItem
 from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtCore import Qt
-from interfaz_actual import Ui_WindowMain
+from application.interfaz_actual import Ui_WindowMain
 
 class Main_UI(QMainWindow):
     def __init__(self):
         super(Main_UI, self).__init__()
 
-        #Definimos las clases de otros archivos .py
-        self.define_objects()
-        
         self.ui = Ui_WindowMain()
         self.ui.setupUi(self)
+        
+        #Definimos las clases de otros archivos .py
+        self.define_objects()
         
         #Ejecutamos las declaraciones iniciales
         self.declaraciones_iniciales()
@@ -168,8 +172,10 @@ class Main_UI(QMainWindow):
         for i in group_actions:
             if i == action_use:
                 i.setChecked(True)
+                print("True ",i.text())
             else:    
                 i.setChecked(False)
+                print("False ", i.text())
                 
     def upload (self, action):
         option_file_dialog = QFileDialog.Options()
@@ -191,8 +197,8 @@ class Main_UI(QMainWindow):
             elif type(self.file_name) == list:
                 self.group_Dicoms = self.axialView.extract_some_dicoms(self.file_name)
             
-            self.array_3D = self.axialView.generate_matriz_dicoms(self.group_Dicoms, -1000, 200)
-            
+            self.array_3D = self.axialView.generate_matriz_dicoms(self.group_Dicoms, -200, 200)
+            print(self.array_3D.shape)
             self.ui.SelectView.setEnabled(True)
             self.ui.CantViews.setEnabled(True)
             
@@ -201,26 +207,40 @@ class Main_UI(QMainWindow):
                 
             else:
                 self.ui.SliderOneView.show()
-                self.ui.SliderOneView.setMaximum(len(self.array_3D)-1)
             
-            self.changeText(self.ui.name_Patient, self.group_Dicoms[self.value_dicom])
-            self.changeText(self.ui.Number_Variable, self.group_Dicoms[self.value_dicom])
+            self.changeText(self.ui.name_Patient, self.group_Dicoms[0])
+            self.changeText(self.ui.Number_Variable, self.array_3D.shape[0])
             self.checkableActions(self.action_AxialView, self.list_actions_menuViews)
             
             self.pantalla(self.one_view)
             
     def views(self, action):
         if action.text() == "Axial View":
+            if self.ui.SliderOneView.maximum() != self.array_3D.shape[0]-1:
+                self.ui.SliderOneView.setMaximum(self.array_3D.shape[0]-1)
+                self.value_dicom = (self.ui.SliderOneView.value())
+            
             img = self.axialView.create_view(self.array_3D, self.value_dicom)
             img_QMap = self.create_Pixmap(img)
             self.Item_Pixmap.setPixmap(img_QMap)
             
         elif action.text() == "Sagittal View":
+            if self.ui.SliderOneView.maximum() != self.array_3D.shape[1]-1:
+                self.ui.SliderOneView.setMaximum(self.array_3D.shape[1]-1)
+                self.value_dicom=(self.ui.SliderOneView.value())
+            
+            print("Saggital View")
             img = self.sagittalView.create_view(self.array_3D, self.value_dicom)
+            plt.imshow(img, cmap="gray")
+            plt.show()
             img_QMap = self.create_Pixmap(img)
             self.Item_Pixmap.setPixmap(img_QMap)
             
         elif action.text() == "Coronal View":
+            if self.ui.SliderOneView.maximum() != self.array_3D.shape[2]-1:
+                self.ui.SliderOneView.setMaximum(self.array_3D.shape[2]-1)
+                self.value_dicom=(self.ui.SliderOneView.value())
+            
             img = self.coronalView.create_view(self.array_3D, self.value_dicom)
             img_QMap = self.create_Pixmap(img)
             self.Item_Pixmap.setPixmap(img_QMap)
@@ -243,24 +263,28 @@ class Main_UI(QMainWindow):
         
         return img_QMap
     
-    def changeSlider(self, value):
-        self.value_dicom = value
+    def changeSlider(self, value):  
+        print(value)
+        self.value_dicom = self.ui.SliderOneView.maximum()-value
+        print(self.value_dicom)
         
         for view in self.list_actions_menuViews:
             if view.isChecked():
                 self.views(view)
               
         
-        self.changeText(self.ui.name_Patient, self.group_Dicoms[self.value_dicom])
-        self.changeText(self.ui.Number_Variable, self.group_Dicoms[self.value_dicom])
+        # self.changeText(self.ui.name_Patient, dicom_file=self.group_Dicoms[0])
+        
+        self.changeText(self.ui.Number_Variable, value=value)
         
         
-    def changeText(self, label: QLabel, dicom_file):
+    def changeText(self, label: QLabel, dicom_file = None, value = None):
         if label == self.ui.name_Patient:
-            label.setText(str(self.patientInformation.get_information(dicom_file, PatientName=True)[0]))
+            if dicom_file:
+                label.setText(str(self.patientInformation.get_information(dicom_file, PatientName=True)[0]))
         
         if label == self.ui.Number_Variable:
-            label.setText(str(self.imageInformation.get_information(dicom_file, InstanceNumber=True)[0]))
+           label.setText(str(value))
             
         
 if __name__ == "__main__":
