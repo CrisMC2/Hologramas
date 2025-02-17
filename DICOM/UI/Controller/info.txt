@@ -1,3 +1,0 @@
-pyuic5 -x UI_Mostrar_Views.ui -o interfaz_actual.py
-
-pyuic5 -o interfaz_actual.py UI_Mostrar_Views.ui
