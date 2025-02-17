@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>WindowMain</class>
- <widget class="QWidget" name="WindowMain">
+ <class>viewDICOM</class>
+ <widget class="QWidget" name="viewDICOM">
   <property name="enabled">
    <bool>true</bool>
   </property>

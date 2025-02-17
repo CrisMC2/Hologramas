@@ -1,7 +1,9 @@
+import numpy as np
+
 from abstract.AbsDicomView import AbsDicomView
 
 class ViewAxial(AbsDicomView):
-    def define_aspect(self, label):
+    def define_aspect(self, label: str):
         pass
     
     """
@@ -10,10 +12,10 @@ class ViewAxial(AbsDicomView):
     
     - La matriz es una serie de imágenes envueltas en un espectro 3D.
     - Ello significa, que si solo tomamos una capa, estaremos viendo solo una imagen.    
-    
+
     Ejem:
     
-    Example = 
+    Img = 
     [ [[1, 2, 3, 4, 5]
        [6, 7, 8, 9, 10]]
       
@@ -21,23 +23,23 @@ class ViewAxial(AbsDicomView):
        [16, 17, 18, 19, 20]]
     ]
     
-    Si elegimos Example[0, :, :] nos devolverá:
+    Si elegimos Img[0, :, :] nos devolverá:
     
     [[1, 2, 3, 4, 5]
        [6, 7, 8, 9, 10]]
        
     Esto representaría una imagen, pero solo con un canal (Escala de grises)
     
-    Y si elegimos: Example[1, :, :], tendríamos otra imagen, pero con los elementos de la fila y columna diferentes,
+    Y si elegimos: Img[1, :, :], tendríamos otra imagen, pero con los elementos de la fila y columna diferentes,
     lo mismo pasa con el archivo dicom, al solo usar la matriz, simulamos tener una imagen.
     
     
     """
-    def create_view(self, array_dicoms, i):
+    def create_view(self, array_dicoms: np.array, i: int):
         return array_dicoms[i,:,:]
     
 class ViewSagittal(AbsDicomView):
-    def define_aspect(self, label):
+    def define_aspect(self, label: str):
         pass
     
     """
@@ -59,11 +61,11 @@ class ViewSagittal(AbsDicomView):
     La hoja que está frente a ti sería la persona, y la de perfil sería como la cámara. Es como si estuvieras entrando a una persona desde un lateral hasta otro.
     
     """
-    def create_view(self, array_dicoms, i):
+    def create_view(self, array_dicoms: np.array, i: int):
         return array_dicoms[:,:,i]
 
 class ViewCoronal(AbsDicomView):
-    def define_aspect(self, label):
+    def define_aspect(self, label: str):
         pass
     
     """
@@ -83,5 +85,5 @@ class ViewCoronal(AbsDicomView):
     Si repites el mismo proceso, pero mirando a la caja desde el mismo sentido desde el que avanza la hoja, verás como esta pasa por todo de una forma "frontal".
     Ahora imagina que la caja es el cuerpo humano, y la hoja el proceso de la tomografía.
     """
-    def create_view(self, array_dicoms, i):
+    def create_view(self, array_dicoms: np.array, i: int):
         return array_dicoms[:,i,:]
