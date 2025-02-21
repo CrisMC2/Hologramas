@@ -1,6 +1,7 @@
 # Archivo principal para ejecutar la aplicación con PyQt
 # Importamos los módulos necesarios desde el archivo `interfazz.py`
 from interfazz import QtWidgets, Ui_fondoMain 
+from metodos import setup_connections
 
 if __name__ == "__main__":
     import sys
@@ -9,5 +10,5 @@ if __name__ == "__main__":
     ui = Ui_fondoMain()
     ui.setupUi(fondoMain)
     fondoMain.show()
-    ui.setup_connections()
+    #ui.setup_connections()
     sys.exit(app.exec_())
