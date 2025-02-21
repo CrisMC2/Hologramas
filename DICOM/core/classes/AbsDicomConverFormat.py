@@ -19,7 +19,7 @@ class AbsFeaturesVideo(ABC):
         pass
     
     @abstractmethod
-    def define_mode(self):
+    def define_mode(self, format: str):
         pass
     
     @abstractmethod

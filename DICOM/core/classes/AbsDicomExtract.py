@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from abstract.AbsDicomPath import AbsDicomPathsExists, AbsExtractDicomPath, AbsDicomConvertByPath
-from abstract.AbsDicomProcessing import AbsDicomOrder
+from core.classes.AbsDicomPath import AbsDicomPathsExists, AbsExtractDicomPath, AbsDicomConvertByPath
+from core.classes.AbsDicomProcessing import AbsDicomOrder
 
 class AbsDicomExtract(ABC):
     def __init__(self):
@@ -33,11 +33,19 @@ class AbsDicomExtract(ABC):
     """
     def extract_dicoms (self, path_folder: str):
         if self.dicom_path_exists.exists_path(self.dicom_path_exists, path_folder):
-            list_dicoms = self.extract_dicom_path.extract_dicom_paths(path_folder)
+            list_paths = self.extract_dicom_path.extract_dicom_paths(path_folder)
 
-            if list_dicoms:
+            if list_paths:
                 list_dicoms = self.dicom_convert_by_path.convert_dicoms_list_path(list_dicoms)   
                 list_dicoms = self.dicom_order.order_dicom_folder(list_dicoms)
                 return list_dicoms
         
+        return None
+    
+    def extract_dicoms (self, list_paths: list):
+        if self.dicom_path_exists.exists_dicom_in_path(list_paths):
+            list_dicoms = self.dicom_convert_by_path.convert_dicoms_list_path(list_paths=list_dicoms)
+            list_dicoms = self.dicom_order.order_dicom_folder(list_dicoms)
+
+            return list_dicoms
         return None

@@ -1,6 +1,6 @@
 import numpy as np
 
-from abstract.AbsDicomView import AbsDicomView
+from core.classes.AbsDicomView import AbsDicomView
 
 class ViewAxial(AbsDicomView):
     def define_aspect(self, label: str):

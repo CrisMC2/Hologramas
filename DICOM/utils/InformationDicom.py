@@ -1,6 +1,6 @@
 import pydicom as dicom
 
-from abstract.AbsDicomInformation import AbsDicomInformation, AbsDicomAnonimize
+from core.classes.AbsDicomInformation import AbsDicomInformation, AbsDicomAnonimize
 
 class InformationPatient(AbsDicomInformation, AbsDicomAnonimize):
     def get_information(self, dc: dicom, PatientName=False, PatientID=False, PatientBirthDate=False, PatientSex=False):

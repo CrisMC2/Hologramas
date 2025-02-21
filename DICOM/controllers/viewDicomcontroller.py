@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 application = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(application)
 
-from methods.creation_menus import Upload_Files, SelectCantViews
+from Hologramas.DICOM.core.views.AbsMenus import Upload_Files, SelectCantViews
 
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QAction, QMenu, QFileDialog, QWidget, QLabel, QGraphicsView, QGraphicsScene, QGraphicsPixmapItem

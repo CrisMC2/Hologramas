@@ -2,9 +2,8 @@ from abc import ABC, abstractmethod
 import os
 from glob import glob
 
-
-from Hologramas.DICOM.abstract.AbsDicomRead import AbsDicomRead
-from abstract.AbsPath        import AbsPath 
+from core.classes.AbsDicomRead import AbsDicomRead
+from core.classes.AbsPath        import AbsPath 
 
 class AbsDicomPathsExists(ABC, AbsPath):
     
@@ -36,8 +35,8 @@ class AbsDicomPathsExists(ABC, AbsPath):
     
     """
     def exists_dicom_in_path(self, path_folder: list):
-        if self.exists_path(path_folder, False): #Primero verificamos que la dirección exista
-            return any(os.path.splitext(file)[1] == '.dcm' for file in path_folder) # "any" retornar True si y solo sí todos los archivos cumplen con la condición 
+        if all(self.exists_path(path, False) for path in path_folder): #Primero verificamos si todas las direcciones existen
+            return any(os.path.splitext(file)[1] == '.dcm' for file in path_folder) # "any" retornar True si al menos uno de los archivos cumplen con la condición 
 
 #TEMPLATE
 class AbsExtractDicomPath(ABC):
@@ -86,20 +85,24 @@ class AbsDicomConvertByPath (ABC):
     - La librería usada es Pydicom
     
     Parámetros:
-        - self  (DicomConverdcm_)   : Instancia de la clase AbsDicomConvertByPath.
+        - self  (DicomConvertByPath)   : Instancia de la clase AbsDicomConvertByPath.
         - list_paths (List<String>) : Lista de direcciones de archivos dicom.
         
     Retornar:
         - list_dicoms (List<dicom>) : Lista de los archivos dicom que fueron procesados a partir de las direcciones.
     
     """    
-    def convert_dicoms_list_path(self, list_paths: list):
+    def convert_dicoms_list_path(self, list_paths: list[str]):
         # list_dicoms = list(map(lambda file : file if os.path.splitext(file)[1] == '.dcm' else None), list_paths)
         # list_dicoms = list(file for file in list_dicoms if file is not None)    
         
         list_dicoms = list(file for file in list_paths if os.path.splitext(file)[1] == ".dcm") #Si falla cambia la "list()"" por "[]"
         
-        if (not list_dicoms):
+        if (list_dicoms):
+            list_dicoms = [self.read.read_dicom(file_dicom) for file_dicom in list_dicoms] #Convertimos cada elemento en un archivo dicom
+        else:
             print(f"Ninguna dirección en la lista de direcciones: \n\n{list_paths}\n\n Cumple con la extensión \"dicom\"")
+        
+        
             
         return list_dicoms

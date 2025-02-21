@@ -8,9 +8,9 @@ import dicom2nifti
 from PIL import Image
 from glob import glob
     
-from abstract.AbsDicomConverFormat import AbsDicomConvert, AbsFeaturesVideo
-from abstract.AbsDicomExtract import AbsDicomExtract
-from abstract.AbsDicomProcessing import AbsDicomOrder
+from core.classes.AbsDicomConverFormat import AbsDicomConvert, AbsFeaturesVideo
+from core.classes.AbsDicomExtract import AbsDicomExtract
+from core.classes.AbsDicomProcessing import AbsDicomOrder
 
 class DicomConvertNifti(AbsDicomConvert, AbsDicomExtract):
     pass
@@ -49,7 +49,7 @@ class DicomConvertVideo(AbsDicomConvert, AbsFeaturesVideo, AbsDicomOrder, AbsDic
         name = name.PatientName
         return name
     
-    def define_mode(self, format):
+    def define_mode(self, format: str):
         if format == 'mp4':
             return 'mp4v'
         elif format == 'avi':

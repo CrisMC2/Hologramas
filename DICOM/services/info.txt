@@ -1,0 +1,22 @@
+La carpeta de services debe ser usada para incluir archivos con lógica de negocio compleja.
+
+Ello significa que es una clase o conjunto de métodos complejos, los cuales dependen de varias clases y manejan partes 
+importantes del sistema (lógica del negocio).
+
+Ejemplo general de lógica de negocio
+Si tienes una aplicación bancaria, la lógica de negocio sería:
+✔ No permitir retiros si el saldo es insuficiente.
+✔ Aplicar una tasa de interés a los préstamos.
+✔ Registrar transacciones en un historial.
+
+
+¿Cómo identificar si algo pertenece a la lógica de negocio?
+✔ Si el código representa una regla o proceso clave del sistema, es lógica de negocio.
+✔ Si cambia según los requisitos del negocio, es lógica de negocio.
+✔ Si interactúa con datos y decide cómo deben procesarse, es lógica de negocio.
+❌ Si solo transforma datos de manera básica (como convertir unidades o formatear texto), NO es lógica de negocio, sino una utilidad.
+
+Conclusión
+📌 La lógica de negocio define las reglas y procesos centrales de tu aplicación. En tu caso, todo lo relacionado con procesar imágenes DICOM, aplicar filtros, extraer información relevante y coordinar estos procesos es parte de la lógica de negocio.
+
+📌 Las utilidades, en cambio, son funciones genéricas que transforman o ayudan, pero no afectan el "qué" hace la aplicación, sino solo el "cómo".
