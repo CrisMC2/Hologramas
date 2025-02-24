@@ -1,20 +1,26 @@
 import os
+import sys
 
-from PyQt5.QtWidgets import QFileDialog, QMenu, QAction
+append_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.append(append_folder)
+
+from PyQt5.QtWidgets import QFileDialog, QMenu, QAction, QWidget
 from core.viewsUI.AbsMenus import AbsMenus
-from Hologramas.DICOM.core.viewsUI.AbsActions import AbsActions
-from core.viewsUI import AbsUploadData
+from core.viewsUI.AbsActions import AbsActions
+from core.viewsUI.AbsUploadData import AbsUploadData
 
 class MenuUploadFiles(AbsMenus, AbsActions):
     def __init__(self, type_file_filter: str, keep_directory_initial: bool = False):
+        super().__init__()
         self.inst_folder_uploader = FolderUploader(type_file_filter, keep_directory_initial)
         self.inst_file_uploader = FileUploader(type_file_filter, keep_directory_initial)
-    
+        
     #Herencia de AbsMenus
     def create_menu(self):
         menuUploadFiles = QMenu()
         self.create_actions()
         self.check_action(self.list_actions)
+        self.connections()
         
         menuUploadFiles.addActions(self.list_actions)
         return menuUploadFiles
@@ -26,11 +32,6 @@ class MenuUploadFiles(AbsMenus, AbsActions):
         
         self.list_actions = [self.act_upload_folder, self.act_upload_file]
     
-    #Herencia de AbsActions
-    def check_action(self, list_actions: list[QAction]):
-        for action in list_actions:
-            action.setCheckable(True)
-    
     #Herencia de AbsMenus
     def connections(self):
         self.act_upload_folder.triggered.connect(self.inst_folder_uploader.upload)
@@ -39,6 +40,15 @@ class MenuUploadFiles(AbsMenus, AbsActions):
         self.act_upload_folder.triggered.connect(lambda : self.check_action(self.act_upload_folder, self.list_actions))
         self.act_upload_file.triggered.connect(lambda : self.check_action(self.act_upload_file, self.list_actions))
 
+    #Herencia de AbsMenus
+    def enable_menu(self, enable: bool, menu: QMenu):
+        menu.setEnabled(enable)
+        
+    #Herencia de AbsActions
+    def check_action(self, list_actions: list[QAction]):
+        for action in list_actions:
+            action.setCheckable(True)
+            
     #Herencia de AbsActions
     def toggle_check_action(self, action: QAction, list_actions: list[QAction]):
         AbsActions().toggle_check_action(action, list_actions)
@@ -56,13 +66,14 @@ class MenuUploadFiles(AbsMenus, AbsActions):
     
 class FolderUploader(AbsUploadData):
     def __init__(self, type_file_filter: str, keep_directory_initial: bool = False):
+        super().__init__()
+        
         self.directory_search = "C:/"
         self.directory_selected = ""
         self.type_file_filter = type_file_filter
         self.keep_directory_initial = keep_directory_initial
         
         self.options = QFileDialog.Options()
-    
     """
     El método permite seleccionar una carpeta mediante una ventana "modal".
     
@@ -145,13 +156,14 @@ extraer un archivo del formato u extensión que se desee.
 """
 class FileUploader(AbsUploadData):
     def __init__(self, type_file_filter: str, keep_directory_initial: bool = False):
+        super().__init__()
+        
         self.directory_search = "C:/"
         self.list_directory = list()
         
         self.type_file_filter = type_file_filter
         self.keep_directory_initial = keep_directory_initial
         self.option = QFileDialog.Options()
-    
     
     """
     El método permite seleccionar uno o múltiples direcciones
@@ -172,14 +184,14 @@ class FileUploader(AbsUploadData):
     def get_directory(self):
         if len(self.list_directory):
             list_copy = self.list_directory.copy()
-            self.clean_directory()
+            self.clean_directory(self.list_directory)
         
             return list_copy
         return None
     
     #Herencia de AbsUploadData
-    def clean_directory(self):
-        if len(self.list_directory):
-            self.list_directory.clear()
+    def clean_directory(self, list_directory: list[str]):
+        if len(list_directory):
+            list_directory.clear()
         else:
             print("El directorio ya está vacío.")

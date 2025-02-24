@@ -1,12 +1,19 @@
-from abc import ABC, abstractmethod
-from PyQt5.QtWidgets import QAction
-from core.viewsUI.AbsConnection import AbsConnection
+from abc import abstractmethod
 
-class AbsActions(ABC, AbsConnection):
+from PyQt5.QtWidgets import QAction, QWidget
+# from PyQt5.QtCore import QObject 
+from core.viewsUI.AbsConnection import AbsConnection
+from core.metaClasses.MetaAbsQt import MetaAbsQt
+
+#Absconnection ya es abstracta (hereda de ABC), por lo que no hace falta ponerlo de nuevo
+class AbsActions(AbsConnection, QWidget, metaclass=MetaAbsQt):
+    """Cuando generes una instancia de la clase no olvides la línea de 
+            super().__init__() 
+        para que todo funcione bien"""
+    
     """
     Este método permite crear las acciones que sean necesarias.
     """
-    
     @abstractmethod
     def create_actions(self):
         pass

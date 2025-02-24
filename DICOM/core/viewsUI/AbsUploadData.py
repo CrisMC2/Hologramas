@@ -1,6 +1,13 @@
 from abc import ABC, abstractmethod
+from PyQt5.QtWidgets import QWidget
 
-class AbsUploadData(ABC):
+from core.metaClasses.MetaAbsQt import MetaAbsQt
+class AbsUploadData(ABC, QWidget, metaclass= MetaAbsQt):
+    """
+    No olvidar la inicialización de la clase padre en la clase hija:
+        - super().__init__()
+    """
+    
     @abstractmethod
     def upload(self):
         pass
@@ -9,10 +16,10 @@ class AbsUploadData(ABC):
     def get_directory(self):
         pass
     
+    """
+    clean_directory está pensado para que pueda trabajar o con elementos str o 
+    list
+    """
     @abstractmethod
-    def clean_directory(self, directory: str):
-        pass
-
-    @abstractmethod
-    def clean_directory(self, directory: list):
+    def clean_directory(self, directory):
         pass
