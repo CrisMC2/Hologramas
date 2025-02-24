@@ -4,7 +4,8 @@ import os
 uiDicom = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(uiDicom)
 
-from PyQt5.QtWidgets import QMainWindow
+#QApplication se utiliza en el test
+from PyQt5.QtWidgets import QApplication, QMainWindow 
 
 from views.viewDICOM  import Ui_viewDICOM
 
