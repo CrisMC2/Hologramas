@@ -42,6 +42,27 @@ class AbsDicomExtract(ABC):
         
         return None
     
+    """
+    El siguiente método permite extraer archivos dicom a partir de una lista que contenga todas
+    las direcciones de los archivos dicom.
+    
+    - El método aprovecha la implementación de diversas clases para su funcionamiento (Todas aquellas definidas en el constructor).
+    - El método empieza determinando si la dirección del folder existe
+    - El método extrae todas las direcciones (.dcm) en el folder
+    - El método convierte todas las direcciones en archivos dicom
+    - El método ordena todos los archivos dicom en base al método order_dicom_folder.
+    
+    - Parámetros:
+        - self (AbsDicomExtract)    : Instancia de la clase AbsDicomExtract
+        - path_folder (str)         : Dirección del folder que contiene a todos los archivos dicoms
+    
+    - Retorno:
+        - List<dicom>           : Lista de todos los archivos dicom ya extraídos (No procesados mediante houns)
+        - None                  : En caso de que algo falle en el código
+    
+    Para saber detalles adicionales del código revisar la documentación de los métodos y clases usados
+    
+    """
     def extract_dicoms (self, list_paths: list):
         if self.dicom_path_exists.exists_dicom_in_path(list_paths):
             list_dicoms = self.dicom_convert_by_path.convert_dicoms_list_path(list_paths=list_dicoms)

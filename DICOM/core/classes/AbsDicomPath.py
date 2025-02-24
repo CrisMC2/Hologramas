@@ -102,7 +102,5 @@ class AbsDicomConvertByPath (ABC):
             list_dicoms = [self.read.read_dicom(file_dicom) for file_dicom in list_dicoms] #Convertimos cada elemento en un archivo dicom
         else:
             print(f"Ninguna dirección en la lista de direcciones: \n\n{list_paths}\n\n Cumple con la extensión \"dicom\"")
-        
-        
-            
+           
         return list_dicoms

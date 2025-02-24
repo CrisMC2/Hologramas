@@ -13,7 +13,7 @@ class AbsDicomProccessing(ABC):
     
     Parámetros:
         - self (DicomProcessing_) : Una instancia de la clase DicomProccessing_.
-        - file_dicom (pydicom)    : Instancia de la clase pydicom  
+        - file_dicom (pydicom o array)    : Instancia de la clase pydicom  
         - hounsmin (int)          : Valor mínimo en la escala de houns que se visualizará.
         - hounsmax (int)          : Valor máximo en la escala de houns que se visualizará.
     
@@ -25,12 +25,22 @@ class AbsDicomProccessing(ABC):
         dc (array)                : Array procesado a partir del pixel_array del archivo pydicom.
         
     """
-    def processing_dicom(self, file_dicom: dicom, hounsmin=-200, hounsmax=200):
-        dc = np.clip(file_dicom.pixel_array, hounsmin, hounsmax)
-        dc = np.uint8((dc-dc.min())/(dc.max()-dc.min())*255)
+    def processing_dicom(self, file_dicom, hounsmin=-200, hounsmax=200):
+        if isinstance(file_dicom, dicom): #Si es instancia de pydicom
+            array_dicom = file_dicom.pixel_array
+        elif isinstance(file_dicom, np.ndarray): #Si es un arreglo de numpy
+            array_dicom = file_dicom
+            
+        dc = np.clip(array_dicom, hounsmin, hounsmax)
         
-        return dc   
-
+        range_houns = dc.max() - dc.min()
+        if (range_houns == 0): #Verificamos que el rango no sea 0
+            return TypeError("El rango de houns no es correcto (Rango de valores min y max del array igual a 0)")
+        
+        dc = np.uint8((dc-dc.min())/(range_houns)*255) #Si range_houns es 0 habrá una excepción
+        
+        return dc
+    
 class AbsDicomOrder(ABC):
     
     """
@@ -65,5 +75,4 @@ class AbsDicomOrder(ABC):
             return list_dicoms
         except:
             print(f"No se pudo ordenar la lista que proporcionaste: \n{list_dicoms}.")
-            return None
-        
+            return None   

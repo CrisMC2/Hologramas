@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import pydicom as dicom
 
-from Hologramas.DICOM.abstract.AbsDicomRead import AbsDicomRead
+from core.classes.AbsDicomRead import AbsDicomRead
 
 #Toda la información de DICOM
 class AbsDicomInformation (ABC):

@@ -1126,7 +1126,7 @@ background-position: left;
               </property>
               <property name="icon">
                <iconset>
-                <normaloff>../icons/carga-de-carpeta.png</normaloff>../icons/carga-de-carpeta.png</iconset>
+                <normaloff>../../resources/img/viewDICOM/carga-de-carpeta.png</normaloff>../../resources/img/viewDICOM/carga-de-carpeta.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -1170,7 +1170,7 @@ background-position: left;
               </property>
               <property name="icon">
                <iconset>
-                <normaloff>../icons/categoria-alternativa.png</normaloff>../icons/categoria-alternativa.png</iconset>
+                <normaloff>../../resources/img/viewDICOM/categoria-alternativa.png</normaloff>../../resources/img/viewDICOM/categoria-alternativa.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -1202,7 +1202,7 @@ background-position: left;
               </property>
               <property name="icon">
                <iconset>
-                <normaloff>../icons/tomografia-computarizada.png</normaloff>../icons/tomografia-computarizada.png</iconset>
+                <normaloff>../../resources/img/viewDICOM/tomografia-computarizada.png</normaloff>../../resources/img/viewDICOM/tomografia-computarizada.png</iconset>
               </property>
               <property name="iconSize">
                <size>
