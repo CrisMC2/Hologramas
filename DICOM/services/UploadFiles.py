@@ -4,7 +4,7 @@ import sys
 append_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(append_folder)
 
-from PyQt5.QtWidgets import QFileDialog, QMenu, QAction, QWidget
+from PyQt5.QtWidgets import QFileDialog, QMenu, QAction
 from core.viewsUI.AbsMenus import AbsMenus
 from core.viewsUI.AbsActions import AbsActions
 from core.viewsUI.AbsUploadData import AbsUploadData
@@ -37,8 +37,8 @@ class MenuUploadFiles(AbsMenus, AbsActions):
         self.act_upload_folder.triggered.connect(self.inst_folder_uploader.upload)
         self.act_upload_file.triggered.connect(self.inst_file_uploader.upload)
         
-        self.act_upload_folder.triggered.connect(lambda : self.check_action(self.act_upload_folder, self.list_actions))
-        self.act_upload_file.triggered.connect(lambda : self.check_action(self.act_upload_file, self.list_actions))
+        self.act_upload_folder.triggered.connect(lambda : self.toggle_check_action(self.act_upload_folder, self.list_actions))
+        self.act_upload_file.triggered.connect(lambda : self.toggle_check_action(self.act_upload_file, self.list_actions))
 
     #Herencia de AbsMenus
     def enable_menu(self, enable: bool, menu: QMenu):
@@ -51,7 +51,7 @@ class MenuUploadFiles(AbsMenus, AbsActions):
             
     #Herencia de AbsActions
     def toggle_check_action(self, action: QAction, list_actions: list[QAction]):
-        AbsActions().toggle_check_action(action, list_actions)
+        super().toggle_check_action(action, list_actions)
             
     def get_path(self):
         folder = self.inst_folder_uploader.get_directory()
@@ -97,7 +97,7 @@ class FolderUploader(AbsUploadData):
         
         if self.folder_name:
             self.directory_selected = self.folder_name
-            
+            print("Directorio: "+self.folder_name)
             if not self.keep_directory_initial:
                 self.directory_search = self.folder_name
             

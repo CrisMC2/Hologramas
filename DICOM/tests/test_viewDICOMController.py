@@ -5,7 +5,7 @@ uiDicom = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 sys.path.append(uiDicom)
 
-from controllers import viewDicomController
+from controllers import viewDicomController #Importamos todo el archivo, no solo una clase
 
 # """
 # Cuando testeamos solo un controlador, no necesitamos importar una ventana principal (QtWidgets)

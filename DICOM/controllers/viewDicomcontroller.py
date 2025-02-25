@@ -19,7 +19,8 @@ class Ui_DicomController(Ui_viewDICOM, QMainWindow):
         self.menu()
         
     def menu(self):
+        #Menu para subir archivos
         self.menu_upload = MenuUploadFiles(type_file_filter="Dicom (*dcm)", keep_directory_initial=False)
         _menu_upload = self.menu_upload.create_menu()
-        _menu_upload.setDisabled(False)
+        self.menu_upload.enable_menu(True, _menu_upload)
         self.ui.UploadFiles.setMenu(_menu_upload)

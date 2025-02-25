@@ -39,7 +39,7 @@ class AbsActions(AbsConnection, QWidget, metaclass=MetaAbsQt):
         - action (QAction)              : Instancia de la clase QAction que será checkeada
         - list_action (list[QAction])   : Lista de QAction las cuales dependiendo de si es la acción exclusiva o no serán set.checked(False)
     """
-    @staticmethod
+    
     def toggle_check_action(self, action: QAction, list_actions: list[QAction]):
         for act in list_actions:
             if act.isCheckable():
