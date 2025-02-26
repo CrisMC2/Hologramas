@@ -44,12 +44,6 @@ def hideListWidget(self):
         print("Ocultando listWidget")  # Depuración: Verificar cuando se oculta el listWidget
         self.listWidget.hide()
 
-#def onMousePressOutside(self, event):
-    # Comprobar si el clic es fuera del QTextEdit y del QListWidget
-    #if self.listWidget.isVisible():
-            #if not (self.listWidget.geometry().contains(event.pos()) or self.textEdit.geometry().contains(event.pos())):
-                    #self.listWidget.hide()
-    #event.accept()
 
 def autoFocusNext(self, currentTextEdit, nextTextEdit):
         if len(currentTextEdit.toPlainText()) >= 1:
@@ -370,3 +364,10 @@ def action_button(self, button_id):
                 self.textEdit_2.setText(self.real_text)
                 self.textEdit_10.setText(self.real_text_3)
                 self.textEdit_13.setText(self.real_text_4)
+
+#def onMousePressOutside(self, event):
+    # Comprobar si el clic es fuera del QTextEdit y del QListWidget
+    #if self.listWidget.isVisible():
+            #if not (self.listWidget.geometry().contains(event.pos()) or self.textEdit.geometry().contains(event.pos())):
+                    #self.listWidget.hide()
+    #event.accept()
