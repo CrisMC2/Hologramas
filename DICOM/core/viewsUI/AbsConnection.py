@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
-from PyQt5.QtWidgets import QAction
 
-class AbsConnection():
+class AbsConnection(ABC):
     @abstractmethod
     def connections(self):
         pass

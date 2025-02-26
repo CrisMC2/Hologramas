@@ -1,12 +1,19 @@
-from abc import ABC, abstractmethod
-from PyQt5.QtWidgets import QAction
-from core.viewsUI.AbsConnection import AbsConnection
+from abc import abstractmethod
 
-class AbsActions(ABC, AbsConnection):
+from PyQt5.QtWidgets import QAction, QWidget
+# from PyQt5.QtCore import QObject 
+from core.viewsUI.AbsConnection import AbsConnection
+from core.metaClasses.MetaAbsQt import MetaAbsQt
+
+#Absconnection ya es abstracta (hereda de ABC), por lo que no hace falta ponerlo de nuevo
+class AbsActions(AbsConnection, QWidget, metaclass=MetaAbsQt):
+    """Cuando generes una instancia de la clase no olvides la línea de 
+            super().__init__() 
+        para que todo funcione bien"""
+    
     """
     Este método permite crear las acciones que sean necesarias.
     """
-    
     @abstractmethod
     def create_actions(self):
         pass
@@ -32,7 +39,7 @@ class AbsActions(ABC, AbsConnection):
         - action (QAction)              : Instancia de la clase QAction que será checkeada
         - list_action (list[QAction])   : Lista de QAction las cuales dependiendo de si es la acción exclusiva o no serán set.checked(False)
     """
-    @staticmethod
+    
     def toggle_check_action(self, action: QAction, list_actions: list[QAction]):
         for act in list_actions:
             if act.isCheckable():
