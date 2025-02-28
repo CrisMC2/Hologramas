@@ -1,9 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QListWidget, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QListWidgetItem
-from Gmail import enviar_codigo_verificacion, verificar_codigo
+from Modelos.Gmail import enviar_codigo_verificacion, verificar_codigo
 from PyQt5.QtCore import QTimer
-from conexion import *
-from conexion import obtener_guardados
+from Modelos.conexion import *
+from Modelos.conexion import obtener_guardados
 from PyQt5.QtCore import Qt
 
 
