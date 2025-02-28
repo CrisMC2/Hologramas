@@ -5,12 +5,13 @@ from PyQt5.QtGui import QImage, QPixmap
 
 from core.viewsUI.AbsMenus import AbsMenus
 from core.viewsUI.AbsActions import AbsActions
-from core.viewsUI.AbsResourceUI import AbsImageUI
+from core.viewsUI.AbsResourceUI import AbsPixmap 
 from utils.ViewDicom import ViewAxial, ViewCoronal, ViewSagittal
 
 class SelectCantViews(AbsMenus, AbsActions):
-    def __init__(self, stackedWidget: QStackedWidget):
-        self.stacked_widget = stackedWidget
+    def __init__(self, cant_view_default: int):
+        super().__init__()
+        self.cant_view_default = cant_view_default
     
     #Herencia de AbsMenus
     def create_menu(self):
@@ -29,10 +30,15 @@ class SelectCantViews(AbsMenus, AbsActions):
         
         self.list_actions = [self.one_view, self.two_view, self.four_view]
     
+    #Herencia de AbsActions -> AbsConnections
     def connections(self):        
         self.one_view.triggered.connect(lambda : self.toggle_check_action(self.one_view, self.list_actions))
         self.two_view.triggered.connect(lambda : self.toggle_check_action(self.two_view, self.list_actions))
         self.four_view.triggered.connect(lambda : self.toggle_check_action(self.four_view, self.list_actions))
+    
+    #Herencia de AbsMenus
+    def enable_menu(self, enable, menu):
+        super().enable_menu(enable, menu)
     
     #Herencia de AbsActions
     def check_action(self, list_actions: list[QAction]):
@@ -41,13 +47,14 @@ class SelectCantViews(AbsMenus, AbsActions):
     
     #Herencia de AbsActions
     def toggle_check_action(self, action: QAction, list_actions: list [QAction]):
-        AbsActions().toggle_check_action(action, list_actions)
+        self.toggle_check_action(action, list_actions)
          
          
             
 class SelectView(AbsMenus, AbsActions):
-    def __init__(self):
-        self.view_default = "Axial View"
+    def __init__(self, view_default: str):
+        super().__init__()
+        self.view_default = view_default
         
     #Herencia de AbsMenus
     def create_menu(self):
@@ -55,8 +62,7 @@ class SelectView(AbsMenus, AbsActions):
         self.create_actions()
         self.check_action(self.list_actions)
                 
-        self.list_menu_views = [self.action_AxialView, self.action_SaggitalView, self.action_CoronalView]
-        menuViews.addActions(self.list_menu_views)
+        menuViews.addActions(self.list_actions)
         
         return menuViews
     
@@ -70,9 +76,9 @@ class SelectView(AbsMenus, AbsActions):
     
     #Herencia de AbsMenus
     def connections(self):
-        self.action_AxialView.triggered.connect(lambda : self.toggle_check_action(self.action_AxialView, self.list_menu_views))
-        self.action_SaggitalView.triggered.connect(lambda : self.toggle_check_action(self.action_SaggitalView, self.list_menu_views))
-        self.action_CoronalView.triggered.connect(lambda : self.toggle_check_action(self.action_CoronalView, self.list_menu_views))
+        self.action_AxialView.triggered.connect(lambda : self.toggle_check_action(self.action_AxialView, self.list_actions))
+        self.action_SaggitalView.triggered.connect(lambda : self.toggle_check_action(self.action_SaggitalView, self.list_actions))
+        self.action_CoronalView.triggered.connect(lambda : self.toggle_check_action(self.action_CoronalView, self.list_actions))
     
     #Herencia de AbsActions
     def check_action(self, list_actions):
@@ -81,10 +87,10 @@ class SelectView(AbsMenus, AbsActions):
 
     #Herencia de AbsActions
     def toggle_check_action(self, action: QAction, list_actions: list[QAction]):
-        AbsActions.toggle_check_action(action, list_actions) 
+        super().toggle_check_action(action, list_actions) 
     
-class InsertView(AbsImageUI):
-    def __init__(self, q_graphics_scene: QGraphicsScene):
+class InsertView(AbsPixmap):
+    def __init__(self, q_graphics_scene):
         self.axial = ViewAxial()
         self.saggital = ViewSagittal()
         self.coronal = ViewCoronal()

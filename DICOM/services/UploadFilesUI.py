@@ -10,10 +10,10 @@ from core.viewsUI.AbsActions import AbsActions
 from core.viewsUI.AbsUploadData import AbsUploadData
 
 class MenuUploadFiles(AbsMenus, AbsActions):
-    def __init__(self, type_file_filter: str, keep_directory_initial: bool = False):
+    def __init__(self, directory_search_default: str, type_file_filter: str, keep_directory_default: bool = False):
         super().__init__()
-        self.inst_folder_uploader = FolderUploader(type_file_filter, keep_directory_initial)
-        self.inst_file_uploader = FileUploader(type_file_filter, keep_directory_initial)
+        self.inst_folder_uploader = FolderUploader(type_file_filter, keep_directory_default)
+        self.inst_file_uploader = FileUploader(type_file_filter, keep_directory_default)
         
     #Herencia de AbsMenus
     def create_menu(self):
@@ -42,7 +42,7 @@ class MenuUploadFiles(AbsMenus, AbsActions):
 
     #Herencia de AbsMenus
     def enable_menu(self, enable: bool, menu: QMenu):
-        menu.setEnabled(enable)
+        super().enable_menu(enable, menu)
         
     #Herencia de AbsActions
     def check_action(self, list_actions: list[QAction]):
@@ -65,13 +65,14 @@ class MenuUploadFiles(AbsMenus, AbsActions):
     
     
 class FolderUploader(AbsUploadData):
-    def __init__(self, type_file_filter: str, keep_directory_initial: bool = False):
+    def __init__(self, directory_search_default: str, type_file_filter: str, keep_directory_initial: bool = False):
         super().__init__()
         
-        self.directory_search = "C:/"
-        self.directory_selected = ""
+        self.directory_search = directory_search_default
         self.type_file_filter = type_file_filter
         self.keep_directory_initial = keep_directory_initial
+        
+        self.directory_selected = "" #Es el directorio seleccionado actualmente
         
         self.options = QFileDialog.Options()
     """
@@ -155,14 +156,15 @@ Esta clase nos permite poder acceder a los archivos del sistema y
 extraer un archivo del formato u extensión que se desee.
 """
 class FileUploader(AbsUploadData):
-    def __init__(self, type_file_filter: str, keep_directory_initial: bool = False):
+    def __init__(self, directory_search_default: str, type_file_filter: str, keep_directory_initial: bool = False):
         super().__init__()
         
-        self.directory_search = "C:/"
-        self.list_directory = list()
-        
+        self.directory_search = directory_search_default        
         self.type_file_filter = type_file_filter
         self.keep_directory_initial = keep_directory_initial
+        
+        self.list_directory = list() #Es la cantidad de directorios seleccionados actualmente
+        
         self.option = QFileDialog.Options()
     
     """

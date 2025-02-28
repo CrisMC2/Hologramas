@@ -1154,7 +1154,7 @@ background-position: left;
             <item>
              <widget class="QToolButton" name="CantViews">
               <property name="enabled">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <property name="minimumSize">
                <size>
@@ -1186,7 +1186,7 @@ background-position: left;
             <item>
              <widget class="QToolButton" name="SelectView">
               <property name="enabled">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <property name="minimumSize">
                <size>
