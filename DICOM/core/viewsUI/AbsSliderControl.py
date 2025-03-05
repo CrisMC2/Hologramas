@@ -2,17 +2,7 @@ from abc import ABC, abstractmethod
 
 from PyQt5.QtWidgets import QSlider
 
-class AbsSliderControl(ABC):
-    """
-    Al heredar la clase no olvides agregar al constructor de la clase hija:
-    
-    - super().__init__(qslider_clase_hija)
-    
-    Esto hará que la clase padre pueda trabajar con la instancia que necesita.
-    """
-    def __init__(self, qslider: QSlider):
-        self.slider = qslider
-    
+class AbsSliderControl(ABC):    
     # @abstractmethod
     # def create_slider(self):
     #     pass
