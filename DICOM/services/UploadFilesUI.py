@@ -8,13 +8,16 @@ from PyQt5.QtWidgets import QFileDialog, QMenu, QAction
 from core.viewsUI.AbsMenus import AbsMenus
 from core.viewsUI.AbsActions import AbsActions
 from core.viewsUI.AbsUploadData import AbsUploadData
+from services.SignalData import Emisor_text, Emisor_list
 
 class MenuUploadFiles(AbsMenus, AbsActions):
     def __init__(self, directory_search_default: str, type_file_filter: str, keep_directory_default: bool = False):
         super().__init__()
-        self.inst_folder_uploader = FolderUploader(type_file_filter, keep_directory_default)
-        self.inst_file_uploader = FileUploader(type_file_filter, keep_directory_default)
         
+        self.inst_folder_uploader = FolderUploader(directory_search_default, type_file_filter, keep_directory_default) #Instanciamos la búsqueda de "FOLDER"
+        self.inst_file_uploader = FileUploader(directory_search_default, type_file_filter, keep_directory_default)  #Instanciamos la búsqueda de "FILE"
+        self.emisor_text = Emisor_text() #Instancias la clase que nos permitirá emitir la señal
+        self.emisor_list = Emisor_list()
     #Herencia de AbsMenus
     def create_menu(self):
         menuUploadFiles = QMenu()
@@ -39,6 +42,9 @@ class MenuUploadFiles(AbsMenus, AbsActions):
         
         self.act_upload_folder.triggered.connect(lambda : self.toggle_check_action(self.act_upload_folder, self.list_actions))
         self.act_upload_file.triggered.connect(lambda : self.toggle_check_action(self.act_upload_file, self.list_actions))
+        
+        self.act_upload_folder.triggered.connect(self.get_path)
+        self.act_upload_file.triggered.connect(self.get_path)
 
     #Herencia de AbsMenus
     def enable_menu(self, enable: bool, menu: QMenu):
@@ -52,15 +58,18 @@ class MenuUploadFiles(AbsMenus, AbsActions):
     #Herencia de AbsActions
     def toggle_check_action(self, action: QAction, list_actions: list[QAction]):
         super().toggle_check_action(action, list_actions)
-            
+        
+    """
+    El método get_path está pensado para que se devuelva la dirección 
+    """
     def get_path(self):
         folder = self.inst_folder_uploader.get_directory()
-        file = self.inst_file_uploader.get_directory()
+        files = self.inst_file_uploader.get_directory()
         
         if folder:
-            return folder
-        elif file:
-            return file
+            self.emisor_text.emit_signal(folder)
+        elif files:
+            self.emisor_list.emit_signal(files)
     
     
     
@@ -182,6 +191,21 @@ class FileUploader(AbsUploadData):
                 # self.direction_file = (os.path.join((self.file_name[0].split(os.sep))[:-1])) 
                 # self.direction_file = os.path.splitext(self.file_name[0])[0] #El método separa una dirección de su extensión
     
+    
+    """
+    El siguiente método permite retornar el directorio que previamente ha sido seleccionado.
+    
+    - El método toma una copia de la variable self.directory_selected.
+    - Se limpia en cada retorno la variable self.directory_selected con la intención de no repetir una dirección que no haya sido 
+        seleccionada previamente.
+    
+    - Parámetros:
+        - self (FileUploader)   : Instancia de la clase FileUploader.
+        
+    - Retorno:
+        - directory (list)       : Lista de directorios seleccionados.
+        
+    """
     #Herencia de AbsUploadData
     def get_directory(self):
         if len(self.list_directory):
