@@ -6,45 +6,29 @@ from Modelos.conexion import *
 from Modelos.conexion import obtener_guardados
 from PyQt5.QtCore import Qt
 
-
-def setup_connections(self):
+def setup_connections(ui):
         """Conecta las señales y eventos a los métodos correspondientes."""
-        # Conectar el evento de clic en el campo de correo con el método que muestra la lista
-        self.textEdit.mousePressEvent = self.showListWidget
+        ui.textEdit.mousePressEvent = lambda event: showListWidget(ui, event)
+        ui.listWidget.itemClicked.connect(lambda item: onItemClicked(ui, item))
 
-        # Conectar el clic en un elemento de la lista con el método que gestiona la selección
-        self.listWidget.itemClicked.connect(self.onItemClicked)
-
-        # Conectar el botón de inicio de sesión con el método que gestiona la lógica de inicio de sesión
-        #self.pushButton_11.clicked.connect(self.login)
-
-def showListWidget(self, event):
+def showListWidget(ui, event):
         """Muestra el listWidget flotante cerca del campo de texto."""
         print("showListWidget ejecutado")  # Mensaje para depuración
-        self.listWidget.clear()  # Limpiar el contenido actual del listWidget
+        ui.listWidget.clear()  # Limpiar el contenido actual del listWidget
+        ui.saved_emails = obtener_guardados()  # Obtener los correos guardados
+        print(f"Correos guardados cargados: {ui.saved_emails}")  # Para depuración
+        if ui.saved_emails:
+                ui.listWidget.addItems(ui.saved_emails)  # Añadir los correos a la lista
+        
+        pos = ui.textEdit.mapToGlobal(ui.textEdit.rect().bottomLeft())
+        ui.listWidget.move(pos)  # Mover el listWidget a la posición calculada
+        ui.listWidget.show()  # Mostrar el listWidget
 
-        # Obtener los correos guardados solo cuando se necesiten
-        self.saved_emails = obtener_guardados()  # Llamar a la función para obtener los correos guardados
-        print(f"Correos guardados cargados: {self.saved_emails}")  # Para depuración
-        # Verificar si hay correos guardados para mostrar
-        if self.saved_emails:
-                self.listWidget.addItems(self.saved_emails)  # Añadir los correos a la lista
-
-        # Calcular la posición para que el listWidget aparezca justo debajo del campo de correo
-        pos = self.textEdit.mapToGlobal(self.textEdit.rect().bottomLeft())
-        self.listWidget.move(pos)  # Mover el listWidget a la posición calculada
-        self.listWidget.show()  # Mostrar el listWidget
-
-def onItemClicked(self, item):
+def onItemClicked(ui, item):
         """Establece el correo seleccionado en el campo de texto."""
-        print("Texto seleccionado:", item.text())  # Imprimir el correo seleccionado (depuración)
-        self.textEdit.setText(item.text())  # Establecer el correo seleccionado en el campo de texto
-        self.listWidget.hide()  # Ocultar el listWidget después de seleccionar un correo
-
-def hideListWidget(self):
-        print("Ocultando listWidget")  # Depuración: Verificar cuando se oculta el listWidget
-        self.listWidget.hide()
-
+        print("Texto seleccionado:", item.text())  # Para depuración
+        ui.textEdit.setText(item.text())  # Establecer el correo seleccionado
+        ui.listWidget.hide()  # Ocultar el listWidget después de seleccionar un correo
 
 def autoFocusNext(self, currentTextEdit, nextTextEdit):
         if len(currentTextEdit.toPlainText()) >= 1:
@@ -183,6 +167,12 @@ def action_button(self, button_id):
                 if consulta_correo(self.correo):
                         self.label_13.hide()
                         if consulta_acceso_usuario(self.correo, self.password):
+                                msg = QMessageBox()
+                                msg.setIcon(QMessageBox.Information)
+                                msg.setWindowTitle("Bienvenido de nuevo")
+                                msg.setText(f"Hola bienvenido de nuevo")
+                                msg.setStandardButtons(QMessageBox.Ok)
+                                msg.exec_()
                                 self.cambianteTodo.setCurrentWidget(self.home)
                                 self.label_14.hide()
                                 self.Boton_Atras_10.show()
