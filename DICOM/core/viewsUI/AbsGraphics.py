@@ -16,31 +16,36 @@ class AbsGraphics(ABC):
         pass
     
 class AbsGraphicsView(AbsGraphics):
+    def __init__(self):
+        self.q_view = QGraphicsView()
+
     """
     En este caso directamente generamos al inicio el objeto QGraphicsView
     debido a que sobre este se ejecutarán todos los métodos.
     
     """
-    def __init__(self):
-        self.graphics_view = QGraphicsView()
-
 
 class AbsGraphicsScene(AbsGraphics):
+    def __init__(self):
+        self.q_scene = QGraphicsScene()
     """
     Aquí generamos el objeto QGraphicsScene sobre el cual se ejecutarán 
     todos los métodos
     
     """
-    def __init__(self):
-        self.graphics_scene = QGraphicsScene()
-
+    
 class AbsGraphicsWidget(AbsGraphics):
+    def __init__(self):
+        self.q_widget = QGraphicsWidget()
+    
     """
     En esta parte generamos una instancia del elemento QGraphicsWidget
     """
-    def __init__(self):
-        self.graphics_widget = QGraphicsWidget()
-        
+    
     @abstractmethod
-    def config_layout(self):
+    def create_layout(self):
+        pass
+    
+    @abstractmethod
+    def convert_correct_type_element(self, element):
         pass

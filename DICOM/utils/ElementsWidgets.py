@@ -4,6 +4,8 @@ import os
 _append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(_append)
 
+
+from typing import Union
 from PyQt5.QtWidgets import QWidget, QLabel, QTextEdit, QSlider
 from PyQt5.QtCore import Qt
 
@@ -12,20 +14,43 @@ from core.viewsUI.AbsTextControl   import AbsTextControl
 
 class TextWidget(AbsTextControl):
     """
-    El constructor nos permite 
-    """
-    def __init__(self, type_element: QWidget):
-        if isinstance (type_element, QLabel) or isinstance(type_element, QTextEdit):
-            self.text = type_element
+    El constructor nos permite generar una variable de clase (self)
+    la cual se crea a partir de la instancia del parámetro pedido.
+    
+    - Parámetro:
+        - type_element (QWidget)    : Elemento de text (Label, TextEdit, etc.) con el cual la clase
+                                        trabajará.
+    
+    - Nota =>
+        El parámetro necesita de una instancia de la clase QLabel, QTextEdit o similares; mas no
+        de la clase como tal. 
         
+    - Ejemplo:
+        - Bien: TextWidget(QLabel())
+        - Mal : TextWidget(QLabel) 
+        
+    """
+    def __init__(self, type_element: Union[QLabel, QTextEdit]):
+        if isinstance (type_element, (QLabel, QTextEdit)):
+            self.q_text = type_element
+            
         else:
-            print("El tipo de elementos que intentas incluir no es un Widget de texto.")
+            raise TypeError("El tipo de elementos que intentas incluir no es un Widget de texto.")
     
+        print("Pasamos?")
     def get_data(self):
-        return self.text.getText()
+        return self.q_text.getText()
     
-    def change_data(self, new_data):
-        self.text.setText(new_data)
+    def change_data(self, new_data: str):
+        self.q_text.setText(new_data)
+    """
+    El método change_data heredado en la clase TextWidget
+    permite cambiar la data o el texto que tiene actualmente el elemento.
+    
+    - Parámetros:
+        - self (TextWidget)     : Instancia de la clase TextWidget
+        - new_data (str)        : Valor "string" usado para cambiar la data u información del elemento de texto.
+    """
         
 class SliderWidget(AbsSliderControl):
     """
@@ -45,8 +70,21 @@ class SliderWidget(AbsSliderControl):
         elif type_qslider == 'H':
             self.q_slider = QSlider(Qt.Horizontal)
 
+    def show_slider(self, show: bool):
+        if show:
+            self.q_slider.show()
+        else:
+            self.q_slider.hide()
+    
+    def define_range(self, start: int, end: int):
+            if start and end: #Si tenemos ambos valores
+                self.q_slider.setRange(start, end)
+            elif start: #Si solo tenemos start
+                self.q_slider.setMinimum(start)
+            elif end: #Si solo tenemos end
+                self.q_slider.setMaximum(start)    
     """
-    El método está pensado para cambiar los valores que tiene el Slider.
+    El método "define_range" está pensado para cambiar los valores que tiene el Slider.
     
     - Parámetros:
         - start (int)   => Define el valor inicial que tendrá el Slider.
@@ -67,34 +105,32 @@ class SliderWidget(AbsSliderControl):
         - Si se desea cambiar ambos valores:
             define_range(start = 10, end = 100)
     """
-    def define_range(self, start: int, end: int):
-        if self.q_slider:
-            if start and end: #Si tenemos ambos valores
-                self.q_slider.setRange(start, end)
-            elif start: #Si solo tenemos start
-                self.q_slider.setMinimum(start)
-            elif end: #Si solo tenemos end
-                self.q_slider.setMaximum(start)
-        else:
-            print("El Slider aún no ha sido creado")
-            
-    def show_slider(self, show: bool):
-        if show:
-            self.q_slider.show()
-        else:
-            self.q_slider.hide()
+    
+    def set_value(self, new_value: int):
+        self.q_slider.setValue(new_value)
     
     """
-    El siguiente método nos permite retornar el valor actual en el cual se encuentra el slider.
+    El método "set_value" heredado en SliderWidget está pensado para poder cambiar el 
+    valor actual del slider.
+    
+    - Parámetros:
+        - self (SliderWidget)   : Instancia de la clase SliderWidget
+        - new_value (int)       : Valor "int" usado para cambiar el valor del slider.
+    """
+    def get_value(self):
+        return self.q_slider.value()
+    """
+    El método "get_value" nos permite retornar el valor actual en el cual se encuentra el slider.
     
     - Retorno:
         - slider.value() => Retorna el valor actual en el cual se encuentra el Slider
     """
-    def get_value(self):
-        return self.q_slider.value()
     
+    def get_value_edit(self, difference: int):
+        return self.q_slider.value()+difference
+
     """
-    El siguiente método permite devolver el valor actual que tiene el slider
+    El método "get_value_edit" permite devolver el valor actual que tiene el slider
     dándole un pequeño cambio por medio de un parámetro:
     
     - Parámetros:
@@ -113,5 +149,3 @@ class SliderWidget(AbsSliderControl):
             
             Retorno => 2 - 10
     """
-    def get_value_edit(self, difference: int):
-        return self.q_slider.value()+difference

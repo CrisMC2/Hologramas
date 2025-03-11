@@ -47,9 +47,11 @@ class SelectCantViews(AbsMenus, AbsActions):
     
     #Herencia de AbsActions
     def toggle_check_action(self, action: QAction, list_actions: list [QAction]):
-        self.toggle_check_action(action, list_actions)
-         
-         
+        super().toggle_check_action(action, list_actions)
+        
+        
+        
+        
             
 class SelectView(AbsMenus, AbsActions):
     def __init__(self, view_default: str):
@@ -88,6 +90,9 @@ class SelectView(AbsMenus, AbsActions):
     #Herencia de AbsActions
     def toggle_check_action(self, action: QAction, list_actions: list[QAction]):
         super().toggle_check_action(action, list_actions) 
+    
+    
+    
     
 class InsertView(AbsPixmap):
     def __init__(self, q_graphics_scene):
