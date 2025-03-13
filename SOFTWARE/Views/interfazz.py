@@ -13606,6 +13606,25 @@ class Ui_fondoMain(object):
         self.Boton_Atras_10.clicked.connect(lambda: action_button(self, 13))
         self.Boton_Atras_26.clicked.connect(lambda: action_button(self, 13))
         self.Boton_Atras_69.clicked.connect(lambda: action_button(self, 13))
+
+        #Adjust
+
+        #Botones de control entre agregar_paciente y opciones_generales
+        self.pushButton_10.clicked.connect(lambda: action_button(self,14))
+        self.pushButton_16.clicked.connect(lambda: action_button(self,9))
+        self.Boton_Atras.clicked.connect(lambda: action_button(self,9))
+
+        #Botones de control entre ver_paciente y opciones_generales
+        self.pushButton_7.clicked.connect(lambda: action_button(self,15))
+        self.pushButton_24.clicked.connect(lambda: action_button(self,9))
+        self.Boton_Atras_3.clicked.connect(lambda: action_button(self,9))
+
+        #Botones de control entre eliminar_paciente y opciones_generales
+        self.pushButton_9.clicked.connect(lambda: action_button(self,16))
+        self.Boton_Atras_4.clicked.connect(lambda: action_button(self,9))
+        self.pushButton_18.clicked.connect(lambda: action_button(self,9))
+
+
         self.textEdit.textChanged.connect(lambda: updateTextEditStyle(self, self.textEdit))
         self.textEdit.setText("")
         self.textEdit_2.textChanged.connect(lambda: updateTextEditStyle(self, self.textEdit_2))

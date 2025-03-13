@@ -361,9 +361,24 @@ def action_button(self, button_id):
                 self.textEdit_10.setText(self.real_text_3)
                 self.textEdit_13.setText(self.real_text_4)
 
+        elif button_id == 14:
+                self.cambianteTodo.setCurrentWidget(self.home)
+                self.PaginasHome.setCurrentWidget(self.pag_agregar_paciente)
+        
+        elif button_id == 15:
+                self.cambianteTodo.setCurrentWidget(self.home)
+                self.PaginasHome.setCurrentWidget(self.pag_ver_paciente)
+        
+        elif button_id == 16:
+                self.cambianteTodo.setCurrentWidget(self.home)
+                self.PaginasHome.setCurrentWidget(self.pag_eliminar_paciente)
+
+
+
 #def onMousePressOutside(self, event):
 # Comprobar si el clic es fuera del QTextEdit y del QListWidget
 #if self.listWidget.isVisible():
         #if not (self.listWidget.geometry().contains(event.pos()) or self.textEdit.geometry().contains(event.pos())):
                 #self.listWidget.hide()
 #event.accept()
+
