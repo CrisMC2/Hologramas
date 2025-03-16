@@ -13687,6 +13687,8 @@ class Ui_fondoMain(object):
         self.textEdit_52.setText("")
         self.textEdit_53.textChanged.connect(lambda: updateTextEditStyle(self, self.textEdit_53))
         self.textEdit_53.setText("")
+
+        
         self.textEdit.textChanged.connect(lambda: validateTextInput(self, self.textEdit, 42))
         self.textEdit_2.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_2, 42))
         self.textEdit_3.textChanged.connect(lambda: validateTextInput(self, self.textEdit_3, 42))
