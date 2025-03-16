@@ -140,15 +140,20 @@ def agregar_paciente(id_paciente, apellidos, nombre, fecha_creacion, domicilio, 
         conn.close()
         return
     
-    # Insertar nuevo paciente
+    # Leer imagen y radiografía en binario
+    with open(foto_path, 'rb') as f:
+        foto = f.read()
+    with open(radiografia_path, 'rb') as f:
+        radiografia = f.read()
+    
     sql = """
         INSERT INTO PACIENTES 
-        (id_paciente, apellidos, nombre, fecha_creacion, domicilio, telefono, email, identificacion, foto_path, radiografia_path)
+        (id_paciente, apellidos, nombre, fecha_creacion, domicilio, telefono, email, identificacion, foto, radiografia)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
     
     cursor.execute(sql, (
-        id_paciente, apellidos, nombre, fecha_creacion, domicilio, telefono, email, identificacion, foto_path, radiografia_path
+        id_paciente, apellidos, nombre, fecha_creacion, domicilio, telefono, email, identificacion, foto, radiografia
     ))
     
     conn.commit()
@@ -204,4 +209,5 @@ def eliminar_todo():
 
 # Ejecutar la creación de la base de datos y las tablas
 crear_base_de_datos()
+
 iniciar()

@@ -127,6 +127,48 @@ def updateTextEditStyle(self, textEdit):
                 """)
                 textEdit.setPlaceholderText("")
 
+def updateInputTextEdit(self, textEdit):
+        if not textEdit.toPlainText():
+                textEdit.setStyleSheet(""
+                "QTextEdit {\n"
+                "    border: 2px solid gray;        /* Bordes */\n"
+                "    border-radius: 15px;           /* Esquinas redondeadas */\n"
+                "    padding: 5px;                  /* Espacio interno para el texto */\n"
+                "    background-color: #d3d3d3;       /* Color de fondo */\n"
+                "    font-size: 14px;               /* Tamaño de fuente */\n"
+                "    color: black;                  /* Color del texto */\n"
+                "}\n"
+                "\n"
+                "QTextEdit:focus {\n"
+                "    border-color:gray;            /* Cambia el color del borde al hacer foco */\n"
+                "}")
+                placeholders = {
+                  self.textEdit_20 :"Ingrese los nombres del paciente",
+                  self.textEdit_19 : "Ingrese los apellidos del paciente",
+                  self.textEdit_14 : "Ingrese el domicilio del paciente",
+                  self.textEdit_21 : "Ingrese la identificación del paciente",
+                  self.textEdit_16 : "Ingrese el correo del paciente",
+                  self.textEdit_18 : "dd/mm/yyyy - HH:mm",
+                  self.textEdit_15 : "Ingrese el número de celular"
+                }
+                textEdit.setPlaceholderText(placeholders.get(textEdit, "0"))
+        else:
+                textEdit.setStyleSheet(""
+                "QTextEdit {\n"
+                "    border: 2px solid gray;        /* Bordes */\n"
+                "    border-radius: 15px;           /* Esquinas redondeadas */\n"
+                "    padding: 5px;                  /* Espacio interno para el texto */\n"
+                "    background-color: #d3d3d3;       /* Color de fondo */\n"
+                "    font-size: 14px;               /* Tamaño de fuente */\n"
+                "    color: black;                  /* Color del texto */\n"
+                "}\n"
+                "\n"
+                "QTextEdit:focus {\n"
+                "    border-color:gray;            /* Cambia el color del borde al hacer foco */\n"
+                "}")
+                textEdit.setPlaceholderText("")
+
+
 def action_button(self, button_id):
         if button_id == 1:
                 self.PaginasLogin.setCurrentWidget(self.pag02Login)
