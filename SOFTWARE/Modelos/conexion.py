@@ -126,7 +126,7 @@ def agregar_medico(nombre, contraseña, email, description='No hay descripción 
     cursor.execute(agregar_sql, (nombre, contraseña, email, description))
     conn.commit()
     conn.close()
-
+#d
 def agregar_paciente(id_paciente, apellidos, nombre, fecha_creacion, domicilio, telefono, email, identificacion, foto_path, radiografia_path):
     conn = conectar()
     cursor = conn.cursor()
@@ -136,7 +136,7 @@ def agregar_paciente(id_paciente, apellidos, nombre, fecha_creacion, domicilio, 
     resultado = cursor.fetchone()
     
     if resultado[0] > 0:
-        print(f"El paciente con identificación {identificacion} ya está registrado. No se añadirá este paciente.")
+        print(f"El paciente con identificacion {identificacion} ya está registrado. No se añadirá este paciente.")
         conn.close()
         return
     
