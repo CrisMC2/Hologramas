@@ -372,6 +372,12 @@ def action_button(self, button_id):
         elif button_id == 16:
                 self.cambianteTodo.setCurrentWidget(self.home)
                 self.PaginasHome.setCurrentWidget(self.pag_eliminar_paciente)
+        elif button_id == 17:
+                self.cambianteTodo.setCurrentWidget(self.home)
+                self.PaginasHome.setCurrentWidget(self.pag_editar_paciente)
+                self.Paginas_pag_editarpaciente.setCurrentWidget(self.Pag05_pageditarpaciente)
+
+
 
 
 
