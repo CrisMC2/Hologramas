@@ -685,6 +685,7 @@ class Ui_fondoMain(object):
         self.profileIcon13.setPixmap(QtGui.QPixmap("Hologramas/icon/usericon2.png"))
         self.profileIcon13.setScaledContents(True)
         self.profileIcon13.setObjectName("profileIcon13")
+
         self.label_10 = QtWidgets.QLabel(self.pag04Login)
         self.label_10.setGeometry(QtCore.QRect(120, 290, 351, 31))
         font = QtGui.QFont()
@@ -695,6 +696,7 @@ class Ui_fondoMain(object):
 "    background:none;\n"
 "}")
         self.label_10.setObjectName("label_10")
+        
         self.label_11 = QtWidgets.QLabel(self.pag04Login)
         self.label_11.setGeometry(QtCore.QRect(120, 380, 351, 31))
         font = QtGui.QFont()
@@ -13650,6 +13652,8 @@ class Ui_fondoMain(object):
         self.pushButton_17.clicked.connect(lambda: action_button(self,9))
         self.Boton_Atras_2.clicked.connect(lambda: action_button(self,9))
 
+        #Boton de click #1, interfaz agregar paciente
+        self.pushButton_15.clicked.connect(lambda:action_button(self,18))
 
         self.textEdit.textChanged.connect(lambda: updateTextEditStyle(self, self.textEdit))
         self.textEdit.setText("")
@@ -13720,12 +13724,13 @@ class Ui_fondoMain(object):
         self.textEdit_10.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_10, 42))
         self.textEdit_11.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_11, 42))
         self.textEdit_12.textChanged.connect(lambda: validateTextInput(self, self.textEdit_12, 42))
-        self.textEdit_20.textChanged.connect(lambda: validateTextInput(self, self.textEdit_20, 30))
-        self.textEdit_19.textChanged.connect(lambda: validateTextInput(self, self.textEdit_19, 30))
-        self.textEdit_14.textChanged.connect(lambda: validateTextInput(self, self.textEdit_14, 20))
+
+        self.textEdit_20.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_20, 30))
+        self.textEdit_19.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_19, 30))
+        self.textEdit_14.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_14, 20))
         self.textEdit_21.textChanged.connect(lambda: validateTextInput(self, self.textEdit_21, 8))
         self.textEdit_16.textChanged.connect(lambda: validateTextInput(self, self.textEdit_16, 30))
-        self.textEdit_18.textChanged.connect(lambda: validateTextInput(self, self.textEdit_18, 30))
+        self.textEdit_18.textChanged.connect(lambda: validateTextInput(self, self.textEdit_18, 30))  #fecha modi
         self.textEdit_15.textChanged.connect(lambda: validateTextInput(self, self.textEdit_15, 10))
 
         self.textEdit_13.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_13, 42))

@@ -5,6 +5,9 @@ from PyQt5.QtCore import QTimer
 from Modelos.conexion import *
 from Modelos.conexion import obtener_guardados
 from PyQt5.QtCore import Qt
+import re
+from datetime import datetime
+
 
 def setup_connections(ui):
         """Conecta las señales y eventos a los métodos correspondientes."""
@@ -168,7 +171,107 @@ def updateInputTextEdit(self, textEdit):
                 "}")
                 textEdit.setPlaceholderText("")
 
+def validar_solo_letras(texto, widget_padre, label_name, clase_instancia, distancia, parametro):
+    # Si el label existe previamente, eliminarlo
+    if hasattr(clase_instancia, label_name):
+        getattr(clase_instancia, label_name).deleteLater()
+        delattr(clase_instancia, label_name)
 
+    # Verificar si el texto está vacío o contiene solo espacios
+    if not texto.strip():
+        label = QtWidgets.QLabel(widget_padre)
+        label.setGeometry(QtCore.QRect(130, distancia, 351, 31))
+
+        font = QtGui.QFont()
+        font.setPointSize(7)
+        label.setFont(font)
+        label.setStyleSheet("QLabel {\n"
+                            "    color: red;\n"
+                            "    background:none;\n"
+                            "}")
+
+        label.setText(f"{parametro} no puede estar vacío")
+        label.setObjectName(label_name)
+        label.show()
+
+        setattr(clase_instancia, label_name, label)
+
+        print(f"{parametro} vacío ingresado")
+        return False
+
+    # Verificar si contiene solo letras y espacios
+    if any(not (char.isalpha() or char.isspace()) for char in texto):
+        label = QtWidgets.QLabel(widget_padre)
+        label.setGeometry(QtCore.QRect(130, distancia, 351, 31))
+
+        font = QtGui.QFont()
+        font.setPointSize(7)
+        label.setFont(font)
+        label.setStyleSheet("QLabel {\n"
+                            "    color: red;\n"
+                            "    background:none;\n"
+                            "}")
+
+        label.setText(f"{parametro} incorrecto ingresado")
+        label.setObjectName(label_name)
+        label.show()
+
+        setattr(clase_instancia, label_name, label)
+
+        print(f"{parametro} incorrecto ingresado")
+        return False  # Incorrecto
+
+    else:
+        print(f"{parametro} correcto ingresado")
+        return True  # Correcto
+
+
+def añadir_label(widget_padre, texto, posicion_x, posicion_y, ancho, alto, nombre_label="label_generico", tamaño_fuente=7, color_texto="red"):
+    label = QtWidgets.QLabel(widget_padre)
+    label.setGeometry(QtCore.QRect(posicion_x, posicion_y, ancho, alto))
+
+    font = QtGui.QFont()
+    font.setPointSize(tamaño_fuente)
+    label.setFont(font)
+
+    label.setStyleSheet(f"QLabel {{ color: {color_texto}; background: none; }}")
+
+    label.setText(texto)
+    label.setObjectName(nombre_label)
+    label.show()
+
+    return label  # Devuelve el label por si quieres manipularlo después
+
+def validar_correo(self, texto):
+    if not texto.strip():
+        print("Correo vacío, debe ingresar un correo")
+        return False
+
+    # Expresión regular básica para correo
+    patron = r'^[\w\.-]+@[\w\.-]+\.\w{2,4}$'
+
+    if re.match(patron, texto):
+        print("Correo válido ingresado")
+        return True
+    else:
+        print("Correo inválido ingresado")
+        return False
+    
+def validar_fecha(self, texto):
+    if not texto.strip():
+        print("Fecha vacía, debe ingresar una fecha")
+        return False
+
+    try:
+        # Intentar convertir el texto al formato DD/MM/YYYY
+        fecha = datetime.strptime(texto, "%d/%m/%Y")
+        print("Fecha válida ingresada")
+        return True
+    except ValueError:
+        # Si no coincide con el formato, lanzará error
+        print("Fecha inválida ingresada (Debe ser DD/MM/YYYY)")
+        return False
+    
 def action_button(self, button_id):
         if button_id == 1:
                 self.PaginasLogin.setCurrentWidget(self.pag02Login)
@@ -418,6 +521,53 @@ def action_button(self, button_id):
                 self.cambianteTodo.setCurrentWidget(self.home)
                 self.PaginasHome.setCurrentWidget(self.pag_editar_paciente)
                 self.Paginas_pag_editarpaciente.setCurrentWidget(self.Pag05_pageditarpaciente)
+        elif button_id == 18:
+               
+                if validar_solo_letras(self.textEdit_20.toPlainText(), self.widget_34, 'label_a', self, 47, "Nombre"):
+                   if validar_solo_letras(self.textEdit_19.toPlainText(), self.widget_33, 'label_b', self, 50, "Apellido"):
+
+                       # ---------------- DNI ----------------
+                      dni_texto = self.textEdit_21.toPlainText().strip()
+                      if dni_texto and dni_texto.isdigit() and len(dni_texto) == 8:
+                        print("DNI correcto")
+                        # ---------------- Correo ----------------
+                        correo_texto = self.textEdit_16.toPlainText().strip()
+                        if correo_texto:
+                          if validar_correo(self, correo_texto):
+                            # ---------------- Fecha ----------------
+                            if validar_fecha(self, self.textEdit_18.toPlainText()):
+                              # ---------------- Teléfono ----------------
+                              telefono_texto = self.textEdit_15.toPlainText().strip()
+                              if telefono_texto.isdigit() and len(telefono_texto) == 9:
+                                print("TODO BIEN")
+                              else:
+                                texto_rn = "Número de teléfono incorrecto"
+                                añadir_label(self.widget_30, texto_rn, 130, 50, 351, 31)
+                            else:
+                              texto_rn = "Fecha incorrecta"
+                              añadir_label(self.widget_32, texto_rn, 110, 50, 351, 31)
+                          else:
+                            texto_rn = "Correo incorrecto"
+                            añadir_label(self.widget_31, texto_rn, 110, 50, 351, 31)
+                        else:
+                          texto_rn = "Correo no puede estar vacío"
+                          añadir_label(self.widget_31, texto_rn, 110, 50, 351, 31)
+
+                      else:
+                        if not dni_texto:
+                           texto_rn = "DNI no puede estar vacío"
+                        else:
+                           texto_rn = "DNI incorrecto"
+                        añadir_label(self.widget_35, texto_rn, 170, 50, 351, 31)
+
+                      
+
+                            
+                          
+                
+
+
+
 
 
 
