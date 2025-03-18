@@ -43,7 +43,10 @@ def crear_tabla_pacientes():
         fecha_creacion DATE,
         domicilio VARCHAR(100) NOT NULL,
         telefono VARCHAR(100) NOT NULL,
-        email VARCHAR(100) NOT NULL UNIQUE
+        email VARCHAR(100) NOT NULL UNIQUE,
+        identificacion VARCHAR(20) NOT NULL UNIQUE,
+        foto LONGBLOB,
+        radiografia LONGBLOB
     )
     """
     cursor.execute(crear_tabla_sql)
@@ -123,6 +126,40 @@ def agregar_medico(nombre, contraseña, email, description='No hay descripción 
     cursor.execute(agregar_sql, (nombre, contraseña, email, description))
     conn.commit()
     conn.close()
+#d
+def agregar_paciente(id_paciente, apellidos, nombre, fecha_creacion, domicilio, telefono, email, identificacion, foto_path, radiografia_path):
+    conn = conectar()
+    cursor = conn.cursor()
+    
+    # Verificar si ya existe un paciente con esa identificación
+    cursor.execute("SELECT COUNT(*) FROM PACIENTES WHERE identificacion = %s", (identificacion,))
+    resultado = cursor.fetchone()
+    
+    if resultado[0] > 0:
+        print(f"El paciente con identificacion {identificacion} ya está registrado. No se añadirá este paciente.")
+        conn.close()
+        return
+    
+    # Leer imagen y radiografía en binario
+    with open(foto_path, 'rb') as f:
+        foto = f.read()
+    with open(radiografia_path, 'rb') as f:
+        radiografia = f.read()
+    
+    sql = """
+        INSERT INTO PACIENTES 
+        (id_paciente, apellidos, nombre, fecha_creacion, domicilio, telefono, email, identificacion, foto, radiografia)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """
+    
+    cursor.execute(sql, (
+        id_paciente, apellidos, nombre, fecha_creacion, domicilio, telefono, email, identificacion, foto, radiografia
+    ))
+    
+    conn.commit()
+    conn.close()
+    print(f"Paciente {nombre} {apellidos} agregado correctamente.")
+
 
 def agregar_guardados(email):
     conn = conectar()
@@ -172,4 +209,5 @@ def eliminar_todo():
 
 # Ejecutar la creación de la base de datos y las tablas
 crear_base_de_datos()
+
 iniciar()

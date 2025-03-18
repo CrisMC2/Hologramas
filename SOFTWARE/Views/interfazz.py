@@ -685,6 +685,7 @@ class Ui_fondoMain(object):
         self.profileIcon13.setPixmap(QtGui.QPixmap("Hologramas/icon/usericon2.png"))
         self.profileIcon13.setScaledContents(True)
         self.profileIcon13.setObjectName("profileIcon13")
+
         self.label_10 = QtWidgets.QLabel(self.pag04Login)
         self.label_10.setGeometry(QtCore.QRect(120, 290, 351, 31))
         font = QtGui.QFont()
@@ -695,6 +696,7 @@ class Ui_fondoMain(object):
 "    background:none;\n"
 "}")
         self.label_10.setObjectName("label_10")
+        
         self.label_11 = QtWidgets.QLabel(self.pag04Login)
         self.label_11.setGeometry(QtCore.QRect(120, 380, 351, 31))
         font = QtGui.QFont()
@@ -3494,653 +3496,17 @@ class Ui_fondoMain(object):
 "border: none;            /* Borde negro */\n"
 "border-radius: 20px;")
         self.pag_editar_paciente.setObjectName("pag_editar_paciente")
-        self.Boton_Atras_2 = QtWidgets.QPushButton(self.pag_editar_paciente)
-        self.Boton_Atras_2.setGeometry(QtCore.QRect(10, 20, 71, 61))
-        self.Boton_Atras_2.setStyleSheet("QPushButton {\n"
-"    background-position: center;    /* Centrar la imagen */\n"
-"    background-size: contain;\n"
-"    background-color: transparent;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
-"    border: none;                   /* Elimina el borde del botón */\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: #2980b9;  /* Color de fondo cuando el mouse está sobre el botón */\n"
-"    color: white;               /* Color del texto al hacer hover */\n"
-"    border: none;  /* Cambiar el color del borde al hacer hover */\n"
-"}")
-        self.Boton_Atras_2.setText("")
-        self.Boton_Atras_2.setIcon(icon5)
-        self.Boton_Atras_2.setObjectName("Boton_Atras_2")
-        self.pushButton_17 = QtWidgets.QPushButton(self.pag_editar_paciente)
-        self.pushButton_17.setGeometry(QtCore.QRect(80, 30, 241, 41))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_17.setFont(font)
-        self.pushButton_17.setStyleSheet("QPushButton {\n"
-"    border: none;                         /* Sin borde */\n"
-"    border-radius: 10px;                  /* Bordes redondeados */\n"
-"    padding: 5px;                         /* Espacio interno */\n"
-"    background-color: transparent;        /* Fondo transparente */\n"
-"    color: #e6cab8;                         /* Color del texto */\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: rgba(255, 255, 255, 0.1);  /* Fondo blanco semi-transparente al hacer hover */\n"
-"    color: white;                                /* Color del texto en hover */\n"
-"}")
-        self.pushButton_17.setObjectName("pushButton_17")
-        self.label_43 = QtWidgets.QLabel(self.pag_editar_paciente)
-        self.label_43.setGeometry(QtCore.QRect(310, 30, 61, 41))
-        font = QtGui.QFont()
-        font.setPointSize(20)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_43.setFont(font)
-        self.label_43.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: 10px;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-";  /* Fondo blanco semi-transparente (opcional) */\n"
-"}")
-        self.label_43.setObjectName("label_43")
-        self.pushButton_63 = QtWidgets.QPushButton(self.pag_editar_paciente)
-        self.pushButton_63.setGeometry(QtCore.QRect(360, 30, 221, 41))
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_63.setFont(font)
-        self.pushButton_63.setStyleSheet("QPushButton {\n"
-"    border: none;                         /* Sin borde */\n"
-"    border-radius: 10px;                  /* Bordes redondeados */\n"
-"    padding: 5px;                         /* Espacio interno */\n"
-"    background-color: transparent;        /* Fondo transparente */\n"
-"    color: #e6cab8;                         /* Color del texto */\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: rgba(255, 255, 255, 0.1);  /* Fondo blanco semi-transparente al hacer hover */\n"
-"    color: white;                                /* Color del texto en hover */\n"
-"}")
-        self.pushButton_63.setObjectName("pushButton_63")
-        self.widget_36 = QtWidgets.QWidget(self.pag_editar_paciente)
-        self.widget_36.setGeometry(QtCore.QRect(40, 100, 1071, 61))
-        self.widget_36.setStyleSheet("\n"
-"    background-color: #242525;\n"
-"    border: none;\n"
-"    border-top: none;\n"
-"    border-left: none;\n"
-"    border-right: none;\n"
-"    border-bottom: 2px solid gray; /* Borde inferior gris, recto y más grueso */")
-        self.widget_36.setObjectName("widget_36")
-        self.label_162 = QtWidgets.QLabel(self.widget_36)
-        self.label_162.setGeometry(QtCore.QRect(50, 10, 61, 41))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_162.setFont(font)
-        self.label_162.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_162.setObjectName("label_162")
-        self.label_164 = QtWidgets.QLabel(self.widget_36)
-        self.label_164.setGeometry(QtCore.QRect(190, 10, 81, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_164.setFont(font)
-        self.label_164.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_164.setObjectName("label_164")
-        self.label_165 = QtWidgets.QLabel(self.widget_36)
-        self.label_165.setGeometry(QtCore.QRect(380, 10, 201, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_165.setFont(font)
-        self.label_165.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_165.setObjectName("label_165")
-        self.label_166 = QtWidgets.QLabel(self.widget_36)
-        self.label_166.setGeometry(QtCore.QRect(730, 10, 101, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_166.setFont(font)
-        self.label_166.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_166.setObjectName("label_166")
-        self.label_170 = QtWidgets.QLabel(self.widget_36)
-        self.label_170.setGeometry(QtCore.QRect(950, 10, 81, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_170.setFont(font)
-        self.label_170.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_170.setObjectName("label_170")
-        self.widget_37 = QtWidgets.QWidget(self.pag_editar_paciente)
-        self.widget_37.setGeometry(QtCore.QRect(40, 180, 1071, 61))
-        self.widget_37.setStyleSheet("\n"
-"    background-color:black;\n"
-"    border: none;")
-        self.widget_37.setObjectName("widget_37")
-        self.label_171 = QtWidgets.QLabel(self.widget_37)
-        self.label_171.setGeometry(QtCore.QRect(40, 10, 61, 41))
-        self.label_171.setStyleSheet("border: none;")
-        self.label_171.setText("")
-        self.label_171.setPixmap(QtGui.QPixmap("Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
-        self.label_171.setScaledContents(True)
-        self.label_171.setObjectName("label_171")
-        self.label_172 = QtWidgets.QLabel(self.widget_37)
-        self.label_172.setGeometry(QtCore.QRect(190, 10, 81, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_172.setFont(font)
-        self.label_172.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_172.setObjectName("label_172")
-        self.label_173 = QtWidgets.QLabel(self.widget_37)
-        self.label_173.setGeometry(QtCore.QRect(340, 10, 281, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_173.setFont(font)
-        self.label_173.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_173.setObjectName("label_173")
-        self.label_174 = QtWidgets.QLabel(self.widget_37)
-        self.label_174.setGeometry(QtCore.QRect(710, 10, 141, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_174.setFont(font)
-        self.label_174.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_174.setObjectName("label_174")
-        self.pushButton_64 = QtWidgets.QPushButton(self.widget_37)
-        self.pushButton_64.setGeometry(QtCore.QRect(950, 20, 93, 31))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_64.setFont(font)
-        self.pushButton_64.setStyleSheet("QPushButton {\n"
-"    background-color: white;  /* Fondo transparente */\n"
-"    border: none;              /* Borde blanco */\n"
-"    border-radius: 15px;                  /* Bordes redondeados */\n"
-"    color:  black;                         /* Color del texto */\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */\n"
-"}")
-        self.pushButton_64.setObjectName("pushButton_64")
-        self.widget_38 = QtWidgets.QWidget(self.pag_editar_paciente)
-        self.widget_38.setGeometry(QtCore.QRect(40, 270, 1071, 61))
-        self.widget_38.setStyleSheet("\n"
-"    background-color:black;\n"
-"    border: none;")
-        self.widget_38.setObjectName("widget_38")
-        self.label_175 = QtWidgets.QLabel(self.widget_38)
-        self.label_175.setGeometry(QtCore.QRect(40, 10, 61, 41))
-        self.label_175.setStyleSheet("border: none;")
-        self.label_175.setText("")
-        self.label_175.setPixmap(QtGui.QPixmap("Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
-        self.label_175.setScaledContents(True)
-        self.label_175.setObjectName("label_175")
-        self.label_176 = QtWidgets.QLabel(self.widget_38)
-        self.label_176.setGeometry(QtCore.QRect(190, 10, 81, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_176.setFont(font)
-        self.label_176.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_176.setObjectName("label_176")
-        self.label_177 = QtWidgets.QLabel(self.widget_38)
-        self.label_177.setGeometry(QtCore.QRect(340, 10, 281, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_177.setFont(font)
-        self.label_177.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_177.setObjectName("label_177")
-        self.label_178 = QtWidgets.QLabel(self.widget_38)
-        self.label_178.setGeometry(QtCore.QRect(710, 10, 141, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_178.setFont(font)
-        self.label_178.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_178.setObjectName("label_178")
-        self.pushButton_65 = QtWidgets.QPushButton(self.widget_38)
-        self.pushButton_65.setGeometry(QtCore.QRect(950, 20, 93, 31))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_65.setFont(font)
-        self.pushButton_65.setStyleSheet("QPushButton {\n"
-"    background-color: white;  /* Fondo transparente */\n"
-"    border: none;              /* Borde blanco */\n"
-"    border-radius: 15px;                  /* Bordes redondeados */\n"
-"    color:  black;                         /* Color del texto */\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */\n"
-"}")
-        self.pushButton_65.setObjectName("pushButton_65")
-        self.widget_39 = QtWidgets.QWidget(self.pag_editar_paciente)
-        self.widget_39.setGeometry(QtCore.QRect(40, 360, 1071, 61))
-        self.widget_39.setStyleSheet("\n"
-"    background-color:black;\n"
-"    border: none;")
-        self.widget_39.setObjectName("widget_39")
-        self.label_179 = QtWidgets.QLabel(self.widget_39)
-        self.label_179.setGeometry(QtCore.QRect(40, 10, 61, 41))
-        self.label_179.setStyleSheet("border: none;")
-        self.label_179.setText("")
-        self.label_179.setPixmap(QtGui.QPixmap("Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
-        self.label_179.setScaledContents(True)
-        self.label_179.setObjectName("label_179")
-        self.label_180 = QtWidgets.QLabel(self.widget_39)
-        self.label_180.setGeometry(QtCore.QRect(190, 10, 81, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_180.setFont(font)
-        self.label_180.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_180.setObjectName("label_180")
-        self.label_181 = QtWidgets.QLabel(self.widget_39)
-        self.label_181.setGeometry(QtCore.QRect(340, 10, 281, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_181.setFont(font)
-        self.label_181.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_181.setObjectName("label_181")
-        self.label_182 = QtWidgets.QLabel(self.widget_39)
-        self.label_182.setGeometry(QtCore.QRect(710, 10, 141, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_182.setFont(font)
-        self.label_182.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_182.setObjectName("label_182")
-        self.pushButton_66 = QtWidgets.QPushButton(self.widget_39)
-        self.pushButton_66.setGeometry(QtCore.QRect(950, 20, 93, 31))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_66.setFont(font)
-        self.pushButton_66.setStyleSheet("QPushButton {\n"
-"    background-color: white;  /* Fondo transparente */\n"
-"    border: none;              /* Borde blanco */\n"
-"    border-radius: 15px;                  /* Bordes redondeados */\n"
-"    color:  black;                         /* Color del texto */\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */\n"
-"}")
-        self.pushButton_66.setObjectName("pushButton_66")
-        self.widget_40 = QtWidgets.QWidget(self.pag_editar_paciente)
-        self.widget_40.setGeometry(QtCore.QRect(40, 450, 1071, 61))
-        self.widget_40.setStyleSheet("\n"
-"    background-color:black;\n"
-"    border: none;")
-        self.widget_40.setObjectName("widget_40")
-        self.label_183 = QtWidgets.QLabel(self.widget_40)
-        self.label_183.setGeometry(QtCore.QRect(40, 10, 61, 41))
-        self.label_183.setStyleSheet("border: none;")
-        self.label_183.setText("")
-        self.label_183.setPixmap(QtGui.QPixmap("Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
-        self.label_183.setScaledContents(True)
-        self.label_183.setObjectName("label_183")
-        self.label_184 = QtWidgets.QLabel(self.widget_40)
-        self.label_184.setGeometry(QtCore.QRect(190, 10, 81, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_184.setFont(font)
-        self.label_184.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_184.setObjectName("label_184")
-        self.label_185 = QtWidgets.QLabel(self.widget_40)
-        self.label_185.setGeometry(QtCore.QRect(340, 10, 281, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_185.setFont(font)
-        self.label_185.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_185.setObjectName("label_185")
-        self.pushButton_67 = QtWidgets.QPushButton(self.widget_40)
-        self.pushButton_67.setGeometry(QtCore.QRect(950, 20, 93, 31))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_67.setFont(font)
-        self.pushButton_67.setStyleSheet("QPushButton {\n"
-"    background-color: white;  /* Fondo transparente */\n"
-"    border: none;              /* Borde blanco */\n"
-"    border-radius: 15px;                  /* Bordes redondeados */\n"
-"    color:  black;                         /* Color del texto */\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */\n"
-"}")
-        self.pushButton_67.setObjectName("pushButton_67")
-        self.label_187 = QtWidgets.QLabel(self.widget_40)
-        self.label_187.setGeometry(QtCore.QRect(740, 10, 61, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_187.setFont(font)
-        self.label_187.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_187.setObjectName("label_187")
-        self.widget_41 = QtWidgets.QWidget(self.pag_editar_paciente)
-        self.widget_41.setGeometry(QtCore.QRect(40, 540, 1071, 61))
-        self.widget_41.setStyleSheet("\n"
-"    background-color:black;\n"
-"    border: none;")
-        self.widget_41.setObjectName("widget_41")
-        self.label_191 = QtWidgets.QLabel(self.widget_41)
-        self.label_191.setGeometry(QtCore.QRect(40, 10, 61, 41))
-        self.label_191.setStyleSheet("border: none;")
-        self.label_191.setText("")
-        self.label_191.setPixmap(QtGui.QPixmap("Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
-        self.label_191.setScaledContents(True)
-        self.label_191.setObjectName("label_191")
-        self.label_192 = QtWidgets.QLabel(self.widget_41)
-        self.label_192.setGeometry(QtCore.QRect(190, 10, 81, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_192.setFont(font)
-        self.label_192.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_192.setObjectName("label_192")
-        self.label_193 = QtWidgets.QLabel(self.widget_41)
-        self.label_193.setGeometry(QtCore.QRect(340, 10, 281, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_193.setFont(font)
-        self.label_193.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_193.setObjectName("label_193")
-        self.pushButton_69 = QtWidgets.QPushButton(self.widget_41)
-        self.pushButton_69.setGeometry(QtCore.QRect(950, 20, 93, 31))
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_69.setFont(font)
-        self.pushButton_69.setStyleSheet("QPushButton {\n"
-"    background-color: white;  /* Fondo transparente */\n"
-"    border: none;              /* Borde blanco */\n"
-"    border-radius: 15px;                  /* Bordes redondeados */\n"
-"    color:  black;                         /* Color del texto */\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */\n"
-"}")
-        self.pushButton_69.setObjectName("pushButton_69")
-        self.label_194 = QtWidgets.QLabel(self.widget_41)
-        self.label_194.setGeometry(QtCore.QRect(740, 10, 61, 41))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_194.setFont(font)
-        self.label_194.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: none;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"}")
-        self.label_194.setObjectName("label_194")
-        self.pushButton_70 = QtWidgets.QPushButton(self.pag_editar_paciente)
-        self.pushButton_70.setGeometry(QtCore.QRect(320, 670, 111, 41))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_70.setFont(font)
-        self.pushButton_70.setStyleSheet("QPushButton {\n"
-"    background-position: center;    /* Centrar la imagen */\n"
-"    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
-"    background-size: contain;       /* Cambiar el tamaño de la imagen */\n"
-"    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */\n"
-"    color: white;                   /* Color del texto */\n"
-"    background-color:#e04949;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */\n"
-"    color: white;                   /* Color del texto al hacer hover */\n"
-"    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */\n"
-"}")
-        self.pushButton_70.setObjectName("pushButton_70")
-        self.pushButton_71 = QtWidgets.QPushButton(self.pag_editar_paciente)
-        self.pushButton_71.setGeometry(QtCore.QRect(450, 670, 51, 41))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_71.setFont(font)
-        self.pushButton_71.setStyleSheet("QPushButton {\n"
-"    background-position: center;    /* Centrar la imagen */\n"
-"    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
-"    background-size: contain;       /* Cambiar el tamaño de la imagen */\n"
-"    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */\n"
-"    color: white;                   /* Color del texto */\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */\n"
-"    color: white;                   /* Color del texto al hacer hover */\n"
-"    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */\n"
-"}")
-        self.pushButton_71.setObjectName("pushButton_71")
-        self.label_195 = QtWidgets.QLabel(self.pag_editar_paciente)
-        self.label_195.setGeometry(QtCore.QRect(500, 670, 41, 31))
-        font = QtGui.QFont()
-        font.setPointSize(16)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label_195.setFont(font)
-        self.label_195.setStyleSheet("QLabel {\n"
-"    border: none;           /* Borde color violeta */\n"
-"    border-radius: 10px;                 /* Bordes redondeados */\n"
-"    padding: 5px;                        /* Espacio interno */\n"
-"    background-color: transparent;\n"
-"    color: white;\n"
-";  /* Fondo blanco semi-transparente (opcional) */\n"
-"}")
-        self.label_195.setObjectName("label_195")
-        self.pushButton_72 = QtWidgets.QPushButton(self.pag_editar_paciente)
-        self.pushButton_72.setGeometry(QtCore.QRect(560, 670, 51, 41))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_72.setFont(font)
-        self.pushButton_72.setStyleSheet("QPushButton {\n"
-"    background-position: center;    /* Centrar la imagen */\n"
-"    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
-"    background-size: contain;       /* Cambiar el tamaño de la imagen */\n"
-"    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */\n"
-"    color: white;                   /* Color del texto */\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */\n"
-"    color: white;                   /* Color del texto al hacer hover */\n"
-"    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */\n"
-"}")
-        self.pushButton_72.setObjectName("pushButton_72")
-        self.pushButton_73 = QtWidgets.QPushButton(self.pag_editar_paciente)
-        self.pushButton_73.setGeometry(QtCore.QRect(630, 670, 51, 41))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_73.setFont(font)
-        self.pushButton_73.setStyleSheet("QPushButton {\n"
-"    background-position: center;    /* Centrar la imagen */\n"
-"    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
-"    background-size: contain;       /* Cambiar el tamaño de la imagen */\n"
-"    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */\n"
-"    color: white;                   /* Color del texto */\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */\n"
-"    color: white;                   /* Color del texto al hacer hover */\n"
-"    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */\n"
-"}")
-        self.pushButton_73.setObjectName("pushButton_73")
-        self.pushButton_74 = QtWidgets.QPushButton(self.pag_editar_paciente)
-        self.pushButton_74.setGeometry(QtCore.QRect(700, 670, 111, 41))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        font.setBold(True)
-        font.setWeight(75)
-        self.pushButton_74.setFont(font)
-        self.pushButton_74.setStyleSheet("QPushButton {\n"
-"    background-position: center;    /* Centrar la imagen */\n"
-"    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
-"    background-size: contain;       /* Cambiar el tamaño de la imagen */\n"
-"    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */\n"
-"    color: white;                   /* Color del texto */\n"
-"    background-color:#009dff;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */\n"
-"    color: white;                   /* Color del texto al hacer hover */\n"
-"    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */\n"
-"}")
-        self.pushButton_74.setObjectName("pushButton_74")
+
+        ###desde aqui
+        ########xd aca se saco
+
+
+
+        #Inicio de paginas_editarpaciente
         self.Paginas_pag_editarpaciente = QtWidgets.QStackedWidget(self.pag_editar_paciente)
         self.Paginas_pag_editarpaciente.setGeometry(QtCore.QRect(0, 0, 1161, 751))
         self.Paginas_pag_editarpaciente.setObjectName("Paginas_pag_editarpaciente")
+
         self.Pag01_pageditarpaciente = QtWidgets.QWidget()
         self.Pag01_pageditarpaciente.setStyleSheet("border-radius: 30px; /* Ajusta el valor para el radio de los bordes */\n"
 "background-color:#242525;\n"
@@ -6516,7 +5882,9 @@ class Ui_fondoMain(object):
 "    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */\n"
 "}")
         self.pushButton_176.setObjectName("pushButton_176")
+
         self.Paginas_pag_editarpaciente.addWidget(self.Pag03_pageditarpaciente)
+
         self.Pag04_pageditarpaciente = QtWidgets.QWidget()
         self.Pag04_pageditarpaciente.setObjectName("Pag04_pageditarpaciente")
         self.Boton_Atras_40 = QtWidgets.QPushButton(self.Pag04_pageditarpaciente)
@@ -6918,6 +6286,661 @@ class Ui_fondoMain(object):
         self.label_24.setScaledContents(True)
         self.label_24.setObjectName("label_24")
         self.Paginas_pag_editarpaciente.addWidget(self.Pag04_pageditarpaciente)
+
+        #agregamos la primera pagina editar_paciente (pagina_05)
+        
+        self.Pag05_pageditarpaciente = QtWidgets.QWidget()
+        self.Pag05_pageditarpaciente.setObjectName("Pag05_pageditarpaciente")
+        
+        self.Boton_Atras_2 = QtWidgets.QPushButton(self.Pag05_pageditarpaciente)
+        self.Boton_Atras_2.setGeometry(QtCore.QRect(10, 20, 71, 61))
+        self.Boton_Atras_2.setStyleSheet("QPushButton {\n"
+"    background-position: center;    /* Centrar la imagen */\n"
+"    background-size: contain;\n"
+"    background-color: transparent;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
+"    border: none;                   /* Elimina el borde del botón */\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #2980b9;  /* Color de fondo cuando el mouse está sobre el botón */\n"
+"    color: white;               /* Color del texto al hacer hover */\n"
+"    border: none;  /* Cambiar el color del borde al hacer hover */\n"
+"}")
+        self.Boton_Atras_2.setText("")
+        self.Boton_Atras_2.setIcon(icon5)
+        self.Boton_Atras_2.setObjectName("Boton_Atras_2")
+        self.pushButton_17 = QtWidgets.QPushButton(self.Pag05_pageditarpaciente)
+        self.pushButton_17.setGeometry(QtCore.QRect(80, 30, 241, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_17.setFont(font)
+        self.pushButton_17.setStyleSheet("QPushButton {\n"
+"    border: none;                         /* Sin borde */\n"
+"    border-radius: 10px;                  /* Bordes redondeados */\n"
+"    padding: 5px;                         /* Espacio interno */\n"
+"    background-color: transparent;        /* Fondo transparente */\n"
+"    color: #e6cab8;                         /* Color del texto */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgba(255, 255, 255, 0.1);  /* Fondo blanco semi-transparente al hacer hover */\n"
+"    color: white;                                /* Color del texto en hover */\n"
+"}")
+        self.pushButton_17.setObjectName("pushButton_17")
+        self.label_43 = QtWidgets.QLabel(self.Pag05_pageditarpaciente)
+        self.label_43.setGeometry(QtCore.QRect(310, 30, 61, 41))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_43.setFont(font)
+        self.label_43.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: 10px;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+";  /* Fondo blanco semi-transparente (opcional) */\n"
+"}")
+        self.label_43.setObjectName("label_43")
+        self.pushButton_63 = QtWidgets.QPushButton(self.Pag05_pageditarpaciente)
+        self.pushButton_63.setGeometry(QtCore.QRect(360, 30, 221, 41))
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_63.setFont(font)
+        self.pushButton_63.setStyleSheet("QPushButton {\n"
+"    border: none;                         /* Sin borde */\n"
+"    border-radius: 10px;                  /* Bordes redondeados */\n"
+"    padding: 5px;                         /* Espacio interno */\n"
+"    background-color: transparent;        /* Fondo transparente */\n"
+"    color: #e6cab8;                         /* Color del texto */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgba(255, 255, 255, 0.1);  /* Fondo blanco semi-transparente al hacer hover */\n"
+"    color: white;                                /* Color del texto en hover */\n"
+"}")
+        self.pushButton_63.setObjectName("pushButton_63")
+        self.widget_36 = QtWidgets.QWidget(self.Pag05_pageditarpaciente)
+        self.widget_36.setGeometry(QtCore.QRect(40, 100, 1071, 61))
+        self.widget_36.setStyleSheet("\n"
+"    background-color: #242525;\n"
+"    border: none;\n"
+"    border-top: none;\n"
+"    border-left: none;\n"
+"    border-right: none;\n"
+"    border-bottom: 2px solid gray; /* Borde inferior gris, recto y más grueso */")
+        self.widget_36.setObjectName("widget_36")
+        self.label_162 = QtWidgets.QLabel(self.widget_36)
+        self.label_162.setGeometry(QtCore.QRect(50, 10, 61, 41))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_162.setFont(font)
+        self.label_162.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_162.setObjectName("label_162")
+        self.label_164 = QtWidgets.QLabel(self.widget_36)
+        self.label_164.setGeometry(QtCore.QRect(190, 10, 81, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_164.setFont(font)
+        self.label_164.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_164.setObjectName("label_164")
+        self.label_165 = QtWidgets.QLabel(self.widget_36)
+        self.label_165.setGeometry(QtCore.QRect(380, 10, 201, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_165.setFont(font)
+        self.label_165.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_165.setObjectName("label_165")
+        self.label_166 = QtWidgets.QLabel(self.widget_36)
+        self.label_166.setGeometry(QtCore.QRect(730, 10, 101, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_166.setFont(font)
+        self.label_166.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_166.setObjectName("label_166")
+        self.label_170 = QtWidgets.QLabel(self.widget_36)
+        self.label_170.setGeometry(QtCore.QRect(950, 10, 81, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_170.setFont(font)
+        self.label_170.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_170.setObjectName("label_170")
+        self.widget_37 = QtWidgets.QWidget(self.Pag05_pageditarpaciente)
+        self.widget_37.setGeometry(QtCore.QRect(40, 180, 1071, 61))
+        self.widget_37.setStyleSheet("\n"
+"    background-color:black;\n"
+"    border: none;")
+        self.widget_37.setObjectName("widget_37")
+        self.label_171 = QtWidgets.QLabel(self.widget_37)
+        self.label_171.setGeometry(QtCore.QRect(40, 10, 61, 41))
+        self.label_171.setStyleSheet("border: none;")
+        self.label_171.setText("")
+        self.label_171.setPixmap(QtGui.QPixmap("Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
+        self.label_171.setScaledContents(True)
+        self.label_171.setObjectName("label_171")
+        self.label_172 = QtWidgets.QLabel(self.widget_37)
+        self.label_172.setGeometry(QtCore.QRect(190, 10, 81, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_172.setFont(font)
+        self.label_172.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_172.setObjectName("label_172")
+        self.label_173 = QtWidgets.QLabel(self.widget_37)
+        self.label_173.setGeometry(QtCore.QRect(340, 10, 281, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_173.setFont(font)
+        self.label_173.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_173.setObjectName("label_173")
+        self.label_174 = QtWidgets.QLabel(self.widget_37)
+        self.label_174.setGeometry(QtCore.QRect(710, 10, 141, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_174.setFont(font)
+        self.label_174.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_174.setObjectName("label_174")
+        self.pushButton_64 = QtWidgets.QPushButton(self.widget_37)
+        self.pushButton_64.setGeometry(QtCore.QRect(950, 20, 93, 31))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_64.setFont(font)
+        self.pushButton_64.setStyleSheet("QPushButton {\n"
+"    background-color: white;  /* Fondo transparente */\n"
+"    border: none;              /* Borde blanco */\n"
+"    border-radius: 15px;                  /* Bordes redondeados */\n"
+"    color:  black;                         /* Color del texto */\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */\n"
+"}")
+        self.pushButton_64.setObjectName("pushButton_64")
+        self.widget_38 = QtWidgets.QWidget(self.Pag05_pageditarpaciente)
+        self.widget_38.setGeometry(QtCore.QRect(40, 270, 1071, 61))
+        self.widget_38.setStyleSheet("\n"
+"    background-color:black;\n"
+"    border: none;")
+        self.widget_38.setObjectName("widget_38")
+        self.label_175 = QtWidgets.QLabel(self.widget_38)
+        self.label_175.setGeometry(QtCore.QRect(40, 10, 61, 41))
+        self.label_175.setStyleSheet("border: none;")
+        self.label_175.setText("")
+        self.label_175.setPixmap(QtGui.QPixmap("Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
+        self.label_175.setScaledContents(True)
+        self.label_175.setObjectName("label_175")
+        self.label_176 = QtWidgets.QLabel(self.widget_38)
+        self.label_176.setGeometry(QtCore.QRect(190, 10, 81, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_176.setFont(font)
+        self.label_176.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_176.setObjectName("label_176")
+        self.label_177 = QtWidgets.QLabel(self.widget_38)
+        self.label_177.setGeometry(QtCore.QRect(340, 10, 281, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_177.setFont(font)
+        self.label_177.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_177.setObjectName("label_177")
+        self.label_178 = QtWidgets.QLabel(self.widget_38)
+        self.label_178.setGeometry(QtCore.QRect(710, 10, 141, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_178.setFont(font)
+        self.label_178.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_178.setObjectName("label_178")
+        self.pushButton_65 = QtWidgets.QPushButton(self.widget_38)
+        self.pushButton_65.setGeometry(QtCore.QRect(950, 20, 93, 31))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_65.setFont(font)
+        self.pushButton_65.setStyleSheet("QPushButton {\n"
+"    background-color: white;  /* Fondo transparente */\n"
+"    border: none;              /* Borde blanco */\n"
+"    border-radius: 15px;                  /* Bordes redondeados */\n"
+"    color:  black;                         /* Color del texto */\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */\n"
+"}")
+        self.pushButton_65.setObjectName("pushButton_65")
+        self.widget_39 = QtWidgets.QWidget(self.Pag05_pageditarpaciente)
+        self.widget_39.setGeometry(QtCore.QRect(40, 360, 1071, 61))
+        self.widget_39.setStyleSheet("\n"
+"    background-color:black;\n"
+"    border: none;")
+        self.widget_39.setObjectName("widget_39")
+        self.label_179 = QtWidgets.QLabel(self.widget_39)
+        self.label_179.setGeometry(QtCore.QRect(40, 10, 61, 41))
+        self.label_179.setStyleSheet("border: none;")
+        self.label_179.setText("")
+        self.label_179.setPixmap(QtGui.QPixmap("Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
+        self.label_179.setScaledContents(True)
+        self.label_179.setObjectName("label_179")
+        self.label_180 = QtWidgets.QLabel(self.widget_39)
+        self.label_180.setGeometry(QtCore.QRect(190, 10, 81, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_180.setFont(font)
+        self.label_180.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_180.setObjectName("label_180")
+        self.label_181 = QtWidgets.QLabel(self.widget_39)
+        self.label_181.setGeometry(QtCore.QRect(340, 10, 281, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_181.setFont(font)
+        self.label_181.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_181.setObjectName("label_181")
+        self.label_182 = QtWidgets.QLabel(self.widget_39)
+        self.label_182.setGeometry(QtCore.QRect(710, 10, 141, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_182.setFont(font)
+        self.label_182.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_182.setObjectName("label_182")
+        self.pushButton_66 = QtWidgets.QPushButton(self.widget_39)
+        self.pushButton_66.setGeometry(QtCore.QRect(950, 20, 93, 31))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_66.setFont(font)
+        self.pushButton_66.setStyleSheet("QPushButton {\n"
+"    background-color: white;  /* Fondo transparente */\n"
+"    border: none;              /* Borde blanco */\n"
+"    border-radius: 15px;                  /* Bordes redondeados */\n"
+"    color:  black;                         /* Color del texto */\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */\n"
+"}")
+        self.pushButton_66.setObjectName("pushButton_66")
+        self.widget_40 = QtWidgets.QWidget(self.Pag05_pageditarpaciente)
+        self.widget_40.setGeometry(QtCore.QRect(40, 450, 1071, 61))
+        self.widget_40.setStyleSheet("\n"
+"    background-color:black;\n"
+"    border: none;")
+        self.widget_40.setObjectName("widget_40")
+        self.label_183 = QtWidgets.QLabel(self.widget_40)
+        self.label_183.setGeometry(QtCore.QRect(40, 10, 61, 41))
+        self.label_183.setStyleSheet("border: none;")
+        self.label_183.setText("")
+        self.label_183.setPixmap(QtGui.QPixmap("Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
+        self.label_183.setScaledContents(True)
+        self.label_183.setObjectName("label_183")
+        self.label_184 = QtWidgets.QLabel(self.widget_40)
+        self.label_184.setGeometry(QtCore.QRect(190, 10, 81, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_184.setFont(font)
+        self.label_184.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_184.setObjectName("label_184")
+        self.label_185 = QtWidgets.QLabel(self.widget_40)
+        self.label_185.setGeometry(QtCore.QRect(340, 10, 281, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_185.setFont(font)
+        self.label_185.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_185.setObjectName("label_185")
+        self.pushButton_67 = QtWidgets.QPushButton(self.widget_40)
+        self.pushButton_67.setGeometry(QtCore.QRect(950, 20, 93, 31))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_67.setFont(font)
+        self.pushButton_67.setStyleSheet("QPushButton {\n"
+"    background-color: white;  /* Fondo transparente */\n"
+"    border: none;              /* Borde blanco */\n"
+"    border-radius: 15px;                  /* Bordes redondeados */\n"
+"    color:  black;                         /* Color del texto */\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */\n"
+"}")
+        self.pushButton_67.setObjectName("pushButton_67")
+        self.label_187 = QtWidgets.QLabel(self.widget_40)
+        self.label_187.setGeometry(QtCore.QRect(740, 10, 61, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_187.setFont(font)
+        self.label_187.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_187.setObjectName("label_187")
+        self.widget_41 = QtWidgets.QWidget(self.Pag05_pageditarpaciente)
+        self.widget_41.setGeometry(QtCore.QRect(40, 540, 1071, 61))
+        self.widget_41.setStyleSheet("\n"
+"    background-color:black;\n"
+"    border: none;")
+        self.widget_41.setObjectName("widget_41")
+        self.label_191 = QtWidgets.QLabel(self.widget_41)
+        self.label_191.setGeometry(QtCore.QRect(40, 10, 61, 41))
+        self.label_191.setStyleSheet("border: none;")
+        self.label_191.setText("")
+        self.label_191.setPixmap(QtGui.QPixmap("Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
+        self.label_191.setScaledContents(True)
+        self.label_191.setObjectName("label_191")
+        self.label_192 = QtWidgets.QLabel(self.widget_41)
+        self.label_192.setGeometry(QtCore.QRect(190, 10, 81, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_192.setFont(font)
+        self.label_192.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_192.setObjectName("label_192")
+        self.label_193 = QtWidgets.QLabel(self.widget_41)
+        self.label_193.setGeometry(QtCore.QRect(340, 10, 281, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_193.setFont(font)
+        self.label_193.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_193.setObjectName("label_193")
+        self.pushButton_69 = QtWidgets.QPushButton(self.widget_41)
+        self.pushButton_69.setGeometry(QtCore.QRect(950, 20, 93, 31))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_69.setFont(font)
+        self.pushButton_69.setStyleSheet("QPushButton {\n"
+"    background-color: white;  /* Fondo transparente */\n"
+"    border: none;              /* Borde blanco */\n"
+"    border-radius: 15px;                  /* Bordes redondeados */\n"
+"    color:  black;                         /* Color del texto */\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgba(255, 255, 255, 0.2);  /* Fondo ligeramente blanco al pasar el ratón */\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgba(255, 255, 255, 0.4);   /* Fondo más opaco al hacer clic */\n"
+"}")
+        self.pushButton_69.setObjectName("pushButton_69")
+        self.label_194 = QtWidgets.QLabel(self.widget_41)
+        self.label_194.setGeometry(QtCore.QRect(740, 10, 61, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_194.setFont(font)
+        self.label_194.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: none;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"}")
+        self.label_194.setObjectName("label_194")
+        self.pushButton_70 = QtWidgets.QPushButton(self.Pag05_pageditarpaciente)
+        self.pushButton_70.setGeometry(QtCore.QRect(320, 670, 111, 41))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_70.setFont(font)
+        self.pushButton_70.setStyleSheet("QPushButton {\n"
+"    background-position: center;    /* Centrar la imagen */\n"
+"    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
+"    background-size: contain;       /* Cambiar el tamaño de la imagen */\n"
+"    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */\n"
+"    color: white;                   /* Color del texto */\n"
+"    background-color:#e04949;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */\n"
+"    color: white;                   /* Color del texto al hacer hover */\n"
+"    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */\n"
+"}")
+        self.pushButton_70.setObjectName("pushButton_70")
+        self.pushButton_71 = QtWidgets.QPushButton(self.Pag05_pageditarpaciente)
+        self.pushButton_71.setGeometry(QtCore.QRect(450, 670, 51, 41))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_71.setFont(font)
+        self.pushButton_71.setStyleSheet("QPushButton {\n"
+"    background-position: center;    /* Centrar la imagen */\n"
+"    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
+"    background-size: contain;       /* Cambiar el tamaño de la imagen */\n"
+"    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */\n"
+"    color: white;                   /* Color del texto */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */\n"
+"    color: white;                   /* Color del texto al hacer hover */\n"
+"    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */\n"
+"}")
+        self.pushButton_71.setObjectName("pushButton_71")
+        self.label_195 = QtWidgets.QLabel(self.Pag05_pageditarpaciente)
+        self.label_195.setGeometry(QtCore.QRect(500, 670, 41, 31))
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_195.setFont(font)
+        self.label_195.setStyleSheet("QLabel {\n"
+"    border: none;           /* Borde color violeta */\n"
+"    border-radius: 10px;                 /* Bordes redondeados */\n"
+"    padding: 5px;                        /* Espacio interno */\n"
+"    background-color: transparent;\n"
+"    color: white;\n"
+";  /* Fondo blanco semi-transparente (opcional) */\n"
+"}")
+        self.label_195.setObjectName("label_195")
+        self.pushButton_72 = QtWidgets.QPushButton(self.Pag05_pageditarpaciente)
+        self.pushButton_72.setGeometry(QtCore.QRect(560, 670, 51, 41))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_72.setFont(font)
+        self.pushButton_72.setStyleSheet("QPushButton {\n"
+"    background-position: center;    /* Centrar la imagen */\n"
+"    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
+"    background-size: contain;       /* Cambiar el tamaño de la imagen */\n"
+"    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */\n"
+"    color: white;                   /* Color del texto */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */\n"
+"    color: white;                   /* Color del texto al hacer hover */\n"
+"    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */\n"
+"}")
+        self.pushButton_72.setObjectName("pushButton_72")
+        self.pushButton_73 = QtWidgets.QPushButton(self.Pag05_pageditarpaciente)
+        self.pushButton_73.setGeometry(QtCore.QRect(630, 670, 51, 41))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_73.setFont(font)
+        self.pushButton_73.setStyleSheet("QPushButton {\n"
+"    background-position: center;    /* Centrar la imagen */\n"
+"    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
+"    background-size: contain;       /* Cambiar el tamaño de la imagen */\n"
+"    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */\n"
+"    color: white;                   /* Color del texto */\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */\n"
+"    color: white;                   /* Color del texto al hacer hover */\n"
+"    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */\n"
+"}")
+        self.pushButton_73.setObjectName("pushButton_73")
+        self.pushButton_74 = QtWidgets.QPushButton(self.Pag05_pageditarpaciente)
+        self.pushButton_74.setGeometry(QtCore.QRect(700, 670, 111, 41))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_74.setFont(font)
+        self.pushButton_74.setStyleSheet("QPushButton {\n"
+"    background-position: center;    /* Centrar la imagen */\n"
+"    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
+"    background-size: contain;       /* Cambiar el tamaño de la imagen */\n"
+"    border: 2px solid #cccccc;                   /* Elimina el borde inicial del botón */\n"
+"    color: white;                   /* Color del texto */\n"
+"    background-color:#009dff;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #2980b9;      /* Color de fondo cuando el mouse está sobre el botón */\n"
+"    color: white;                   /* Color del texto al hacer hover */\n"
+"    border: 2px solid white;        /* Borde blanco de 2px al hacer hover */\n"
+"}")
+        self.pushButton_74.setObjectName("pushButton_74")
+
+        #se agrega la pagina 05 
+        self.Paginas_pag_editarpaciente.addWidget(self.Pag05_pageditarpaciente)
+
+        #otra parte------ 
         self.PagInicioEditar = QtWidgets.QWidget()
         self.PagInicioEditar.setObjectName("PagInicioEditar")
         self.Boton_Atras_73 = QtWidgets.QPushButton(self.PagInicioEditar)
@@ -13606,6 +13629,32 @@ class Ui_fondoMain(object):
         self.Boton_Atras_10.clicked.connect(lambda: action_button(self, 13))
         self.Boton_Atras_26.clicked.connect(lambda: action_button(self, 13))
         self.Boton_Atras_69.clicked.connect(lambda: action_button(self, 13))
+
+        #Adjust
+
+        #Botones de control entre agregar_paciente y opciones_generales
+        self.pushButton_10.clicked.connect(lambda: action_button(self,14))
+        self.pushButton_16.clicked.connect(lambda: action_button(self,9))
+        self.Boton_Atras.clicked.connect(lambda: action_button(self,9))
+
+        #Botones de control entre ver_paciente y opciones_generales
+        self.pushButton_7.clicked.connect(lambda: action_button(self,15))
+        self.pushButton_24.clicked.connect(lambda: action_button(self,9))
+        self.Boton_Atras_3.clicked.connect(lambda: action_button(self,9))
+
+        #Botones de control entre eliminar_paciente y opciones_generales
+        self.pushButton_9.clicked.connect(lambda: action_button(self,16))
+        self.Boton_Atras_4.clicked.connect(lambda: action_button(self,9))
+        self.pushButton_18.clicked.connect(lambda: action_button(self,9))
+
+        #Botones de control entre editar_paciente y opciones_generales
+        self.pushButton_8.clicked.connect(lambda: action_button(self,17))
+        self.pushButton_17.clicked.connect(lambda: action_button(self,9))
+        self.Boton_Atras_2.clicked.connect(lambda: action_button(self,9))
+
+        #Boton de click #1, interfaz agregar paciente
+        self.pushButton_15.clicked.connect(lambda:action_button(self,18))
+
         self.textEdit.textChanged.connect(lambda: updateTextEditStyle(self, self.textEdit))
         self.textEdit.setText("")
         self.textEdit_2.textChanged.connect(lambda: updateTextEditStyle(self, self.textEdit_2))
@@ -13642,6 +13691,22 @@ class Ui_fondoMain(object):
         self.textEdit_52.setText("")
         self.textEdit_53.textChanged.connect(lambda: updateTextEditStyle(self, self.textEdit_53))
         self.textEdit_53.setText("")
+        #Inputs textos de agregar_paciente
+        self.textEdit_20.textChanged.connect(lambda: updateInputTextEdit(self, self.textEdit_20))
+        self.textEdit_20.setText("")
+        self.textEdit_19.textChanged.connect(lambda: updateInputTextEdit(self, self.textEdit_19))
+        self.textEdit_19.setText("")
+        self.textEdit_14.textChanged.connect(lambda: updateInputTextEdit(self, self.textEdit_14))
+        self.textEdit_14.setText("")
+        self.textEdit_21.textChanged.connect(lambda: updateInputTextEdit(self, self.textEdit_21))
+        self.textEdit_21.setText("")
+        self.textEdit_16.textChanged.connect(lambda: updateInputTextEdit(self, self.textEdit_16))
+        self.textEdit_16.setText("")
+        self.textEdit_18.textChanged.connect(lambda: updateInputTextEdit(self, self.textEdit_18))
+        self.textEdit_18.setText("")
+        self.textEdit_15.textChanged.connect(lambda: updateInputTextEdit(self, self.textEdit_15))
+        self.textEdit_15.setText("")
+        
         self.textEdit.textChanged.connect(lambda: validateTextInput(self, self.textEdit, 42))
         self.textEdit_2.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_2, 42))
         self.textEdit_3.textChanged.connect(lambda: validateTextInput(self, self.textEdit_3, 42))
@@ -13659,6 +13724,15 @@ class Ui_fondoMain(object):
         self.textEdit_10.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_10, 42))
         self.textEdit_11.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_11, 42))
         self.textEdit_12.textChanged.connect(lambda: validateTextInput(self, self.textEdit_12, 42))
+
+        self.textEdit_20.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_20, 30))
+        self.textEdit_19.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_19, 30))
+        self.textEdit_14.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_14, 20))
+        self.textEdit_21.textChanged.connect(lambda: validateTextInput(self, self.textEdit_21, 8))
+        self.textEdit_16.textChanged.connect(lambda: validateTextInput(self, self.textEdit_16, 30))
+        self.textEdit_18.textChanged.connect(lambda: validateTextInput(self, self.textEdit_18, 30))  #fecha modi
+        self.textEdit_15.textChanged.connect(lambda: validateTextInput(self, self.textEdit_15, 10))
+
         self.textEdit_13.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_13, 42))
         self.textEdit_4.textChanged.connect(lambda: autoFocusNext(self, self.textEdit_4, self.textEdit_5))
         self.textEdit_5.textChanged.connect(lambda: autoFocusNext(self, self.textEdit_5, self.textEdit_6))
