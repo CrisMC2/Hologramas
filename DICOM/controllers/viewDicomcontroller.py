@@ -11,7 +11,7 @@ from services.UploadFilesUI import MenuUploadFiles
 from services.SetViewDicomUI import SelectCantViews, SelectView
 from config import constantViewDICOM as consVDcm
 
-class Ui_DicomController(Ui_viewDICOM, QMainWindow):
+class Ui_viewDicomController(Ui_viewDICOM, QMainWindow):
     def __init__(self):
         super().__init__()
         self.ui = Ui_viewDICOM()

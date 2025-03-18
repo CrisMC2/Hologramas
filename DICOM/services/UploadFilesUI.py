@@ -5,10 +5,10 @@ append_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(append_folder)
 
 from PyQt5.QtWidgets import QFileDialog, QMenu, QAction
-from core.viewsUI.AbsMenus import AbsMenus
-from core.viewsUI.AbsActions import AbsActions
-from core.viewsUI.AbsUploadData import AbsUploadData
-from services.SignalData import Emisor_text, Emisor_list
+from DICOM.abstracts.Ui.AbsMenus import AbsMenus
+from DICOM.abstracts.Ui.AbsActions import AbsActions
+from DICOM.abstracts.Ui.AbsUploadData import AbsUploadData
+from DICOM.utils.SignalData import Emisor_text, Emisor_list
 
 class MenuUploadFiles(AbsMenus, AbsActions):
     def __init__(self, directory_search_default: str, type_file_filter: str, keep_directory_default: bool = False):

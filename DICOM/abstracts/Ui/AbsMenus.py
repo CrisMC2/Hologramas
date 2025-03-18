@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from core.viewsUI.AbsConnection import AbsConnection 
+from DICOM.abstracts.Ui.AbsConnection import AbsConnection 
 from PyQt5.QtWidgets import QMenu
 class AbsMenus(ABC):
     @abstractmethod

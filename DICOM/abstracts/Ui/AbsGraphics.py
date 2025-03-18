@@ -1,21 +1,17 @@
-from abc import ABC, abstractmethod
-from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget
-from PyQt5 import QtWidgets
+import sys
+import os
 
-class AbsGraphics(ABC):
-    @abstractmethod
-    def configure_features(self):
-        pass
+_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+sys.path.append(_append)
+
+#Importación de partes de librerías
+from abc import abstractmethod
+from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget
+
+#Importación de clases del mismo proyecto
+from DICOM.abstracts.Ui.AbsContainers import AbsContainers
     
-    @abstractmethod
-    def configure_behaivor(self):
-        pass
-    
-    @abstractmethod
-    def insert_element(self):
-        pass
-    
-class AbsGraphicsView(AbsGraphics):
+class AbsGraphicsView(AbsContainers):
     def __init__(self):
         self.q_view = QGraphicsView()
 
@@ -25,7 +21,7 @@ class AbsGraphicsView(AbsGraphics):
     
     """
 
-class AbsGraphicsScene(AbsGraphics):
+class AbsGraphicsScene(AbsContainers):
     def __init__(self):
         self.q_scene = QGraphicsScene()
     """
@@ -34,7 +30,7 @@ class AbsGraphicsScene(AbsGraphics):
     
     """
     
-class AbsGraphicsWidget(AbsGraphics):
+class AbsGraphicsWidget(AbsContainers):
     def __init__(self):
         self.q_widget = QGraphicsWidget()
     

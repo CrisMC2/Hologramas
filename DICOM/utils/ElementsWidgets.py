@@ -36,8 +36,7 @@ class TextWidget(AbsTextControl):
             
         else:
             raise TypeError("El tipo de elementos que intentas incluir no es un Widget de texto.")
-    
-        print("Pasamos?")
+        
     def get_data(self):
         return self.q_text.getText()
     

@@ -1,11 +1,20 @@
-from abc import ABC, abstractmethod
+#Importamos clases
 import os
+import sys
+
+#Importamos parte de las clases
+from abc import ABC, abstractmethod
 from glob import glob
 
-from core.classes.AbsDicomRead import AbsDicomRead
-from core.classes.AbsPath        import AbsPath 
 
-class AbsDicomPathsExists(ABC, AbsPath):
+_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+sys.path.append(_append)
+
+#Importamos clases propias del proyecto
+from DICOM.core.abstracts.AbsDicomRead import AbsDicomRead
+from DICOM.abstracts.classes.AbsPath        import AbsPath 
+
+class AbsDicomPathsExists(AbsPath):
     
     #Leer la documentación proveniente del AbsPath
     def exists_path(self, path: str, create: bool):

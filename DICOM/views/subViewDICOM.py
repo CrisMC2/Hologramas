@@ -9,9 +9,10 @@ from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel
 
 from utils.Graphics import GraphicsView, GraphicsScene, GraphicsWidget
 from utils.ElementsWidgets import TextWidget, SliderWidget
+from services.PixmapUi import PixmapUi
 from config import constantSubViewDICOM as consVDcm
 
-class subViewDICOM(QMainWindow):
+class Ui_subViewDicom(QMainWindow):
     def __init__(self):
         super().__init__()
 
@@ -50,6 +51,8 @@ class subViewDICOM(QMainWindow):
         self.ui_text_part_body = TextWidget(QLabel())
         
         self.ui_slider = SliderWidget(consVDcm.DEFAULT_TYPE_SLIDER) #Utilizamos la constante del tipo de Slider
+        
+        self.ui_img_dicom = PixmapUi(QLabel()) #Generamos un contenedor que mostrará al elemento "Pixmap"
     
     """
     El método generate_items está diseñado para generar todos los elementos que 
@@ -109,64 +112,14 @@ class subViewDICOM(QMainWindow):
     
     """
     
-    def define_values_items_static(self, text_name: str, text_date_born: str,  text_date_test: str, 
-                                   text_part_body: str, text_img: str = "IMG", 
-                                   value_slider_now: int = consVDcm.DEFAULT_VALUE_SLIDER):
-        self.ui_text_img.change_data(text_img)
-        self.ui_text_name.change_data(text_name)
-        self.ui_text_date_born.change_data(text_date_born)
-        self.ui_text_date_test.change_data(text_date_test)
-        self.ui_text_part_body.change_data(text_part_body)
-        
-        self.ui_slider.set_value(value_slider_now)
+    def configure_items(self):
+        pass
     
     """
-    El método "define_values_items_static" cumplea la función de darle valor
-    a los elementos que conforman la vista DICOM.
-    
-    - Estos valores tienen la particularidad de qué serán valores que no variarán a lo largo de 
-        la visualización de los archivos DICOM.
-    
-    - Parámetros:
-        - self (subViewDICOM)       : Instancia de la clase subViewDICOM
-        - text_img (str)            : 
-        - text_name (str)           :
-        - text_date_born (str)      : 
-        - text_part_body (str)      :
-        - text_date_test (str)      :
-        - value_slider_now (int)    :
-        
-    """
-    
-    def define_values_items_semi_dinamic(self, text_img_end: str, value_start_slider: int, value_end_slider: int):
-        self.ui_text_img_end.change_data(text_img_end)
-        self.ui_slider.define_range(value_start_slider, value_end_slider)
+    El método configure_items permite configurar los elementos (items) que conforman a la subinterfaz
     
     """
-    El método "define_values_items_semi_dinamic" cumple la función de darle valor
-    a algunos elementos que conforman la vista DICOM
-    
-    - Estos elementos tienen la particularidad de que cambiarán a lo largo de la visualización, 
-        pero en muy contadas ocasiones.
-    
-    - Parámetros:
-        - value_start_slider (int)  : Valor Int encargado de definir el valor mínimo o inicial que tendrá el Slider
-        - value_end_slider (int)    : Valor Int encargado de definir el valor máximo o final que tendrá el Slider
-    """
-    
-    def define_values_items_dinamic(self, text_img_now: str):
-        self.ui_text_img_now.change_data(text_img_now)
-    
-    """
-    El método "define_values_items_semi_dinamic" cumple la función de darle valor
-    a algunos elementos que conforman la vista DICOM
-    
-    - Estos elementos tienen la particularidad de que variarán constantemente a lo largo
-        de la visualización de los archivos.
-        
-    - Parámetros:
-        - text_img_now (str)        : Valor String que será usado para cambiar la data del elemento ui_text_img_now
-    """
+
     
     def insert_elements(self):
         #Insertamos la escena en el GraphicsView
@@ -177,5 +130,16 @@ class subViewDICOM(QMainWindow):
         
         #Insertamos todos los elementos necesarios en el GraphicsWidget
         self.ui_graphics_widget.insert_element([self.ui_text_img.q_text, self.ui_text_img_now.q_text, self.ui_text_img_end.q_text,
-                                                self.ui_text_name.q_text, self.ui_text_date_born.q_text, self.ui_text_date_test.q_text,
-                                                self.ui_slider.q_slider])
+                                                self.ui_img_dicom.q_pixmap, self.ui_text_name.q_text, self.ui_text_date_born.q_text, 
+                                                self.ui_text_date_test.q_text, self.ui_slider.q_slider])
+    
+    """
+    El método insert_elements nos permite poder insertar los elementos necesarios
+    en sus respectivos contenedores.
+    
+    - Inserciones:
+        - Graphics_View : En este contenedor insertamos la escena por medio del QGraphicsScene
+        - Graphics_Scene: En este contenedor insertamos el Widget por medio del QGraphicsWidget
+        - Graphics_Widget: En este contenedor insertamos todos los elementos que conformarán la interfaz.
+    
+    """

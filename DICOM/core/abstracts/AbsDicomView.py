@@ -2,8 +2,13 @@ from abc import ABC, abstractmethod
 import numpy as np
 
 class AbsDicomView(ABC):
+    
+    @abstractmethod
+    def create_view(self, matriz_dicom: np.array, i: int):
+        pass
+    
     """
-    El método permite crear una vista de una tomografía computarizada (Axial, Coronal y Sagital)
+    El método create_view permite crear una vista de una tomografía computarizada (Axial, Coronal y Sagital)
     a partir de una matriz rellena de arrays dicom.
     
     - Parámetros:
@@ -14,9 +19,6 @@ class AbsDicomView(ABC):
     - Retorno:
         - Array_dicom[i,:,:]    : Arreglo tridimensional ya segmentado
     """
-    @abstractmethod
-    def create_view(self, matriz_dicom: np.array, i: int):
-        pass
 
     @abstractmethod
     def define_aspect(self):
