@@ -7,7 +7,8 @@ from Modelos.conexion import obtener_guardados
 from PyQt5.QtCore import Qt
 import re
 from datetime import datetime
-
+from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtGui import QPixmap
 
 def setup_connections(ui):
         """Conecta las señales y eventos a los métodos correspondientes."""
@@ -238,6 +239,15 @@ def colocar_fecha(ui, date):
     fecha = date.toString("dd/MM/yyyy")  
     ui.textEdit_18.setText(fecha)
     ui.calendar.hide()
+
+def abrir_imagen(ui,event):
+    opciones = QFileDialog.Options()
+    archivo, _ = QFileDialog.getOpenFileName(None, "Seleccionar Imagen", "", "Imágenes (*.png *.jpg *.jpeg *.bmp)", options=opciones)
+    
+    if archivo:
+        pixmap = QPixmap(archivo)
+        pixmap = pixmap.scaled(ui.label_157.width(), ui.label_157.height(), aspectRatioMode=1)
+        ui.label_157.setPixmap(pixmap)
 
 
 def action_button(self, button_id):

@@ -14,6 +14,8 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QListWidget, Q
 from PyQt5.QtCore import QTimer
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QCalendarWidget
+from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtGui import QPixmap
 
 class Ui_fondoMain(object):
     
@@ -13744,6 +13746,7 @@ class Ui_fondoMain(object):
 
         # Mostrar calendario al hacer click en textEdit_18
         self.textEdit_18.mousePressEvent = lambda event: mostrar_calendario(self, event)
+        self.label_159.mousePressEvent = lambda event: abrir_imagen(self,event)
 
         # Colocar fecha seleccionada
         self.calendar.clicked.connect(lambda date: colocar_fecha(self, date))
