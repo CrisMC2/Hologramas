@@ -6,7 +6,7 @@ sys.path.append(_append)
 
 from PyQt5.QtCore import pyqtSignal
 
-from core.classes.AbsSignal import AbsEmisor, AbsReceptor
+from DICOM.abstracts.classes.AbsSignal import AbsEmisor, AbsReceptor
 
 class Emisor_text(AbsEmisor):
     señal_str = pyqtSignal(str)

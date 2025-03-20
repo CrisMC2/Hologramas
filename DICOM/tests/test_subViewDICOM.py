@@ -7,7 +7,7 @@ sys.path.append(_append)
 from views import subViewDICOM
 if __name__ == "__main__":
     app = subViewDICOM.QApplication([])
-    window = subViewDICOM.subViewDICOM()
+    window = subViewDICOM.Ui_subViewDicom()
     window.show()
     
     app.exec()

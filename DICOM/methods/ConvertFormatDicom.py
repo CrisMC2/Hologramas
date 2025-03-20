@@ -8,9 +8,9 @@ import dicom2nifti
 from PIL import Image
 from glob import glob
     
-from core.classes.AbsDicomConverFormat import AbsDicomConvert, AbsFeaturesVideo
-from core.classes.AbsDicomExtract import AbsDicomExtract
-from core.classes.AbsDicomProcessing import AbsDicomOrder
+from DICOM.core.abstracts.AbsDicomConverFormat import AbsDicomConvert, AbsFeaturesVideo
+from DICOM.services.AbsDicomExtract import AbsDicomExtract
+from DICOM.core.classes.DicomProcessing import AbsDicomOrder
 
 class DicomConvertNifti(AbsDicomConvert, AbsDicomExtract):
     pass

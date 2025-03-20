@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import pydicom as dicom
 
-from core.classes.AbsDicomRead import AbsDicomRead
+from DICOM.core.abstracts.AbsDicomRead import AbsDicomRead
 
 #Toda la información de DICOM
 class AbsDicomInformation (ABC):
@@ -47,6 +47,10 @@ class AbsDicomInformation (ABC):
         pass
 
 class AbsDicomAnonimize(ABC):
+    @abstractmethod
+    def anonymize_dicom(self, dc: dicom, PatientName="Desconocido", PatientID="Nan", PatientBirthDate="Nan", PatientSex="Nan", 
+                        StudyDate="Nan", StudyTime="Nan", InstitutionName="Nan", InstitutionAdress="Nan"):
+        pass   
     
     """
     El siguiente método permite "anonimizar un DICOM".
@@ -75,7 +79,3 @@ class AbsDicomAnonimize(ABC):
         - InstitutionName (String)      : Nan
         - InstitutionAdress (String)    : Nan
     """
-    @abstractmethod
-    def anonymize_dicom(self, dc: dicom, PatientName="Desconocido", PatientID="Nan", PatientBirthDate="Nan", PatientSex="Nan", 
-                        StudyDate="Nan", StudyTime="Nan", InstitutionName="Nan", InstitutionAdress="Nan"):
-        pass   

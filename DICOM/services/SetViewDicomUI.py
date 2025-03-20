@@ -3,9 +3,9 @@ import numpy as np
 from PyQt5.QtWidgets import QMenu, QAction, QStackedWidget, QLabel
 from PyQt5.QtGui import QImage, QPixmap
 
-from core.viewsUI.AbsMenus import AbsMenus
-from core.viewsUI.AbsActions import AbsActions
-from core.viewsUI.AbsResourceUI import AbsPixmap 
+from DICOM.abstracts.Ui.AbsMenus import AbsMenus
+from DICOM.abstracts.Ui.AbsActions import AbsActions
+from DICOM.abstracts.Ui.AbsPixmap import AbsPixmap 
 from utils.ViewDicom import ViewAxial, ViewCoronal, ViewSagittal
 
 class SelectCantViews(AbsMenus, AbsActions):

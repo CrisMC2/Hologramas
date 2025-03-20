@@ -16,7 +16,7 @@ from controllers import viewDicomController #Importamos todo el archivo, no solo
 # """
 if __name__ == "__main__":
     app = viewDicomController.QApplication(sys.argv)
-    window = viewDicomController.Ui_DicomController()
+    window = viewDicomController.Ui_viewDicomController()
     window.show()
     
     sys.exit(app.exec_())
