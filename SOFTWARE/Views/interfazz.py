@@ -13,6 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QListWidget, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QListWidgetItem
 from PyQt5.QtCore import QTimer
 from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QCalendarWidget
 
 class Ui_fondoMain(object):
     
@@ -1233,6 +1234,8 @@ class Ui_fondoMain(object):
 "    border-color:gray;            /* Cambia el color del borde al hacer foco */\n"
 "}")
         self.textEdit_14.setObjectName("textEdit_14")
+        
+
         self.widget_30 = QtWidgets.QWidget(self.pag_agregar_paciente)
         self.widget_30.setGeometry(QtCore.QRect(600, 570, 511, 71))
         self.widget_30.setStyleSheet("QWidget {\n"
@@ -1379,6 +1382,7 @@ class Ui_fondoMain(object):
 "    border-color:gray;            /* Cambia el color del borde al hacer foco */\n"
 "}")
         self.textEdit_18.setObjectName("textEdit_18")
+
         self.Boton_Atras = QtWidgets.QPushButton(self.pag_agregar_paciente)
         self.Boton_Atras.setGeometry(QtCore.QRect(20, 20, 71, 61))
         self.Boton_Atras.setStyleSheet("QPushButton {\n"
@@ -13702,8 +13706,8 @@ class Ui_fondoMain(object):
         self.textEdit_21.setText("")
         self.textEdit_16.textChanged.connect(lambda: updateInputTextEdit(self, self.textEdit_16))
         self.textEdit_16.setText("")
-        self.textEdit_18.textChanged.connect(lambda: updateInputTextEdit(self, self.textEdit_18))
-        self.textEdit_18.setText("")
+        # self.textEdit_18.textChanged.connect(lambda: updateInputTextEdit(self, self.textEdit_18))
+        # self.textEdit_18.setText("")
         self.textEdit_15.textChanged.connect(lambda: updateInputTextEdit(self, self.textEdit_15))
         self.textEdit_15.setText("")
         
@@ -13730,8 +13734,19 @@ class Ui_fondoMain(object):
         self.textEdit_14.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_14, 20))
         self.textEdit_21.textChanged.connect(lambda: validateTextInput(self, self.textEdit_21, 8))
         self.textEdit_16.textChanged.connect(lambda: validateTextInput(self, self.textEdit_16, 30))
-        self.textEdit_18.textChanged.connect(lambda: validateTextInput(self, self.textEdit_18, 30))  #fecha modi
+        # self.textEdit_18.textChanged.connect(lambda: validateTextInput(self, self.textEdit_18, 30))  #fecha modi
         self.textEdit_15.textChanged.connect(lambda: validateTextInput(self, self.textEdit_15, 10))
+        
+        #CALENDARIO
+        self.calendar = QtWidgets.QCalendarWidget(self.centralwidget)
+        self.calendar.setGeometry(QtCore.QRect(900, 700, 300, 250))  # Puedes ajustar posición y tamaño
+        self.calendar.hide()
+
+        # Mostrar calendario al hacer click en textEdit_18
+        self.textEdit_18.mousePressEvent = lambda event: mostrar_calendario(self, event)
+
+        # Colocar fecha seleccionada
+        self.calendar.clicked.connect(lambda date: colocar_fecha(self, date))
 
         self.textEdit_13.textChanged.connect(lambda: validateTextInput_2(self, self.textEdit_13, 42))
         self.textEdit_4.textChanged.connect(lambda: autoFocusNext(self, self.textEdit_4, self.textEdit_5))

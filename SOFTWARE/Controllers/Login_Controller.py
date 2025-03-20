@@ -13,6 +13,7 @@ def setup_connections(ui):
         """Conecta las señales y eventos a los métodos correspondientes."""
         ui.textEdit.mousePressEvent = lambda event: showListWidget(ui, event)
         ui.listWidget.itemClicked.connect(lambda item: onItemClicked(ui, item))
+        
 
 def showListWidget(ui, event):
         """Muestra el listWidget flotante cerca del campo de texto."""
@@ -171,60 +172,10 @@ def updateInputTextEdit(self, textEdit):
                 "}")
                 textEdit.setPlaceholderText("")
 
-def validar_solo_letras(texto, widget_padre, label_name, clase_instancia, distancia, parametro):
-    # Si el label existe previamente, eliminarlo
+def eliminar_label_existente(clase_instancia, label_name):
     if hasattr(clase_instancia, label_name):
         getattr(clase_instancia, label_name).deleteLater()
         delattr(clase_instancia, label_name)
-
-    # Verificar si el texto está vacío o contiene solo espacios
-    if not texto.strip():
-        label = QtWidgets.QLabel(widget_padre)
-        label.setGeometry(QtCore.QRect(130, distancia, 351, 31))
-
-        font = QtGui.QFont()
-        font.setPointSize(7)
-        label.setFont(font)
-        label.setStyleSheet("QLabel {\n"
-                            "    color: red;\n"
-                            "    background:none;\n"
-                            "}")
-
-        label.setText(f"{parametro} no puede estar vacío")
-        label.setObjectName(label_name)
-        label.show()
-
-        setattr(clase_instancia, label_name, label)
-
-        print(f"{parametro} vacío ingresado")
-        return False
-
-    # Verificar si contiene solo letras y espacios
-    if any(not (char.isalpha() or char.isspace()) for char in texto):
-        label = QtWidgets.QLabel(widget_padre)
-        label.setGeometry(QtCore.QRect(130, distancia, 351, 31))
-
-        font = QtGui.QFont()
-        font.setPointSize(7)
-        label.setFont(font)
-        label.setStyleSheet("QLabel {\n"
-                            "    color: red;\n"
-                            "    background:none;\n"
-                            "}")
-
-        label.setText(f"{parametro} incorrecto ingresado")
-        label.setObjectName(label_name)
-        label.show()
-
-        setattr(clase_instancia, label_name, label)
-
-        print(f"{parametro} incorrecto ingresado")
-        return False  # Incorrecto
-
-    else:
-        print(f"{parametro} correcto ingresado")
-        return True  # Correcto
-
 
 def añadir_label(widget_padre, texto, posicion_x, posicion_y, ancho, alto, nombre_label="label_generico", tamaño_fuente=7, color_texto="red"):
     label = QtWidgets.QLabel(widget_padre)
@@ -240,38 +191,55 @@ def añadir_label(widget_padre, texto, posicion_x, posicion_y, ancho, alto, nomb
     label.setObjectName(nombre_label)
     label.show()
 
-    return label  # Devuelve el label por si quieres manipularlo después
+    # Guardamos la referencia en la clase para poder eliminarlo luego
+    return label
 
-def validar_correo(self, texto):
-    if not texto.strip():
-        print("Correo vacío, debe ingresar un correo")
+def validar_solo_letras(texto, widget_padre, label_name, clase_instancia, distancia, parametro):
+    eliminar_label_existente(clase_instancia, label_name)
+
+    if any(not (char.isalpha() or char.isspace()) for char in texto):
+        label = añadir_label(widget_padre, f"{parametro} incorrecto ingresado", 130, distancia, 351, 31, label_name)
+        setattr(clase_instancia, label_name, label)
+        print(f"{parametro} incorrecto ingresado")
         return False
+    else:
+        print(f"{parametro} correcto ingresado")
+        return True
 
-    # Expresión regular básica para correo
+def validar_correo(clase_instancia, texto, widget_padre, label_name, distancia):
+    eliminar_label_existente(clase_instancia, label_name)
     patron = r'^[\w\.-]+@[\w\.-]+\.\w{2,4}$'
 
     if re.match(patron, texto):
         print("Correo válido ingresado")
         return True
     else:
+        label = añadir_label(widget_padre, "Correo incorrecto", 130, distancia, 351, 31, label_name)
+        setattr(clase_instancia, label_name, label)
         print("Correo inválido ingresado")
         return False
-    
-def validar_fecha(self, texto):
-    if not texto.strip():
-        print("Fecha vacía, debe ingresar una fecha")
-        return False
 
+def validar_fecha(clase_instancia, texto, widget_padre, label_name, distancia):
+    eliminar_label_existente(clase_instancia, label_name)
     try:
-        # Intentar convertir el texto al formato DD/MM/YYYY
-        fecha = datetime.strptime(texto, "%d/%m/%Y")
-        print("Fecha válida ingresada")
+        datetime.strptime(texto, "%d/%m/%Y")  # formato de fecha dd/mm/yyyy
+        print("Fecha válida")
         return True
     except ValueError:
-        # Si no coincide con el formato, lanzará error
-        print("Fecha inválida ingresada (Debe ser DD/MM/YYYY)")
+        label = añadir_label(widget_padre, "Fecha incorrecta", 130, distancia, 351, 31, label_name)
+        setattr(clase_instancia, label_name, label)
+        print("Fecha incorrecta")
         return False
-    
+def mostrar_calendario(ui, event):
+    ui.calendar.show()
+    QtWidgets.QTextEdit.mousePressEvent(ui.textEdit_18, event)
+
+def colocar_fecha(ui, date):
+    fecha = date.toString("dd/MM/yyyy")  
+    ui.textEdit_18.setText(fecha)
+    ui.calendar.hide()
+
+
 def action_button(self, button_id):
         if button_id == 1:
                 self.PaginasLogin.setCurrentWidget(self.pag02Login)
@@ -522,45 +490,73 @@ def action_button(self, button_id):
                 self.PaginasHome.setCurrentWidget(self.pag_editar_paciente)
                 self.Paginas_pag_editarpaciente.setCurrentWidget(self.Pag05_pageditarpaciente)
         elif button_id == 18:
-               
-                if validar_solo_letras(self.textEdit_20.toPlainText(), self.widget_34, 'label_a', self, 47, "Nombre"):
-                   if validar_solo_letras(self.textEdit_19.toPlainText(), self.widget_33, 'label_b', self, 50, "Apellido"):
+                campos = {
+                        'nombre': (self.textEdit_20.toPlainText().strip(), self.widget_34, 'label_nombre', 47),
+                        'apellido': (self.textEdit_19.toPlainText().strip(), self.widget_33, 'label_apellido', 50),
+                        'domicilio': (self.textEdit_14.toPlainText().strip(), self.widget_29, 'label_domicilio', 50),
+                        'dni': (self.textEdit_21.toPlainText().strip(), self.widget_35, 'label_dni', 50),
+                        'correo': (self.textEdit_16.toPlainText().strip(), self.widget_31, 'label_correo', 50),
+                        'fecha': (self.textEdit_18.toPlainText().strip(), self.widget_32, 'label_fecha', 50),
+                        'telefono': (self.textEdit_15.toPlainText().strip(), self.widget_30, 'label_telefono', 50),
+                }
 
-                       # ---------------- DNI ----------------
-                      dni_texto = self.textEdit_21.toPlainText().strip()
-                      if dni_texto and dni_texto.isdigit() and len(dni_texto) == 8:
-                        print("DNI correcto")
-                        # ---------------- Correo ----------------
-                        correo_texto = self.textEdit_16.toPlainText().strip()
-                        if correo_texto:
-                          if validar_correo(self, correo_texto):
-                            # ---------------- Fecha ----------------
-                            if validar_fecha(self, self.textEdit_18.toPlainText()):
-                              # ---------------- Teléfono ----------------
-                              telefono_texto = self.textEdit_15.toPlainText().strip()
-                              if telefono_texto.isdigit() and len(telefono_texto) == 9:
-                                print("TODO BIEN")
-                              else:
-                                texto_rn = "Número de teléfono incorrecto"
-                                añadir_label(self.widget_30, texto_rn, 130, 50, 351, 31)
-                            else:
-                              texto_rn = "Fecha incorrecta"
-                              añadir_label(self.widget_32, texto_rn, 110, 50, 351, 31)
-                          else:
-                            texto_rn = "Correo incorrecto"
-                            añadir_label(self.widget_31, texto_rn, 110, 50, 351, 31)
-                        else:
-                          texto_rn = "Correo no puede estar vacío"
-                          añadir_label(self.widget_31, texto_rn, 110, 50, 351, 31)
+                #Variables para la validacion de datos
+                nombre_valido = apellido_valido = domicilio_valido = dni_valido = correo_valido = fecha_valida = telefono_valido = False
+                campos_vacios = False
 
-                      else:
-                        if not dni_texto:
-                           texto_rn = "DNI no puede estar vacío"
-                        else:
-                           texto_rn = "DNI incorrecto"
-                        añadir_label(self.widget_35, texto_rn, 170, 50, 351, 31)
+                for key, (valor, widget, label_name, distancia) in campos.items():
+                        # Siempre eliminar label anterior
+                        eliminar_label_existente(self, label_name)
 
-                      
+                        #Validar si está vacío
+                        if not valor:
+                                label = añadir_label(widget, f"{key.capitalize()} no puede estar vacío", 130, distancia, 351, 31, label_name)
+                                setattr(self, label_name, label)
+                                campos_vacios = True
+                                continue  # No sigue validando formato si está vacío
+
+                        #Validar formato específico según campo
+                        if key == 'nombre':
+                                nombre_valido = validar_solo_letras(valor, widget, label_name, self, distancia, "Nombre")
+
+                        elif key == 'apellido':
+                                apellido_valido = validar_solo_letras(valor, widget, label_name, self, distancia, "Apellido")
+
+                        elif key == 'domicilio':
+                                domicilio_valido = validar_solo_letras(valor, widget, label_name, self, distancia, "Domicilio")
+
+                        elif key == 'dni':
+                                if not (valor.isdigit() and len(valor) == 8):
+                                        label = añadir_label(widget, "DNI incorrecto", 130, distancia, 351, 31, label_name)
+                                        setattr(self, label_name, label)
+                                        dni_valido = False
+                                else:
+                                        print("DNI correcto")
+                                        dni_valido = True
+
+                        elif key == 'correo':
+                                correo_valido = validar_correo(self, valor, widget, label_name, distancia)
+
+                        elif key == 'fecha':
+                                fecha_valida = validar_fecha(self, valor, widget, label_name, distancia)
+
+                        elif key == 'telefono':
+                                if not (valor.isdigit() and len(valor) == 9):
+                                        label = añadir_label(widget, "Teléfono incorrecto", 130, distancia, 351, 31, label_name)
+                                        setattr(self, label_name, label)
+                                        telefono_valido = False
+                                else:
+                                        print("Teléfono correcto")
+                                        telefono_valido = True
+
+                # Si hay algún campo vacío
+                if campos_vacios:
+                        print("Al menos un campo está vacío")
+                        return
+
+                # Si todos los datos han sido ingresados correctamente
+                if all([nombre_valido, apellido_valido, domicilio_valido, dni_valido, correo_valido, fecha_valida, telefono_valido]):
+                        print("Todos los datos ingresados son válidos")
 
                             
                           
