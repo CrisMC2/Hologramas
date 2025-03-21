@@ -1,8 +1,17 @@
-from abc import ABC, abstractmethod
+import sys
+import os
+
+_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+sys.path.append(_append)
+
+from abc import abstractmethod
 
 from PyQt5.QtWidgets import QLabel
 
-class AbsTextControl(ABC):
+#Importancias de clases del proyecto
+from abstracts.Ui.AbsWidget import AbsWidget
+
+class AbsTextControl(AbsWidget):
     def __init__(self):
         pass
     

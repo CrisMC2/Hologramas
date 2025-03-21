@@ -6,11 +6,12 @@ sys.path.append(_append)
 
 
 from typing import Union
-from PyQt5.QtWidgets import QWidget, QLabel, QTextEdit, QSlider
+from PyQt5.QtWidgets import QWidget, QLabel, QTextEdit, QSlider, QSizePolicy
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QColor
 
-from core.viewsUI.AbsSliderControl import AbsSliderControl
-from core.viewsUI.AbsTextControl   import AbsTextControl
+from abstracts.Ui.AbsSliderControl import AbsSliderControl
+from abstracts.Ui.AbsTextControl   import AbsTextControl
 
 class TextWidget(AbsTextControl):
     """
@@ -36,10 +37,40 @@ class TextWidget(AbsTextControl):
             
         else:
             raise TypeError("El tipo de elementos que intentas incluir no es un Widget de texto.")
+    
+    def configure_features(self, size_x: int, size_y: int,
+                           minimum_size_x: int, minimum_size_y: int,  
+                           size_policy_x: QSizePolicy, size_policy_y: QSizePolicy,
+                           position_x: int, position_y: int,
+                           background_color: QColor, color_text: QColor):
         
+        self.q_text.setFixedSize(size_x, size_y)
+        self.q_text.setMinimumSize(minimum_size_x, minimum_size_y)
+        self.q_text.setSizePolicy(size_policy_x, size_policy_y)
+        self.q_text.setPos(position_x, position_y)
+        self.q_text.setTextBackgroundColor(background_color)
+        self.q_text.setTextColor(color_text)
+        
+
+    def configure_behaivor(self, focus_policy: Qt, flag: bool):
+        self.q_text.setFocusPolicy(focus_policy)
+        # self.q_text.
+    
+    
     def get_data(self):
         return self.q_text.getText()
+    """
+    El método get_data heredado en la clase TextWidget desde la clase padre AbsTextControl
+    permite retornar el valor del elemento de texto inicializado en la clase.
     
+    - Parámetros:
+        - self (TextWidget)     : Instancia de la clase TextWidget
+    
+    - Retorno:
+        - q_text.getText()      : Información (texto) que posee el elemento de texto 
+                                    de la clase.
+    
+    """
     def change_data(self, new_data: str):
         self.q_text.setText(new_data)
     """

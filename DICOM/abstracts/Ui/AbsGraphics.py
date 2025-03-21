@@ -9,7 +9,7 @@ from abc import abstractmethod
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget
 
 #Importación de clases del mismo proyecto
-from DICOM.abstracts.Ui.AbsContainers import AbsContainers
+from abstracts.Ui.AbsContainers import AbsContainers
     
 class AbsGraphicsView(AbsContainers):
     def __init__(self):

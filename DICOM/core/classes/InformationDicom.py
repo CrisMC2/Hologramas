@@ -3,6 +3,11 @@ import pydicom as dicom
 from DICOM.core.abstracts.AbsDicomInformation import AbsDicomInformation, AbsDicomAnonimize
 
 class InformationPatient(AbsDicomInformation, AbsDicomAnonimize):
+    
+    
+    """
+    Cambiar la lista por un diccionario
+    """
     def get_information(self, dc: dicom, PatientName=False, PatientID=False, PatientBirthDate=False, PatientSex=False):
         list_information = list()
         if PatientName:
