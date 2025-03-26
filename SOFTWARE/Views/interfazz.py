@@ -9,6 +9,7 @@
 # from metodos import *
 from Controllers.Login_Controller import *
 from Controllers.Login_Controller import setup_connections
+from Controllers.AgregarPaciente_Controller import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QListWidget, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QListWidgetItem
 from PyQt5.QtCore import QTimer
@@ -13639,27 +13640,27 @@ class Ui_fondoMain(object):
         #Adjust
 
         #Botones de control entre agregar_paciente y opciones_generales
-        self.pushButton_10.clicked.connect(lambda: action_button(self,14))
+        self.pushButton_10.clicked.connect(lambda: action_button2(self,14))
         self.pushButton_16.clicked.connect(lambda: action_button(self,9))
         self.Boton_Atras.clicked.connect(lambda: action_button(self,9))
 
         #Botones de control entre ver_paciente y opciones_generales
-        self.pushButton_7.clicked.connect(lambda: action_button(self,15))
+        self.pushButton_7.clicked.connect(lambda: action_button2(self,15))
         self.pushButton_24.clicked.connect(lambda: action_button(self,9))
         self.Boton_Atras_3.clicked.connect(lambda: action_button(self,9))
 
         #Botones de control entre eliminar_paciente y opciones_generales
-        self.pushButton_9.clicked.connect(lambda: action_button(self,16))
+        self.pushButton_9.clicked.connect(lambda: action_button2(self,16))
         self.Boton_Atras_4.clicked.connect(lambda: action_button(self,9))
         self.pushButton_18.clicked.connect(lambda: action_button(self,9))
 
         #Botones de control entre editar_paciente y opciones_generales
-        self.pushButton_8.clicked.connect(lambda: action_button(self,17))
+        self.pushButton_8.clicked.connect(lambda: action_button2(self,17))
         self.pushButton_17.clicked.connect(lambda: action_button(self,9))
         self.Boton_Atras_2.clicked.connect(lambda: action_button(self,9))
 
         #Boton de click #1, interfaz agregar paciente
-        self.pushButton_15.clicked.connect(lambda:action_button(self,18))
+        self.pushButton_15.clicked.connect(lambda:action_button2(self,18))
 
         self.textEdit.textChanged.connect(lambda: updateTextEditStyle(self, self.textEdit))
         self.textEdit.setText("")
@@ -13747,6 +13748,8 @@ class Ui_fondoMain(object):
         # Mostrar calendario al hacer click en textEdit_18
         self.textEdit_18.mousePressEvent = lambda event: mostrar_calendario(self, event)
         self.label_159.mousePressEvent = lambda event: abrir_imagen(self,event)
+        # Para subir radiografias DICOM
+        self.label_158.mousePressEvent = lambda event: subir_radiografia(self,event)
 
         # Colocar fecha seleccionada
         self.calendar.clicked.connect(lambda date: colocar_fecha(self, date))
