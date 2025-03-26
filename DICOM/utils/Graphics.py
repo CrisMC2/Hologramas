@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsLinearLayout
 from PyQt5.QtGui import QBrush
 from PyQt5.QtCore import Qt
 
-from DICOM.abstracts.Ui.AbsGraphics import AbsGraphicsView, AbsGraphicsScene, AbsGraphicsWidget
+from abstracts.Ui.AbsGraphics import AbsGraphicsView, AbsGraphicsScene, AbsGraphicsWidget
 
 
 class GraphicsView(AbsGraphicsView):
@@ -158,3 +158,23 @@ class GraphicsWidget(AbsGraphicsWidget):
             raise ValueError("El tipo de dato del elemento no corresponde a QWidget")
         
         return proxy
+
+    """
+    El método convert_correct_type_element, propio de la clase GraphicsWidget
+    cumple la función de convertir a los elementos en uno compatible con el contenedor
+    QGraphicsWidget.
+    
+    - Parámetros:
+        - self (GraphicsWidget)     : Instancia de la clase GraphicsWidget
+        - element (QWidget)         : Elemento que se desea hacer compatible con GraphicsWidget
+        
+    - Ejemplos:
+        - Supongamos que queremos insertar un elemento QLabel en un contenedor
+            QGraphicsWidget. Si hacemos la inserción sin cambiar el tipo de elemento QLabel 
+            tendríamos un error, debido a que QGraphicsWidget no admite el tipo de elemento QLabel.
+            En su lugar, deberíamos utilizar un tipo de elemento QGraphicsProxyWidget, que sí es compatible.
+            
+            Por ello, si deseamos insertar el elemento QLabel, debemos primero crear un elemento QGraphicsProxyWidget, 
+            en este insertaremos el elemento QLabel, y luego añadiremos el elemento QGraphicsProxyWidget en el QGraphicsWidget.
+
+    """

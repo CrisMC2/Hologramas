@@ -1,9 +1,8 @@
-from abc import ABC, abstractmethod
 import pydicom as dicom
 import numpy as np
 
 #Procesado de la imagen dicom  
-class AbsDicomProccessing(ABC):
+class DicomProccessing():
     """
     - El método procesa el archivo dicom en una escala según la visualización que se desea alcanzar.
     
@@ -41,7 +40,20 @@ class AbsDicomProccessing(ABC):
         
         return dc
     
-class AbsDicomOrder(ABC):
+class AbsDicomOrder():
+    def order_dicom_folder(self, list_dicoms: list, reverse=False):
+        try:
+                #De esta manera solo modifica la lista en el lugar y retorna null
+            # return list_dicoms.sort(key=lambda x: x.InstanceNumber, reverse=reverse)
+            
+            #Para hacer que funcione o bien aplicamos sorted (lista, key=)
+                #O bien aplicamos sort y luego retornamos
+            
+            list_dicoms.sort(key=lambda x: x.InstanceNumber, reverse=reverse)
+            return list_dicoms
+        except:
+            print(f"No se pudo ordenar la lista que proporcionaste: \n{list_dicoms}.")
+            return None   
     
     """
     El siguiente método permite ordenar una lista de archivos pydicom.
@@ -63,16 +75,3 @@ class AbsDicomOrder(ABC):
         - list_dicoms (List<pydicom>)   : La misma lista de elementos dicom, pero ya ordenados en base a su InstanceNumber.
         
     """
-    def order_dicom_folder(self, list_dicoms: list, reverse=False):
-        try:
-                #De esta manera solo modifica la lista en el lugar y retorna null
-            # return list_dicoms.sort(key=lambda x: x.InstanceNumber, reverse=reverse)
-            
-            #Para hacer que funcione o bien aplicamos sorted (lista, key=)
-                #O bien aplicamos sort y luego retornamos
-            
-            list_dicoms.sort(key=lambda x: x.InstanceNumber, reverse=reverse)
-            return list_dicoms
-        except:
-            print(f"No se pudo ordenar la lista que proporcionaste: \n{list_dicoms}.")
-            return None   

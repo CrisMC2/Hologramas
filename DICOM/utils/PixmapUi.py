@@ -8,7 +8,7 @@ from typing import Union
 from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsPixmapItem
 from PyQt5.QtGui import QPixmap
 
-from DICOM.abstracts.Ui.AbsPixmap import AbsUi_Pixmap
+from abstracts.Ui.AbsPixmap import AbsUi_Pixmap
 
 class PixmapUi(AbsUi_Pixmap):
     """

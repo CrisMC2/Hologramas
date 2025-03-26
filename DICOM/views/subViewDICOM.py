@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel
 
 from utils.Graphics import GraphicsView, GraphicsScene, GraphicsWidget
 from utils.ElementsWidgets import TextWidget, SliderWidget
-from services.PixmapUi import PixmapUi
+from utils.PixmapUi import PixmapUi
 from config import constantSubViewDICOM as consVDcm
 
 class Ui_subViewDicom(QMainWindow):

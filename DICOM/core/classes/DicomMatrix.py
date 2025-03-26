@@ -1,10 +1,8 @@
 import numpy as np
 
-from abc import ABC, abstractmethod
-
 from DICOM.core.classes.DicomProcessing import AbsDicomProccessing
 
-class DicomMatrix(ABC, AbsDicomProccessing):
+class DicomMatrix(AbsDicomProccessing):
     def generate_matrix (self, lista_dicoms: list, hounsmin=-200, hounsmax=200):
         lista_dicoms = list(map(lambda dc: self.processing_dicom(dc, hounsmin, hounsmax), lista_dicoms)) #Si así no funciona cambiar el "list()" por "[]"
         

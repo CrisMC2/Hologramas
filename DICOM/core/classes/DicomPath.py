@@ -1,9 +1,6 @@
 #Importamos clases
 import os
 import sys
-
-#Importamos parte de las clases
-from abc import ABC, abstractmethod
 from glob import glob
 
 
@@ -14,7 +11,7 @@ sys.path.append(_append)
 from DICOM.core.abstracts.AbsDicomRead import AbsDicomRead
 from DICOM.abstracts.classes.AbsPath        import AbsPath 
 
-class AbsDicomPathsExists(AbsPath):
+class DicomPathsExists(AbsPath):
     
     #Leer la documentación proveniente del AbsPath
     def exists_path(self, path: str, create: bool):
@@ -47,8 +44,9 @@ class AbsDicomPathsExists(AbsPath):
         if all(self.exists_path(path, False) for path in path_folder): #Primero verificamos si todas las direcciones existen
             return any(os.path.splitext(file)[1] == '.dcm' for file in path_folder) # "any" retornar True si al menos uno de los archivos cumplen con la condición 
 
+
 #TEMPLATE
-class AbsExtractDicomPath(ABC):
+class ExtractDicomPath():
     
     """
     El método extrae todos los archivos con extensión '.dcm' desde una ruta especificada.
@@ -76,7 +74,8 @@ class AbsExtractDicomPath(ABC):
             print(f"No se pudo extraer los archivos desde la dirección especificada {path_folder}.")
             return None
      
-class AbsDicomConvertByPath (ABC):
+     
+class DicomConvertByPath ():
     """
     Constructor de la clase AbsDicomConvertByPath.
     
