@@ -257,7 +257,7 @@ class Ui_fondoMain(object):
         self.pushButton_3 = QtWidgets.QPushButton(self.widget_2)
         self.pushButton_3.setGeometry(QtCore.QRect(20, 40, 61, 41))
         self.pushButton_3.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"C:/6TO_SEMESTRE/Hologramas/icon/atrasflechav.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"Hologramas/icon/atrasflechav.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
@@ -431,7 +431,7 @@ class Ui_fondoMain(object):
         self.pushButton_4 = QtWidgets.QPushButton(self.widget_3)
         self.pushButton_4.setGeometry(QtCore.QRect(20, 40, 61, 41))
         self.pushButton_4.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"C:/6TO_SEMESTRE/Hologramas/icon/atrasflechav.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"Hologramas/icon/atrasflechav.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
@@ -613,7 +613,7 @@ class Ui_fondoMain(object):
         self.pushButton_5 = QtWidgets.QPushButton(self.widget_4)
         self.pushButton_5.setGeometry(QtCore.QRect(20, 40, 61, 41))
         self.pushButton_5.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"C:/6TO_SEMESTRE/Hologramas/icon/atrasflechav.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"Hologramas/icon/atrasflechav.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
@@ -801,7 +801,7 @@ class Ui_fondoMain(object):
         self.pushButton_88 = QtWidgets.QPushButton(self.widget_118)
         self.pushButton_88.setGeometry(QtCore.QRect(20, 40, 61, 41))
         self.pushButton_88.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"C:/6TO_SEMESTRE/Hologramas/icon/atrasflechav.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"Hologramas/icon/atrasflechav.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
@@ -976,7 +976,7 @@ class Ui_fondoMain(object):
         self.botonEdit_2.setGeometry(QtCore.QRect(240, 270, 131, 51))
         self.botonEdit_2.setMinimumSize(QtCore.QSize(131, 0))
         self.botonEdit_2.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"E:/6TO SEMESTRE/Hologramas/icon/edit.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"Hologramas/icon/edit.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
@@ -1013,7 +1013,7 @@ class Ui_fondoMain(object):
         self.label_17.setGeometry(QtCore.QRect(60, 70, 101, 101))
         self.label_17.setStyleSheet("border: none;")
         self.label_17.setText("")
-        self.label_17.setPixmap(QtGui.QPixmap("E:/6TO SEMESTRE/Hologramas/icon/agregar_paciente.png"))
+        self.label_17.setPixmap(QtGui.QPixmap("Hologramas/icon/agregar_paciente.png"))
         self.label_17.setScaledContents(True)
         self.label_17.setObjectName("label_17")
         self.label_23 = QtWidgets.QLabel(self.agregar_paciente)
@@ -1052,7 +1052,7 @@ class Ui_fondoMain(object):
         self.label_20.setGeometry(QtCore.QRect(60, 70, 101, 101))
         self.label_20.setStyleSheet("border: none;")
         self.label_20.setText("")
-        self.label_20.setPixmap(QtGui.QPixmap("E:/6TO SEMESTRE/Hologramas/icon/eliminar.png"))
+        self.label_20.setPixmap(QtGui.QPixmap("Hologramas/icon/eliminar.png"))
         self.label_20.setScaledContents(True)
         self.label_20.setObjectName("label_20")
         self.label_21 = QtWidgets.QLabel(self.eliminar_paciente)
@@ -1091,7 +1091,7 @@ class Ui_fondoMain(object):
         self.label_15.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.label_15.setStyleSheet("border: none;")
         self.label_15.setText("")
-        self.label_15.setPixmap(QtGui.QPixmap("E:/6TO SEMESTRE/Hologramas/icon/userlmn_f3df7cf278fc232357f70b0055f234bb.png"))
+        self.label_15.setPixmap(QtGui.QPixmap("Hologramas/icon/userlmn_f3df7cf278fc232357f70b0055f234bb.png"))
         self.label_15.setScaledContents(True)
         self.label_15.setObjectName("label_15")
         self.label_16 = QtWidgets.QLabel(self.ver_paciente)
@@ -1134,7 +1134,7 @@ class Ui_fondoMain(object):
         self.label_19.setGeometry(QtCore.QRect(50, 70, 101, 101))
         self.label_19.setStyleSheet("border: none;")
         self.label_19.setText("")
-        self.label_19.setPixmap(QtGui.QPixmap("E:/6TO SEMESTRE/Hologramas/icon/metabolism_15052497.png"))
+        self.label_19.setPixmap(QtGui.QPixmap("Hologramas/icon/metabolism_15052497.png"))
         self.label_19.setScaledContents(True)
         self.label_19.setObjectName("label_19")
         self.pushButton_8 = QtWidgets.QPushButton(self.editar_paciente)
@@ -1342,7 +1342,7 @@ class Ui_fondoMain(object):
         self.label_157.setGeometry(QtCore.QRect(950, 40, 171, 171))
         self.label_157.setStyleSheet("border-radius: 38px;")
         self.label_157.setText("")
-        self.label_157.setPixmap(QtGui.QPixmap("E:/6TO SEMESTRE/Hologramas/icon/pngtree-photo-men-doctor-physician-chest-smiling-png-image_10132895.png"))
+        self.label_157.setPixmap(QtGui.QPixmap("Hologramas/icon/pngtree-photo-men-doctor-physician-chest-smiling-png-image_10132895.png"))
         self.label_157.setScaledContents(True)
         self.label_157.setObjectName("label_157")
         self.widget_32 = QtWidgets.QWidget(self.pag_agregar_paciente)
@@ -1400,7 +1400,7 @@ class Ui_fondoMain(object):
 "}")
         self.Boton_Atras.setText("")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("../Users/MSI/Downloads/back1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap("Hologramas/icon/back1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.Boton_Atras.setIcon(icon5)
         self.Boton_Atras.setObjectName("Boton_Atras")
         self.label_34 = QtWidgets.QLabel(self.pag_agregar_paciente)
@@ -4037,7 +4037,7 @@ class Ui_fondoMain(object):
         self.label_208.setGeometry(QtCore.QRect(950, 40, 171, 171))
         self.label_208.setStyleSheet("border-radius: 38px;")
         self.label_208.setText("")
-        self.label_208.setPixmap(QtGui.QPixmap("E:/6TO SEMESTRE/Hologramas/icon/pngtree-photo-men-doctor-physician-chest-smiling-png-image_10132895.png"))
+        self.label_208.setPixmap(QtGui.QPixmap("C:/6TO SEMESTRE/Hologramas/icon/pngtree-photo-men-doctor-physician-chest-smiling-png-image_10132895.png"))
         self.label_208.setScaledContents(True)
         self.label_208.setObjectName("label_208")
         self.label_209 = QtWidgets.QLabel(self.Pag01_pageditarpaciente)
@@ -6288,7 +6288,7 @@ class Ui_fondoMain(object):
         self.label_24.setGeometry(QtCore.QRect(920, 180, 161, 161))
         self.label_24.setStyleSheet("border: none;")
         self.label_24.setText("")
-        self.label_24.setPixmap(QtGui.QPixmap("E:/6TO SEMESTRE/Hologramas/icon/pngtree-photo-men-doctor-physician-chest-smiling-png-image_10132895.png"))
+        self.label_24.setPixmap(QtGui.QPixmap("C:/6TO SEMESTRE/Hologramas/icon/pngtree-photo-men-doctor-physician-chest-smiling-png-image_10132895.png"))
         self.label_24.setScaledContents(True)
         self.label_24.setObjectName("label_24")
         self.Paginas_pag_editarpaciente.addWidget(self.Pag04_pageditarpaciente)
@@ -7874,7 +7874,7 @@ class Ui_fondoMain(object):
         self.pushButton_128 = QtWidgets.QPushButton(self.widget_67)
         self.pushButton_128.setGeometry(QtCore.QRect(40, 27, 31, 31))
         self.pushButton_128.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"E:/6TO SEMESTRE/Hologramas/icon/file.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"C:/6TO SEMESTRE/Hologramas/icon/file.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
@@ -9972,7 +9972,7 @@ class Ui_fondoMain(object):
         self.label_186.setGeometry(QtCore.QRect(890, 160, 171, 171))
         self.label_186.setStyleSheet("border-radius: 38px;")
         self.label_186.setText("")
-        self.label_186.setPixmap(QtGui.QPixmap("E:/6TO SEMESTRE/Hologramas/icon/pngtree-photo-men-doctor-physician-chest-smiling-png-image_10132895.png"))
+        self.label_186.setPixmap(QtGui.QPixmap("C:/6TO SEMESTRE/Hologramas/icon/pngtree-photo-men-doctor-physician-chest-smiling-png-image_10132895.png"))
         self.label_186.setScaledContents(True)
         self.label_186.setObjectName("label_186")
         self.paginas_reporte.addWidget(self.pag05_reporte)
@@ -11388,7 +11388,7 @@ class Ui_fondoMain(object):
         self.pushButton_162 = QtWidgets.QPushButton(self.widget_107)
         self.pushButton_162.setGeometry(QtCore.QRect(40, 27, 31, 31))
         self.pushButton_162.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"E:/6TO SEMESTRE/Hologramas/icon/file.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"C:/6TO SEMESTRE/Hologramas/icon/file.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
@@ -11694,7 +11694,7 @@ class Ui_fondoMain(object):
         self.botonEdit_4.setGeometry(QtCore.QRect(240, 270, 131, 51))
         self.botonEdit_4.setMinimumSize(QtCore.QSize(131, 0))
         self.botonEdit_4.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"E:/6TO SEMESTRE/Hologramas/icon/edit.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"C:/6TO SEMESTRE/Hologramas/icon/edit.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
@@ -11894,7 +11894,7 @@ class Ui_fondoMain(object):
         self.label_381.setGeometry(QtCore.QRect(900, 70, 171, 171))
         self.label_381.setStyleSheet("border-radius: 38px;")
         self.label_381.setText("")
-        self.label_381.setPixmap(QtGui.QPixmap("E:/6TO SEMESTRE/Hologramas/icon/pngtree-photo-men-doctor-physician-chest-smiling-png-image_10132895.png"))
+        self.label_381.setPixmap(QtGui.QPixmap("C:/6TO SEMESTRE/Hologramas/icon/pngtree-photo-men-doctor-physician-chest-smiling-png-image_10132895.png"))
         self.label_381.setScaledContents(True)
         self.label_381.setObjectName("label_381")
         self.pushButton_164 = QtWidgets.QPushButton(self.widget_114)
@@ -12029,7 +12029,7 @@ class Ui_fondoMain(object):
         self.botonEdit_6.setGeometry(QtCore.QRect(240, 270, 131, 51))
         self.botonEdit_6.setMinimumSize(QtCore.QSize(131, 0))
         self.botonEdit_6.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"E:/6TO SEMESTRE/Hologramas/icon/edit.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"C:/6TO SEMESTRE/Hologramas/icon/edit.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"
@@ -12309,7 +12309,7 @@ class Ui_fondoMain(object):
         self.label_435.setGeometry(QtCore.QRect(450, 30, 101, 71))
         self.label_435.setStyleSheet("border: none;")
         self.label_435.setText("")
-        self.label_435.setPixmap(QtGui.QPixmap("E:/6TO SEMESTRE/Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
+        self.label_435.setPixmap(QtGui.QPixmap("C:/6TO SEMESTRE/Hologramas/icon/an-indian-young-female-doctor-isolated-on-green-ai-generated-photo.jpg"))
         self.label_435.setScaledContents(True)
         self.label_435.setObjectName("label_435")
         self.label_436 = QtWidgets.QLabel(self.widget_127)
@@ -12770,7 +12770,7 @@ class Ui_fondoMain(object):
         self.botonEdit_8.setGeometry(QtCore.QRect(240, 270, 131, 51))
         self.botonEdit_8.setMinimumSize(QtCore.QSize(131, 0))
         self.botonEdit_8.setStyleSheet("QPushButton {\n"
-"    background-image: url(\"E:/6TO SEMESTRE/Hologramas/icon/edit.png\"); /* Ruta de la imagen */\n"
+"    background-image: url(\"C:/6TO SEMESTRE/Hologramas/icon/edit.png\"); /* Ruta de la imagen */\n"
 "    background-position: center;    /* Centrar la imagen */\n"
 "    background-repeat: no-repeat;   /* Evitar que se repita la imagen */\n"
 "    background-size: contain;    /* Cambiar el tamaño de la imagen (ajusta según sea necesario) */\n"

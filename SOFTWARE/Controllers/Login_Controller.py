@@ -24,7 +24,6 @@ def showListWidget(ui, event):
         print(f"Correos guardados cargados: {ui.saved_emails}")  # Para depuración
         if ui.saved_emails:
                 ui.listWidget.addItems(ui.saved_emails)  # Añadir los correos a la lista
-        
         pos = ui.textEdit.mapToGlobal(ui.textEdit.rect().bottomLeft())
         ui.listWidget.move(pos)  # Mover el listWidget a la posición calculada
         ui.listWidget.show()  # Mostrar el listWidget
@@ -172,7 +171,6 @@ def updateInputTextEdit(self, textEdit):
                 "    border-color:gray;            /* Cambia el color del borde al hacer foco */\n"
                 "}")
                 textEdit.setPlaceholderText("")
-
 def eliminar_label_existente(clase_instancia, label_name):
     if hasattr(clase_instancia, label_name):
         getattr(clase_instancia, label_name).deleteLater()
@@ -231,6 +229,7 @@ def validar_fecha(clase_instancia, texto, widget_padre, label_name, distancia):
         setattr(clase_instancia, label_name, label)
         print("Fecha incorrecta")
         return False
+
 def mostrar_calendario(ui, event):
     ui.calendar.show()
     QtWidgets.QTextEdit.mousePressEvent(ui.textEdit_18, event)
@@ -483,7 +482,7 @@ def action_button(self, button_id):
                 self.textEdit_2.setText(self.real_text)
                 self.textEdit_10.setText(self.real_text_3)
                 self.textEdit_13.setText(self.real_text_4)
-
+                
         elif button_id == 14:
                 self.cambianteTodo.setCurrentWidget(self.home)
                 self.PaginasHome.setCurrentWidget(self.pag_agregar_paciente)
@@ -567,22 +566,3 @@ def action_button(self, button_id):
                 # Si todos los datos han sido ingresados correctamente
                 if all([nombre_valido, apellido_valido, domicilio_valido, dni_valido, correo_valido, fecha_valida, telefono_valido]):
                         print("Todos los datos ingresados son válidos")
-
-                            
-                          
-                
-
-
-
-
-
-
-
-
-#def onMousePressOutside(self, event):
-# Comprobar si el clic es fuera del QTextEdit y del QListWidget
-#if self.listWidget.isVisible():
-        #if not (self.listWidget.geometry().contains(event.pos()) or self.textEdit.geometry().contains(event.pos())):
-                #self.listWidget.hide()
-#event.accept()
-
