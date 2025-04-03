@@ -1,9 +1,13 @@
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QFrame
-from PyQt5.QtGui import QColor
+from PyQt5.QtWidgets import QSizePolicy
+from PyQt5.QtGui import QColor, QFont
+from PyQt5.QtCore import Qt
 
 
 #=================================================================================================
 #Configuración Características de GraphicsView
+SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAlwaysOff
+
 
 BACKGROUND_COLOR_DEFAULT = QColor(70, 70, 70)
 """
@@ -58,15 +62,61 @@ BACKGROUND_COLOR_DEFAULT_2 = QColor(0,0,0)
 ITEM_INDEX_METHOD_DEFAULT = QGraphicsScene.NoIndex
 
 
+
 #=================================================================================================
-#Configuración del GraphicsWidget
-DEFAULT_TYPE_LAYOUT = "H"
+#Configuración del Layout a usar en QGraphicsWidget
+#Configuración del Layout Principal (Main) (GridLayout)
+DEFAULT_ROWS_LAYOUT = 10
 """
-La configuración DEFAULT_TYPE_LAYOUT define si el Layout será vertical y horizontal.
+La configuración DEFAULT_ROWS_LAYOUT permite configurar la cantidad de rows (filas)
+que tendrá el GridLayout.
+"""
+
+DEFAULT_COLS_LAYOUT = 3
+"""
+La configuración DEFAULT_COLS_LAYOUT permite configurar la cantidad de cols (columnas)
+que tendrá el GridLayout.
+"""
+
+LIST_DICT_ROWS_STRETCH = [{"row": 1, "stretch": 1}, {"row": 2, "stretch": 1},
+                             {"row": 3, "stretch": 1}, {"row": 4, "stretch": 1},
+                             {"row": 5, "stretch": 1}, {"row": 6, "stretch": 1},
+                             {"row": 7, "stretch": 1}, {"row": 8, "stretch": 5},
+                             {"row": 9, "stretch": 1}, {"row": 10, "stretch": 1}] #Lista de diccionarios.
+
+LIST_DICT_COLS_STRETCH = [{"col": 1, "stretch": 2}, {"col": 1, "stretch": 6},
+                              {"col": 3, "stretch": 2}]
+
+DEFAULT_SPACING_MAIN = 0
+
+
+#Configuración del Layout Izquierdo (LayoutItem)
+DEFAULT_ORIENTATION_LAYOUT_1 = "H" 
+"""
+La configuración DEFAULT_ORIENTATION_LAYOUT_1 define si el Layout será vertical y horizontal.
 
     - H     : Horizontal
     - V     : Vertical
 """
+
+#Configuración del Layout Central (LinearLayout)
+DEFAULT_ORIENTATION_LAYOUT_2 = "V" 
+"""
+La configuración DEFAULT_ORIENTATION_LAYOUT_2 define si el Layout será vertical y horizontal.
+
+    - H     : Horizontal
+    - V     : Vertical
+"""
+
+#=================================================================================================
+#Configuración los widget a usar con los Layout / GridLayout y demás
+
+DEFAULT_LEFT_MARGIN   = 0
+DEFAULT_RIGHT_MARGIN  = 0
+DEFAULT_TOP_MARGIN    = 0
+DEFAULT_BOTTOM_MARGIN = 0
+
+DEFAULT_SPACING = 0
 
 
 #=================================================================================================
@@ -85,3 +135,17 @@ La configuración DEFAULT_VALUE_SLIDER define el valor que tendrá o en el que s
 encontrará el slider.
 
 """
+
+#=================================================================================================
+#Configuración de los text
+DEFAULT_TEXT_FONT = QFont("Arial")
+DEFAULT_TEXT_SIZE_X = 50
+DEFAULT_TEXT_SIZE_Y = 20
+DEFAULT_TEXT_MINIMUM_SIZE_X = 50
+DEFAULT_TEXT_MINIMUM_SIZE_Y = 20
+DEFAULT_TEXT_SIZE_POLICY_X = QSizePolicy.Expanding
+DEFAULT_TEXT_SIZE_POLICY_Y = QSizePolicy.Fixed
+DEFAULT_TEXT_POSITION_X = 10
+DEFAULT_TEXT_POSITION_Y = 10
+DEFAULT_TEXT_BACKGROUND_COLOR = QColor(255,255,255)
+DEFAULT_TEXT_COLOR = QColor(255,255,0)

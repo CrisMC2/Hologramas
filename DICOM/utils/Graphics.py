@@ -5,7 +5,7 @@ _append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(_append)
 
 from typing import Union
-from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsLinearLayout, QGraphicsProxyWidget, QWidget
+from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsLinearLayout, QGraphicsProxyWidget, QWidget, QLayout
 from PyQt5.QtGui import QBrush
 from PyQt5.QtCore import Qt
 
@@ -16,8 +16,9 @@ class GraphicsView(AbsGraphicsView):
     def __init__(self):
         super().__init__()
     
-    def configure_features(self, background: QBrush, frame_style):
-        # self.graphics_view.set
+    def configure_features(self, scroll_bar_policy: Qt, background: QBrush, frame_style):
+        self.q_view.setHorizontalScrollBarPolicy(scroll_bar_policy)
+        self.q_view.setVerticalScrollBarPolicy(scroll_bar_policy)
         self.q_view.setBackgroundBrush(background)
         self.q_view.setFrameStyle(frame_style)
         
@@ -96,50 +97,21 @@ class GraphicsWidget(AbsGraphicsWidget):
                                     elif "V" => Vertical
     
     """  
-    def __init__(self, type_layout: str):
+    def __init__(self, layout: QLayout):
         super().__init__()
+        self.q_layout = layout
+        self.q_widget.setLayout(self.q_layout)   
         
-        self.create_layout(type_layout)
-              
-    def create_layout(self, type_layout: str):
-        if type_layout == "V":
-            self.layout = QGraphicsLinearLayout(Qt.Vertical) #Debido a que estamos usando un QGraphicsWidget, necesitamos del QGraphicsLinearLayout
-        
-        elif type_layout == "H":
-            self.layout = QGraphicsLinearLayout(Qt.Horizontal)
-        
-        else:
-            raise ValueError("El parámetro type_layout debe ser:\n- V if Layout == Vertical\n- H elif Layout == Horizontal")
-        
-    """
-    El método create_layout nos sirve para crear el Layout que cumplirá el labor del 
-    GraphicsWidget. 
-    
-    - La creación del mismo varía de acorde al parámetro type_layout.
-    
-    - Parámetros:
-        - type_layout (str)       : Define si el Layout será vertical u horizontal
-    
-    """ 
-    
     def configure_features(self):
         pass
     
     def configure_behaivor(self):
         pass
 
-    def insert_element(self, elements: Union[list[QWidget], list[QGraphicsProxyWidget]]):
-        if self.layout != None:
-            
-            for element in elements:
-                ele = self.convert_correct_type_element(element)
-                self.layout.addItem(ele)
-            
-            self.q_widget.setLayout(self.layout)
-        
-        else:
-            print("Llamar a la función config_layout para generar el layout de los elementos.")
-    
+    def insert_element(self, elements: Union[list[QWidget], list[QGraphicsProxyWidget], list[QLayout]]):            
+        for element in elements:
+            ele = self.convert_correct_type_element(element)
+            self.q_layout.addItem(ele)     
     """
     El método "insert element" permite agregar una serie de elementos al layout que representa el GraphicsWidget
     
@@ -150,9 +122,12 @@ class GraphicsWidget(AbsGraphicsWidget):
     """  
     
     def convert_correct_type_element(self, element: QWidget):
-        if isinstance (element, QWidget):
+        if isinstance (element, QWidget) and not isinstance(element, QGraphicsProxyWidget):
             proxy = QGraphicsProxyWidget()
             proxy.setWidget(element)
+        
+        elif isinstance(element, (QLayout, QGraphicsLinearLayout)):
+            proxy = element
         
         else:
             raise ValueError("El tipo de dato del elemento no corresponde a QWidget")

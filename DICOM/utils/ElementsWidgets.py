@@ -6,9 +6,9 @@ sys.path.append(_append)
 
 
 from typing import Union
-from PyQt5.QtWidgets import QWidget, QLabel, QTextEdit, QSlider, QSizePolicy
+from PyQt5.QtWidgets import QWidget, QLabel, QTextEdit, QSlider, QSizePolicy, QGraphicsProxyWidget
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QColor
+from PyQt5.QtGui import QColor, QFont
 
 from abstracts.Ui.AbsSliderControl import AbsSliderControl
 from abstracts.Ui.AbsTextControl   import AbsTextControl
@@ -31,30 +31,40 @@ class TextWidget(AbsTextControl):
         - Mal : TextWidget(QLabel) 
         
     """
-    def __init__(self, type_element: Union[QLabel, QTextEdit]):
-        if isinstance (type_element, (QLabel, QTextEdit)):
+    def __init__(self, type_element: Union[QLabel, QTextEdit], type_container: QGraphicsProxyWidget):
+        if isinstance (type_element, (QLabel, QTextEdit, QGraphicsProxyWidget)):
             self.q_text = type_element
-            
+        
+        if type_container:
+            if isinstance(type_container, QGraphicsProxyWidget):
+                self.q_text_container = type_container
+                self.q_text_container.setWidget(self.q_text)
+                
         else:
             raise TypeError("El tipo de elementos que intentas incluir no es un Widget de texto.")
     
-    def configure_features(self, size_x: int, size_y: int,
+    def configure_features(self, font: QFont, size_x: int, size_y: int,
                            minimum_size_x: int, minimum_size_y: int,  
                            size_policy_x: QSizePolicy, size_policy_y: QSizePolicy,
                            position_x: int, position_y: int,
-                           background_color: QColor, color_text: QColor):
+                           background_color: QColor, color_text: QColor) -> None:
         
+        self.q_text.setFont(font)
         self.q_text.setFixedSize(size_x, size_y)
         self.q_text.setMinimumSize(minimum_size_x, minimum_size_y)
         self.q_text.setSizePolicy(size_policy_x, size_policy_y)
-        self.q_text.setPos(position_x, position_y)
         self.q_text.setTextBackgroundColor(background_color)
         self.q_text.setTextColor(color_text)
+        
+        if self.q_text_container:
+            self.q_text_container.setPos(position_x, position_y)
         
 
     def configure_behaivor(self, focus_policy: Qt, flag: bool):
         self.q_text.setFocusPolicy(focus_policy)
-        # self.q_text.
+        
+        if isinstance(self.q_text, QGraphicsProxyWidget):
+            self.q_text.setFlag(flag)
     
     
     def get_data(self):

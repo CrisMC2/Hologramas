@@ -39,9 +39,5 @@ class AbsGraphicsWidget(AbsContainers):
     """
     
     @abstractmethod
-    def create_layout(self):
-        pass
-    
-    @abstractmethod
     def convert_correct_type_element(self, element):
         pass

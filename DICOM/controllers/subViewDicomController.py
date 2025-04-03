@@ -4,12 +4,13 @@ import os
 _append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(_append)
 
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow #No eliminar QApplication, se utiliza en los test
+from PyQt5.QtWidgets import QWidget, QHBoxLayout
 
 from views.subViewDICOM import Ui_subViewDicom     #Importamos la interfaz principal
 from config import constantSubViewDICOM as consVDcm #Importamos las constantes
 
-class Ui_subViewDicomController(Ui_subViewDicom, QMainWindow):
+class Ui_subViewDicomController(Ui_subViewDicom):
     """
     La clase Ui_subViewDicomController es la encargada de controlar
     la clase Ui_subViewDicom.
@@ -19,18 +20,51 @@ class Ui_subViewDicomController(Ui_subViewDicom, QMainWindow):
     
     """
     def __init__(self):
-        super().__init__()
-        self.ui_subviewDicom = Ui_subViewDicom()
+        super().__init__(self.generate_widget())
+        
+        self.define_values_items_static(
+            "NAME",
+            "54",
+            "18/08/2025",
+            "MASCULINO",
+            "UNCP",
+            "456789",
+            "BODY_PART",
+            "15/01/2020",
+            "12/03/2021"
+        )
+        self.define_values_items_semi_dinamic(
+            "45",
+            4,
+            48
+        )
+        self.define_values_items_dinamic(
+            "45"
+        )
     
-    
-    def define_values_items_static(self, text_name: str, text_date_born: str,  text_date_test: str, 
-                                   text_part_body: str, text_img: str = "IMG", 
+    def generate_widget(self):
+        widget_main = QWidget()    
+        layout_main = QHBoxLayout(widget_main)
+        
+        return widget_main, layout_main
+        
+    def define_values_items_static(self, text_name: str, text_ID_patient: str, 
+                                   text_date_born: str,  text_sex: str, 
+                                   text_institution_name: str, text_study_ID: str,
+                                   text_body_part: str, text_acquisition_test: str,
+                                   text_acquisition_time: str,
+                                   text_img: str = "IMG", 
                                    value_slider_now: int = consVDcm.DEFAULT_VALUE_SLIDER):
-        self.ui_text_img.change_data(text_img)
         self.ui_text_name.change_data(text_name)
+        self.ui_text_ID_Patient.change_data(text_ID_patient)
         self.ui_text_date_born.change_data(text_date_born)
-        self.ui_text_date_test.change_data(text_date_test)
-        self.ui_text_part_body.change_data(text_part_body)
+        self.ui_text_sex.change_data(text_sex)
+        self.ui_text_institution_name.change_data(text_institution_name)
+        self.ui_text_study_ID.change_data(text_study_ID)
+        self.ui_text_body_part.change_data(text_body_part)
+        self.ui_text_acquisition_test.change_data(text_acquisition_test)
+        self.ui_text_acquisition_time.change_data(text_acquisition_time)
+        self.ui_text_img.change_data(text_img)
         
         self.ui_slider.set_value(value_slider_now)
     
@@ -52,7 +86,8 @@ class Ui_subViewDicomController(Ui_subViewDicom, QMainWindow):
         
     """
     
-    def define_values_items_semi_dinamic(self, text_img_end: str, value_start_slider: int, value_end_slider: int):
+    def define_values_items_semi_dinamic(self, text_img_end: str, 
+                                         value_start_slider: int, value_end_slider: int):
         self.ui_text_img_end.change_data(text_img_end)
         self.ui_slider.define_range(value_start_slider, value_end_slider)
     

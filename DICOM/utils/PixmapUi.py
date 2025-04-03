@@ -76,4 +76,3 @@ class PixmapUi(AbsUi_Pixmap):
         - self (PixmapUi)   : Instancia de la clase PixmapUi.
         - pixmap (QPixmap)  : Elemento Pixmap que será mostrado. 
     """
-    

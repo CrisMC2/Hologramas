@@ -1244,23 +1244,6 @@ background-color: rgb(70, 70, 70);
          <property name="styleSheet">
           <string notr="true">background-color: rgba(70,70,70,1);</string>
          </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <property name="spacing">
-           <number>0</number>
-          </property>
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-         </layout>
         </widget>
         <widget class="QWidget" name="EmptyView"/>
         <widget class="QWidget" name="TwoViews"/>
