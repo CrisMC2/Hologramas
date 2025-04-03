@@ -202,12 +202,24 @@ def obtener_guardados():
     conn.close()
     return emails  # Retorna la lista de tuplas (correo, contraseña)
 
+def aumentar_max_packet():
+    """Aumenta el tamaño máximo permitido para paquetes en MySQL."""
+    conn = conectar(sin_db=True)  # Conectar sin base de datos para ejecutar la configuración global
+    cursor = conn.cursor()
+    cursor.execute("SET GLOBAL max_allowed_packet = 1073741824;")  # 1GB
+    conn.commit()
+    conn.close()
+    print("✅ max_allowed_packet actualizado a 1GB")
+
+
 def eliminar_todo():
     eliminar_tabla_medicos()
     eliminar_tabla_pacientes()
     eliminar_tabla_guardados()
 
-# Ejecutar la creación de la base de datos y las tablas
-crear_base_de_datos()
+# Aumentar max_allowed_packet antes de realizar operaciones grandes
+aumentar_max_packet()
 
+# Luego, ejecutar el resto del código
+crear_base_de_datos()
 iniciar()

@@ -5,6 +5,7 @@ from PyQt5.QtCore import QTimer
 from Modelos.conexion import *
 from Modelos.conexion import obtener_guardados
 from PyQt5.QtCore import Qt
+from Controllers.AgregarPaciente_Controller import *
 import re
 from datetime import datetime
 from PyQt5.QtWidgets import QFileDialog
@@ -171,82 +172,82 @@ def updateInputTextEdit(self, textEdit):
                 "    border-color:gray;            /* Cambia el color del borde al hacer foco */\n"
                 "}")
                 textEdit.setPlaceholderText("")
-def eliminar_label_existente(clase_instancia, label_name):
-    if hasattr(clase_instancia, label_name):
-        getattr(clase_instancia, label_name).deleteLater()
-        delattr(clase_instancia, label_name)
 
-def añadir_label(widget_padre, texto, posicion_x, posicion_y, ancho, alto, nombre_label="label_generico", tamaño_fuente=7, color_texto="red"):
-    label = QtWidgets.QLabel(widget_padre)
-    label.setGeometry(QtCore.QRect(posicion_x, posicion_y, ancho, alto))
+# def eliminar_label_existente(clase_instancia, label_name):
+#     if hasattr(clase_instancia, label_name):
+#         getattr(clase_instancia, label_name).deleteLater()
+#         delattr(clase_instancia, label_name)
 
-    font = QtGui.QFont()
-    font.setPointSize(tamaño_fuente)
-    label.setFont(font)
+# def añadir_label(widget_padre, texto, posicion_x, posicion_y, ancho, alto, nombre_label="label_generico", tamaño_fuente=7, color_texto="red"):
+#     label = QtWidgets.QLabel(widget_padre)
+#     label.setGeometry(QtCore.QRect(posicion_x, posicion_y, ancho, alto))
 
-    label.setStyleSheet(f"QLabel {{ color: {color_texto}; background: none; }}")
+#     font = QtGui.QFont()
+#     font.setPointSize(tamaño_fuente)
+#     label.setFont(font)
 
-    label.setText(texto)
-    label.setObjectName(nombre_label)
-    label.show()
+#     label.setStyleSheet(f"QLabel {{ color: {color_texto}; background: none; }}")
 
-    # Guardamos la referencia en la clase para poder eliminarlo luego
-    return label
+#     label.setText(texto)
+#     label.setObjectName(nombre_label)
+#     label.show()
 
-def validar_solo_letras(texto, widget_padre, label_name, clase_instancia, distancia, parametro):
-    eliminar_label_existente(clase_instancia, label_name)
+#     # Guardamos la referencia en la clase para poder eliminarlo luego
+#     return label
 
-    if any(not (char.isalpha() or char.isspace()) for char in texto):
-        label = añadir_label(widget_padre, f"{parametro} incorrecto ingresado", 130, distancia, 351, 31, label_name)
-        setattr(clase_instancia, label_name, label)
-        print(f"{parametro} incorrecto ingresado")
-        return False
-    else:
-        print(f"{parametro} correcto ingresado")
-        return True
+# def validar_solo_letras(texto, widget_padre, label_name, clase_instancia, distancia, parametro):
+#     eliminar_label_existente(clase_instancia, label_name)
 
-def validar_correo(clase_instancia, texto, widget_padre, label_name, distancia):
-    eliminar_label_existente(clase_instancia, label_name)
-    patron = r'^[\w\.-]+@[\w\.-]+\.\w{2,4}$'
+#     if any(not (char.isalpha() or char.isspace()) for char in texto):
+#         label = añadir_label(widget_padre, f"{parametro} incorrecto ingresado", 130, distancia, 351, 31, label_name)
+#         setattr(clase_instancia, label_name, label)
+#         print(f"{parametro} incorrecto ingresado")
+#         return False
+#     else:
+#         print(f"{parametro} correcto ingresado")
+#         return True
 
-    if re.match(patron, texto):
-        print("Correo válido ingresado")
-        return True
-    else:
-        label = añadir_label(widget_padre, "Correo incorrecto", 130, distancia, 351, 31, label_name)
-        setattr(clase_instancia, label_name, label)
-        print("Correo inválido ingresado")
-        return False
+# def validar_correo(clase_instancia, texto, widget_padre, label_name, distancia):
+#     eliminar_label_existente(clase_instancia, label_name)
+#     patron = r'^[\w\.-]+@[\w\.-]+\.\w{2,4}$'
 
-def validar_fecha(clase_instancia, texto, widget_padre, label_name, distancia):
-    eliminar_label_existente(clase_instancia, label_name)
-    try:
-        datetime.strptime(texto, "%d/%m/%Y")  # formato de fecha dd/mm/yyyy
-        print("Fecha válida")
-        return True
-    except ValueError:
-        label = añadir_label(widget_padre, "Fecha incorrecta", 130, distancia, 351, 31, label_name)
-        setattr(clase_instancia, label_name, label)
-        print("Fecha incorrecta")
-        return False
+#     if re.match(patron, texto):
+#         print("Correo válido ingresado")
+#         return True
+#     else:
+#         label = añadir_label(widget_padre, "Correo incorrecto", 130, distancia, 351, 31, label_name)
+#         setattr(clase_instancia, label_name, label)
+#         print("Correo inválido ingresado")
+#         return False
 
-def mostrar_calendario(ui, event):
-    ui.calendar.show()
-    QtWidgets.QTextEdit.mousePressEvent(ui.textEdit_18, event)
+# def validar_fecha(clase_instancia, texto, widget_padre, label_name, distancia):
+#     eliminar_label_existente(clase_instancia, label_name)
+#     try:
+#         datetime.strptime(texto, "%d/%m/%Y")  # formato de fecha dd/mm/yyyy
+#         print("Fecha válida")
+#         return True
+#     except ValueError:
+#         label = añadir_label(widget_padre, "Fecha incorrecta", 130, distancia, 351, 31, label_name)
+#         setattr(clase_instancia, label_name, label)
+#         print("Fecha incorrecta")
+#         return False
+# def mostrar_calendario(ui, event):
+#     ui.calendar.show()
+#     QtWidgets.QTextEdit.mousePressEvent(ui.textEdit_18, event)
 
-def colocar_fecha(ui, date):
-    fecha = date.toString("dd/MM/yyyy")  
-    ui.textEdit_18.setText(fecha)
-    ui.calendar.hide()
+# def colocar_fecha(ui, date):
+#     fecha = date.toString("dd/MM/yyyy")  
+#     ui.textEdit_18.setText(fecha)
+#     ui.calendar.hide()
 
-def abrir_imagen(ui,event):
-    opciones = QFileDialog.Options()
-    archivo, _ = QFileDialog.getOpenFileName(None, "Seleccionar Imagen", "", "Imágenes (*.png *.jpg *.jpeg *.bmp)", options=opciones)
+# def abrir_imagen(ui,event):
+#     opciones = QFileDialog.Options()
+#     archivo, _ = QFileDialog.getOpenFileName(None, "Seleccionar Imagen", "", "Imágenes (*.png *.jpg *.jpeg *.bmp)", options=opciones)
     
-    if archivo:
-        pixmap = QPixmap(archivo)
-        pixmap = pixmap.scaled(ui.label_157.width(), ui.label_157.height(), aspectRatioMode=1)
-        ui.label_157.setPixmap(pixmap)
+#     if archivo:
+#         pixmap = QPixmap(archivo)
+#         pixmap = pixmap.scaled(ui.label_157.width(), ui.label_157.height(), aspectRatioMode=1)
+#         ui.label_157.setPixmap(pixmap)
 
 
 def action_button(self, button_id):
@@ -482,87 +483,23 @@ def action_button(self, button_id):
                 self.textEdit_2.setText(self.real_text)
                 self.textEdit_10.setText(self.real_text_3)
                 self.textEdit_13.setText(self.real_text_4)
+
+
+                            
+                          
                 
-        elif button_id == 14:
-                self.cambianteTodo.setCurrentWidget(self.home)
-                self.PaginasHome.setCurrentWidget(self.pag_agregar_paciente)
-        
-        elif button_id == 15:
-                self.cambianteTodo.setCurrentWidget(self.home)
-                self.PaginasHome.setCurrentWidget(self.pag_ver_paciente)
-        
-        elif button_id == 16:
-                self.cambianteTodo.setCurrentWidget(self.home)
-                self.PaginasHome.setCurrentWidget(self.pag_eliminar_paciente)
-        elif button_id == 17:
-                self.cambianteTodo.setCurrentWidget(self.home)
-                self.PaginasHome.setCurrentWidget(self.pag_editar_paciente)
-                self.Paginas_pag_editarpaciente.setCurrentWidget(self.Pag05_pageditarpaciente)
-        elif button_id == 18:
-                campos = {
-                        'nombre': (self.textEdit_20.toPlainText().strip(), self.widget_34, 'label_nombre', 47),
-                        'apellido': (self.textEdit_19.toPlainText().strip(), self.widget_33, 'label_apellido', 50),
-                        'domicilio': (self.textEdit_14.toPlainText().strip(), self.widget_29, 'label_domicilio', 50),
-                        'dni': (self.textEdit_21.toPlainText().strip(), self.widget_35, 'label_dni', 50),
-                        'correo': (self.textEdit_16.toPlainText().strip(), self.widget_31, 'label_correo', 50),
-                        'fecha': (self.textEdit_18.toPlainText().strip(), self.widget_32, 'label_fecha', 50),
-                        'telefono': (self.textEdit_15.toPlainText().strip(), self.widget_30, 'label_telefono', 50),
-                }
 
-                #Variables para la validacion de datos
-                nombre_valido = apellido_valido = domicilio_valido = dni_valido = correo_valido = fecha_valida = telefono_valido = False
-                campos_vacios = False
 
-                for key, (valor, widget, label_name, distancia) in campos.items():
-                        # Siempre eliminar label anterior
-                        eliminar_label_existente(self, label_name)
 
-                        #Validar si está vacío
-                        if not valor:
-                                label = añadir_label(widget, f"{key.capitalize()} no puede estar vacío", 130, distancia, 351, 31, label_name)
-                                setattr(self, label_name, label)
-                                campos_vacios = True
-                                continue  # No sigue validando formato si está vacío
 
-                        #Validar formato específico según campo
-                        if key == 'nombre':
-                                nombre_valido = validar_solo_letras(valor, widget, label_name, self, distancia, "Nombre")
 
-                        elif key == 'apellido':
-                                apellido_valido = validar_solo_letras(valor, widget, label_name, self, distancia, "Apellido")
 
-                        elif key == 'domicilio':
-                                domicilio_valido = validar_solo_letras(valor, widget, label_name, self, distancia, "Domicilio")
 
-                        elif key == 'dni':
-                                if not (valor.isdigit() and len(valor) == 8):
-                                        label = añadir_label(widget, "DNI incorrecto", 130, distancia, 351, 31, label_name)
-                                        setattr(self, label_name, label)
-                                        dni_valido = False
-                                else:
-                                        print("DNI correcto")
-                                        dni_valido = True
 
-                        elif key == 'correo':
-                                correo_valido = validar_correo(self, valor, widget, label_name, distancia)
+#def onMousePressOutside(self, event):
+# Comprobar si el clic es fuera del QTextEdit y del QListWidget
+#if self.listWidget.isVisible():
+        #if not (self.listWidget.geometry().contains(event.pos()) or self.textEdit.geometry().contains(event.pos())):
+                #self.listWidget.hide()
+#event.accept()
 
-                        elif key == 'fecha':
-                                fecha_valida = validar_fecha(self, valor, widget, label_name, distancia)
-
-                        elif key == 'telefono':
-                                if not (valor.isdigit() and len(valor) == 9):
-                                        label = añadir_label(widget, "Teléfono incorrecto", 130, distancia, 351, 31, label_name)
-                                        setattr(self, label_name, label)
-                                        telefono_valido = False
-                                else:
-                                        print("Teléfono correcto")
-                                        telefono_valido = True
-
-                # Si hay algún campo vacío
-                if campos_vacios:
-                        print("Al menos un campo está vacío")
-                        return
-
-                # Si todos los datos han sido ingresados correctamente
-                if all([nombre_valido, apellido_valido, domicilio_valido, dni_valido, correo_valido, fecha_valida, telefono_valido]):
-                        print("Todos los datos ingresados son válidos")
