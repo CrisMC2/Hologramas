@@ -1701,7 +1701,7 @@ class Ui_fondoMain(object):
 "}")
         self.pushButton_44.setObjectName("pushButton_44")
         self.label_46 = QtWidgets.QLabel(self.pag_agregar_paciente2)
-        self.label_46.setGeometry(QtCore.QRect(560, 30, 151, 41))
+        self.label_46.setGeometry(QtCore.QRect(570, 30, 201, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
         font.setBold(True)

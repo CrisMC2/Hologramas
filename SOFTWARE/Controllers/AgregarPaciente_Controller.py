@@ -129,8 +129,33 @@ def subir_radiografia(self, event):
         rutas_texto = '\n'.join(self.radiografias_paths)
         self.textEdit_17.setText(rutas_texto)
 
+def obtener_proximo_id():
+    conn = conectar()
+    cursor = conn.cursor()
+    
+    # Obtener el ID más alto actual
+    cursor.execute("SELECT MAX(id_paciente) FROM PACIENTES")
+    resultado = cursor.fetchone()
+    
+    # Si no hay pacientes, el ID comienza desde 1
+    if resultado[0] is None:
+        proximo_id = 1
+    else:
+        proximo_id = resultado[0] + 1
+    
+    conn.close()
+    return proximo_id
+
 def action_button2(self, button_id):
         if button_id == 14:
+                # Obtener el próximo ID de paciente
+                proximo_id = obtener_proximo_id()
+                
+                # Mostrar el próximo ID en el label_35 con el formato deseado
+                self.label_35.setText(f"NEW EXP - N° {proximo_id}")
+                # Cambiar el color del texto a blanco
+                self.label_35.setStyleSheet("color: #e6cab8")
+
                 self.cambianteTodo.setCurrentWidget(self.home)
                 self.PaginasHome.setCurrentWidget(self.pag_agregar_paciente)
         
@@ -146,6 +171,9 @@ def action_button2(self, button_id):
                 self.PaginasHome.setCurrentWidget(self.pag_editar_paciente)
                 self.Paginas_pag_editarpaciente.setCurrentWidget(self.Pag05_pageditarpaciente)
         elif button_id == 18:
+            # Obtener el próximo ID de paciente antes de la validación
+            proximo_id = obtener_proximo_id()
+
             campos = {
                 'nombre': (self.textEdit_20.toPlainText().strip(), self.widget_34, 'label_nombre', 47),
                 'apellido': (self.textEdit_19.toPlainText().strip(), self.widget_33, 'label_apellido', 50),
@@ -160,6 +188,7 @@ def action_button2(self, button_id):
             nombre_valido = apellido_valido = domicilio_valido = dni_valido = correo_valido = fecha_valida = telefono_valido = False
             campos_vacios = False
 
+            # Validación de los campos
             for key, (valor, widget, label_name, distancia) in campos.items():
                 eliminar_label_existente(self, label_name)
 
@@ -190,15 +219,16 @@ def action_button2(self, button_id):
                         label = añadir_label(widget, "Teléfono incorrecto", 130, distancia, 351, 31, label_name)
                         setattr(self, label_name, label)
 
+            # Si algún campo está vacío, se detiene el proceso
             if campos_vacios:
                 print("Al menos un campo está vacío")
                 return
 
+            # Si todos los campos son válidos
             if all([nombre_valido, apellido_valido, domicilio_valido, dni_valido, correo_valido, fecha_valida, telefono_valido]):
                 print("Todos los datos ingresados son válidos")
 
-                #  Obtener datos para guardar en la base de datos
-                id_paciente = None  # Se puede generar automáticamente en la BD
+                # Obtener los datos para guardar en la base de datos
                 apellidos = self.textEdit_19.toPlainText().strip()
                 nombre = self.textEdit_20.toPlainText().strip()
                 fecha_creacion = datetime.now().strftime("%Y-%m-%d")  # Fecha actual
@@ -206,9 +236,9 @@ def action_button2(self, button_id):
                 telefono = self.textEdit_15.toPlainText().strip()
                 email = self.textEdit_16.toPlainText().strip()
                 identificacion = self.textEdit_21.toPlainText().strip()
-                
-                foto_path = self.foto_path  #  Obtener la ruta en lugar de llamar a .pixmap()
-                radiografia_path = self.textEdit_17.toPlainText().strip()  #  Obtener la radiografía desde el QTextEdit
+
+                foto_path = self.foto_path  # Obtener la ruta en lugar de llamar a .pixmap()
+                radiografia_path = self.textEdit_17.toPlainText().strip()  # Obtener la radiografía desde el QTextEdit
                 radiografias_paths = self.radiografias_paths
 
                 if not foto_path or not radiografias_paths:
@@ -218,12 +248,12 @@ def action_button2(self, button_id):
                 # Guardar en la base de datos
                 for radiografia_path in radiografias_paths:
                     agregar_paciente(
-                        id_paciente, apellidos, nombre, fecha_creacion,
+                        apellidos, nombre, fecha_creacion,
                         domicilio, telefono, email, identificacion,
                         foto_path, radiografia_path
                     )
 
-                print(f" Paciente {nombre} {apellidos} agregado correctamente.")
+                print(f"Paciente {nombre} {apellidos} agregado correctamente.")
 
                 # Limpiar los campos después de agregar el paciente
                 self.textEdit_19.clear()  # Apellido
@@ -239,12 +269,10 @@ def action_button2(self, button_id):
                 self.foto_path = ""
                 self.label_157.setPixmap(QtGui.QPixmap()) 
 
-                # Despues de agregar al paciente va a sus radiografias
+                # Después de agregar al paciente va a su página de radiografías
                 self.cambianteTodo.setCurrentWidget(self.home)
                 self.PaginasHome.setCurrentWidget(self.pag_agregar_paciente2)
-
-
-
-
-
-                        
+                self.label_46.setText(str(f">> EXP{proximo_id}"))   # Muestra el id del paciente recién agregado
+                self.label_230.setText(str(f" EXP - N° {proximo_id}"))
+                self.label_46.setStyleSheet("color: #e6cab8; font-size: 20px; ")
+                self.label_230.setStyleSheet("color: #e6cab8")

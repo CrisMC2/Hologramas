@@ -127,7 +127,7 @@ def agregar_medico(nombre, contraseña, email, description='No hay descripción 
     conn.commit()
     conn.close()
 #d
-def agregar_paciente(id_paciente, apellidos, nombre, fecha_creacion, domicilio, telefono, email, identificacion, foto_path, radiografia_path):
+def agregar_paciente(apellidos, nombre, fecha_creacion, domicilio, telefono, email, identificacion, foto_path, radiografia_path):
     conn = conectar()
     cursor = conn.cursor()
     
@@ -138,7 +138,12 @@ def agregar_paciente(id_paciente, apellidos, nombre, fecha_creacion, domicilio, 
     if resultado[0] > 0:
         print(f"El paciente con identificacion {identificacion} ya está registrado. No se añadirá este paciente.")
         conn.close()
-        return
+        return None  # Si ya está registrado, no se agrega
+    
+    # Obtener el último ID para incrementar el nuevo
+    cursor.execute("SELECT MAX(id_paciente) FROM PACIENTES")
+    max_id = cursor.fetchone()[0] or 0  # Si no existe, comenzamos desde 0
+    id_paciente = max_id + 1
     
     # Leer imagen y radiografía en binario
     with open(foto_path, 'rb') as f:
@@ -158,8 +163,10 @@ def agregar_paciente(id_paciente, apellidos, nombre, fecha_creacion, domicilio, 
     
     conn.commit()
     conn.close()
-    print(f"Paciente {nombre} {apellidos} agregado correctamente.")
-
+    
+    print(f"Paciente {nombre} {apellidos} agregado correctamente con ID {id_paciente}.")
+    
+    return id_paciente  # Devuelve el ID generado
 
 def agregar_guardados(email):
     conn = conectar()
