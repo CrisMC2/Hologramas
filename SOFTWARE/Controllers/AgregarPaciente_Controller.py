@@ -68,6 +68,22 @@ def validar_fecha(clase_instancia, texto, widget_padre, label_name, distancia):
         setattr(clase_instancia, label_name, label)
         print("Fecha incorrecta")
         return False
+    
+def validar_direccion(texto, widget_padre, label_name, clase_instancia, distancia, parametro):
+    eliminar_label_existente(clase_instancia, label_name)
+    
+    # Acepta letras, números, espacios, puntos, comas, guiones, numeral y acentos
+    patron = r"^[\w\s\.\#\-\u00C0-\u017F\,]+$"
+    
+    if not re.match(patron, texto):
+        label = añadir_label(widget_padre, f"{parametro} incorrecto ingresado", 130, distancia, 351, 31, label_name)
+        setattr(clase_instancia, label_name, label)
+        print(f"{parametro} incorrecto ingresado")
+        return False
+    else:
+        print(f"{parametro} correcto ingresado")
+        return True
+
 def mostrar_calendario(ui, event):
     ui.calendar.show()
     QtWidgets.QTextEdit.mousePressEvent(ui.textEdit_18, event)
@@ -92,21 +108,26 @@ def abrir_imagen(self, event):
         # Guardar la ruta del archivo para su uso posterior
         self.foto_path = archivo
 
+def subir_radiografia(self, event):
+    # Inicializa la lista si no existe aún
+    if not hasattr(self, 'radiografias_paths'):
+        self.radiografias_paths = []
 
-def subir_radiografia(ui, event):
-    # Obtener la ruta del archivo DICOM
-    ruta_archivo, _ = QFileDialog.getOpenFileName(
-        parent=None,  # Evita el error de tipo
-        caption="Seleccionar radiografía DICOM",
-        directory="",  # Carpeta inicial
-        filter="Archivos DICOM (*.dcm)"  # Filtrar solo archivos .dcm
+    rutas_archivos, _ = QFileDialog.getOpenFileNames(
+        parent=None,
+        caption="Seleccionar radiografías DICOM",
+        directory="",
+        filter="Archivos DICOM (*.dcm)"
     )
-    
-    # Si el usuario seleccionó un archivo, actualizar QTextEdit
-    if ruta_archivo:
-        print(f"Radiografía seleccionada: {ruta_archivo}")
-        ui.textEdit_17.setText(ruta_archivo)  # Mostrar la ruta en textEdit_17
 
+    if rutas_archivos:
+        print(f"Radiografías seleccionadas: {rutas_archivos}")
+
+        self.radiografias_paths.extend(rutas_archivos)
+        self.radiografias_paths = list(set(self.radiografias_paths))  # eliminar duplicados
+
+        rutas_texto = '\n'.join(self.radiografias_paths)
+        self.textEdit_17.setText(rutas_texto)
 
 def action_button2(self, button_id):
         if button_id == 14:
@@ -153,7 +174,7 @@ def action_button2(self, button_id):
                 elif key == 'apellido':
                     apellido_valido = validar_solo_letras(valor, widget, label_name, self, distancia, "Apellido")
                 elif key == 'domicilio':
-                    domicilio_valido = validar_solo_letras(valor, widget, label_name, self, distancia, "Domicilio")
+                    domicilio_valido = validar_direccion(valor, widget, label_name, self, distancia, "Domicilio")
                 elif key == 'dni':
                     dni_valido = valor.isdigit() and len(valor) == 8
                     if not dni_valido:
@@ -188,17 +209,19 @@ def action_button2(self, button_id):
                 
                 foto_path = self.foto_path  #  Obtener la ruta en lugar de llamar a .pixmap()
                 radiografia_path = self.textEdit_17.toPlainText().strip()  #  Obtener la radiografía desde el QTextEdit
+                radiografias_paths = self.radiografias_paths
 
-                if not foto_path or not radiografia_path:
-                    print("Foto o radiografía no seleccionadas")
+                if not foto_path or not radiografias_paths:
+                    print("Foto o radiografías no seleccionadas")
                     return
 
                 # Guardar en la base de datos
-                agregar_paciente(
-                    id_paciente, apellidos, nombre, fecha_creacion,
-                    domicilio, telefono, email, identificacion,
-                    foto_path, radiografia_path
-                )
+                for radiografia_path in radiografias_paths:
+                    agregar_paciente(
+                        id_paciente, apellidos, nombre, fecha_creacion,
+                        domicilio, telefono, email, identificacion,
+                        foto_path, radiografia_path
+                    )
 
                 print(f" Paciente {nombre} {apellidos} agregado correctamente.")
 
@@ -214,6 +237,13 @@ def action_button2(self, button_id):
 
                 # También limpia la variable de la foto
                 self.foto_path = ""
+                self.label_157.setPixmap(QtGui.QPixmap()) 
+
+                # Despues de agregar al paciente va a sus radiografias
+                self.cambianteTodo.setCurrentWidget(self.home)
+                self.PaginasHome.setCurrentWidget(self.pag_agregar_paciente2)
+
+
 
 
 
