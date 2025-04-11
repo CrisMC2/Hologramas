@@ -268,11 +268,3 @@ def action_button2(self, button_id):
                 # También limpia la variable de la foto
                 self.foto_path = ""
                 self.label_157.setPixmap(QtGui.QPixmap()) 
-
-                # Después de agregar al paciente va a su página de radiografías
-                self.cambianteTodo.setCurrentWidget(self.home)
-                self.PaginasHome.setCurrentWidget(self.pag_agregar_paciente2)
-                self.label_46.setText(str(f">> EXP{proximo_id}"))   # Muestra el id del paciente recién agregado
-                self.label_230.setText(str(f" EXP - N° {proximo_id}"))
-                self.label_46.setStyleSheet("color: #e6cab8; font-size: 20px; ")
-                self.label_230.setStyleSheet("color: #e6cab8")
