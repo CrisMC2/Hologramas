@@ -1863,6 +1863,7 @@ class Ui_fondoMain(object):
 "    background-color: transparent;\n"
 "}")
         self.label_58.setObjectName("label_58")
+        
         self.widget_6 = QtWidgets.QWidget(self.pag_ver_paciente)
         self.widget_6.setGeometry(QtCore.QRect(40, 180, 1071, 61))
         self.widget_6.setStyleSheet("\n"
@@ -5671,7 +5672,7 @@ class Ui_fondoMain(object):
         self.label_2.setGeometry(QtCore.QRect(20, 20, 451, 211))
         self.label_2.setText("")
         self.label_2.setPixmap(QtGui.QPixmap("Hologramas/icon/columna.jpeg"))
-        self.label_2.setScaledContents(True)
+        self.label_2.setScaledContents(True).
         self.label_2.setObjectName("label_2")
         self.pushButton_41 = QtWidgets.QPushButton(self.Pag04_pageditarpaciente)
         self.pushButton_41.setGeometry(QtCore.QRect(370, 670, 201, 51))

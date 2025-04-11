@@ -172,7 +172,7 @@ def action_button2(self, button_id):
                 self.Paginas_pag_editarpaciente.setCurrentWidget(self.Pag05_pageditarpaciente)
         elif button_id == 18:
             # Obtener el próximo ID de paciente antes de la validación
-            proximo_id = obtener_proximo_id()
+            # proximo_id = obtener_proximo_id()
 
             campos = {
                 'nombre': (self.textEdit_20.toPlainText().strip(), self.widget_34, 'label_nombre', 47),
