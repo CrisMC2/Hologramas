@@ -5,19 +5,29 @@ append_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(append_folder)
 
 from PyQt5.QtWidgets import QFileDialog, QMenu, QAction
-from DICOM.abstracts.Ui.AbsMenus import AbsMenus
-from DICOM.abstracts.Ui.AbsActions import AbsActions
-from DICOM.abstracts.Ui.AbsUploadData import AbsUploadData
-from DICOM.utils.SignalData import Emisor_text, Emisor_list
+from abstracts.Ui.AbsMenus import AbsMenus
+from abstracts.Ui.AbsActions import AbsActions
+from abstracts.Ui.AbsUploadData import AbsUploadData
+from utils.SignalData import Emisor_text, Emisor_list
 
 class MenuUploadFiles(AbsMenus, AbsActions):
+    """
+    
+    """    
+    
     def __init__(self, directory_search_default: str, type_file_filter: str, keep_directory_default: bool = False):
         super().__init__()
         
-        self.inst_folder_uploader = FolderUploader(directory_search_default, type_file_filter, keep_directory_default) #Instanciamos la búsqueda de "FOLDER"
-        self.inst_file_uploader = FileUploader(directory_search_default, type_file_filter, keep_directory_default)  #Instanciamos la búsqueda de "FILE"
+        self.obj_folder_uploader = FolderUploader(directory_search_default= directory_search_default, 
+                                                   type_file_filter= type_file_filter, 
+                                                   keep_directory_initial= keep_directory_default) #Instanciamos la búsqueda de "FOLDER"
+        self.obj_file_uploader = FileUploader(directory_search_default= directory_search_default, 
+                                               type_file_filter= type_file_filter, 
+                                               keep_directory_initial= keep_directory_default)  #Instanciamos la búsqueda de "FILE"
+        
         self.emisor_text = Emisor_text() #Instancias la clase que nos permitirá emitir la señal
         self.emisor_list = Emisor_list()
+    
     #Herencia de AbsMenus
     def create_menu(self):
         menuUploadFiles = QMenu()
@@ -37,8 +47,8 @@ class MenuUploadFiles(AbsMenus, AbsActions):
     
     #Herencia de AbsMenus
     def connections(self):
-        self.act_upload_folder.triggered.connect(self.inst_folder_uploader.upload)
-        self.act_upload_file.triggered.connect(self.inst_file_uploader.upload)
+        self.act_upload_folder.triggered.connect(self.obj_folder_uploader.upload)
+        self.act_upload_file.triggered.connect(self.obj_file_uploader.upload)
         
         self.act_upload_folder.triggered.connect(lambda : self.toggle_check_action(self.act_upload_folder, self.list_actions))
         self.act_upload_file.triggered.connect(lambda : self.toggle_check_action(self.act_upload_file, self.list_actions))
@@ -63,8 +73,8 @@ class MenuUploadFiles(AbsMenus, AbsActions):
     El método get_path está pensado para que se devuelva la dirección 
     """
     def get_path(self):
-        folder = self.inst_folder_uploader.get_directory()
-        files = self.inst_file_uploader.get_directory()
+        folder = self.obj_folder_uploader.get_directory()
+        files = self.obj_file_uploader.get_directory()
         
         if folder:
             self.emisor_text.emit_signal(folder)

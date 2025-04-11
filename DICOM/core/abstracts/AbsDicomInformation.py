@@ -26,7 +26,7 @@ class AbsDicomInformation (ABC):
                                     los cuales dependiendo de la instancia devuelvan uno u otro valor.
     """
     @abstractmethod
-    def get_information(self):
+    def get_information(self, *args, **kwargs) -> dict:
         pass
     
     
@@ -43,7 +43,7 @@ class AbsDicomInformation (ABC):
                                     los cuales dependiendo de la instancia  uno u otro valor.
     """
     @abstractmethod
-    def set_information(self):
+    def set_information(self, *args, **kwargs):
         pass
 
 class AbsDicomAnonimize(ABC):

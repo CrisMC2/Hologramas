@@ -5,7 +5,7 @@ import pydicom as dicom
     #Esto hace que las clases puedan usar por defecto el método proporcionado, o sobreescribirlo si así lo desean
 
 class AbsDicomRead(ABC):
-    def read_dicom(self, path_file):
+    def read_dicom(self, path_file) -> dicom.FileDataset | None:
         try:
             return dicom.dcmread(path_file)
         except:

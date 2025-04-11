@@ -8,6 +8,10 @@ from controllers import subViewDicomController as Ui_SubView
 
 if __name__ == "__main__":
     app = Ui_SubView.QApplication([])
+    
+    with open("DICOM\\resources\\styles\\proxy_widget_style.css", "r") as f:
+        app.setStyleSheet(f.read())
+    
     window = Ui_SubView.Ui_subViewDicomController()
     window.show()
     

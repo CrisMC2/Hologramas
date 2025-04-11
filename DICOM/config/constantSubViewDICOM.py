@@ -25,6 +25,8 @@ setFrameStyle(QFrame.NoFrame): Elimina el borde del QGraphicsView
 #=================================================================================================
 #Configuración Comportamiento de GraphicsView
 
+SIZE_POLICY_DEFAULT = QSizePolicy.Expanding
+
 DRAG_MODE_DEFAULT     = QGraphicsView.ScrollHandDrag
 """
 - setDragMode(QGraphicsView.NoDrag): Desactiva el arrastre de la escena.
@@ -72,7 +74,7 @@ La configuración DEFAULT_ROWS_LAYOUT permite configurar la cantidad de rows (fi
 que tendrá el GridLayout.
 """
 
-DEFAULT_COLS_LAYOUT = 3
+DEFAULT_COLS_LAYOUT = 4
 """
 La configuración DEFAULT_COLS_LAYOUT permite configurar la cantidad de cols (columnas)
 que tendrá el GridLayout.
@@ -84,8 +86,8 @@ LIST_DICT_ROWS_STRETCH = [{"row": 1, "stretch": 1}, {"row": 2, "stretch": 1},
                              {"row": 7, "stretch": 1}, {"row": 8, "stretch": 5},
                              {"row": 9, "stretch": 1}, {"row": 10, "stretch": 1}] #Lista de diccionarios.
 
-LIST_DICT_COLS_STRETCH = [{"col": 1, "stretch": 2}, {"col": 1, "stretch": 6},
-                              {"col": 3, "stretch": 2}]
+LIST_DICT_COLS_STRETCH = [{"col": 1, "stretch": 1}, {"col": 2, "stretch": 7},
+                              {"col": 3, "stretch": 1}, {"col": 4, "stretch":1}]
 
 DEFAULT_SPACING_MAIN = 0
 
