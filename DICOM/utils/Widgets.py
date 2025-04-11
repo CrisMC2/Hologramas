@@ -10,8 +10,8 @@ from PyQt5.QtWidgets import QWidget, QLayout, QGraphicsProxyWidget
 
 class Widget(AbsContainers):
     def __init__(self):
-        self.q_widget = QGraphicsProxyWidget()
-        # self.q_widget = QWidget()
+        self.q_widget = QWidget()
+        self.q_widget_container = QGraphicsProxyWidget()
     
     def configure_features(self, margin_left: int = 0, margin_top: int = 0, 
                            margin_right: int = 0, margin_bottom: int = 0):

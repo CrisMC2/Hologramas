@@ -6,6 +6,8 @@ class ViewAxial(AbsDicomView):
     def define_aspect(self, label: str):
         pass
     
+    def create_view(self, array_dicoms: np.array[int, int, int], i: int):
+        return array_dicoms[i,:,:]
     """
     La implementación de create_view en ViewAxial
     utiliza la matriz de la vista creada mostrando solo una capa del espectro 3D a la vez.
@@ -35,12 +37,13 @@ class ViewAxial(AbsDicomView):
     
     
     """
-    def create_view(self, array_dicoms: np.array, i: int):
-        return array_dicoms[i,:,:]
     
 class ViewSagittal(AbsDicomView):
     def define_aspect(self, label: str):
         pass
+    
+    def create_view(self, array_dicoms: np.array[int, int, int], i: int):
+        return array_dicoms[:,:,i]
     
     """
     En el caso de ViewSagittal, que es la vista desde la perspectiva de "perfil",
@@ -61,13 +64,13 @@ class ViewSagittal(AbsDicomView):
     La hoja que está frente a ti sería la persona, y la de perfil sería como la cámara. Es como si estuvieras entrando a una persona desde un lateral hasta otro.
     
     """
-    def create_view(self, array_dicoms: np.array, i: int):
-        return array_dicoms[:,:,i]
 
 class ViewCoronal(AbsDicomView):
     def define_aspect(self, label: str):
         pass
     
+    def create_view(self, array_dicoms: np.array[int, int, int], i: int):
+        return array_dicoms[:,i,:]
     """
     En el caso de ViewCoronal, que es la vista desde la perspectiva de "frente",
     debemos hacer que la matriz solo muestre una vista de frente.
@@ -85,5 +88,3 @@ class ViewCoronal(AbsDicomView):
     Si repites el mismo proceso, pero mirando a la caja desde el mismo sentido desde el que avanza la hoja, verás como esta pasa por todo de una forma "frontal".
     Ahora imagina que la caja es el cuerpo humano, y la hoja el proceso de la tomografía.
     """
-    def create_view(self, array_dicoms: np.array, i: int):
-        return array_dicoms[:,i,:]

@@ -5,25 +5,28 @@ _append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(_append)
 
 from typing import Union
-from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsLinearLayout, QGraphicsProxyWidget, QWidget, QLayout
+from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsLinearLayout, QGraphicsProxyWidget, QWidget, QLayout, QFrame, QSizePolicy
 from PyQt5.QtGui import QBrush
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSize
 
-from abstracts.Ui.AbsGraphics import AbsGraphicsView, AbsGraphicsScene, AbsGraphicsWidget
+from abstracts.Ui.AbsGraphics import AbsGraphicsView, AbsGraphicsScene, AbsGraphicsWidget, AbsGraphicsProxyWidget
 
 
 class GraphicsView(AbsGraphicsView):
     def __init__(self):
         super().__init__()
     
-    def configure_features(self, scroll_bar_policy: Qt, background: QBrush, frame_style):
+    def configure_features(self, scroll_bar_policy: Qt, background: QBrush, 
+                           frame_style: QFrame):
         self.q_view.setHorizontalScrollBarPolicy(scroll_bar_policy)
         self.q_view.setVerticalScrollBarPolicy(scroll_bar_policy)
         self.q_view.setBackgroundBrush(background)
         self.q_view.setFrameStyle(frame_style)
         
 
-    def configure_behaivor(self, drag, interactive: bool, resize_anchor: QGraphicsView.ViewportAnchor, portUpdateMode: QGraphicsView.ViewportUpdateMode):
+    def configure_behaivor(self, size_policy: QSizePolicy, drag, interactive: bool, resize_anchor: QGraphicsView.ViewportAnchor, 
+                           portUpdateMode: QGraphicsView.ViewportUpdateMode):
+        # self.q_view.setSizePolicy(size_policy, size_policy)
         self.q_view.setDragMode(drag)
         self.q_view.setInteractive(interactive)
         self.q_view.setResizeAnchor(resize_anchor)
@@ -57,8 +60,9 @@ class GraphicsScene(AbsGraphicsScene):
         super().__init__()
     
     
-    def configure_features(self, scene_rect: tuple[int], background: QBrush):
-        self.q_scene.setSceneRect(scene_rect[0], scene_rect[1], scene_rect[2], scene_rect[3])
+    def configure_features(self, size: tuple[int, int], scene_rect: tuple[int, int, int, int], background: QBrush):
+        # self.q_scene.setSceneRect(0, 0, size[0], size[1])
+        # self.q_scene.setSceneRect(scene_rect[0], scene_rect[1], scene_rect[2], scene_rect[3])
         self.q_scene.setBackgroundBrush(background)
     """"
     - Parámetros:
@@ -99,14 +103,14 @@ class GraphicsWidget(AbsGraphicsWidget):
     """  
     def __init__(self, layout: QLayout):
         super().__init__()
-        self.q_layout = layout
-        self.q_widget.setLayout(self.q_layout)   
+        self.q_layout = layout #Establecemos el Layout como parte de la clase
+        self.q_widget.setLayout(self.q_layout)   #Seteamos el layout al widget
         
-    def configure_features(self):
-        pass
+    def configure_features(self, geometry: QGraphicsScene):
+        self.q_widget.setGeometry(geometry.sceneRect())
     
-    def configure_behaivor(self):
-        pass
+    def configure_behaivor(self, size_policy: QSizePolicy):
+        self.q_widget.setSizePolicy(size_policy, size_policy)
 
     def insert_element(self, elements: Union[list[QWidget], list[QGraphicsProxyWidget], list[QLayout]]):            
         for element in elements:
@@ -152,4 +156,31 @@ class GraphicsWidget(AbsGraphicsWidget):
             Por ello, si deseamos insertar el elemento QLabel, debemos primero crear un elemento QGraphicsProxyWidget, 
             en este insertaremos el elemento QLabel, y luego añadiremos el elemento QGraphicsProxyWidget en el QGraphicsWidget.
 
+    """
+    
+class GraphicsProxyWidget(AbsGraphicsProxyWidget):
+    def __init__(self):
+        super().__init__()
+    
+    def configure_features(self, position_x: int, position_y: int):
+        self.q_proxy_widget.setPos(position_x, position_y)
+    
+    def configure_behaivor(self, flag: bool):
+        self.q_proxy_widget.setFlag(flag)
+    
+    def insert_element(self, element: QWidget):
+        if element:
+            self.q_proxy_widget.setWidget(element)
+    
+    """
+    La instancia del método insert_element en la clase GraphicsProxyWidget
+    tiene por finalidad setear el widget correspondiente al QGraphicsProxyWidget.
+    
+    - Ello significa que no se esperan múltiples argumentos, sino que solo uno que sea
+        como el layout (único) que posee un widget.
+        
+    - Parámetros:
+        - self (GraphicsProxyWidget):   Instancia de la clase GraphicsProxyWidget    
+        - element (QWidget)     :       Elemento de tipo Widget que será insertado en el QGraphicsProxyWidget
+        
     """

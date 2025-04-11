@@ -6,7 +6,7 @@ sys.path.append(_append)
 
 #Importación de partes de librerías
 from abc import abstractmethod
-from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget
+from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget, QGraphicsProxyWidget
 
 #Importación de clases del mismo proyecto
 from abstracts.Ui.AbsContainers import AbsContainers
@@ -23,7 +23,7 @@ class AbsGraphicsView(AbsContainers):
 
 class AbsGraphicsScene(AbsContainers):
     def __init__(self):
-        self.q_scene = QGraphicsScene()
+        self.q_scene = QGraphicsScene(0,0,1000,800)
     """
     Aquí generamos el objeto QGraphicsScene sobre el cual se ejecutarán 
     todos los métodos
@@ -41,3 +41,10 @@ class AbsGraphicsWidget(AbsContainers):
     @abstractmethod
     def convert_correct_type_element(self, element):
         pass
+    
+class AbsGraphicsProxyWidget(AbsContainers):
+    """
+    La clase abstracta AbsGraphicsProxyWidget tiene por finalidad
+    """
+    def __init__(self):
+        self.q_proxy_widget = QGraphicsProxyWidget()

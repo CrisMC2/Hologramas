@@ -1,16 +1,20 @@
 import numpy as np
+import os
+import sys
+
+_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 
 from PyQt5.QtGui import QImage, QPixmap
 
-from DICOM.abstracts.Ui.AbsPixmap import AbsProccessPixmap
+from abstracts.Ui.AbsPixmap import AbsProccessPixmap
 
-class CreatePixmap(AbsProccessPixmap):
+class Pixmap(AbsProccessPixmap):
     
     def create_pixmap(self, img_array: np.uint8) -> QPixmap:
         self.prepare_array(img_array)
         
         #QImage (data, width, height, bytesPerLine, format)
-        qimg = QImage(img_array, img_array.shape[0], img_array.shape[1], img_array.strides[1], QImage.Format_Grayscale8)
+        qimg = QImage(img_array, img_array.shape[0], img_array.shape[1], img_array.strides[0], QImage.Format_Grayscale8)
         img_pix_map = QPixmap.fromImage(qimg)
         
         return img_pix_map
