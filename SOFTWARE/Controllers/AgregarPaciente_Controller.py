@@ -5,6 +5,8 @@ from Modelos.Gmail import enviar_codigo_verificacion, verificar_codigo
 from PyQt5.QtCore import QTimer
 from Modelos.conexion import *
 from Modelos.conexion import obtener_guardados
+from Controllers.VerPaciente_Controller import *
+import Controllers.VerPaciente_Controller as ver_paciente
 from PyQt5.QtCore import Qt
 import re
 from datetime import datetime
@@ -130,144 +132,6 @@ def subir_radiografia(self, event):
         rutas_texto = '\n'.join(self.radiografias_paths)
         self.textEdit_17.setText(rutas_texto)
 
-pagina_actual = 1
-paginas = 0
-
-def actualizar_tabla(self, cambio):
-    global pagina_actual, paginas
-    paginas = numero_paginas()
-    nueva_actualizacion = pagina_actual + cambio
-    actualizar_botones(self, nueva_actualizacion, paginas)
-    pagina_actual = nueva_actualizacion
-    actualizar_tabla2(self)
-    enfocar_pagina_actual(self)
-
-def enfocar_pagina_actual(self):
-    botones = [
-        self.pushButton_27,
-        self.pushButton_28,
-        self.pushButton_29,
-        self.pushButton_179
-    ]
-    style_default = (
-        "QPushButton {"
-        "    background-position: center;"
-        "    background-repeat: no-repeat;"
-        "    background-size: contain;"
-        "    border: 2px solid #cccccc;"
-        "    color: white;"
-        "}"
-        "QPushButton:hover {"
-        "    background-color: #2980b9;"
-        "    color: white;"
-        "    border: 2px solid white;"
-        "}"
-    )
-
-    style_activo = (
-        "QPushButton {"
-        "    background-color: #3498db;"  # Color más notorio
-        "    background-position: center;"
-        "    background-repeat: no-repeat;"
-        "    background-size: contain;"
-        "    border: 2px solid white;"
-        "    color: white;"
-        "}"
-        "QPushButton:hover {"
-        "    background-color: #1e94e3;"
-        "    color: white;"
-        "    border: 2px solid white;"
-        "}"
-    )
-    for boton in botones:
-        if int(boton.text()) == pagina_actual:
-            boton.setStyleSheet(style_activo)
-        else:
-            boton.setStyleSheet(style_default)
-
-from PyQt5.QtGui import QPixmap
-
-def actualizar_tabla2(self):
-    global pagina_actual
-
-    style_1 = (
-        "QPushButton {\n"
-        "    background-color: #8ed04a;\n"
-        "    border: none;\n"
-        "    border-radius: 15px;\n"
-        "    color: black;\n"
-        "}\n"
-        "QPushButton:hover {\n"
-        "    background-color: rgba(255, 255, 255, 0.2);\n"
-        "}\n"
-        "QPushButton:pressed {\n"
-        "    background-color: rgba(255, 255, 255, 0.4);\n"
-        "}"
-    )
-
-    style_2 = (
-        "QPushButton {\n"
-        "    background-color: #dd3431;\n"
-        "    border: none;\n"
-        "    border-radius: 15px;\n"
-        "    color: black;\n"
-        "}\n"
-        "QPushButton:hover {\n"
-        "    background-color: rgba(255, 255, 255, 0.2);\n"
-        "}\n"
-        "QPushButton:pressed {\n"
-        "    background-color: rgba(255, 255, 255, 0.4);\n"
-        "}"
-    )
-
-    lista_1 = [self.label_49, self.label_59, self.label_60, self.label_61, self.pushButton_25, self.widget_6]
-    lista_2 = [self.label_55, self.label_65, self.label_66, self.label_67, self.pushButton_26, self.widget_7]
-    lista_3 = [self.label_56, self.label_68, self.label_69, self.label_70, self.pushButton_33, self.widget_8]
-    lista_4 = [self.label_71, self.label_72, self.label_73, self.label_74, self.pushButton_34, self.widget_9]
-    lista_5 = [self.label_75, self.label_76, self.label_77, self.label_78, self.pushButton_35, self.widget_10]
-    lista_general = [lista_1, lista_2, lista_3, lista_4, lista_5]
-
-    pacientes = obtener_pacientes_resumen(pagina_actual - 1)
-
-    for i in range(len(lista_general)):
-        elementos = lista_general[i]
-        if i < len(pacientes):
-            paciente = pacientes[i]
-            elementos[5].show()
-            # Convertir foto (bytes) a QPixmap
-            if paciente["foto"]:
-                pixmap = QPixmap()
-                pixmap.loadFromData(paciente["foto"])
-                elementos[0].setPixmap(pixmap)
-            else:
-                elementos[0].clear()
-            # Mostrar ID y nombre completo (manteniendo su estilo)
-            elementos[1].setText(f"EXP - N°{paciente['id']}")
-            elementos[1].setStyleSheet("color: white; font-size: 12px;")
-            elementos[1].setAlignment(Qt.AlignCenter)
-            elementos[2].setText(f"{paciente['nombre']} {paciente['apellidos']}")
-            elementos[2].setStyleSheet("color: white; font-size: 12px;")
-            elementos[2].setAlignment(Qt.AlignCenter)
-            elementos[3].setAlignment(Qt.AlignCenter)
-            # Estado: radiografía disponible o no
-            if paciente["radiografia"]:
-                elementos[3].setText("Apto")
-                # Solo cambia el color del texto para "Apto"
-                elementos[3].setStyleSheet("color: green; font-size: 10pt;")
-                elementos[4].setText("Start")
-                elementos[4].setStyleSheet(style_1)
-            else:
-                elementos[3].setText("Faltan recursos")
-                # Solo cambia el color del texto para "Faltan recursos"
-                elementos[3].setStyleSheet("color: red; font-size: 10pt;")
-                elementos[4].setText("Upload")
-                elementos[4].setStyleSheet(style_2)
-
-            elementos[4].setEnabled(True)
-        else:
-            elementos[5].hide()
-
-            
 def obtener_proximo_id():
     conn = conectar()
     cursor = conn.cursor()
@@ -285,75 +149,22 @@ def obtener_proximo_id():
     conn.close()
     return proximo_id
 
-def actualizar_botones(self, nueva_actualizacion, paginas):
-    self.pushButton_30.show()
-    self.pushButton_31.show()
-    self.label_50.show()
-    if paginas == 1:
-        self.pushButton_28.hide()
-        self.pushButton_29.hide()
-        self.pushButton_179.hide()
-        self.pushButton_30.hide()
-        self.pushButton_31.hide()
-        self.label_50.hide()
-    elif paginas == 2:
-        self.pushButton_29.hide()
-        self.pushButton_179.hide()
-        self.label_50.hide()
-        if nueva_actualizacion == paginas:
-            self.pushButton_30.hide()
-        else:
-            self.pushButton_31.hide()
-    elif paginas == 3:
-        self.pushButton_179.hide()
-        if nueva_actualizacion == paginas:
-            self.pushButton_30.hide()
-        elif nueva_actualizacion == paginas - 2:
-            self.pushButton_31.hide()
-    else:
-        if nueva_actualizacion == 1:
-            self.pushButton_31.hide()
-            self.pushButton_27.setText(str(nueva_actualizacion))
-            self.pushButton_28.setText(str(nueva_actualizacion+1))
-            self.pushButton_29.setText(str(nueva_actualizacion+2))
-            self.pushButton_179.setText(str(nueva_actualizacion+3))
-        elif nueva_actualizacion == paginas:
-            self.pushButton_30.hide()
-            self.pushButton_27.setText(str(nueva_actualizacion-3))
-            self.pushButton_28.setText(str(nueva_actualizacion-2))
-            self.pushButton_29.setText(str(nueva_actualizacion-1))
-            self.pushButton_179.setText(str(nueva_actualizacion))
-        elif nueva_actualizacion == paginas - 1:
-            self.pushButton_27.setText(str(nueva_actualizacion-2))
-            self.pushButton_28.setText(str(nueva_actualizacion-1))
-            self.pushButton_29.setText(str(nueva_actualizacion))
-            self.pushButton_179.setText(str(nueva_actualizacion+1))
-        elif nueva_actualizacion <= paginas - 2:
-            self.pushButton_27.setText(str(nueva_actualizacion-1))
-            self.pushButton_28.setText(str(nueva_actualizacion))
-            self.pushButton_29.setText(str(nueva_actualizacion+1))
-            self.pushButton_179.setText(str(nueva_actualizacion+2))
-
-
 def action_button2(self, button_id):
         if button_id == 14:
                 # Obtener el próximo ID de paciente
                 proximo_id = obtener_proximo_id()
-                
                 # Mostrar el próximo ID en el label_35 con el formato deseado
                 self.label_35.setText(f"NEW EXP - N° {proximo_id}")
                 # Cambiar el color del texto a blanco
                 self.label_35.setStyleSheet("color: #e6cab8")
-
                 self.cambianteTodo.setCurrentWidget(self.home)
                 self.PaginasHome.setCurrentWidget(self.pag_agregar_paciente)
-        
         elif button_id == 15:
                 global pagina_actual
                 self.cambianteTodo.setCurrentWidget(self.home)
                 self.PaginasHome.setCurrentWidget(self.pag_ver_paciente)
-                actualizar_tabla(self, -pagina_actual+1)
-        
+                ver_paciente.pagina_actual = 1
+                actualizar_tabla(self, 0)
         elif button_id == 16:
                 self.cambianteTodo.setCurrentWidget(self.home)
                 self.PaginasHome.setCurrentWidget(self.pag_eliminar_paciente)
@@ -364,7 +175,6 @@ def action_button2(self, button_id):
         elif button_id == 18:
             # Obtener el próximo ID de paciente antes de la validación
             proximo_id = obtener_proximo_id()
-
             campos = {
                 'nombre': (self.textEdit_20.toPlainText().strip(), self.widget_34, 'label_nombre', 47),
                 'apellido': (self.textEdit_19.toPlainText().strip(), self.widget_33, 'label_apellido', 50),
@@ -374,7 +184,6 @@ def action_button2(self, button_id):
                 'fecha': (self.textEdit_18.toPlainText().strip(), self.widget_32, 'label_fecha', 50),
                 'telefono': (self.textEdit_15.toPlainText().strip(), self.widget_30, 'label_telefono', 50),
             }
-
             # Variables de validación
             nombre_valido = apellido_valido = domicilio_valido = dni_valido = correo_valido = fecha_valida = telefono_valido = False
             campos_vacios = False
@@ -472,10 +281,3 @@ def action_button2(self, button_id):
             self.paginas_reporte.setCurrentWidget(self.pag01_reporte)
         elif button_id == 20:
             self.cambianteTodo.setCurrentWidget(self.perfil)
-            
-def action_button3(self, button_id, pag_seleccionada):
-    global pagina_actual
-    if button_id == 1:
-        actualizar_tabla(self, pag_seleccionada - pagina_actual)
-    elif button_id == 2:
-        actualizar_tabla(self, pag_seleccionada)
