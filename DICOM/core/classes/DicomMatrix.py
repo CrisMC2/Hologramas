@@ -1,9 +1,14 @@
 import numpy as np
+import os
+import sys
 
-from DICOM.core.classes.DicomProcessing import AbsDicomProccessing
+_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+sys.path.append(_append)
 
-class DicomMatrix(AbsDicomProccessing):
-    def generate_matrix (self, lista_dicoms: list, hounsmin=-200, hounsmax=200):
+from core.classes.DicomProcessing import DicomProccessing
+
+class DicomMatrix(DicomProccessing):
+    def generate_matrix (self, lista_dicoms: list, hounsmin=-200, hounsmax=200) -> np.array:
         lista_dicoms = list(map(lambda dc: self.processing_dicom(dc, hounsmin, hounsmax), lista_dicoms)) #Si así no funciona cambiar el "list()" por "[]"
         
         #Shape => (profundidad, filas, columnas)

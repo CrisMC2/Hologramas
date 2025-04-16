@@ -1,8 +1,26 @@
 import pydicom as dicom
 import numpy as np
 
+from typing import Union
 #Procesado de la imagen dicom  
 class DicomProccessing():
+    
+    def processing_dicom(self, file_dicom: Union[dicom.FileDataset, np.array], hounsmin=-200, hounsmax=200):
+        if isinstance(file_dicom, dicom.FileDataset): #Si es instancia de pydicom
+            array_dicom = file_dicom.pixel_array
+        elif isinstance(file_dicom, np.ndarray): #Si es un arreglo de numpy
+            array_dicom = file_dicom
+            
+        dc = np.clip(array_dicom, hounsmin, hounsmax)
+        
+        range_houns = dc.max() - dc.min()
+        if (range_houns == 0): #Verificamos que el rango no sea 0
+            return TypeError("El rango de houns no es correcto (Rango de valores min y max del array igual a 0)")
+        
+        dc = np.uint8((dc-dc.min())/(range_houns)*255) #Si range_houns es 0 habrá una excepción
+        
+        return dc
+    
     """
     - El método procesa el archivo dicom en una escala según la visualización que se desea alcanzar.
     
@@ -24,23 +42,8 @@ class DicomProccessing():
         dc (array)                : Array procesado a partir del pixel_array del archivo pydicom.
         
     """
-    def processing_dicom(self, file_dicom, hounsmin=-200, hounsmax=200):
-        if isinstance(file_dicom, dicom): #Si es instancia de pydicom
-            array_dicom = file_dicom.pixel_array
-        elif isinstance(file_dicom, np.ndarray): #Si es un arreglo de numpy
-            array_dicom = file_dicom
-            
-        dc = np.clip(array_dicom, hounsmin, hounsmax)
-        
-        range_houns = dc.max() - dc.min()
-        if (range_houns == 0): #Verificamos que el rango no sea 0
-            return TypeError("El rango de houns no es correcto (Rango de valores min y max del array igual a 0)")
-        
-        dc = np.uint8((dc-dc.min())/(range_houns)*255) #Si range_houns es 0 habrá una excepción
-        
-        return dc
     
-class AbsDicomOrder():
+class DicomOrder():
     def order_dicom_folder(self, list_dicoms: list, reverse=False):
         try:
                 #De esta manera solo modifica la lista en el lugar y retorna null
