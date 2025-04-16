@@ -1,4 +1,4 @@
-import mysql.connector
+import mysql.connector, math
 
 tabla_medicos = "MEDICOS"
 tabla_pacientes = "PACIENTES"
@@ -84,8 +84,6 @@ def eliminar_tabla_guardados():
     cursor.execute(eliminar_tabla_sql)
     conn.close()
 
-
-
 def consulta_correo(correo):
     conn = conectar()
     cursor = conn.cursor()
@@ -150,22 +148,17 @@ def agregar_paciente(apellidos, nombre, fecha_creacion, domicilio, telefono, ema
         foto = f.read()
     with open(radiografia_path, 'rb') as f:
         radiografia = f.read()
-    
     sql = """
         INSERT INTO PACIENTES 
         (id_paciente, apellidos, nombre, fecha_creacion, domicilio, telefono, email, identificacion, foto, radiografia)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
-    
     cursor.execute(sql, (
         id_paciente, apellidos, nombre, fecha_creacion, domicilio, telefono, email, identificacion, foto, radiografia
     ))
-    
     conn.commit()
     conn.close()
-    
     print(f"Paciente {nombre} {apellidos} agregado correctamente con ID {id_paciente}.")
-    
     return id_paciente  # Devuelve el ID generado
 
 def agregar_guardados(email):
@@ -197,6 +190,34 @@ def iniciar():
     for guardado in guardados:
         agregar_guardados(guardado)
 
+#Traer datos del paciente
+def obtener_pacientes_resumen(pagina=0):
+    conn = conectar()
+    cursor = conn.cursor()
+    # Calcula el offset en base a la página (0 para los últimos 5, 1 para los 5 anteriores, etc.)
+    limite = 5
+    offset = pagina * limite
+    consulta_sql = """
+    SELECT id_paciente, nombre, apellidos, foto, radiografia
+    FROM PACIENTES
+    ORDER BY id_paciente DESC
+    LIMIT %s OFFSET %s
+    """
+    cursor.execute(consulta_sql, (limite, offset))
+    resultados = cursor.fetchall()
+    pacientes = []
+    for id_paciente, nombre, apellidos, foto, radiografia in resultados:
+        tiene_radiografia = False if radiografia is None or len(radiografia) == 0 else True
+        pacientes.append({
+            "id": id_paciente,
+            "nombre": nombre,
+            "apellidos": apellidos,
+            "foto": foto,
+            "radiografia": tiene_radiografia
+        })
+    conn.close()
+    return pacientes
+
 def obtener_guardados():
     conn = conectar()
     cursor = conn.cursor()
@@ -208,6 +229,16 @@ def obtener_guardados():
     emails = [fila[0] for fila in resultado] 
     conn.close()
     return emails  # Retorna la lista de tuplas (correo, contraseña)
+
+def numero_paginas():
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM PACIENTES")
+    total_pacientes = cursor.fetchone()[0]
+    conn.close()
+    pacientes_por_pagina = 5
+    numero_paginas = math.ceil(total_pacientes / pacientes_por_pagina)
+    return numero_paginas
 
 def aumentar_max_packet():
     """Aumenta el tamaño máximo permitido para paquetes en MySQL."""

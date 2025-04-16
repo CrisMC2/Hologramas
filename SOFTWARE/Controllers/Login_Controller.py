@@ -173,83 +173,6 @@ def updateInputTextEdit(self, textEdit):
                 "}")
                 textEdit.setPlaceholderText("")
 
-# def eliminar_label_existente(clase_instancia, label_name):
-#     if hasattr(clase_instancia, label_name):
-#         getattr(clase_instancia, label_name).deleteLater()
-#         delattr(clase_instancia, label_name)
-
-# def añadir_label(widget_padre, texto, posicion_x, posicion_y, ancho, alto, nombre_label="label_generico", tamaño_fuente=7, color_texto="red"):
-#     label = QtWidgets.QLabel(widget_padre)
-#     label.setGeometry(QtCore.QRect(posicion_x, posicion_y, ancho, alto))
-
-#     font = QtGui.QFont()
-#     font.setPointSize(tamaño_fuente)
-#     label.setFont(font)
-
-#     label.setStyleSheet(f"QLabel {{ color: {color_texto}; background: none; }}")
-
-#     label.setText(texto)
-#     label.setObjectName(nombre_label)
-#     label.show()
-
-#     # Guardamos la referencia en la clase para poder eliminarlo luego
-#     return label
-
-# def validar_solo_letras(texto, widget_padre, label_name, clase_instancia, distancia, parametro):
-#     eliminar_label_existente(clase_instancia, label_name)
-
-#     if any(not (char.isalpha() or char.isspace()) for char in texto):
-#         label = añadir_label(widget_padre, f"{parametro} incorrecto ingresado", 130, distancia, 351, 31, label_name)
-#         setattr(clase_instancia, label_name, label)
-#         print(f"{parametro} incorrecto ingresado")
-#         return False
-#     else:
-#         print(f"{parametro} correcto ingresado")
-#         return True
-
-# def validar_correo(clase_instancia, texto, widget_padre, label_name, distancia):
-#     eliminar_label_existente(clase_instancia, label_name)
-#     patron = r'^[\w\.-]+@[\w\.-]+\.\w{2,4}$'
-
-#     if re.match(patron, texto):
-#         print("Correo válido ingresado")
-#         return True
-#     else:
-#         label = añadir_label(widget_padre, "Correo incorrecto", 130, distancia, 351, 31, label_name)
-#         setattr(clase_instancia, label_name, label)
-#         print("Correo inválido ingresado")
-#         return False
-
-# def validar_fecha(clase_instancia, texto, widget_padre, label_name, distancia):
-#     eliminar_label_existente(clase_instancia, label_name)
-#     try:
-#         datetime.strptime(texto, "%d/%m/%Y")  # formato de fecha dd/mm/yyyy
-#         print("Fecha válida")
-#         return True
-#     except ValueError:
-#         label = añadir_label(widget_padre, "Fecha incorrecta", 130, distancia, 351, 31, label_name)
-#         setattr(clase_instancia, label_name, label)
-#         print("Fecha incorrecta")
-#         return False
-# def mostrar_calendario(ui, event):
-#     ui.calendar.show()
-#     QtWidgets.QTextEdit.mousePressEvent(ui.textEdit_18, event)
-
-# def colocar_fecha(ui, date):
-#     fecha = date.toString("dd/MM/yyyy")  
-#     ui.textEdit_18.setText(fecha)
-#     ui.calendar.hide()
-
-# def abrir_imagen(ui,event):
-#     opciones = QFileDialog.Options()
-#     archivo, _ = QFileDialog.getOpenFileName(None, "Seleccionar Imagen", "", "Imágenes (*.png *.jpg *.jpeg *.bmp)", options=opciones)
-    
-#     if archivo:
-#         pixmap = QPixmap(archivo)
-#         pixmap = pixmap.scaled(ui.label_157.width(), ui.label_157.height(), aspectRatioMode=1)
-#         ui.label_157.setPixmap(pixmap)
-
-
 def action_button(self, button_id):
         if button_id == 1:
                 self.PaginasLogin.setCurrentWidget(self.pag02Login)
@@ -483,23 +406,3 @@ def action_button(self, button_id):
                 self.textEdit_2.setText(self.real_text)
                 self.textEdit_10.setText(self.real_text_3)
                 self.textEdit_13.setText(self.real_text_4)
-
-
-                            
-                          
-                
-
-
-
-
-
-
-
-
-#def onMousePressOutside(self, event):
-# Comprobar si el clic es fuera del QTextEdit y del QListWidget
-#if self.listWidget.isVisible():
-        #if not (self.listWidget.geometry().contains(event.pos()) or self.textEdit.geometry().contains(event.pos())):
-                #self.listWidget.hide()
-#event.accept()
-

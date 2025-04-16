@@ -13637,6 +13637,24 @@ class Ui_fondoMain(object):
         self.Boton_Atras_26.clicked.connect(lambda: action_button(self, 13))
         self.Boton_Atras_69.clicked.connect(lambda: action_button(self, 13))
 
+        #Cmbio de opciones generales
+        self.botonHome_2.clicked.connect(lambda: action_button(self, 9))
+        self.botonHome_3.clicked.connect(lambda: action_button(self, 9))
+        self.Boton_Atras_6.clicked.connect(lambda: action_button(self,9))
+        self.Boton_Atras_42.clicked.connect(lambda: action_button(self,9))
+        self.botonEdit.clicked.connect(lambda: action_button2(self, 19))
+        self.botonEdit_2.clicked.connect(lambda: action_button2(self, 19))
+        self.botonEdit_3.clicked.connect(lambda: action_button2(self, 19))
+        self.botonEdit_5.clicked.connect(lambda: action_button2(self, 19))
+        self.botonUser.clicked.connect(lambda: action_button2(self, 20))
+        self.botonUser_2.clicked.connect(lambda: action_button2(self, 20))
+        #Tablas
+        self.pushButton_27.clicked.connect(lambda: action_button3(self, 1, int(self.pushButton_27.text())))
+        self.pushButton_28.clicked.connect(lambda: action_button3(self, 1, int(self.pushButton_28.text())))
+        self.pushButton_29.clicked.connect(lambda: action_button3(self, 1, int(self.pushButton_29.text())))
+        self.pushButton_179.clicked.connect(lambda: action_button3(self, 1, int(self.pushButton_179.text())))
+        self.pushButton_30.clicked.connect(lambda: action_button3(self, 2, 1))
+        self.pushButton_31.clicked.connect(lambda: action_button3(self, 2, -1))
         #Adjust
 
         #Botones de control entre agregar_paciente y opciones_generales
