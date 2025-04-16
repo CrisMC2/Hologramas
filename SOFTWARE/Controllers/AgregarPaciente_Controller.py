@@ -242,7 +242,7 @@ def actualizar_tabla2(self):
             else:
                 elementos[0].clear()
             # Mostrar ID y nombre completo (manteniendo su estilo)
-            elementos[1].setText(f"EXP{paciente['id']}")
+            elementos[1].setText(f"EXP - N°{paciente['id']}")
             elementos[1].setStyleSheet("color: white; font-size: 12px;")
             elementos[1].setAlignment(Qt.AlignCenter)
             elementos[2].setText(f"{paciente['nombre']} {paciente['apellidos']}")
