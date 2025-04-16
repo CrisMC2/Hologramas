@@ -5672,7 +5672,7 @@ class Ui_fondoMain(object):
         self.label_2.setGeometry(QtCore.QRect(20, 20, 451, 211))
         self.label_2.setText("")
         self.label_2.setPixmap(QtGui.QPixmap("Hologramas/icon/columna.jpeg"))
-        self.label_2.setScaledContents(True).
+        self.label_2.setScaledContents(True)
         self.label_2.setObjectName("label_2")
         self.pushButton_41 = QtWidgets.QPushButton(self.Pag04_pageditarpaciente)
         self.pushButton_41.setGeometry(QtCore.QRect(370, 670, 201, 51))
