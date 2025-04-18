@@ -1,15 +1,9 @@
-import sys
-import os
-
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-sys.path.append(_append)
-
 #Importación de partes de librerías
 from abc import abstractmethod
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget, QGraphicsProxyWidget
 
 #Importación de clases del mismo proyecto
-from abstracts.Ui.AbsContainers import AbsContainers
+from AbsContainers import AbsContainers
     
 class AbsGraphicsView(AbsContainers):
     def __init__(self):

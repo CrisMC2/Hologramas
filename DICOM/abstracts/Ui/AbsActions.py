@@ -1,8 +1,14 @@
+import os
+import sys
+
+_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+sys.path.append(_append)
+
 from abc import abstractmethod
 
 from PyQt5.QtWidgets import QAction, QWidget
 # from PyQt5.QtCore import QObject 
-from DICOM.abstracts.Ui.AbsConnection import AbsConnection
+from abstracts.Ui.AbsConnection import AbsConnection
 from core.metaClasses.MetaAbsQt import MetaAbsQt
 
 #Absconnection ya es abstracta (hereda de ABC), por lo que no hace falta ponerlo de nuevo

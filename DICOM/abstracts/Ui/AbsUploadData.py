@@ -1,7 +1,14 @@
+import os
+import sys
+
+_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+sys.path.append(_append)
+
 from abc import ABC, abstractmethod
 from PyQt5.QtWidgets import QWidget
 
 from core.metaClasses.MetaAbsQt import MetaAbsQt
+
 class AbsUploadData(ABC, QWidget, metaclass= MetaAbsQt):
     """
     No olvidar la inicialización de la clase padre en la clase hija:

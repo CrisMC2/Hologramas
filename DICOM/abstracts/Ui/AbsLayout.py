@@ -2,15 +2,11 @@
 import sys
 import os
 
-#Extendemos la dirección base del Path del proyecto
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-sys.path.append(_append)
-
 #Importamos parte de una librería
 from abc import ABC, abstractmethod
 
 #Importamos una clase del mismo proyecto
-from abstracts.Ui.AbsContainers import AbsContainers
+from AbsContainers import AbsContainers
 
 
 class AbsLayout(AbsContainers):

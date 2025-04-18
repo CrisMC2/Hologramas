@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-from DICOM.abstracts.Ui.AbsConnection import AbsConnection 
+from AbsConnection import AbsConnection 
 from PyQt5.QtWidgets import QMenu
+
 class AbsMenus(ABC):
     @abstractmethod
     def create_menu(self):

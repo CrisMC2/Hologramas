@@ -1,13 +1,13 @@
 import os
 import sys
 
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.append(_append)
 
 from abc import ABC, abstractmethod
 from PyQt5.QtCore import QObject, pyqtSignal
 
-from metaClasses.MetaAbsQt import MetaAbsQt
+from core.metaClasses.MetaAbsQt import MetaAbsQt
 
 class AbsEmisor(ABC, QObject, metaclass= MetaAbsQt):
     @abstractmethod

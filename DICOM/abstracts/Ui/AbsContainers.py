@@ -2,7 +2,7 @@ import sys
 import os
 
 _append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-sys.path.append(_append)
+sys.path.append(_append) #No hace falta para ejecutarlo, al llamar el archivo desde otra clase no habrìa problema, pero si queremos ejecutarlo aquì mismo, no se podrìa sin aregarlo al path del sistema
 
 from abc import abstractmethod
 from abstracts.Ui.AbsWidget import AbsWidget #Abstracción Principal (DICOM.abstracts.Ui.AbsWidget)
