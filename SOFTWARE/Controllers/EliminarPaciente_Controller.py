@@ -25,10 +25,10 @@ def actualizar_tabla(self, cambio):
 
 def enfocar_pagina_actual(self):
     botones = [
-        self.pushButton_27,
-        self.pushButton_28,
-        self.pushButton_29,
-        self.pushButton_179
+        self.pushButton_20,
+        self.pushButton_21,
+        self.pushButton_22,
+        self.pushButton_177
     ]
     style_default = (
         "QPushButton {"
@@ -44,7 +44,6 @@ def enfocar_pagina_actual(self):
         "    border: 2px solid white;"
         "}"
     )
-
     style_activo = (
         "QPushButton {"
         "    background-color: #3498db;"  # Color más notorio
@@ -68,42 +67,11 @@ def enfocar_pagina_actual(self):
 
 def actualizar_tabla2(self):
     global pagina_actual
-
-    style_1 = (
-        "QPushButton {\n"
-        "    background-color: #8ed04a;\n"
-        "    border: none;\n"
-        "    border-radius: 15px;\n"
-        "    color: black;\n"
-        "}\n"
-        "QPushButton:hover {\n"
-        "    background-color: rgba(255, 255, 255, 0.2);\n"
-        "}\n"
-        "QPushButton:pressed {\n"
-        "    background-color: rgba(255, 255, 255, 0.4);\n"
-        "}"
-    )
-
-    style_2 = (
-        "QPushButton {\n"
-        "    background-color: #dd3431;\n"
-        "    border: none;\n"
-        "    border-radius: 15px;\n"
-        "    color: black;\n"
-        "}\n"
-        "QPushButton:hover {\n"
-        "    background-color: rgba(255, 255, 255, 0.2);\n"
-        "}\n"
-        "QPushButton:pressed {\n"
-        "    background-color: rgba(255, 255, 255, 0.4);\n"
-        "}"
-    )
-
-    lista_1 = [self.label_49, self.label_59, self.label_60, self.label_61, self.pushButton_25, self.widget_6]
-    lista_2 = [self.label_55, self.label_65, self.label_66, self.label_67, self.pushButton_26, self.widget_7]
-    lista_3 = [self.label_56, self.label_68, self.label_69, self.label_70, self.pushButton_33, self.widget_8]
-    lista_4 = [self.label_71, self.label_72, self.label_73, self.label_74, self.pushButton_34, self.widget_9]
-    lista_5 = [self.label_75, self.label_76, self.label_77, self.label_78, self.pushButton_35, self.widget_10]
+    lista_1 = [self.label_80, self.label_81, self.label_82, self.label_83, self.pushButton_19, self.widget_12]
+    lista_2 = [self.label_84, self.label_85, self.label_86, self.label_104, self.pushButton_32, self.widget_13]
+    lista_3 = [self.label_92, self.label_93, self.label_94, self.label_95, self.pushButton_37, self.widget_14]
+    lista_4 = [self.label_96, self.label_97, self.label_98, self.label_99, self.pushButton_38, self.widget_15]
+    lista_5 = [self.label_100, self.label_101, self.label_102, self.label_103, self.pushButton_39, self.widget_16]
     lista_general = [lista_1, lista_2, lista_3, lista_4, lista_5]
     pacientes = obtener_pacientes_resumen(pagina_actual - 1)
     for i in range(len(lista_general)):
@@ -132,67 +100,55 @@ def actualizar_tabla2(self):
                 elementos[3].setText("Apto")
                 # Solo cambia el color del texto para "Apto"
                 elementos[3].setStyleSheet("color: green; font-size: 9pt;")
-                elementos[4].setText("Start")
-                elementos[4].setStyleSheet(style_1)
             else:
                 elementos[3].setText("No apto")
                 # Solo cambia el color del texto para "Faltan recursos"
                 elementos[3].setStyleSheet("color: red; font-size: 9pt;")
-                elementos[4].setText("Upload")
-                elementos[4].setStyleSheet(style_2)
             elementos[4].setEnabled(True)
         else:
             elementos[5].hide()
             
 def actualizar_botones(self, nueva_actualizacion, paginas):
     # Mostrar por defecto
-    self.pushButton_30.show()
-    self.pushButton_31.show()
-    self.label_50.show()
-
+    self.pushButton_40.show()
+    self.pushButton_23.show()
+    self.label_47.show()
     # Ocultar botones según la cantidad de páginas
     if paginas == 1:
-        for btn in [self.pushButton_28, self.pushButton_29, self.pushButton_179, self.pushButton_30, self.pushButton_31]:
+        for btn in [self.pushButton_21, self.pushButton_22, self.pushButton_177, self.pushButton_40, self.pushButton_23]:
             btn.hide()
-        self.label_50.hide()
-
+        self.label_47.hide()
     elif paginas == 2:
-        self.pushButton_29.hide()
-        self.pushButton_179.hide()
-        self.label_50.hide()
+        self.pushButton_22.hide()
+        self.pushButton_177.hide()
+        self.label_47.hide()
         if nueva_actualizacion == paginas:
-            self.pushButton_30.hide()
+            self.pushButton_23.hide()
         else:
-            self.pushButton_31.hide()
-
+            self.pushButton_40.hide()
     elif paginas == 3:
-        self.pushButton_179.hide()
+        self.pushButton_177.hide()
         if nueva_actualizacion == paginas:
-            self.pushButton_30.hide()
+            self.pushButton_23.hide()
         elif nueva_actualizacion == paginas - 2:
-            self.pushButton_31.hide()
-
+            self.pushButton_40.hide()
     else:
         if nueva_actualizacion == 1:
-            self.pushButton_31.hide()
+            self.pushButton_40.hide()
             numeros = [nueva_actualizacion + i for i in range(4)]
-
         elif nueva_actualizacion == paginas:
-            self.pushButton_30.hide()
+            self.pushButton_23.hide()
             numeros = [nueva_actualizacion - 3 + i for i in range(4)]
-
         elif nueva_actualizacion == paginas - 1:
             numeros = [nueva_actualizacion - 2 + i for i in range(4)]
-
         elif nueva_actualizacion <= paginas - 2:
             numeros = [nueva_actualizacion - 1 + i for i in range(4)]
+        self.pushButton_20.setText(str(numeros[0]))
+        self.pushButton_21.setText(str(numeros[1]))
+        self.pushButton_22.setText(str(numeros[2]))
+        self.pushButton_177.setText(str(numeros[3]))
 
-        self.pushButton_27.setText(str(numeros[0]))
-        self.pushButton_28.setText(str(numeros[1]))
-        self.pushButton_29.setText(str(numeros[2]))
-        self.pushButton_179.setText(str(numeros[3]))
-
-def action_button3(self, button_id, pag_seleccionada):
+def action_button4(self, button_id, pag_seleccionada):
     global pagina_actual
     if button_id == 1:
         actualizar_tabla(self, pag_seleccionada - pagina_actual)
