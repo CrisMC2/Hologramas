@@ -54,19 +54,11 @@ class Ui_viewDicomController(Ui_viewDICOM, QMainWindow):
         self._menu_view = self.__obj_menu_view.create_menu()
         self.__obj_menu_view.enable_menu(False, self._menu_view)
         self.ui.SelectView.setMenu(self._menu_view)
-    
-    def signals(self):
-        self.obj_receiver_upload_str  = Receptor_text()
-        self.obj_receiver_upload_list = Receptor_list()
-        self.obj_receiver_cant_view   = Receptor_text()
-        self.obj_receiver_view        = Receptor_text()
 
-    def connec_signals_menus(self):
-        self.__obj_menu_upload.emisor_text.connect(self.__obj_receiver_upload_str.recept_signal)
-        self.__obj_menu_upload.emisor_list.connect(self.__obj_receiver_uplodad_list.recept_signal)
-
-        self.__obj_menu_cant_view.emisor_text.connect(self.__obj_menu_cant_view.recept_signal)
-        self.__obj_menu_cant_view.emisor_text.connect(self.__obj_menu_view.recept_signal)
+    def connect_signals_menus(self):
+        self.__obj_menu_upload.connect(self.subUi.setupUi)
+        self.__obj_menu_view.connect(self.subUi.setupUi)
+        #self.__obj_menu_cant_view.connect(self.__obj_menu_view.recept_signal)
        
     def activate_menus(self):
         self.__obj_menu_cant_view.enable_menu(True, self._menu_cant_view)

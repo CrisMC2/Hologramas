@@ -8,7 +8,7 @@ from abstracts.Ui.AbsActions import AbsActions
 from abstracts.Ui.AbsPixmap import AbsUi_Pixmap 
 from core.classes.DicomView import ViewAxial, ViewCoronal, ViewSagittal  
             
-class SelectView(AbsMenus, AbsActions):
+class SelectView(AbsMenus):
     def __init__(self, view_default: str):
         super().__init__()
         self.view_default = view_default
@@ -36,7 +36,11 @@ class SelectView(AbsMenus, AbsActions):
         self.action_AxialView.triggered.connect(lambda : self.toggle_check_action(self.action_AxialView, self.list_actions))
         self.action_SaggitalView.triggered.connect(lambda : self.toggle_check_action(self.action_SaggitalView, self.list_actions))
         self.action_CoronalView.triggered.connect(lambda : self.toggle_check_action(self.action_CoronalView, self.list_actions))
-    
+        
+        self.action_AxialView.triggered.connect(lambda : self.emit_signal(self.action_AxialView))
+        self.action_SaggitalView.triggered.connect(lambda : self.emit_signal(self.action_SaggitalView))
+        self.action_CoronalView.triggered.connect(lambda : self.emit_signal(self.action_CoronalView))
+
     #Herencia de AbsActions
     def check_action(self, list_actions):
         for act in list_actions:
@@ -45,3 +49,7 @@ class SelectView(AbsMenus, AbsActions):
     #Herencia de AbsActions
     def toggle_check_action(self, action: QAction, list_actions: list[QAction]):
         super().toggle_check_action(action, list_actions) 
+
+    #Herencia de AbsEmisor
+    def emit_signal(self, signal: QAction):
+        self.obj_signal.emit(signal.text())

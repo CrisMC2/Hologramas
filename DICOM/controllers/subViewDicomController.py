@@ -12,7 +12,7 @@ import numpy as np
 
 #=============================================
 #Importamos partes de librerías
-from typing import Union
+from typing import Union, List
 
 from PyQt5.QtWidgets import QApplication, QMainWindow #No eliminar QApplication, se utiliza en los test
 from PyQt5.QtWidgets import QWidget, QHBoxLayout
@@ -23,6 +23,7 @@ from PyQt5.QtGui import QPixmap
 from views.subViewDICOM import Ui_subViewDicom     #Importamos la interfaz principal
 from config import constantSubViewDICOM as consVDcm #Importamos las constantes
 from core.classes.DicomMatrix import DicomMatrix
+from methods.GenerateInformationDicom import GenerateInformation
 from services.DicomExtract import DicomExtract
 from services.InformationDicom import InformationPatient, InformationStudySerie, InformationImage
 from utils.Pixmap import Pixmap
@@ -46,6 +47,10 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         
         self.create_objects() #Creamos las instancias de las clases necesarias para el controlador
     
+    def create_objects(self):
+        self.generate_information = GenerateInformation()
+
+
     def define_widget_main(self, widget: QWidget, 
                             layout: Union[QHBoxLayout. QVBoxLayout]) -> tuple[QWidget, QHBoxLayout]:
         if isinstance(widget, QWidget) and isinstance(layout, [QHBoxLayout, QVBoxLayout]): 
@@ -74,13 +79,24 @@ class Ui_subViewDicomController(Ui_subViewDicom):
                                 valor correspondiente.
     """
     
-    def change_static_info(self):
-        if self.dicoms_utilities:
-            self.define_values_items_static(self.dict_info_patient["PatientName"], self.dict_info_patient["PatientID"], 
-                                            self.dict_info_patient["PatientBirthDate"], self.dict_info_patient["PatientSex"], 
-                                            self.dict_info_study["InstitutionName"], self.dict_info_study["StudyInstanceID"],
-                                            self.dict_info_study["BodyPartExamined"], self.dict_info_study["StudyDate"], 
-                                            self.dict_info_study["StudyTime"])
+    def setupUi(self, path: Union[str, List]):
+        dicom_list, self.matrix = self.generate_information.generate_dicoms_matrix(path=path)
+        dict_info_patient, dict_info_study = self.generate_information.generate_information_dicom(dicom_list[0])
+        pixmap = self.generate_information.generate_pixmap(matrix[0])
+
+        self.change_static_info(dict_info_patient, dict_info_patient)
+        self.change_semi_dinamic_info(self.matrix.size[0]) #Aquí debe ser en base al tipo de vista que se seleccione
+        self.change_dinamic_info(1, pixmap)
+
+
+
+    #Intenta mejorarlo (Ahora mismo está hecho con muchas pinzas, sobre todo por el diccionario)
+    def change_static_info(self, info_patient: dict, info_study: dict):
+        self.define_values_items_static(info_patient["PatientName"], info_patient["PatientID"], 
+                                            info_patient["PatientBirthDate"], info_patient["PatientSex"], 
+                                            info_study["InstitutionName"], info_study["StudyInstanceID"],
+                                            info_study["BodyPartExamined"], info_study["StudyDate"], 
+                                            info_study["StudyTime"])
     
     """
     Disparador => Cambiar el path de los dicom
@@ -145,7 +161,7 @@ class Ui_subViewDicomController(Ui_subViewDicom):
     def define_values_items_semi_dinamic(self, text_img_end: str, 
                                          value_end_slider: int, value_start_slider: int = consVDcm.DEFAULT_VALUE_SLIDER) -> None:
         self.ui_text_img_end.change_data(text_img_end)
-        self.ui_slider.define_range(value_start_slider, value_end_slider) 
+        self.ui_slider.define_range(value_start_slider, value_end_slider)
     """
     El método "define_values_items_semi_dinamic" cumple la función de darle valor
     a algunos elementos que conforman la vista DICOM

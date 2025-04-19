@@ -1,4 +1,8 @@
 import pydicom as dicom
+import numpy as np
+
+from typing import List, Dict 
+from PyQt5.QtGui import QPixmap
 
 from services.DicomExtract import DicomExtract
 from services.InformationDicom import InformationPatient, InformationStudySerie, InformationImage
@@ -32,14 +36,18 @@ class GenerateInformation():
         - self.obj_pixmap (Pixmap)              : Instancia de la clase Pixmap, encargada de encapsular la lógica para
                                                     crear un elemento Pixmap utilizable.
     """    
-	def generate_dicoms_matrix(self, path: Union[str, list]) -> None:
+	def generate_dicoms_matrix(self, path: Union[str, List]) -> tuple[List, np.array]:
         dicoms_utilities = self.obj_dicom_extract.extract_dicoms(path)
         matrix_dicom = self.obj_dicom_matrix.generate_matrix(self.dicoms_utilities)
-    
-    def generate_pixmap(self, matrix_2d: np.array) -> None:
+        
+        return dicoms_utilities, matrix_dicom
+
+    def generate_pixmap(self, matrix_2d: np.array) -> QPixmap:
         pixmap = self.obj_pixmap.create_pixmap(matrix_2d)
-    
-    def generate_information_dicom(self, dicom_item: dicom.FileDataset):
+
+        return pixmap
+
+    def generate_information_dicom(self, dicom_item: dicom.FileDataset) -> tuple[Dict, Dict]:
         dict_info_patient = self.obj_info_patient.get_information(dicom_item,
                                                             PatientName=True, PatientID=True, 
                                                             PatientBirthDate=True, PatientSex=True)
