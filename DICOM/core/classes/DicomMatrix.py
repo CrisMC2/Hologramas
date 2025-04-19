@@ -2,9 +2,6 @@ import numpy as np
 import os
 import sys
 
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-sys.path.append(_append)
-
 from core.classes.DicomProcessing import DicomProccessing
 
 class DicomMatrix(DicomProccessing):

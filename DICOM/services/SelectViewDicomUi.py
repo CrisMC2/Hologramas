@@ -3,10 +3,10 @@ import numpy as np
 from PyQt5.QtWidgets import QMenu, QAction, QStackedWidget, QLabel
 from PyQt5.QtGui import QImage, QPixmap
 
-from DICOM.abstracts.Ui.AbsMenus import AbsMenus
-from DICOM.abstracts.Ui.AbsActions import AbsActions
-from DICOM.abstracts.Ui.AbsPixmap import AbsPixmap 
-from DICOM.core.classes.DicomView import ViewAxial, ViewCoronal, ViewSagittal  
+from abstracts.Ui.AbsMenus import AbsMenus
+from abstracts.Ui.AbsActions import AbsActions
+from abstracts.Ui.AbsPixmap import AbsUi_Pixmap 
+from core.classes.DicomView import ViewAxial, ViewCoronal, ViewSagittal  
             
 class SelectView(AbsMenus, AbsActions):
     def __init__(self, view_default: str):

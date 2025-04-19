@@ -6,7 +6,7 @@ from abc import abstractmethod
 from PyQt5.QtWidgets import QLabel
 
 #Importancias de clases del proyecto
-from AbsWidget import AbsWidget
+from abstracts.Ui.AbsWidget import AbsWidget
 
 class AbsTextControl(AbsWidget):
     def __init__(self):

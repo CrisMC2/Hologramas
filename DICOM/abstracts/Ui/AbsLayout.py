@@ -6,7 +6,7 @@ import os
 from abc import ABC, abstractmethod
 
 #Importamos una clase del mismo proyecto
-from AbsContainers import AbsContainers
+from abstracts.Ui.AbsContainers import AbsContainers
 
 
 class AbsLayout(AbsContainers):

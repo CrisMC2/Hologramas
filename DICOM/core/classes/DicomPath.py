@@ -8,8 +8,8 @@ _append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.append(_append)
 
 #Importamos clases propias del proyecto
-from DICOM.core.abstracts.AbsDicomRead import AbsDicomRead
-from DICOM.abstracts.classes.AbsPath        import AbsPath 
+from core.abstracts.AbsDicomRead import AbsDicomRead
+from abstracts.classes.AbsPath        import AbsPath 
 
 class DicomPathsExists(AbsPath):
     

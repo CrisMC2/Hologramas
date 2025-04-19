@@ -1,9 +1,3 @@
-import os
-import sys
-
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(_append)
-
 import numpy as np
 
 from core.classes.DicomView import ViewAxial, ViewCoronal, ViewSagittal  
@@ -14,7 +8,7 @@ class DefineViewDicom():
         self.obj_saggital = ViewSagittal()
         self.obj_coronal = ViewCoronal()
         
-    def return_view(self, matrix_3d: np.array[int, int, int], element_matrix: int, view: str = "Axial View"):
+    def return_view(self, matrix_3d: np.array, element_matrix: int, view: str = "Axial View"):
         img_array = np.array()
         
         if view == "Axial View":

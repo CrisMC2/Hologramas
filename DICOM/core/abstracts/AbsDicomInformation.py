@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import pydicom as dicom
 
-from AbsDicomRead import AbsDicomRead
+from core.abstracts.AbsDicomRead import AbsDicomRead
 
 #Toda la información de DICOM
 class AbsDicomInformation (ABC):

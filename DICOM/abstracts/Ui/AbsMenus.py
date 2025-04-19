@@ -1,5 +1,8 @@
 from abc import ABC, abstractmethod
-from AbsConnection import AbsConnection 
+
+#Importamos la clase AbsConnection de la siguiente manera debido a que luego para 
+#   su utilizaciòn es necesario que provenga de una carpeta "superior" (Que no tenga profundidad)
+from abstracts.Ui.AbsConnection import AbsConnection  
 from PyQt5.QtWidgets import QMenu
 
 class AbsMenus(ABC):
@@ -22,4 +25,3 @@ class AbsMenus(ABC):
     """ 
     def enable_menu(self, enable: bool, menu: QMenu):
         menu.setEnabled(enable)
-        

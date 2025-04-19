@@ -1,9 +1,3 @@
-import sys
-import os
-
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(_append)
-
 #Importamos partes de librerías
 from PyQt5.QtWidgets import QApplication, QMainWindow #No eliminar el QApplication, es necesario para el test desde tests.test_subViewDICOM
 from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsProxyWidget, QGraphicsPixmapItem, QGraphicsLinearLayout, QLayout

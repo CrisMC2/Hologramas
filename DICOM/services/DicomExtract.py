@@ -1,10 +1,4 @@
-import sys
-import os
-
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(_append)
-
-from typing import Union
+from typing import Union, overload
 
 from core.classes.DicomPath import DicomPathsExists, ExtractDicomPath, DicomConvertByPath
 from core.classes.DicomProcessing import DicomOrder
@@ -16,10 +10,10 @@ class DicomExtract():
         self.dicom_convert_by_path = DicomConvertByPath()
         self.dicom_order = DicomOrder()
 
-    @type.overload
+    @overload
     def extract_dicoms(self, path_folder: str) -> None | list: ...
     
-    @type.overload
+    @overload
     def extract_dicoms(self, list_path: list) -> None | list: ...
     
     

@@ -1,15 +1,9 @@
-import os
-import sys
-
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "..")) #Agregamos una carpeta por encima
-sys.path.append(_append)
-
 from PyQt5.QtCore import pyqtSignal
 
-from DICOM.abstracts.classes.AbsSignal import AbsEmisor, AbsReceptor
+from abstracts.classes.AbsSignal import AbsEmisor, AbsReceptor
 
 class Emisor_text(AbsEmisor):
-    señal_str = pyqtSignal(str)
+    signal_str = pyqtSignal(str)
     
     def __init__(self):
         super().__init__()
@@ -25,10 +19,10 @@ class Emisor_text(AbsEmisor):
         
     """
     def emit_signal(self, signal: str):
-        self.señal_str.emit(signal)
+        self.signal_str.emit(signal)
 
 class Emisor_list(AbsEmisor):
-    señal_list = pyqtSignal(list)
+    signal_list = pyqtSignal(list)
     
     def __init__(self):
         super().__init__()
@@ -44,7 +38,7 @@ class Emisor_list(AbsEmisor):
     
     """
     def emit_signal(self, signal: list):
-        self.señal_list.emit(signal)
+        self.signal_list.emit(signal)
     
 class Receptor_text(AbsReceptor):
     def __init__(self):
