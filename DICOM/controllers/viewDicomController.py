@@ -60,14 +60,19 @@ class Ui_viewDicomController(Ui_viewDICOM, QMainWindow):
         self.__obj_menu_view.connect(self.subUi.setupUi)
         #self.__obj_menu_cant_view.connect(self.__obj_menu_view.recept_signal)
        
-    def activate_menus(self):
-        self.__obj_menu_cant_view.enable_menu(True, self._menu_cant_view)
-        self.__obj_menu_view.enable_menu(True, self._menu_view)
-    
+    def activate_menus(self, activate: bool = False):
+        if activate:
+            self.__obj_menu_cant_view.enable_menu(True, self._menu_cant_view)
+            self.__obj_menu_view.enable_menu(True, self._menu_view)
     """
     El método activate_menu, propio de la clase Ui_viewDicomController permite
     activar los menús que inicialmente se plantean como desactivados.
-    
+
+    - Este método se activa después de que la subViewDicom confirme que la interfaz 
+        se mostró con normalidad.
+    - Mostrarse con normalidad significa que la carpeta seleccionada para visualizar los 
+        DICOMS efectivamente haya tenido elementos DICOM dentro.
+
     - Estado de los Menús inicialmente:
         - self._menu_upload     : Activated
         - self._menu_cant_view  : Desactivaded

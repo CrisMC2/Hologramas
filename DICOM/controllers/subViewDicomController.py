@@ -24,9 +24,11 @@ from views.subViewDICOM import Ui_subViewDicom     #Importamos la interfaz princ
 from config import constantSubViewDICOM as consVDcm #Importamos las constantes
 from core.classes.DicomMatrix import DicomMatrix
 from methods.GenerateInformationDicom import GenerateInformation
+from methods.DefineViewDicom import DefineViewDicom
 from services.DicomExtract import DicomExtract
 from services.InformationDicom import InformationPatient, InformationStudySerie, InformationImage
 from utils.Pixmap import Pixmap
+from utils.SignalData import Emit_Data
 
 class Ui_subViewDicomController(Ui_subViewDicom):
     """
@@ -49,7 +51,7 @@ class Ui_subViewDicomController(Ui_subViewDicom):
     
     def create_objects(self):
         self.generate_information = GenerateInformation()
-
+        self.define_view = DefineViewDicom()
 
     def define_widget_main(self, widget: QWidget, 
                             layout: Union[QHBoxLayout. QVBoxLayout]) -> tuple[QWidget, QHBoxLayout]:
@@ -81,14 +83,15 @@ class Ui_subViewDicomController(Ui_subViewDicom):
     
     def setupUi(self, path: Union[str, List]):
         dicom_list, self.matrix = self.generate_information.generate_dicoms_matrix(path=path)
-        dict_info_patient, dict_info_study = self.generate_information.generate_information_dicom(dicom_list[0])
-        pixmap = self.generate_information.generate_pixmap(matrix[0])
+        dict_info_patient, dict_info_study = self.generate_information.generate_information_dicom(dicom_list[consVDcm.NUM_DICOM_DEFAULT])
+        
+        matrix_2d = self.define_view.return_view(self.matrix, consVDcm.NUM_DICOM_DEFAULT, 
+                                                    consVDcm.VIEW_DICOM_DEFAULT)
+        pixmap = self.generate_information.generate_pixmap(matrix_2d)
 
         self.change_static_info(dict_info_patient, dict_info_patient)
-        self.change_semi_dinamic_info(self.matrix.size[0]) #Aquí debe ser en base al tipo de vista que se seleccione
+        self.change_semi_dinamic_info(self.matrix.shape[0]) #Aquí debe ser en base al tipo de vista que se seleccione
         self.change_dinamic_info(1, pixmap)
-
-
 
     #Intenta mejorarlo (Ahora mismo está hecho con muchas pinzas, sobre todo por el diccionario)
     def change_static_info(self, info_patient: dict, info_study: dict):

@@ -8,7 +8,7 @@ class DefineViewDicom():
         self.obj_saggital = ViewSagittal()
         self.obj_coronal = ViewCoronal()
         
-    def return_view(self, matrix_3d: np.array, element_matrix: int, view: str = "Axial View"):
+    def return_view(self, matrix_3d: np.array, element_matrix: int, view: str):
         img_array = np.array()
         
         if view == "Axial View":

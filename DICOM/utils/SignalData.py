@@ -2,7 +2,7 @@ from PyQt5.QtCore import pyqtSignal
 
 from abstracts.classes.AbsSignal import AbsEmisor, AbsReceptor
 
-class Emisor_text(AbsEmisor):
+class Emit_Data(AbsEmisor):
     """"
     El método permite emitir una señal de tipo de dato string.
     
@@ -12,14 +12,11 @@ class Emisor_text(AbsEmisor):
     - Retorno:
         - pyqtSignal.emit() : La señal se emite.
         
-    """
-    signal_str = pyqtSignal(str)
-    
+    """    
     def __init__(self):
-        super().__init__()
-    
-    
-    def emit_signal(self, signal: str):
+        super().__init__() #Aquí también se define el elemento self.obj_signal
+
+    def emit_signal(self, signal: object):
         self.signal_str.emit(signal)
 
 class Emisor_list(AbsEmisor):

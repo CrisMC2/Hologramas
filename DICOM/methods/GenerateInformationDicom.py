@@ -36,12 +36,15 @@ class GenerateInformation():
         - self.obj_pixmap (Pixmap)              : Instancia de la clase Pixmap, encargada de encapsular la lógica para
                                                     crear un elemento Pixmap utilizable.
     """    
-	def generate_dicoms_matrix(self, path: Union[str, List]) -> tuple[List, np.array]:
+	def generate_dicoms_matrix3D(self, path: Union[str, List]) -> tuple[List, np.array]:
         dicoms_utilities = self.obj_dicom_extract.extract_dicoms(path)
         matrix_dicom = self.obj_dicom_matrix.generate_matrix(self.dicoms_utilities)
         
         return dicoms_utilities, matrix_dicom
 
+    def generate_matrix2D(self, ):
+        pass
+        
     def generate_pixmap(self, matrix_2d: np.array) -> QPixmap:
         pixmap = self.obj_pixmap.create_pixmap(matrix_2d)
 
