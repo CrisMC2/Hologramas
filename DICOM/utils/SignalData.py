@@ -58,11 +58,4 @@ class Receptor_text(AbsReceptor):
     def recept_signal(self, signal: str):
         self.receiver_item = signal
 
-class Receptor_list(AbsReceptor):
-    def __init__(self):
-        super().__init__()
-        self.receiver_item = list
-
-    def recept_signal(self, signal: list):
-        self.receiver_item = signal
     

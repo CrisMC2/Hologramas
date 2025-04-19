@@ -35,8 +35,7 @@ class DicomExtract():
         if list_paths:
             list_dicoms = self.dicom_convert_by_path.convert_dicoms_list_path(list_paths=list_paths)
             list_dicoms = self.dicom_order.order_dicom_folder(list_dicoms) #Puede que sea necesario poner True
-            return list_dicoms
-                
+            return list_dicoms               
         
     
     def extract_dicoms_by_folder (self, path_folder: str) -> list | None:

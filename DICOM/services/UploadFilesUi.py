@@ -1,27 +1,22 @@
+from typing import Union, List
+
 from PyQt5.QtWidgets import QFileDialog, QMenu, QAction
 
 from abstracts.Ui.AbsMenus import AbsMenus
-from abstracts.Ui.AbsActions import AbsActions
 from abstracts.Ui.AbsUploadData import AbsUploadData
 from utils.SignalData import Emisor_text, Emisor_list
 
-class MenuUploadFiles(AbsMenus, AbsActions):
+class MenuUploadFiles(AbsMenus):
     """
     
     """    
-    
     def __init__(self, directory_search_default: str, type_file_filter: str, keep_directory_default: bool = False):
-        super().__init__()
-        
         self.obj_folder_uploader = FolderUploader(directory_search_default= directory_search_default, 
                                                    type_file_filter= type_file_filter, 
                                                    keep_directory_initial= keep_directory_default) #Instanciamos la búsqueda de "FOLDER"
         self.obj_file_uploader = FileUploader(directory_search_default= directory_search_default, 
                                                type_file_filter= type_file_filter, 
                                                keep_directory_initial= keep_directory_default)  #Instanciamos la búsqueda de "FILE"
-        
-        self.emisor_text = Emisor_text() #Instancias la clase que nos permitirá emitir la señal
-        self.emisor_list = Emisor_list()
     
     #Herencia de AbsMenus
     def create_menu(self):
@@ -68,21 +63,21 @@ class MenuUploadFiles(AbsMenus, AbsActions):
     #Herencia de AbsActions
     def toggle_check_action(self, action: QAction, list_actions: list[QAction]):
         super().toggle_check_action(action, list_actions)
-        
+
+    #Herencia de AbsSignal
+    def emit_signal(self, signal: Union[str, List]):
+        self.obj_signal.emit(signal)
+    
     def get_path(self):
         folder = self.obj_folder_uploader.get_directory()
-        files = self.obj_file_uploader.get_directory()
-        
+        file   = self.obj_file_uploader.get_directory()
+
         if folder:
-            self.emisor_text.emit_signal(folder)
-            
-        elif files:
-            self.emisor_list.emit_signal(files)
-    """
-    El método get_path está pensado para que se devuelva la dirección 
-    por medio de emitirlo.
-    """
-    
+            self.emit_signal(folder)
+        elif:
+            self.emit_signal(file)
+        else:
+            raise ValueError("Intentas emitir un elemento nulo.")
     
     
 class FolderUploader(AbsUploadData):

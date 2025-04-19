@@ -4,6 +4,8 @@ import os
 uiDicom = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(uiDicom)
 
+from typing import List
+
 from PyQt5.QtWidgets import QApplication, QMainWindow #QApplication se utiliza en el test, NO ELIMINAR
 from views.viewDICOM  import Ui_viewDICOM
 from controllers.subViewDICOM import Ui_subViewDicom
@@ -59,15 +61,19 @@ class Ui_viewDicomController(Ui_viewDICOM, QMainWindow):
         self.obj_receiver_cant_view   = Receptor_text()
         self.obj_receiver_view        = Receptor_text()
 
+    def connec_signals_menus(self):
         self.__obj_menu_upload.emisor_text.connect(self.__obj_receiver_upload_str.recept_signal)
         self.__obj_menu_upload.emisor_list.connect(self.__obj_receiver_uplodad_list.recept_signal)
 
-    def activate_dicom(self):
+        self.__obj_menu_cant_view.emisor_text.connect(self.__obj_menu_cant_view.recept_signal)
+        self.__obj_menu_cant_view.emisor_text.connect(self.__obj_menu_view.recept_signal)
+       
+    def activate_menus(self):
         self.__obj_menu_cant_view.enable_menu(True, self._menu_cant_view)
         self.__obj_menu_view.enable_menu(True, self._menu_view)
     
     """
-    El método activate_dicom, propio de la clase Ui_viewDicomController permite
+    El método activate_menu, propio de la clase Ui_viewDicomController permite
     activar los menús que inicialmente se plantean como desactivados.
     
     - Estado de los Menús inicialmente:
