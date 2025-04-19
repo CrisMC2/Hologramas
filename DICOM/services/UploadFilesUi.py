@@ -50,6 +50,11 @@ class MenuUploadFiles(AbsMenus, AbsActions):
         
         self.act_upload_folder.triggered.connect(self.get_path)
         self.act_upload_file.triggered.connect(self.get_path)
+    """
+    La instancia del método connections de la clase UploadFilesUi realiza 3 acciones principales:
+    - Conectar los botones con las clases FolderUploader y FileUploader
+    - Conectar los botones con el método toggle_action 
+    """
 
     #Herencia de AbsMenus
     def enable_menu(self, enable: bool, menu: QMenu):
@@ -64,17 +69,19 @@ class MenuUploadFiles(AbsMenus, AbsActions):
     def toggle_check_action(self, action: QAction, list_actions: list[QAction]):
         super().toggle_check_action(action, list_actions)
         
-    """
-    El método get_path está pensado para que se devuelva la dirección 
-    """
     def get_path(self):
         folder = self.obj_folder_uploader.get_directory()
         files = self.obj_file_uploader.get_directory()
         
         if folder:
             self.emisor_text.emit_signal(folder)
+            
         elif files:
             self.emisor_list.emit_signal(files)
+    """
+    El método get_path está pensado para que se devuelva la dirección 
+    por medio de emitirlo.
+    """
     
     
     

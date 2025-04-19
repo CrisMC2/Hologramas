@@ -22,9 +22,10 @@ class Ui_subViewDicom(QMainWindow):
                                                         del QGraphicsView.
     """
     
-    def __init__(self, main_container: tuple[QWidget, QLayout]):
+    def __init__(self):
         super().__init__()
 
+    def setupUi(self, main_container: tuple[QWidget, QLayout]):
         self.generate_containers() #Generamos los contenedores que tendrá la interfaz
         self.generate_items() #Generamos los items que tendrá la interfaz
         

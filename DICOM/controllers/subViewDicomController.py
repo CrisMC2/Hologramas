@@ -37,10 +37,15 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         a lo largo de la ejecución de la misma
     
     """
-    def __init__(self):
-        super().__init__(self.generate_widget())
+    def __init__(self, widget_main: QWidget, 
+                    layout_main: Union[QHBoxLayout, QVBoxLayout]):        
+        super().__init__()
+
+        #Instanciamos la vista subViewDicom y la ejecutamos mediante setupUi
+        self.ui = Ui_subViewDicom()
+        self.ui.setupUi(self.define_widget_main(widget_main, layout_main))
         
-        self.create_objects() #Creamos las instancias de las clases necesarias
+        self.create_objects() #Creamos las instancias de las clases necesarias para el controlador
     
     def create_objects(self) -> None:
         self.obj_dicom_extract = DicomExtract()
@@ -65,14 +70,35 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         - self.obj_pixmap (Pixmap)              : Instancia de la clase Pixmap, encargada de encapsular la lógica para
                                                     crear un elemento Pixmap utilizable.
     """
-    def generate_widget(self) -> tuple[QWidget, QHBoxLayout]:
-        widget_main = QWidget() 
-        widget_main.setMinimumSize(QSize(600,500))  
-        layout_main = QHBoxLayout(widget_main)
+    def define_widget_main(self, widget: QWidget, 
+                            layout: Union[QHBoxLayout. QVBoxLayout]) -> tuple[QWidget, QHBoxLayout]:
+        if isinstance(widget, QWidget) and isinstance(layout, [QHBoxLayout, QVBoxLayout]): 
+            widget_main = widget
+            layout_main = layout 
+        else:
+            raise ValueError("Los tipos de elemento proporcionados no corresponden a un QWidget y QLayout (QHBoxLayout, QVBoxLayout)")
         
         return widget_main, layout_main
-        
-        
+    """
+    El mètodo define_widget_main de la clase subViewDicomController.py 
+    tiene la finalidad de verificar que si un widget y un layout 
+    sean efectivamente elemento QWidget o QLayout
+
+    - Paràmetros:
+        - self (subViewDicomController)     : Instancia de la clase subViewDicomController.
+        - widget (QWidget)                  : Widget sobre el cual se realizarà la verificaciòn.
+        - layout (QHBoxLayout | QVBoxLayout): Layout sobre el cual se realizará la verificación.
+    
+    - Retorno:
+        - tuple[QWidget, QLayout]   : Se retorna una tupla que contiene el elemento 
+                                        QWidget y el elemento QLayout 
+
+    - Exception:
+        - ValueError        : En caso de que los parámetros widget y layout no tengan su 
+                                valor correspondiente.
+    """    
+    
+
     def define_values_items_static(self, text_name: str, text_ID_patient: str, 
                                    text_date_born: str,  text_sex: str, 
                                    text_institution_name: str, text_study_ID: str,
@@ -168,6 +194,7 @@ class Ui_subViewDicomController(Ui_subViewDicom):
                                                                    StudyDate=True, StudyTime=True, InstitutionName=True)
             # self.dict_info_image = self.obj_info_image.get_information(self.dicoms_utilities[0], InstanceNumber=True, Rows=True, Columns=True)
             #Comentamos esta variable debido a que no se utiliza
+             
     def change_static_info(self):
         if self.dicoms_utilities:
             self.define_values_items_static(self.dict_info_patient["PatientName"], self.dict_info_patient["PatientID"], 

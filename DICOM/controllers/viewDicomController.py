@@ -6,10 +6,12 @@ sys.path.append(uiDicom)
 
 from PyQt5.QtWidgets import QApplication, QMainWindow #QApplication se utiliza en el test, NO ELIMINAR
 from views.viewDICOM  import Ui_viewDICOM
+from controllers.subViewDICOM import Ui_subViewDicom
 
 from services.UploadFilesUi import MenuUploadFiles
 from services.CantViewDicomUi import SelectCantViews
 from services.SelectViewDicomUi import SelectView
+from utils.SignalData import Receptor_text, Receptor_list
 
 from config import constantViewDICOM as consVDcm
 
@@ -18,6 +20,8 @@ class Ui_viewDicomController(Ui_viewDICOM, QMainWindow):
         super().__init__()
         self.ui = Ui_viewDICOM()
         self.ui.setupUi(self)
+
+        self.subUi = Ui_subViewDicom(self.ui.)
     
         self.menu()
     
@@ -29,7 +33,7 @@ class Ui_viewDicomController(Ui_viewDICOM, QMainWindow):
     Se utiliza la instancia de la clase padre para configurar el menú
     Por último se setea el menú en la interfaz
     """
-    def menu(self):
+    def menus(self):
         #Menú para subir archivos
         self.__obj_menu_upload = MenuUploadFiles(directory_search_default=consVDcm.DIRECTORY_SEARCH_DEFAULT, type_file_filter=consVDcm.FILTER_SEARCH, 
                                                  keep_directory_default=consVDcm.KEEP_DIRECTORY_DEFAULT) #Utilizamos los valores por defecto o constantes
@@ -49,6 +53,15 @@ class Ui_viewDicomController(Ui_viewDICOM, QMainWindow):
         self.__obj_menu_view.enable_menu(False, self._menu_view)
         self.ui.SelectView.setMenu(self._menu_view)
     
+    def signals(self):
+        self.obj_receiver_upload_str  = Receptor_text()
+        self.obj_receiver_upload_list = Receptor_list()
+        self.obj_receiver_cant_view   = Receptor_text()
+        self.obj_receiver_view        = Receptor_text()
+
+        self.__obj_menu_upload.emisor_text.connect(self.__obj_receiver_upload_str.recept_signal)
+        self.__obj_menu_upload.emisor_list.connect(self.__obj_receiver_uplodad_list.recept_signal)
+
     def activate_dicom(self):
         self.__obj_menu_cant_view.enable_menu(True, self._menu_cant_view)
         self.__obj_menu_view.enable_menu(True, self._menu_view)
@@ -61,6 +74,4 @@ class Ui_viewDicomController(Ui_viewDICOM, QMainWindow):
         - self._menu_upload     : Activated
         - self._menu_cant_view  : Desactivaded
         - self._menu_view       : Desactivaded
-    
-    
     """
