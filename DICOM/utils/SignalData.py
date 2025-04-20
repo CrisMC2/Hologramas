@@ -19,27 +19,7 @@ class Emit_Data(AbsEmisor):
     def emit_signal(self, signal: object):
         self.signal_str.emit(signal)
 
-class Emisor_list(AbsEmisor):
-    """
-    El método permite emitir una señal con un dato de tipo lista.
-    
-    - Parámetros:
-        - signal (list)  : Elemento de tipo list que será emitido.
-    
-    - Retorno:
-        - pyqtSignal.emit() : La señal se emite.
-    
-    """
-    signal_list = pyqtSignal(list)
-    
-    def __init__(self):
-        super().__init__()
-    
-
-    def emit_signal(self, signal: list):
-        self.signal_list.emit(signal)
-    
-class Receptor_text(AbsReceptor):
+class Recept_Data(AbsReceptor):
     """
     El método permite recibir una señal, la cual está pensada para que sea un dato de
     tipo string
@@ -50,9 +30,8 @@ class Receptor_text(AbsReceptor):
     """
     def __init__(self):
         super().__init__()
-        self.receiver_item = ""
     
-    def recept_signal(self, signal: str):
+    def recept_signal(self, signal: object):
         self.receiver_item = signal
 
     

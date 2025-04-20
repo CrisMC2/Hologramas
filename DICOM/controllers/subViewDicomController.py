@@ -53,6 +53,8 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         self.generate_information = GenerateInformation()
         self.define_view = DefineViewDicom()
 
+        self.obj_emit = Emit_Data()
+
     def define_widget_main(self, widget: QWidget, 
                             layout: Union[QHBoxLayout. QVBoxLayout]) -> tuple[QWidget, QHBoxLayout]:
         if isinstance(widget, QWidget) and isinstance(layout, [QHBoxLayout, QVBoxLayout]): 
@@ -90,8 +92,22 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         pixmap = self.generate_information.generate_pixmap(matrix_2d)
 
         self.change_static_info(dict_info_patient, dict_info_patient)
-        self.change_semi_dinamic_info(self.matrix.shape[0]) #Aquí debe ser en base al tipo de vista que se seleccione
-        self.change_dinamic_info(1, pixmap)
+        self.change_semi_dinamic_info(self.define_view.return_size_view(consVDcm.VIEW_DICOM_DEFAULT)) #Aquí debe ser en base al tipo de vista que se seleccione
+        self.change_dinamic_info(self.ui_slider.get_value_edit(consVDcm.DIFFERENCE_RETURN_VALUE_SLIDER), 
+                                    pixmap)
+
+        self.obj_emit.emit_signal(True)
+
+    def switch_view(self, new_view: str):
+        matrix_2d = self.define_view.return_view(self.matrix, self.ui_slider.get_value(), 
+                                                    new_view)
+        pixmap = self.generate_information.generate_pixmap(matrix_2d)
+
+        self.change_semi_dinamic_info(self.define_view.return_size_view(new_view))
+        self.change_dinamic_info(self.ui_slider.get_value_edit(1), pixmap)
+
+    def switch_value_img(self, new_value: int):
+        pass
 
     #Intenta mejorarlo (Ahora mismo está hecho con muchas pinzas, sobre todo por el diccionario)
     def change_static_info(self, info_patient: dict, info_study: dict):
