@@ -7,6 +7,8 @@ from Modelos.conexion import *
 from Modelos.conexion import obtener_guardados
 from Controllers.VerPaciente_Controller import *
 import Controllers.VerPaciente_Controller as ver_paciente
+from Controllers.EliminarPaciente_Controller import *
+import Controllers.EliminarPaciente_Controller as eliminar_paciente
 from PyQt5.QtCore import Qt
 import re
 from datetime import datetime
@@ -164,10 +166,12 @@ def action_button2(self, button_id):
                 self.cambianteTodo.setCurrentWidget(self.home)
                 self.PaginasHome.setCurrentWidget(self.pag_ver_paciente)
                 ver_paciente.pagina_actual = 1
-                actualizar_tabla(self, 0)
+                ver_paciente.actualizar_tabla(self, 0)
         elif button_id == 16:
                 self.cambianteTodo.setCurrentWidget(self.home)
                 self.PaginasHome.setCurrentWidget(self.pag_eliminar_paciente)
+                eliminar_paciente.pagina_actual = 1
+                eliminar_paciente.actualizar_tabla(self, 0)
         elif button_id == 17:
                 self.cambianteTodo.setCurrentWidget(self.home)
                 self.PaginasHome.setCurrentWidget(self.pag_editar_paciente)

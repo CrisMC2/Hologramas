@@ -11,6 +11,7 @@ from Controllers.Login_Controller import *
 from Controllers.Login_Controller import setup_connections
 from Controllers.AgregarPaciente_Controller import *
 from Controllers.VerPaciente_Controller import *
+from Controllers.EliminarPaciente_Controller import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QListWidget, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QListWidgetItem
 from PyQt5.QtCore import QTimer
@@ -13053,13 +13054,20 @@ class Ui_fondoMain(object):
         self.botonEdit_5.clicked.connect(lambda: action_button2(self, 19))
         self.botonUser.clicked.connect(lambda: action_button2(self, 20))
         self.botonUser_2.clicked.connect(lambda: action_button2(self, 20))
-        #Tablas
+        #Tablas ver pacientes
         self.pushButton_27.clicked.connect(lambda: action_button3(self, 1, int(self.pushButton_27.text())))
         self.pushButton_28.clicked.connect(lambda: action_button3(self, 1, int(self.pushButton_28.text())))
         self.pushButton_29.clicked.connect(lambda: action_button3(self, 1, int(self.pushButton_29.text())))
         self.pushButton_179.clicked.connect(lambda: action_button3(self, 1, int(self.pushButton_179.text())))
         self.pushButton_30.clicked.connect(lambda: action_button3(self, 2, 1))
         self.pushButton_31.clicked.connect(lambda: action_button3(self, 2, -1))
+        #Tablas eliminar pacientes
+        self.pushButton_20.clicked.connect(lambda: action_button4(self, 1, int(self.pushButton_20.text())))
+        self.pushButton_21.clicked.connect(lambda: action_button4(self, 1, int(self.pushButton_21.text())))
+        self.pushButton_22.clicked.connect(lambda: action_button4(self, 1, int(self.pushButton_22.text())))
+        self.pushButton_177.clicked.connect(lambda: action_button4(self, 1, int(self.pushButton_177.text())))
+        self.pushButton_23.clicked.connect(lambda: action_button4(self, 2, 1))
+        self.pushButton_40.clicked.connect(lambda: action_button4(self, 2, -1))
         #Adjust
 
         #Botones de control entre agregar_paciente y opciones_generales
