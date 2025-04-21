@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
-from PyQt5.QtCore import QObject, pyqtSignal
+from PyQt5.QtWidgets import QWidget
+from PyQt5.QtCore import pyqtSignal
 
 from core.metaClasses.MetaAbsQt import MetaAbsQt
 
-class AbsEmisor(ABC, QObject, metaclass= MetaAbsQt):
+class AbsEmisor(QWidget, metaclass= MetaAbsQt):
     """
 
     """
@@ -15,7 +16,7 @@ class AbsEmisor(ABC, QObject, metaclass= MetaAbsQt):
     def emit_signal(self, *args, **kwargs):
         pass
 
-class AbsReceptor(ABC, QObject, metaclass= MetaAbsQt):
+class AbsReceptor(QWidget, metaclass= MetaAbsQt):
     
     """
     Asegúrate de que "receiver_item" y "signal" sean del mismo tipo de dato.

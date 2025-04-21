@@ -17,7 +17,7 @@ class Emit_Data(AbsEmisor):
         super().__init__() #Aquí también se define el elemento self.obj_signal
 
     def emit_signal(self, signal: object):
-        self.signal_str.emit(signal)
+        self.obj_signal.emit(signal)
 
 class Recept_Data(AbsReceptor):
     """

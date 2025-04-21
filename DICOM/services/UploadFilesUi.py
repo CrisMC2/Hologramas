@@ -4,13 +4,13 @@ from PyQt5.QtWidgets import QFileDialog, QMenu, QAction
 
 from abstracts.Ui.AbsMenus import AbsMenus
 from abstracts.Ui.AbsUploadData import AbsUploadData
-from utils.SignalData import Emisor_text, Emisor_list
 
 class MenuUploadFiles(AbsMenus):
     """
     
     """    
     def __init__(self, directory_search_default: str, type_file_filter: str, keep_directory_default: bool = False):
+        super().__init__()
         self.obj_folder_uploader = FolderUploader(directory_search_default= directory_search_default, 
                                                    type_file_filter= type_file_filter, 
                                                    keep_directory_initial= keep_directory_default) #Instanciamos la búsqueda de "FOLDER"
@@ -30,8 +30,8 @@ class MenuUploadFiles(AbsMenus):
 
     #Herencia de AbsActions
     def create_actions(self):
-        self.act_upload_folder = QAction("Upload Folder", self)
-        self.act_upload_file = QAction("Upload File", self)
+        self.act_upload_folder = QAction("Upload Folder")
+        self.act_upload_file = QAction("Upload File")
         
         self.list_actions = [self.act_upload_folder, self.act_upload_file]
     
@@ -74,7 +74,7 @@ class MenuUploadFiles(AbsMenus):
 
         if folder:
             self.emit_signal(folder)
-        elif:
+        elif file:
             self.emit_signal(file)
         else:
             raise ValueError("Intentas emitir un elemento nulo.")

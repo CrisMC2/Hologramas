@@ -8,12 +8,11 @@ from typing import List
 
 from PyQt5.QtWidgets import QApplication, QMainWindow #QApplication se utiliza en el test, NO ELIMINAR
 from views.viewDICOM  import Ui_viewDICOM
-from controllers.subViewDICOM import Ui_subViewDicom
+from controllers.subViewDicomController import Ui_subViewDicomController
 
 from services.UploadFilesUi import MenuUploadFiles
 from services.CantViewDicomUi import SelectCantViews
 from services.SelectViewDicomUi import SelectView
-from utils.SignalData import Receptor_text, Receptor_list
 
 from config import constantViewDICOM as consVDcm
 
@@ -23,10 +22,16 @@ class Ui_viewDicomController(Ui_viewDICOM, QMainWindow):
         self.ui = Ui_viewDICOM()
         self.ui.setupUi(self)
 
-        self.subUi = Ui_subViewDicom(self.ui.)
+        self.subUi = Ui_subViewDicomController(self.ui.OneView_Widget, 
+                                               self.ui.OneView_Layout)
     
-        self.menu()
+        self.setupUiController()
     
+    def setupUiController(self):
+        self.menus()
+        self.connect_signals_menus()
+        self.connect_signals_views()
+
     """
     En esta parte definimos los menus.
     
@@ -56,12 +61,12 @@ class Ui_viewDicomController(Ui_viewDICOM, QMainWindow):
         self.ui.SelectView.setMenu(self._menu_view)
 
     def connect_signals_menus(self):
-        self.__obj_menu_upload.connect(self.subUi.setupUi)
-        self.__obj_menu_view.connect(self.subUi.switch_view)
+        self.__obj_menu_upload.obj_signal.connect(self.subUi.setupUiController)
+        self.__obj_menu_view.obj_signal.connect(self.subUi.switch_view)
         #self.__obj_menu_cant_view.connect(self.__obj_menu_view.recept_signal)
     
     def connect_signals_views(self):
-        self.subUi.obj_emit.connect(self.activate_menus)
+        self.subUi.obj_emit.obj_signal.connect(self.activate_menus)
 
     def activate_menus(self, activate: bool = False):
         if activate:

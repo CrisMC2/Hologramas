@@ -1244,6 +1244,17 @@ background-color: rgb(70, 70, 70);
          <property name="styleSheet">
           <string notr="true">background-color: rgba(70,70,70,1);</string>
          </property>
+         <widget class="QWidget" name="OneView_Widget" native="true">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>0</y>
+            <width>1081</width>
+            <height>551</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="OneView_Layout"/>
+         </widget>
         </widget>
         <widget class="QWidget" name="EmptyView"/>
         <widget class="QWidget" name="TwoViews"/>

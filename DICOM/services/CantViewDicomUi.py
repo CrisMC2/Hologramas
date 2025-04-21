@@ -1,14 +1,10 @@
 import numpy as np
 
-from PyQt5.QtWidgets import QMenu, QAction, QStackedWidget, QLabel
-from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtWidgets import QMenu, QAction
 
 from abstracts.Ui.AbsMenus import AbsMenus
-from abstracts.Ui.AbsActions import AbsActions
 
-from utils.SignalData import Emisor_text
-
-class SelectCantViews(AbsMenus, AbsActions):
+class SelectCantViews(AbsMenus):
     def __init__(self, cant_view_default: int):
         super().__init__()
         self.cant_view_default = cant_view_default
@@ -24,9 +20,9 @@ class SelectCantViews(AbsMenus, AbsActions):
 
     #Herencia de AbsActions
     def create_actions(self):
-        self.one_view = QAction("1 View", self)
-        self.two_view = QAction("2 Views", self)
-        self.four_view = QAction("4 Views", self)
+        self.one_view = QAction("1 View")
+        self.two_view = QAction("2 Views")
+        self.four_view = QAction("4 Views")
         
         self.list_actions = [self.one_view, self.two_view, self.four_view]
     
@@ -48,3 +44,6 @@ class SelectCantViews(AbsMenus, AbsActions):
     #Herencia de AbsActions
     def toggle_check_action(self, action: QAction, list_actions: list [QAction]):
         super().toggle_check_action(action, list_actions)
+        
+    def emit_signal(self, *args, **kwargs):
+        return super().emit_signal(*args, **kwargs)

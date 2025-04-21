@@ -51,7 +51,7 @@ class InformationPatient(AbsDicomInformation, AbsDicomAnonimize):
         dc.InstitutionAdress = InstitutionAdress
         
 class InformationStudySerie(AbsDicomInformation):    
-    def get_information(self, dc: dicom.FileDataset, BodyPartExamined=False, StudyInstanceID=False, 
+    def get_information(self, dc: dicom.FileDataset, BodyPartExamined=False, StudyInstanceUID=False, 
                         SeriesInstanceUID=False, StudyDate=False, StudyTime=False, 
                         InstitutionName=False, InstitutionAdress=False) -> dict:
         
@@ -60,11 +60,11 @@ class InformationStudySerie(AbsDicomInformation):
         if BodyPartExamined:
             dict_information["BodyPartExamined"] = dc.BodyPartExamined
             # list_information.append(dc.BodyPartExamined)
-        if StudyInstanceID:
-            dict_information["StudyInstanceID"] = dc.StudyInstanceID
+        if StudyInstanceUID:
+            dict_information["StudyInstanceUID"] = dc.StudyInstanceUID
             # list_information.append(dc.StudyInstanceID)
         if SeriesInstanceUID:
-            dict_information["SeriesInstaceUID"] = dc.SeriesInstanceUID
+            dict_information["SeriesInstanceUID"] = dc.SeriesInstanceUID
             # list_information.append(dc.SeriesInstanceUID)
         if StudyDate:
             dict_information["StudyDate"] = dc.StudyDate
