@@ -12,11 +12,10 @@ import numpy as np
 
 #=============================================
 #Importamos partes de librerías
-from typing import Union
+from typing import Union, List
 
 from PyQt5.QtWidgets import QApplication, QMainWindow #No eliminar QApplication, se utiliza en los test
 from PyQt5.QtWidgets import QWidget, QHBoxLayout
-from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QPixmap
 
 #=============================================
@@ -24,9 +23,12 @@ from PyQt5.QtGui import QPixmap
 from views.subViewDICOM import Ui_subViewDicom     #Importamos la interfaz principal
 from config import constantSubViewDICOM as consVDcm #Importamos las constantes
 from core.classes.DicomMatrix import DicomMatrix
+from methods.GenerateInformationDicom import GenerateInformation
+from methods.DefineViewDicom import DefineViewDicom
 from services.DicomExtract import DicomExtract
 from services.InformationDicom import InformationPatient, InformationStudySerie, InformationImage
 from utils.Pixmap import Pixmap
+from utils.SignalData import Emit_Data
 
 class Ui_subViewDicomController(Ui_subViewDicom):
     """
@@ -37,42 +39,107 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         a lo largo de la ejecución de la misma
     
     """
-    def __init__(self):
-        super().__init__(self.generate_widget())
+    def __init__(self, widget_main: QWidget, 
+                    layout_main: Union[QHBoxLayout, QVBoxLayout]):        
+        super().__init__()
+
+        #Instanciamos la vista subViewDicom y la ejecutamos mediante setupUi
+        self.ui = Ui_subViewDicom()
+        self.ui.setupUi(self.define_widget_main(widget_main, layout_main))
         
-        self.create_objects() #Creamos las instancias de las clases necesarias
+        self.create_objects() #Creamos las instancias de las clases necesarias para el controlador
     
-    def create_objects(self) -> None:
-        self.obj_dicom_extract = DicomExtract()
-        self.obj_dicom_matrix = DicomMatrix()
-        self.obj_pixmap = Pixmap()
-        
-        self.obj_info_patient = InformationPatient()
-        self.obj_info_study_serie = InformationStudySerie()
-        self.obj_info_image = InformationImage()
-    
-    """
-    El método "create_objects" de la clase Ui_subviewDicomController
-    tiene por finalidad generar instancias de otras clases que son necesarias para el funcionamiento de la subinterfaz
-    
-    - Instancias:
-        - self.obj_dicom_extract (DicomExtract) : Instancia de la clase DicomExtract, encargada de encapsular la lógica del
-                                                    procesamiento inicial de los dicom.
-        
-        - self.obj_dicom_matrix (DicomMatrix)   : Instancia de la clase DicomMatrix, encargada de encapsular la lógica para
-                                                    la creación de la matriz tridimensional de los dicom
-        
-        - self.obj_pixmap (Pixmap)              : Instancia de la clase Pixmap, encargada de encapsular la lógica para
-                                                    crear un elemento Pixmap utilizable.
-    """
-    def generate_widget(self) -> tuple[QWidget, QHBoxLayout]:
-        widget_main = QWidget() 
-        widget_main.setMinimumSize(QSize(600,500))  
-        layout_main = QHBoxLayout(widget_main)
+    def create_objects(self):
+        self.generate_information = GenerateInformation()
+        self.define_view = DefineViewDicom()
+
+        self.obj_emit = Emit_Data()
+
+    def define_widget_main(self, widget: QWidget, 
+                            layout: Union[QHBoxLayout. QVBoxLayout]) -> tuple[QWidget, QHBoxLayout]:
+        if isinstance(widget, QWidget) and isinstance(layout, [QHBoxLayout, QVBoxLayout]): 
+            widget_main = widget
+            layout_main = layout 
+        else:
+            raise ValueError("Los tipos de elemento proporcionados no corresponden a un QWidget y QLayout (QHBoxLayout, QVBoxLayout)")
         
         return widget_main, layout_main
+    """
+    El mètodo define_widget_main de la clase subViewDicomController.py 
+    tiene la finalidad de verificar que si un widget y un layout 
+    sean efectivamente elemento QWidget o QLayout
+
+    - Paràmetros:
+        - self (subViewDicomController)     : Instancia de la clase subViewDicomController.
+        - widget (QWidget)                  : Widget sobre el cual se realizarà la verificaciòn.
+        - layout (QHBoxLayout | QVBoxLayout): Layout sobre el cual se realizará la verificación.
+    
+    - Retorno:
+        - tuple[QWidget, QLayout]   : Se retorna una tupla que contiene el elemento 
+                                        QWidget y el elemento QLayout 
+
+    - Exception:
+        - ValueError        : En caso de que los parámetros widget y layout no tengan su 
+                                valor correspondiente.
+    """
+    
+    def setupUi(self, path: Union[str, List]):
+        dicom_list, self.matrix = self.generate_information.generate_dicoms_matrix(path=path)
+        dict_info_patient, dict_info_study = self.generate_information.generate_information_dicom(dicom_list[consVDcm.NUM_DICOM_DEFAULT])
         
-        
+        matrix_2d = self.define_view.return_view(self.matrix, consVDcm.NUM_DICOM_DEFAULT, 
+                                                    consVDcm.VIEW_DICOM_DEFAULT)
+        pixmap = self.generate_information.generate_pixmap(matrix_2d)
+
+        self.change_static_info(dict_info_patient, dict_info_patient)
+        self.change_semi_dinamic_info(self.define_view.return_size_view(consVDcm.VIEW_DICOM_DEFAULT)) #Aquí debe ser en base al tipo de vista que se seleccione
+        self.change_dinamic_info(self.ui_slider.get_value_edit(consVDcm.DIFFERENCE_RETURN_VALUE_SLIDER), 
+                                    pixmap)
+
+        self.obj_emit.emit_signal(True)
+
+    def switch_view(self, new_view: str):
+        matrix_2d = self.define_view.return_view(self.matrix, self.ui_slider.get_value(), 
+                                                    new_view)
+        pixmap = self.generate_information.generate_pixmap(matrix_2d)
+
+        self.change_semi_dinamic_info(self.define_view.return_size_view(new_view))
+        self.change_dinamic_info(self.ui_slider.get_value_edit(1), pixmap)
+
+    def switch_value_img(self, new_value: int):
+        pass
+
+    #Intenta mejorarlo (Ahora mismo está hecho con muchas pinzas, sobre todo por el diccionario)
+    def change_static_info(self, info_patient: dict, info_study: dict):
+        self.define_values_items_static(info_patient["PatientName"], info_patient["PatientID"], 
+                                            info_patient["PatientBirthDate"], info_patient["PatientSex"], 
+                                            info_study["InstitutionName"], info_study["StudyInstanceID"],
+                                            info_study["BodyPartExamined"], info_study["StudyDate"], 
+                                            info_study["StudyTime"])
+    
+    """
+    Disparador => Cambiar el path de los dicom
+    """
+    
+    def change_semi_dinamic_info(self, end_value_dicom_view: int):
+        if self.dicoms_utilities:
+            self.define_values_items_semi_dinamic(text_img_end=end_value_dicom_view,
+                                                  value_end_slider=end_value_dicom_view)
+    
+    """
+    Disparador => Cambiar la vista del folder dicom (Axial, Coronal y Sagital)
+    """
+    
+    def change_dinamic_info(self, num_img_now: int, img: QPixmap):
+        if self.dicoms_utilities:
+            self.define_values_items_dinamic(num_img_now)
+            self.define_value_image(img)
+    
+    """
+    Disparador => Cambiar el valor del slider
+    """
+
+
     def define_values_items_static(self, text_name: str, text_ID_patient: str, 
                                    text_date_born: str,  text_sex: str, 
                                    text_institution_name: str, text_study_ID: str,
@@ -113,7 +180,7 @@ class Ui_subViewDicomController(Ui_subViewDicom):
     def define_values_items_semi_dinamic(self, text_img_end: str, 
                                          value_end_slider: int, value_start_slider: int = consVDcm.DEFAULT_VALUE_SLIDER) -> None:
         self.ui_text_img_end.change_data(text_img_end)
-        self.ui_slider.define_range(value_start_slider, value_end_slider) 
+        self.ui_slider.define_range(value_start_slider, value_end_slider)
     """
     El método "define_values_items_semi_dinamic" cumple la función de darle valor
     a algunos elementos que conforman la vista DICOM
@@ -126,74 +193,19 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         - value_end_slider (int)    : Valor Int encargado de definir el valor máximo o final que tendrá el Slider
     """
     
-    def define_values_items_dinamic(self, text_img_now: str) -> None:
+    def define_values_items_dinamic(self, text_img_now: str,
+                                        img: QPixmap) -> None:
         self.ui_text_img_now.change_data(text_img_now)
+        self.ui_img_dicom.insert_element(img)
     """
     El método "define_values_items_semi_dinamic" cumple la función de darle valor
     a algunos elementos que conforman la vista DICOM
     
     - Estos elementos tienen la particularidad de que variarán constantemente a lo largo
         de la visualización de los archivos.
+    - Ello pasa a razón de que esto variará según el QSlider
         
     - Parámetros:
         - text_img_now (str)        : Valor String que será usado para cambiar la data del elemento ui_text_img_now
-    """
-    
-    def define_value_image(self, img: QPixmap) -> None:
-        self.ui_img_dicom.insert_element(img)
-    
-    """
-    El método define_value_image de la clase Ui_subViewDicomController
-    nos permite establecer el valor que tendrá la imagen dicom representada por el elemento Pixmap.
-    
-    - Parámetros:
-        - self (Ui_subViewDicomController)  : Instancia de la clase Ui_subViewDicomController
         - img (QPixmap)         : Instancia de la clase QPixmap que contiene la imagen dicom
-    """
-        
-    def generate_dicoms_matrix_subView(self, path: Union[str, list]) -> None:
-        self.dicoms_utilities = self.obj_dicom_extract.extract_dicoms(path)
-        self.matrix_dicom = self.obj_dicom_matrix.generate_matrix(self.dicoms_utilities)
-    
-    def generate_pixmap_subView(self, matrix_2d: np.array) -> None:
-        self.pixmap = self.obj_pixmap.create_pixmap(matrix_2d)
-    
-    def generate_information_dicom(self):
-        if self.dicoms_utilities:
-            self.dict_info_patient = self.obj_info_patient.get_information(self.dicoms_utilities[0],
-                                                            PatientName=True, PatientID=True, 
-                                                            PatientBirthDate=True, PatientSex=True)
-            self.dict_info_study = self.obj_info_study_serie.get_information(self.dicoms_utilities[0],
-                                                                   BodyPartExamined=True, StudyInstanceID=True, 
-                                                                   StudyDate=True, StudyTime=True, InstitutionName=True)
-            # self.dict_info_image = self.obj_info_image.get_information(self.dicoms_utilities[0], InstanceNumber=True, Rows=True, Columns=True)
-            #Comentamos esta variable debido a que no se utiliza
-    def change_static_info(self):
-        if self.dicoms_utilities:
-            self.define_values_items_static(self.dict_info_patient["PatientName"], self.dict_info_patient["PatientID"], 
-                                            self.dict_info_patient["PatientBirthDate"], self.dict_info_patient["PatientSex"], 
-                                            self.dict_info_study["InstitutionName"], self.dict_info_study["StudyInstanceID"],
-                                            self.dict_info_study["BodyPartExamined"], self.dict_info_study["StudyDate"], 
-                                            self.dict_info_study["StudyTime"])
-    
-    """
-    Disparador => Cambiar el path de los dicom
-    """
-    
-    def change_semi_dinamic_info(self, end_value_dicom_view: int):
-        if self.dicoms_utilities:
-            self.define_values_items_semi_dinamic(text_img_end=end_value_dicom_view,
-                                                  value_end_slider=end_value_dicom_view)
-    
-    """
-    Disparador => Cambiar la vista del folder dicom (Axial, Coronal y Sagital)
-    """
-    
-    def change_dinamic_info(self, num_img_now: int, img: QPixmap):
-        if self.dicoms_utilities:
-            self.define_values_items_dinamic(num_img_now)
-            self.define_value_image(img)
-    
-    """
-    Disparador => Cambiar el valor del slider
     """

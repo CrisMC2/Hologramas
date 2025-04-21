@@ -1,11 +1,6 @@
 import numpy as np
-import os
-import sys
-
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 
 from PyQt5.QtGui import QImage, QPixmap
-
 from abstracts.Ui.AbsPixmap import AbsProccessPixmap
 
 class Pixmap(AbsProccessPixmap):

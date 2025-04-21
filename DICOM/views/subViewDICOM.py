@@ -1,9 +1,3 @@
-import sys
-import os
-
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(_append)
-
 #Importamos partes de librerías
 from PyQt5.QtWidgets import QApplication, QMainWindow #No eliminar el QApplication, es necesario para el test desde tests.test_subViewDICOM
 from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsProxyWidget, QGraphicsPixmapItem, QGraphicsLinearLayout, QLayout
@@ -28,9 +22,10 @@ class Ui_subViewDicom(QMainWindow):
                                                         del QGraphicsView.
     """
     
-    def __init__(self, main_container: tuple[QWidget, QLayout]):
+    def __init__(self):
         super().__init__()
 
+    def setupUi(self, main_container: tuple[QWidget, QLayout]):
         self.generate_containers() #Generamos los contenedores que tendrá la interfaz
         self.generate_items() #Generamos los items que tendrá la interfaz
         

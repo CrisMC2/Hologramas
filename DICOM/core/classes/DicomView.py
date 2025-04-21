@@ -1,12 +1,15 @@
+import os
+import sys
+
 import numpy as np
 
-from DICOM.core.abstracts.AbsDicomView import AbsDicomView
+from core.abstracts.AbsDicomView import AbsDicomView
 
 class ViewAxial(AbsDicomView):
     def define_aspect(self, label: str):
         pass
     
-    def create_view(self, array_dicoms: np.array[int, int, int], i: int):
+    def create_view(self, array_dicoms: np.array, i: int):
         return array_dicoms[i,:,:]
     """
     La implementación de create_view en ViewAxial
@@ -42,7 +45,7 @@ class ViewSagittal(AbsDicomView):
     def define_aspect(self, label: str):
         pass
     
-    def create_view(self, array_dicoms: np.array[int, int, int], i: int):
+    def create_view(self, array_dicoms: np.array, i: int):
         return array_dicoms[:,:,i]
     
     """
@@ -69,7 +72,7 @@ class ViewCoronal(AbsDicomView):
     def define_aspect(self, label: str):
         pass
     
-    def create_view(self, array_dicoms: np.array[int, int, int], i: int):
+    def create_view(self, array_dicoms: np.array, i: int):
         return array_dicoms[:,i,:]
     """
     En el caso de ViewCoronal, que es la vista desde la perspectiva de "frente",

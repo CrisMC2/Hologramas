@@ -1,15 +1,9 @@
 #Importación de Librerías
 import numpy as np
-import sys
-import os
-
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-sys.path.append(_append)
 
 #Importación de partes de librerías
 from abc import ABC, abstractmethod
 from PyQt5.QtWidgets import QWidget
-
 
 #Importación de clases del mismo proyecto
 from abstracts.Ui.AbsContainers import AbsContainers   

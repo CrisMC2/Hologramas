@@ -1,9 +1,3 @@
-import sys
-import os
-
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(_append)
-
 from typing import Union
 from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsPixmapItem
 from PyQt5.QtGui import QPixmap

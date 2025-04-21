@@ -1,10 +1,3 @@
-import sys
-import os
-
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(_append)
-
-
 from typing import Union
 from PyQt5.QtWidgets import QWidget, QLabel, QTextEdit, QSlider, QSizePolicy, QGraphicsProxyWidget
 from PyQt5.QtCore import Qt
@@ -144,7 +137,7 @@ class SliderWidget(AbsSliderControl):
         - self (SliderWidget)   : Instancia de la clase SliderWidget
         - new_value (int)       : Valor "int" usado para cambiar el valor del slider.
     """
-    def get_value(self):
+    def get_value(self) -> int:
         return self.q_slider.value()
     """
     El método "get_value" nos permite retornar el valor actual en el cual se encuentra el slider.
@@ -153,7 +146,7 @@ class SliderWidget(AbsSliderControl):
         - slider.value() => Retorna el valor actual en el cual se encuentra el Slider
     """
     
-    def get_value_edit(self, difference: int):
+    def get_value_edit(self, difference: int) -> int:
         return self.q_slider.value()+difference
 
     """

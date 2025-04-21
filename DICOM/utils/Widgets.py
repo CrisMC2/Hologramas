@@ -1,9 +1,3 @@
-import sys
-import os
-
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(_append)
-
 from abstracts.Ui.AbsContainers import AbsContainers
 
 from PyQt5.QtWidgets import QWidget, QLayout, QGraphicsProxyWidget

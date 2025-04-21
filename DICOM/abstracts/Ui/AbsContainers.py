@@ -1,9 +1,6 @@
 import sys
 import os
 
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-sys.path.append(_append)
-
 from abc import abstractmethod
 from abstracts.Ui.AbsWidget import AbsWidget #Abstracción Principal (DICOM.abstracts.Ui.AbsWidget)
 
