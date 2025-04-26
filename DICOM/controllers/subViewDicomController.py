@@ -9,7 +9,7 @@ _append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(_append)
 
 import numpy as np
-
+import matplotlib.pyplot as plt
 #=============================================
 #Importamos partes de librerías
 from typing import Union, List
@@ -45,14 +45,16 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         #Instanciamos la vista subViewDicom y la ejecutamos mediante setupUi
         # self.ui = Ui_subViewDicom()
         self.setupSubUi(self.define_widget_main(widget_main, layout_main))
-        
         self.create_objects() #Creamos las instancias de las clases necesarias para el controlador
+    
+    
     
     def create_objects(self):
         self.generate_information = GenerateInformation()
         self.define_view = DefineViewDicom()
 
         self.obj_emit = Emit_Data()
+
 
     def define_widget_main(self, widget: QWidget, 
                             layout: Union[QHBoxLayout, QVBoxLayout]) -> tuple[QWidget, QHBoxLayout]:
@@ -83,19 +85,23 @@ class Ui_subViewDicomController(Ui_subViewDicom):
     """
     @pyqtSlot(object)
     def setupUiController(self, path: object):
-        dicom_list, self.matrix = self.generate_information.generate_dicoms_matrix3D(path=path)
-        dict_info_patient, dict_info_study = self.generate_information.generate_information_dicom(dicom_list[consVDcm.NUM_DICOM_DEFAULT])
-        
+        #==================================
+        #Generamos la información
+        dicom_list, self.matrix = self.generate_information.generate_dicoms_matrix3D(path=path) #Generamos la matriz y el conjunto de dicoms
+        dict_info_patient, dict_info_study = self.generate_information.generate_information_dicom(dicom_list[consVDcm.NUM_DICOM_DEFAULT]) #Generamos la información del paciente y estudio
         matrix_2d = self.define_view.return_view(self.matrix, consVDcm.NUM_DICOM_DEFAULT, 
-                                                    consVDcm.VIEW_DICOM_DEFAULT)
-        
-        pixmap = self.generate_information.generate_pixmap(matrix_2d)
+                                                    consVDcm.VIEW_DICOM_DEFAULT) #Generamos la vista en base a la matriz 3D
+        pixmap = self.generate_information.generate_pixmap(matrix_2d) #Generamos el pixmap
 
+        #===================================
+        #Cambiamos la Información
         self.change_static_info(dict_info_patient, dict_info_study)
         self.change_semi_dinamic_info(self.define_view.return_size_view(self.matrix, consVDcm.VIEW_DICOM_DEFAULT)) #Aquí debe ser en base al tipo de vista que se seleccione
+        print(f"\n\nValue: {self.define_view.return_size_view(self.matrix, consVDcm.VIEW_DICOM_DEFAULT)}")
         self.change_dinamic_info(self.ui_slider.get_value_edit(consVDcm.DIFFERENCE_VALUE_SLIDER), 
                                     pixmap)
 
+        #Emitimos la señal
         self.obj_emit.emit_signal(True)
 
     """
@@ -160,6 +166,7 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         self.ui_text_img.change_data(text_img)
         
         self.ui_slider.set_value(value_slider_now)
+        print(f"\n\nValor Slider: {self.ui_slider.get_value()}")
     """
     El método "define_values_items_static" cumplea la función de darle valor
     a los elementos que conforman la vista DICOM.

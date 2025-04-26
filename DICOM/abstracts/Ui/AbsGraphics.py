@@ -17,7 +17,7 @@ class AbsGraphicsView(AbsContainers):
 
 class AbsGraphicsScene(AbsContainers):
     def __init__(self):
-        self.q_scene = QGraphicsScene(0,0,1000,800)
+        self.q_scene = QGraphicsScene(0,0,700,500)
     """
     Aquí generamos el objeto QGraphicsScene sobre el cual se ejecutarán 
     todos los métodos

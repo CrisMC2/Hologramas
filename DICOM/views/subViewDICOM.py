@@ -26,15 +26,18 @@ class Ui_subViewDicom(QMainWindow):
         super().__init__()
 
     def setupSubUi(self, main_container: tuple[QWidget, QLayout]):
-        self.generate_containers() #Generamos los contenedores que tendrá la interfaz
-        self.generate_items() #Generamos los items que tendrá la interfaz
+        #
         
+        self.generate_containers() #Generamos los contenedores que tendrá la interfaz        
+        self.generate_items() #Generamos los items que tendrá la interfaz
         self.configure_containers() #Configuramos los contenedores que usaremos
         # self.configure_items()
-        
         self.insert_elements() #Insertamos los elementos en los contenedores
+                
+        self.show_view(main_container[0], main_container[1])
+        print("\n\nSetup ACTIVADO\n\n")
         
-        self.setup_sub_view_dicom(main_container[0], main_container[1])
+
     
     def generate_containers(self):
         #Contenedores clave para la visualización (lienzo, escena, layout)
@@ -88,10 +91,10 @@ class Ui_subViewDicom(QMainWindow):
             Las clases usadas en este método para la creación de los contenedores son 
             propias del proyecto (Desarrolladas por el equipo)
     """   
-    def setup_sub_view_dicom(self, MainWidget: QWidget, MainLayout: QLayout):
+    def show_view(self, MainWidget: QWidget, MainLayout: QLayout):
         MainLayout.addWidget(self.ui_graphics_view.q_view)
         
-        self.setCentralWidget(MainWidget)
+        # self.setCentralWidget(MainWidget)
         self.setWindowTitle("SubView DICOM")
         
     """

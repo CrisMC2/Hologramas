@@ -10,10 +10,15 @@ Aquí podemos determinar que vista mostrar.
 
 if __name__ == "__main__":
     app = vDcmC.QApplication(sys.argv) #Agregamos el sys.argv
-    # main_background = QMainWindow() #Definimos la variable principal con MainWindow
-    ui = vDcmC.Ui_viewDicomController() #Instanciamos la vista
+    view = vDcmC.Ui_viewDicomController() #Instanciamos la vista
+    
+    main_window = view
+    ui = view.ui
+    
+    ui.setupUi(main_window)
+    view.setupUiController()
     # ui.setupUi(main_background) #Ejecutamos la vista
     
     # main_background.show() #mostramos
-    ui.show() #Podemos hacer esto porque el controlador deriva de QMainWindow()    
+    main_window.show() #Podemos hacer esto porque el controlador deriva de QMainWindow()    
     sys.exit(app.exec_()) #En caso de salir, hacemos que sys acabe

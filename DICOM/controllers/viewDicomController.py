@@ -16,18 +16,14 @@ from services.SelectViewDicomUi import SelectView
 
 from config import constantViewDICOM as consVDcm
 
-class Ui_viewDicomController(Ui_viewDICOM, QMainWindow):
+class Ui_viewDicomController(QMainWindow):
     def __init__(self):
         super().__init__()
         self.ui = Ui_viewDICOM()
-        self.ui.setupUi(self)
-
+        
+    def setupUiController(self):
         self.subUi = Ui_subViewDicomController(self.ui.OneView_Widget, 
                                                self.ui.OneView_Layout)
-    
-        self.setupUiController()
-    
-    def setupUiController(self):
         self.menus()
         self.connect_signals_menus()
         self.connect_signals_views()

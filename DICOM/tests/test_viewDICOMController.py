@@ -16,7 +16,12 @@ from controllers import viewDicomController #Importamos todo el archivo, no solo
 # """
 if __name__ == "__main__":
     app = viewDicomController.QApplication(sys.argv)
-    window = viewDicomController.Ui_viewDicomController()
-    window.show()
+    view = viewDicomController.Ui_viewDicomController() #Generamos una instancia
+    window = view #Como la clase deriva de QMainWindow
+    ui = view.ui #Extraemos la viewDICOM
+    ui.setupUi(window) #Ejecutamos el inicio de la view
+    
+    window.show() #Mostramos la vista
+    # ui.setup(window)
     
     sys.exit(app.exec_())

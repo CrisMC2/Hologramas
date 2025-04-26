@@ -1253,7 +1253,26 @@ background-color: rgb(70, 70, 70);
             <height>551</height>
            </rect>
           </property>
-          <layout class="QHBoxLayout" name="OneView_Layout"/>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <layout class="QHBoxLayout" name="OneView_Layout">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+          </layout>
          </widget>
         </widget>
         <widget class="QWidget" name="EmptyView"/>

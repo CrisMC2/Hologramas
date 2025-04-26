@@ -9,7 +9,7 @@ class DefineViewDicom():
         self.obj_saggital = ViewSagittal()
         self.obj_coronal = ViewCoronal()
         
-    def return_view(self, matrix_3d: np.array, iterator_matrix: int, view: str):
+    def return_view(self, matrix_3d: np.array, iterator_matrix: int, view: str) -> np.array:
         img_array = np.zeros(1)
         
         if view == consVDcm.VIEWS_DICOM[0]:
@@ -26,7 +26,7 @@ class DefineViewDicom():
         
         return img_array
 
-    def return_size_view(self, matrix_3d: np.array, view: str):
+    def return_size_view(self, matrix_3d: np.array, view: str) -> int:
         size_view = 0
 
         if view == consVDcm.VIEWS_DICOM[0]:
