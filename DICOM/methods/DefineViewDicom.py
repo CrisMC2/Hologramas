@@ -27,7 +27,7 @@ class DefineViewDicom():
         
         return img_array
 
-    def return_size_view(self, matrix_3d: np.array, view: str) -> int:
+    def return_size_view(self, matrix_3d: np.array, view: str, edit_get: int = None) -> int:
         size_view = 0
 
         if view == consVDcm.VIEWS_DICOM[0]:
@@ -42,4 +42,11 @@ class DefineViewDicom():
         else:
             raise TypeError("El tipo de vista ingresada no es correcta, intenta con: Axial View | Saggital View | Coronal View")
         
+        if edit_get:
+            return size_view + edit_get
+            
         return size_view
+    
+    """
+    El método return_size_view de la clase DefineViewDicom.
+    """

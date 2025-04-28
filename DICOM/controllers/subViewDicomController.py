@@ -23,7 +23,6 @@ from PyQt5.QtCore import pyqtSlot
 #Importamos clases/Métodos/Elementos del mismo proyecto
 from views.subViewDICOM import Ui_subViewDicom     #Importamos la interfaz principal
 from config import constantSubViewDICOM as consSVDcm #Importamos las constantes de la subView
-from config import constantViewDICOM as consVDcm
 from methods.GenerateInformationDicom import GenerateInformation
 from methods.DefineViewDicom import DefineViewDicom
 
@@ -88,30 +87,34 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         #==================================
         #Generamos la información
         dicom_list, self.matrix = self.generate_information.generate_dicoms_matrix3D(path=path) #Generamos la matriz y el conjunto de dicoms
-        dict_info_patient, dict_info_study = self.generate_information.generate_information_dicom(dicom_list[consVDcm.NUM_DICOM_DEFAULT]) #Generamos la información del paciente y estudio
+        dict_info_patient, dict_info_study = self.generate_information.generate_information_dicom(dicom_list[consSVDcm.DEFAULT_NUM_DICOM]) #Generamos la información del paciente y estudio
 
         #===================================
         #Cambiamos la Información
         self.change_static_info(dict_info_patient, dict_info_study)
-        
-        self.switch_view(consVDcm.VIEW_DICOM_DEFAULT)
+        self.switch_view(consSVDcm.DEFAULT_VIEW_DICOM)
         
         #Emitimos la señal
         self.obj_emit.emit_signal(True)
+        self.ui_slider.connect_change_value(self.switch_value_img)
 
     """
     No es obligatorio agregar pyqtSlot(object), pero es una buena práctica para saber que aquí está llegando una señal
     """
+    @pyqtSlot(object)
     def switch_view(self, new_view: str):
-        matrix_2d = self.define_view.return_view(self.matrix, self.ui_slider.get_value(), 
-                                                    new_view)
-        pixmap = self.generate_information.generate_pixmap(matrix_2d)
-
-        self.change_semi_dinamic_info(self.define_view.return_size_view(self.matrix, new_view))
-        self.change_dinamic_info(self.ui_slider.get_value_edit(1), pixmap)
-
+        consSVDcm.VIEW_DICOM_INCONSTANT = new_view
+        
+        self.change_semi_dinamic_info(self.define_view.return_size_view(self.matrix, new_view, 1))
+        self.switch_value_img(self.ui_slider.get_value())
+        
     def switch_value_img(self, new_value: int):
-        pass
+        matrix_2d = self.define_view.return_view(self.matrix, new_value, 
+                                                    consSVDcm.VIEW_DICOM_INCONSTANT)
+        self.pixmap = self.generate_information.generate_pixmap(matrix_2d)
+
+        self.change_dinamic_info(new_value+consSVDcm.DEFAULT_DIFFERENCE_VALUE_SLIDER,
+                                 self.pixmap)
 
     #Intenta mejorarlo (Ahora mismo está hecho con muchas pinzas, sobre todo por el diccionario)
     def change_static_info(self, info_patient: dict, info_study: dict):

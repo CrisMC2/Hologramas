@@ -15,7 +15,7 @@ from services.CantViewDicomUi import SelectCantViews
 from services.SelectViewDicomUi import SelectView
 
 from config import constantViewDICOM as consVDcm
-from config import constantResponsive as consRes
+from config import constantSubViewDICOM as consSubVdcm
 
 class Ui_viewDicomController():
     def __init__(self):
@@ -42,13 +42,13 @@ class Ui_viewDicomController():
         self.ui.UploadFiles.setMenu(self._menu_upload)
         
         #Menú para seleccionar cantidad de vistas
-        self.__obj_menu_cant_view = SelectCantViews(consVDcm.CANT_VIEWS_DICOM_DEFAULT) #Utilizamos los valores por defecto o constantes
+        self.__obj_menu_cant_view = SelectCantViews(consSubVdcm.DEFAULT_CANT_VIEWS_DICOM) #Utilizamos los valores por defecto o constantes
         self._menu_cant_view = self.__obj_menu_cant_view.create_menu()
         self.__obj_menu_cant_view.enable_menu(False, self._menu_cant_view)
         self.ui.CantViews.setMenu(self._menu_cant_view)
         
         #Menú para seleccionar la vista
-        self.__obj_menu_view = SelectView(consVDcm.VIEW_DICOM_DEFAULT) #Utilizamos los valores por defecto o constantes
+        self.__obj_menu_view = SelectView(consSubVdcm.DEFAULT_VIEW_DICOM) #Utilizamos los valores por defecto o constantes
         self._menu_view = self.__obj_menu_view.create_menu()
         self.__obj_menu_view.enable_menu(False, self._menu_view)
         self.ui.SelectView.setMenu(self._menu_view)

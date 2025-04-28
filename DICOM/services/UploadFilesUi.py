@@ -1,3 +1,4 @@
+import os
 from typing import Union, List
 
 from PyQt5.QtWidgets import QFileDialog, QMenu, QAction

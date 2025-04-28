@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Callable
 from PyQt5.QtWidgets import QWidget, QLabel, QTextEdit, QSlider, QSizePolicy, QGraphicsProxyWidget
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
@@ -169,3 +169,6 @@ class SliderWidget(AbsSliderControl):
             
             Retorno => 2 - 10
     """
+    
+    def connect_change_value(self, function_connect: Callable[[int], None]) -> int:
+        self.q_slider.valueChanged.connect(function_connect)

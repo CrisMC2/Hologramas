@@ -5,6 +5,29 @@ from PyQt5.QtCore import Qt, QRectF
 
 
 #=================================================================================================
+#Configuración del Controlador
+DEFAULT_CANT_VIEWS_DICOM = 1
+DEFAULT_VIEW_DICOM = "Axial View"
+DEFAULT_NUM_DICOM = 1
+DEFAULT_DIFFERENCE_VALUE_SLIDER = 1 
+"""
+Este apartado hace alución a cuánto le agregaremos 
+o quitaremos al valor final del slider. 
+
+- Ejm: 
+	o "1" => El valor del slider será aumentado en 1
+	o "-1" => El valor del slider será disminuido en 1
+"""
+
+VIEW_DICOM_INCONSTANT = DEFAULT_VIEW_DICOM
+"""
+VIEW_DICOM_INCONSTANT será la variable que guarde la vista que irá teniendo la interfaz a lo largo
+de la ejecución del programa.
+"""
+
+
+
+#=================================================================================================
 #Configuración Características de GraphicsView
 SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAlwaysOff
 
