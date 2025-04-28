@@ -158,6 +158,10 @@ class Ui_subViewDicom(QMainWindow):
         #Configuramos las características del View
         self.ui_graphics_view.configure_features(consVDcm.SCROLL_BAR_POLICY_DEFAULT, consVDcm.BACKGROUND_COLOR_DEFAULT, consVDcm.FRAME_STYLE_DEFAULT)
         
+        #Configuramos las características únicas del View
+        self.ui_graphics_view.configure_features_scene(self.ui_graphics_scene.q_scene, consVDcm.SCENE_RECT_DEFAULT, 
+                                                        consVDcm.DEFAULT_CENTER_ON, consVDcm.DEFAULT_FIT_IN_VIEW)
+        
         #Configuramos el comportamiento del View
         self.ui_graphics_view.configure_behaivor(consVDcm.SIZE_POLICY_DEFAULT, consVDcm.DRAG_MODE_DEFAULT, consVDcm.INTERACTIVE_DEFAULT,
                                               consVDcm.RESIZE_ANCHOR_DEFAULT,consVDcm.VIEW_PORT_UPDATE_MODE_DEFAULT)

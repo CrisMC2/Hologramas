@@ -14,6 +14,15 @@ class AbsGraphicsView(AbsContainers):
     debido a que sobre este se ejecutarán todos los métodos.
     
     """
+    
+    @abstractmethod
+    def configure_features_scene(self, *args, **kwargs):
+        pass
+    
+    """
+    El método configure_features_scene de la clase AbsGraphicsView está diseñado para 
+    configurar las características de la vista que tengan que ver o necesiten de una Escena.
+    """
 
 class AbsGraphicsScene(AbsContainers):
     def __init__(self):

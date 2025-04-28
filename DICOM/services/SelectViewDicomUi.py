@@ -1,13 +1,10 @@
 import numpy as np
 
-from PyQt5.QtWidgets import QMenu, QAction, QStackedWidget, QLabel
-from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtWidgets import QMenu, QAction
 
 from abstracts.Ui.AbsMenus import AbsMenus
-from abstracts.Ui.AbsActions import AbsActions
-from abstracts.Ui.AbsPixmap import AbsUi_Pixmap 
-from core.classes.DicomView import ViewAxial, ViewCoronal, ViewSagittal  
-            
+from config import constantViewDICOM as consVDcm 
+
 class SelectView(AbsMenus):
     def __init__(self, view_default: str):
         super().__init__()
@@ -18,16 +15,17 @@ class SelectView(AbsMenus):
         menuViews = QMenu()
         self.create_actions()
         self.check_action(self.list_actions)
-                
+        self.connections()
+        
         menuViews.addActions(self.list_actions)
         
         return menuViews
     
     #Herencia de AbsActions
     def create_actions(self):
-        self.action_AxialView = QAction("Axial View", self)
-        self.action_SaggitalView = QAction("Saggital View", self)
-        self.action_CoronalView = QAction("Coronal View", self)
+        self.action_AxialView = QAction(consVDcm.VIEWS_DICOM[0])
+        self.action_SaggitalView = QAction(consVDcm.VIEWS_DICOM[1])
+        self.action_CoronalView = QAction(consVDcm.VIEWS_DICOM[2])
         
         self.list_actions = [self.action_AxialView,  self.action_SaggitalView, self.action_CoronalView]
     

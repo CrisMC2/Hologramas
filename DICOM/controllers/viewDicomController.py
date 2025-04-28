@@ -6,8 +6,8 @@ sys.path.append(uiDicom)
 
 from typing import List
 
-from PyQt5.QtWidgets import QApplication, QMainWindow #QApplication se utiliza en el test, NO ELIMINAR
-from views.viewDICOM  import Ui_viewDICOM
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget #QApplication se utiliza en el test, NO ELIMINAR
+from views.viewDICOM  import Ui_viewDicom
 from controllers.subViewDicomController import Ui_subViewDicomController
 
 from services.UploadFilesUi import MenuUploadFiles
@@ -15,11 +15,16 @@ from services.CantViewDicomUi import SelectCantViews
 from services.SelectViewDicomUi import SelectView
 
 from config import constantViewDICOM as consVDcm
+from config import constantResponsive as consRes
 
-class Ui_viewDicomController(QMainWindow):
+class Ui_viewDicomController():
     def __init__(self):
         super().__init__()
-        self.ui = Ui_viewDICOM()
+        self.ui = Ui_viewDicom()
+        self.widget_main = QWidget()
+        
+        self.ui.setupUi(self.widget_main)
+        self.setupUiController()
         
     def setupUiController(self):
         self.subUi = Ui_subViewDicomController(self.ui.OneView_Widget, 
@@ -28,14 +33,6 @@ class Ui_viewDicomController(QMainWindow):
         self.connect_signals_menus()
         self.connect_signals_views()
 
-    """
-    En esta parte definimos los menus.
-    
-    Cabe señalar que en cada objeto se instancia la clase padre.
-    Luego se crea el menú directamente.
-    Se utiliza la instancia de la clase padre para configurar el menú
-    Por último se setea el menú en la interfaz
-    """
     def menus(self):
         #Menú para subir archivos
         self.__obj_menu_upload = MenuUploadFiles(directory_search_default=consVDcm.DIRECTORY_SEARCH_DEFAULT, type_file_filter=consVDcm.FILTER_SEARCH, 
@@ -56,6 +53,15 @@ class Ui_viewDicomController(QMainWindow):
         self.__obj_menu_view.enable_menu(False, self._menu_view)
         self.ui.SelectView.setMenu(self._menu_view)
 
+    """
+    En esta parte definimos los menus.
+    
+    Cabe señalar que en cada objeto se instancia la clase padre.
+    Luego se crea el menú directamente.
+    Se utiliza la instancia de la clase padre para configurar el menú
+    Por último se setea el menú en la interfaz
+    """
+    
     def connect_signals_menus(self):
         self.__obj_menu_upload.obj_signal.connect(self.subUi.setupUiController)
         self.__obj_menu_view.obj_signal.connect(self.subUi.switch_view)
@@ -68,6 +74,8 @@ class Ui_viewDicomController(QMainWindow):
         if activate:
             self.__obj_menu_cant_view.enable_menu(True, self._menu_cant_view)
             self.__obj_menu_view.enable_menu(True, self._menu_view)
+        
+        self.ui.StackedViews.setCurrentIndex(1)
     """
     El método activate_menu, propio de la clase Ui_viewDicomController permite
     activar los menús que inicialmente se plantean como desactivados.

@@ -1,7 +1,7 @@
 from typing import Union
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsLinearLayout, QGraphicsProxyWidget, QWidget, QLayout, QFrame, QSizePolicy
 from PyQt5.QtGui import QBrush
-from PyQt5.QtCore import Qt, QSize
+from PyQt5.QtCore import Qt, QRectF
 
 from abstracts.Ui.AbsGraphics import AbsGraphicsView, AbsGraphicsScene, AbsGraphicsWidget, AbsGraphicsProxyWidget
 
@@ -10,14 +10,21 @@ class GraphicsView(AbsGraphicsView):
     def __init__(self):
         super().__init__()
     
-    def configure_features(self, scroll_bar_policy: Qt, background: QBrush, 
-                           frame_style: QFrame):
+    def configure_features(self, scroll_bar_policy: Qt.ScrollBarPolicy, background: QBrush, 
+                           frame_style: QFrame.Shape):
         self.q_view.setHorizontalScrollBarPolicy(scroll_bar_policy)
         self.q_view.setVerticalScrollBarPolicy(scroll_bar_policy)
         self.q_view.setBackgroundBrush(background)
         self.q_view.setFrameStyle(frame_style)
+    
+    def configure_features_scene(self, scene: QGraphicsScene, scene_rect: QRectF, center_on: bool, fit_in_view: bool):
+        self.q_view.setSceneRect(scene_rect)
         
-
+        if center_on:
+            self.q_view.centerOn(scene_rect.center())
+        elif fit_in_view:
+            self.q_view.fitInView(scene_rect, Qt.KeepAspectRatio)
+    
     def configure_behaivor(self, size_policy: QSizePolicy, drag, interactive: bool, resize_anchor: QGraphicsView.ViewportAnchor, 
                            portUpdateMode: QGraphicsView.ViewportUpdateMode):
         # self.q_view.setSizePolicy(size_policy, size_policy)

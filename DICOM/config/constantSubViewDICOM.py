@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QFrame
 from PyQt5.QtWidgets import QSizePolicy
 from PyQt5.QtGui import QColor, QFont
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QRectF
 
 
 #=================================================================================================
@@ -21,6 +21,9 @@ FRAME_STYLE_DEFAULT = QFrame.NoFrame
 setFrameStyle(QFrame.NoFrame): Elimina el borde del QGraphicsView
 
 """
+
+DEFAULT_CENTER_ON = True
+DEFAULT_FIT_IN_VIEW = False
 
 #=================================================================================================
 #Configuración Comportamiento de GraphicsView
@@ -57,7 +60,7 @@ setViewportUpdateMode(QGraphicsView.BoundingRectViewportUpdate): Optimiza la act
 
 #=================================================================================================
 #Configuración Características de GraphicScene
-SCENE_RECT_DEFAULT = (0, 0, 600,800)
+SCENE_RECT_DEFAULT = QRectF(0, 0, 600,800)
 
 BACKGROUND_COLOR_DEFAULT_2 = QColor(0,0,0)
 

@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 from core.classes.DicomView import ViewAxial, ViewCoronal, ViewSagittal  
 from config import constantViewDICOM as consVDcm 
@@ -10,17 +11,17 @@ class DefineViewDicom():
         self.obj_coronal = ViewCoronal()
         
     def return_view(self, matrix_3d: np.array, iterator_matrix: int, view: str) -> np.array:
-        img_array = np.zeros(1)
+        # img_array = np.zeros(1)
         
         if view == consVDcm.VIEWS_DICOM[0]:
             img_array = self.obj_axial.create_view(matrix_3d, iterator_matrix)
-            
+
         elif view == consVDcm.VIEWS_DICOM[1]:
             img_array = self.obj_saggital.create_view(matrix_3d, iterator_matrix)
-        
+
         elif view == consVDcm.VIEWS_DICOM[2]:
             img_array = self.obj_coronal.create_view(matrix_3d, iterator_matrix)
-            
+
         else:
             raise TypeError("El tipo de vista ingresada no es correcta, intenta con: Axial View | Saggital View | Coronal View")
         

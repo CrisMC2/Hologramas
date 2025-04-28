@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>viewDICOM</class>
- <widget class="QWidget" name="viewDICOM">
+ <class>viewDicom</class>
+ <widget class="QWidget" name="viewDicom">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1092</width>
-    <height>600</height>
+    <width>900</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -21,8 +21,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>1000</width>
-    <height>600</height>
+    <width>900</width>
+    <height>500</height>
    </size>
   </property>
   <property name="palette">
@@ -481,7 +481,7 @@
   </property>
   <property name="windowIcon">
    <iconset theme="hola">
-    <normaloff>.</normaloff>.</iconset>
+    <normaloff>C:/Users/Dell/.designer/backup</normaloff>C:/Users/Dell/.designer/backup</iconset>
   </property>
   <property name="toolTip">
    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ventana Principal&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -509,7 +509,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QFrame" name="PrincipalLayout">
+    <widget class="QFrame" name="viewDicom_Frame">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -521,7 +521,7 @@
      </property>
      <property name="minimumSize">
       <size>
-       <width>800</width>
+       <width>900</width>
        <height>500</height>
       </size>
      </property>
@@ -991,7 +991,7 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,9">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -1008,7 +1008,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QFrame" name="OptionsLayout">
+       <widget class="QFrame" name="options_Frame">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -1017,8 +1017,8 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>0</width>
-          <height>0</height>
+          <width>900</width>
+          <height>50</height>
          </size>
         </property>
         <property name="styleSheet">
@@ -1152,38 +1152,6 @@ background-position: left;
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="CantViews">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>60</width>
-                <height>40</height>
-               </size>
-              </property>
-              <property name="cursor">
-               <cursorShape>PointingHandCursor</cursorShape>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>../../resources/img/viewDICOM/categoria-alternativa.png</normaloff>../../resources/img/viewDICOM/categoria-alternativa.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>30</width>
-                <height>30</height>
-               </size>
-              </property>
-              <property name="popupMode">
-               <enum>QToolButton::MenuButtonPopup</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QToolButton" name="SelectView">
               <property name="enabled">
                <bool>true</bool>
@@ -1215,6 +1183,38 @@ background-position: left;
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QToolButton" name="CantViews">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>60</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../resources/img/viewDICOM/categoria-alternativa.png</normaloff>../../resources/img/viewDICOM/categoria-alternativa.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="popupMode">
+               <enum>QToolButton::MenuButtonPopup</enum>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
          </item>
@@ -1229,6 +1229,12 @@ background-position: left;
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="minimumSize">
+         <size>
+          <width>900</width>
+          <height>450</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">QStackedWidget &gt; QWidget{
 background-color: rgb(70, 70, 70);
@@ -1240,18 +1246,56 @@ background-color: rgb(70, 70, 70);
         <property name="currentIndex">
          <number>0</number>
         </property>
-        <widget class="QWidget" name="OneView">
+        <widget class="QWidget" name="EmptyView">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>900</width>
+           <height>500</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgba(70,70,70,1);</string>
+         </property>
+        </widget>
+        <widget class="QWidget" name="OneView">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>900</width>
+           <height>450</height>
+          </size>
          </property>
          <widget class="QWidget" name="OneView_Widget" native="true">
           <property name="geometry">
            <rect>
-            <x>10</x>
+            <x>0</x>
             <y>0</y>
-            <width>1081</width>
-            <height>551</height>
+            <width>900</width>
+            <height>450</height>
            </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>900</width>
+            <height>450</height>
+           </size>
           </property>
           <property name="styleSheet">
            <string notr="true"/>
@@ -1275,9 +1319,34 @@ background-color: rgb(70, 70, 70);
           </layout>
          </widget>
         </widget>
-        <widget class="QWidget" name="EmptyView"/>
-        <widget class="QWidget" name="TwoViews"/>
-        <widget class="QWidget" name="FourViews"/>
+        <widget class="QWidget" name="TwoViews">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>900</width>
+           <height>500</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QWidget" name="FourViews">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>900</width>
+           <height>500</height>
+          </size>
+         </property>
+        </widget>
        </widget>
       </item>
      </layout>

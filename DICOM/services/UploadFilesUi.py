@@ -76,8 +76,8 @@ class MenuUploadFiles(AbsMenus):
             self.emit_signal(folder)
         elif file:
             self.emit_signal(file)
-        else:
-            raise ValueError("Intentas emitir un elemento nulo.")
+        # else:
+        #     raise ValueError("Intentas emitir un elemento nulo.")
     
     
 class FolderUploader(AbsUploadData):

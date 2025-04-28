@@ -6,7 +6,7 @@ from abstracts.Ui.AbsPixmap import AbsProccessPixmap
 class Pixmap(AbsProccessPixmap):
     
     def create_pixmap(self, img_array: np.uint8) -> QPixmap:
-        self.prepare_array(img_array)
+        img_array = self.prepare_array(img_array)
         
         #QImage (data, width, height, bytesPerLine, format)
         qimg = QImage(img_array, img_array.shape[0], img_array.shape[1], img_array.strides[0], QImage.Format_Grayscale8)

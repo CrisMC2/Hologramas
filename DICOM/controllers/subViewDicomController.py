@@ -89,18 +89,13 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         #Generamos la información
         dicom_list, self.matrix = self.generate_information.generate_dicoms_matrix3D(path=path) #Generamos la matriz y el conjunto de dicoms
         dict_info_patient, dict_info_study = self.generate_information.generate_information_dicom(dicom_list[consVDcm.NUM_DICOM_DEFAULT]) #Generamos la información del paciente y estudio
-        matrix_2d = self.define_view.return_view(self.matrix, consVDcm.NUM_DICOM_DEFAULT, 
-                                                    consVDcm.VIEW_DICOM_DEFAULT) #Generamos la vista en base a la matriz 3D
-        pixmap = self.generate_information.generate_pixmap(matrix_2d) #Generamos el pixmap
 
         #===================================
         #Cambiamos la Información
         self.change_static_info(dict_info_patient, dict_info_study)
-        self.change_semi_dinamic_info(self.define_view.return_size_view(self.matrix, consVDcm.VIEW_DICOM_DEFAULT)) #Aquí debe ser en base al tipo de vista que se seleccione
-        print(f"\n\nValue: {self.define_view.return_size_view(self.matrix, consVDcm.VIEW_DICOM_DEFAULT)}")
-        self.change_dinamic_info(self.ui_slider.get_value_edit(consVDcm.DIFFERENCE_VALUE_SLIDER), 
-                                    pixmap)
-
+        
+        self.switch_view(consVDcm.VIEW_DICOM_DEFAULT)
+        
         #Emitimos la señal
         self.obj_emit.emit_signal(True)
 
