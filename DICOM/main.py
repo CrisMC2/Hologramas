@@ -18,9 +18,6 @@ if __name__ == "__main__":
     window.show()
     sys.exit(app.exec_())
 
-
-
- 
 # if __name__ == "__main__":
 #     app = vDcmC.QApplication(sys.argv) #Agregamos el sys.argv
 #     view = vDcmC.Ui_viewDicomController() #Instanciamos la vista

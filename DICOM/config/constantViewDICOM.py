@@ -1,6 +1,6 @@
 ########################################################
 #Búsqueda de archivos
-DIRECTORY_SEARCH_DEFAULT = "C:/"
+DIRECTORY_SEARCH_DEFAULT = "E:\\UNCP\\SEMILLEROS\\PROYECTO\\PRUEBAS"
 FILTER_SEARCH            = "Dicom (*dcm)"
 KEEP_DIRECTORY_DEFAULT   = False
 

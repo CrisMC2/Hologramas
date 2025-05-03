@@ -20,10 +20,13 @@ from config import constantSubViewDICOM as consSubVdcm
 class Ui_viewDicomController():
     def __init__(self):
         super().__init__()
+        
+        #=========Define la estructura de la vista principal=============
         self.ui = Ui_viewDicom()
         self.widget_main = QWidget()
-        
         self.ui.setupUi(self.widget_main)
+        
+        #=========Define la estructura de la vista secundaria=============
         self.setupUiController()
         
     def setupUiController(self):

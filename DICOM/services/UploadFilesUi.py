@@ -13,7 +13,6 @@ class MenuUploadFiles(AbsMenus):
     def __init__(self, directory_search_default: str, type_file_filter: str, keep_directory_default: bool = False):
         super().__init__()
         self.obj_folder_uploader = FolderUploader(directory_search_default= directory_search_default, 
-                                                   type_file_filter= type_file_filter, 
                                                    keep_directory_initial= keep_directory_default) #Instanciamos la búsqueda de "FOLDER"
         self.obj_file_uploader = FileUploader(directory_search_default= directory_search_default, 
                                                type_file_filter= type_file_filter, 
@@ -73,27 +72,39 @@ class MenuUploadFiles(AbsMenus):
         folder = self.obj_folder_uploader.get_directory()
         file   = self.obj_file_uploader.get_directory()
 
-        if folder:
+        if folder != None:
             self.emit_signal(folder)
-        elif file:
+            print("Directorio Carpeta: "+folder)
+            
+        elif file != None:
             self.emit_signal(file)
+            print("Directorio Archivo: "+file[0])
         # else:
         #     raise ValueError("Intentas emitir un elemento nulo.")
     
     
 class FolderUploader(AbsUploadData):
-    def __init__(self, directory_search_default: str, type_file_filter: str, keep_directory_initial: bool = False):
+    def __init__(self, directory_search_default: str, keep_directory_initial: bool = False):
         super().__init__()
         
         self.directory_search = directory_search_default
-        self.type_file_filter = type_file_filter
         self.keep_directory_initial = keep_directory_initial
         
         self.directory_selected = "" #Es el directorio seleccionado actualmente
         
         self.options = QFileDialog.Options()
+    
+    #Herencia de AbsUploadData
+    def upload(self):
+        self.folder_name = QFileDialog.getExistingDirectory(self, "Select Folder", self.directory_search, options=self.options)
+        
+        if self.folder_name and self.folder_name != self.directory_search: #Evitamos que el usuario utilice la misma carpeta 2 veces (directory_search no se limpia en cada selección)
+            self.directory_selected = self.folder_name
+            print("Nueva carpeta agregada")
+            if not self.keep_directory_initial:
+                self.directory_search = self.directory_selected
     """
-    El método permite seleccionar una carpeta mediante una ventana "modal".
+    El método "upload" permite seleccionar una carpeta mediante una ventana "modal".
     
     - El método abre una ventana la cuál permitirá acceder a los archivos.
     - La ventana solo permitirá seleccionar carpetas, mas no archivos directamente.
@@ -108,19 +119,20 @@ class FolderUploader(AbsUploadData):
     - Retorno:
         - void (vacío)  : El método directamente no retorna ningún valor, 
                             lo que realiza es asignarle un valor a una variable de clase (self.directory_selected).
-    """
+    """      
+   
     #Herencia de AbsUploadData
-    def upload(self):
-        self.folder_name = QFileDialog.getExistingDirectory(self, "Select Folder", self.directory_search, options=self.options)
-        
-        if self.folder_name:
-            self.directory_selected = self.folder_name
-            print("Directorio: "+self.folder_name)
-            if not self.keep_directory_initial:
-                self.directory_search = self.folder_name
+    def get_directory(self):
+        if self.directory_selected != "":
+            directory = self.directory_selected
             
+            self.clean_directory() # de esta manera evitamos que el directorio anteriormente abierto lo haga de nuevo.
+            
+            return directory
+        
+        return None
     """
-    El siguiente método permite retornar el directorio que previamente ha sido seleccionado.
+    El método "get_directory" permite retornar el directorio que previamente ha sido seleccionado.
     
     - El método toma una copia de la variable self.directory_selected.
     - Se limpia en cada retorno la variable self.directory_selected con la intención de no repetir una dirección que no haya sido 
@@ -132,17 +144,14 @@ class FolderUploader(AbsUploadData):
     - Retorno:
         - directory (str)       : Directorio seleccionado.
     """
-    #Herencia de AbsUploadData
-    def get_directory(self):
-        if self.directory_selected != "":
-            directory = self.directory_selected
-            
-            self.clean_directory(self.directory_selected) # de esta manera evitamos que el directorio anteriormente abierto lo haga de nuevo.
-            
-            return directory
-        
-        return None
     
+    #Herencia de AbsUploadData
+    def clean_directory(self):
+        if self.directory_selected != "":
+            self.directory_selected = ""
+        else: 
+            print("El directorio ya está vacío.")
+
     """
     El método permite limpiar una dirección.
     
@@ -155,24 +164,14 @@ class FolderUploader(AbsUploadData):
     - Retorno:
         -void       : el método es vacío, no tiene retorno.
     """
-    #Herencia de AbsUploadData
-    def clean_directory(self, directory: str):
-        if directory != "":
-            directory = ""
-        else: 
-            print("El directorio ya está vacío.")
 
 
 
-
-
-
-
-"""
-Esta clase nos permite poder acceder a los archivos del sistema y 
-extraer un archivo del formato u extensión que se desee.
-"""
 class FileUploader(AbsUploadData):
+    """
+    Esta clase nos permite poder acceder a los archivos del sistema y 
+    extraer un archivo del formato u extensión que se desee.
+    """
     def __init__(self, directory_search_default: str, type_file_filter: str, keep_directory_initial: bool = False):
         super().__init__()
         
@@ -215,17 +214,17 @@ class FileUploader(AbsUploadData):
         
     """
     #Herencia de AbsUploadData
-    def get_directory(self):
+    def get_directory(self) -> list:
         if len(self.list_directory):
             list_copy = self.list_directory.copy()
-            self.clean_directory(self.list_directory)
+            self.clean_directory()
         
             return list_copy
         return None
     
     #Herencia de AbsUploadData
-    def clean_directory(self, list_directory: list[str]):
-        if len(list_directory):
-            list_directory.clear()
+    def clean_directory(self):
+        if len(self.list_directory):
+            self.list_directory.clear()
         else:
             print("El directorio ya está vacío.")

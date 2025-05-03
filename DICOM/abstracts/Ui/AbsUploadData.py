@@ -17,10 +17,11 @@ class AbsUploadData(ABC, QWidget, metaclass= MetaAbsQt):
     def get_directory(self):
         pass
     
+    @abstractmethod
+    def clean_directory(self, *args, **kwargs):
+        pass
+    
     """
     clean_directory está pensado para que pueda trabajar o con elementos str o 
     list
     """
-    @abstractmethod
-    def clean_directory(self, directory):
-        pass

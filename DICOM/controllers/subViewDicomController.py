@@ -105,8 +105,9 @@ class Ui_subViewDicomController(Ui_subViewDicom):
     def switch_view(self, new_view: str):
         consSVDcm.VIEW_DICOM_INCONSTANT = new_view
         
-        self.change_semi_dinamic_info(self.define_view.return_size_view(self.matrix, new_view, 1))
+        self.change_semi_dinamic_info(self.define_view.return_size_view(self.matrix, new_view))
         self.switch_value_img(self.ui_slider.get_value())
+        
         
     def switch_value_img(self, new_value: int):
         matrix_2d = self.define_view.return_view(self.matrix, new_value, 
@@ -115,6 +116,8 @@ class Ui_subViewDicomController(Ui_subViewDicom):
 
         self.change_dinamic_info(new_value+consSVDcm.DEFAULT_DIFFERENCE_VALUE_SLIDER,
                                  self.pixmap)
+
+
 
     #Intenta mejorarlo (Ahora mismo está hecho con muchas pinzas, sobre todo por el diccionario)
     def change_static_info(self, info_patient: dict, info_study: dict):
@@ -130,14 +133,15 @@ class Ui_subViewDicomController(Ui_subViewDicom):
     
     def change_semi_dinamic_info(self, end_value_dicom_view: int):
         self.define_values_items_semi_dinamic(text_img_end=str(end_value_dicom_view),
-                                                  value_end_slider=end_value_dicom_view)
+                                                  value_end_slider=end_value_dicom_view-1) #Le restamos 1
+        
+        print(f"Valor final DICOM: {end_value_dicom_view}")
     
     """
     Disparador => Cambiar la vista del folder dicom (Axial, Coronal y Sagital)
     """
     
     def change_dinamic_info(self, num_img_now: int, img: QPixmap):
- 
             self.define_values_items_dinamic(str(num_img_now), img=img)
     
     """
