@@ -14,7 +14,7 @@ if __name__ == "__main__":
     ui = Ui_viewDicomController()
     
     window.setCentralWidget(ui.widget_main)
-    
+
     window.show()
     sys.exit(app.exec_())
 

@@ -1126,7 +1126,7 @@ background-position: left;
               </property>
               <property name="icon">
                <iconset>
-                <normaloff>../../resources/img/viewDICOM/carga-de-carpeta.png</normaloff>../../resources/img/viewDICOM/carga-de-carpeta.png</iconset>
+                <normaloff>../resources/img/viewDICOM/carga-de-carpeta.png</normaloff>../resources/img/viewDICOM/carga-de-carpeta.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -1170,7 +1170,7 @@ background-position: left;
               </property>
               <property name="icon">
                <iconset>
-                <normaloff>../../resources/img/viewDICOM/tomografia-computarizada.png</normaloff>../../resources/img/viewDICOM/tomografia-computarizada.png</iconset>
+                <normaloff>../resources/img/viewDICOM/tomografia-computarizada.png</normaloff>../resources/img/viewDICOM/tomografia-computarizada.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -1202,7 +1202,7 @@ background-position: left;
               </property>
               <property name="icon">
                <iconset>
-                <normaloff>../../resources/img/viewDICOM/categoria-alternativa.png</normaloff>../../resources/img/viewDICOM/categoria-alternativa.png</iconset>
+                <normaloff>../resources/img/viewDICOM/categoria-alternativa.png</normaloff>../resources/img/viewDICOM/categoria-alternativa.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -1244,7 +1244,7 @@ background-color: rgb(70, 70, 70);
          <enum>QFrame::Raised</enum>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="EmptyView">
          <property name="sizePolicy">
@@ -1256,7 +1256,7 @@ background-color: rgb(70, 70, 70);
          <property name="minimumSize">
           <size>
            <width>900</width>
-           <height>500</height>
+           <height>450</height>
           </size>
          </property>
          <property name="styleSheet">
@@ -1276,48 +1276,23 @@ background-color: rgb(70, 70, 70);
            <height>450</height>
           </size>
          </property>
-         <widget class="QWidget" name="OneView_Widget" native="true">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>900</width>
-            <height>450</height>
-           </rect>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <layout class="QHBoxLayout" name="OneView_Layout">
+          <property name="leftMargin">
+           <number>0</number>
           </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+          <property name="topMargin">
+           <number>0</number>
           </property>
-          <property name="minimumSize">
-           <size>
-            <width>900</width>
-            <height>450</height>
-           </size>
+          <property name="rightMargin">
+           <number>0</number>
           </property>
-          <property name="styleSheet">
-           <string notr="true"/>
+          <property name="bottomMargin">
+           <number>0</number>
           </property>
-          <layout class="QHBoxLayout" name="OneView_Layout">
-           <property name="spacing">
-            <number>0</number>
-           </property>
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-          </layout>
-         </widget>
+         </layout>
         </widget>
         <widget class="QWidget" name="TwoViews">
          <property name="sizePolicy">
@@ -1329,7 +1304,7 @@ background-color: rgb(70, 70, 70);
          <property name="minimumSize">
           <size>
            <width>900</width>
-           <height>500</height>
+           <height>450</height>
           </size>
          </property>
         </widget>
@@ -1343,7 +1318,7 @@ background-color: rgb(70, 70, 70);
          <property name="minimumSize">
           <size>
            <width>900</width>
-           <height>500</height>
+           <height>450</height>
           </size>
          </property>
         </widget>

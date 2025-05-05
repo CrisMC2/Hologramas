@@ -30,11 +30,13 @@ class Ui_viewDicomController():
         self.setupUiController()
         
     def setupUiController(self):
-        self.subUi = Ui_subViewDicomController(self.ui.OneView_Widget, 
+        self.subUi = Ui_subViewDicomController(self.ui.OneView, 
                                                self.ui.OneView_Layout)
+        
         self.menus()
         self.connect_signals_menus()
         self.connect_signals_views()
+
 
     def menus(self):
         #Menú para subir archivos

@@ -68,7 +68,8 @@ class GridLayout(AbsLayout):
             self.num_cols = num_cols
     
     def configure_features(self, rows_stretch: List[Dict[int, int]], 
-                                 columns_stretch: List[Dict[int, float]], spacing: float):
+                                 columns_stretch: List[Dict[int, float]], spacing: float, 
+                                 margin_left: int, margin_top: int, margin_right: int, margin_bottom: int):
         if len(rows_stretch) != self.num_rows or len(columns_stretch) != self.num_cols:
             raise ValueError("La cantidad de filas y columnas indicadas en los diccionarios no es igual a la cantidad existente.")
         
@@ -86,6 +87,8 @@ class GridLayout(AbsLayout):
                 self.q_grid_layout.setColumnStretchFactor(columns[col], columns[stretch])
             
             self.q_grid_layout.setSpacing(spacing)   
+        
+        self.q_grid_layout.setContentsMargins(margin_left, margin_top, margin_right, margin_bottom)
     
     """
     El método "configure_features" permite configurar las características base del GridLayout, 
@@ -118,8 +121,8 @@ class GridLayout(AbsLayout):
     
     """
         
-    def configure_behaivor(self, *args, **kwargs):
-        return super().configure_behaivor(*args, **kwargs)
+    def configure_behaivor(self):
+        pass
     
     def insert_element(self, elements_position: List[dict[QGraphicsProxyWidget, int, int, int, int]]):
         if elements_position:

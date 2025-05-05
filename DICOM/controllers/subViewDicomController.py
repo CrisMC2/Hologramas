@@ -22,11 +22,13 @@ from PyQt5.QtCore import pyqtSlot
 #=============================================
 #Importamos clases/Métodos/Elementos del mismo proyecto
 from views.subViewDICOM import Ui_subViewDicom     #Importamos la interfaz principal
-from config import constantSubViewDICOM as consSVDcm #Importamos las constantes de la subView
+
 from methods.GenerateInformationDicom import GenerateInformation
 from methods.DefineViewDicom import DefineViewDicom
 
 from utils.SignalData import Emit_Data
+
+from config import constantSubViewDICOM as consSVDcm #Importamos las constantes de la subView
 
 class Ui_subViewDicomController(Ui_subViewDicom):
     """
@@ -45,7 +47,6 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         # self.ui = Ui_subViewDicom()
         self.setupSubUi(self.define_widget_main(widget_main, layout_main))
         self.create_objects() #Creamos las instancias de las clases necesarias para el controlador
-    
     
     
     def create_objects(self):
@@ -82,6 +83,8 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         - ValueError        : En caso de que los parámetros widget y layout no tengan su 
                                 valor correspondiente.
     """
+    
+    
     @pyqtSlot(object)
     def setupUiController(self, path: object):
         #==================================
@@ -108,15 +111,13 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         self.change_semi_dinamic_info(self.define_view.return_size_view(self.matrix, new_view))
         self.switch_value_img(self.ui_slider.get_value())
         
-        
     def switch_value_img(self, new_value: int):
         matrix_2d = self.define_view.return_view(self.matrix, new_value, 
                                                     consSVDcm.VIEW_DICOM_INCONSTANT)
         self.pixmap = self.generate_information.generate_pixmap(matrix_2d)
-
+        
         self.change_dinamic_info(new_value+consSVDcm.DEFAULT_DIFFERENCE_VALUE_SLIDER,
                                  self.pixmap)
-
 
 
     #Intenta mejorarlo (Ahora mismo está hecho con muchas pinzas, sobre todo por el diccionario)

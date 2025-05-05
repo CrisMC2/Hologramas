@@ -31,17 +31,13 @@ class TextWidget(AbsTextControl):
         else:
             raise TypeError("El tipo de elementos que intentas incluir no es un Widget de texto: QLabel, QTextEdit")
     
-    def configure_features(self, font: QFont, size_x: int, size_y: int,
+    def configure_features(self, size_x: int, size_y: int,
                            minimum_size_x: int, minimum_size_y: int,  
-                           size_policy_x: QSizePolicy, size_policy_y: QSizePolicy,
-                           background_color: QColor, color_text: QColor) -> None:
+                           size_policy_x: QSizePolicy, size_policy_y: QSizePolicy) -> None:
         
-        self.q_text.setFont(font)
         self.q_text.setFixedSize(size_x, size_y)
         self.q_text.setMinimumSize(minimum_size_x, minimum_size_y)
-        self.q_text.setSizePolicy(size_policy_x, size_policy_y)
-        # self.q_text.setBackgroundColor(background_color)
-        # self.q_text.setTextColor(color_text)        
+        self.q_text.setSizePolicy(size_policy_x, size_policy_y)       
 
     def configure_behaivor(self, focus_policy: Qt):
         self.q_text.setFocusPolicy(focus_policy)

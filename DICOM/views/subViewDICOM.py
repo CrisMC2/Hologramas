@@ -1,17 +1,19 @@
 #Importamos partes de librerías
 from PyQt5.QtWidgets import QApplication, QMainWindow #No eliminar el QApplication, es necesario para el test desde tests.test_subViewDICOM
-from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsProxyWidget, QGraphicsPixmapItem, QGraphicsLinearLayout, QLayout
-from PyQt5.QtCore import QSize
+from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsLinearLayout, QLayout
 
 #Importamos clases del mismo proyecto (Programa nuestro)
 from utils.Graphics import GraphicsView, GraphicsScene, GraphicsWidget, GraphicsProxyWidget
 from utils.Layout import LinearLayout, GridLayout
-from utils.Widgets import Widget
 from utils.ElementsWidgets import TextWidget, SliderWidget
 from utils.PixmapUi import PixmapUi
-from config import constantSubViewDICOM as consVDcm
 
-class Ui_subViewDicom(QMainWindow):
+from config import constantSubViewDICOM as consVDcm
+from config import constantStyles as consSty
+
+from resources.load_styles import apply_style_to_list
+
+class Ui_subViewDicom(QWidget):
     """
     La interfaz Ui_subViewDicom está diseñada para dotar de una visualización completa
     de un archivo o grupo de archivos DICOM.
@@ -27,18 +29,18 @@ class Ui_subViewDicom(QMainWindow):
 
     def setupSubUi(self, main_container: tuple[QWidget, QLayout]):
         #
-        
         self.generate_containers() #Generamos los contenedores que tendrá la interfaz        
         self.generate_items() #Generamos los items que tendrá la interfaz
         self.configure_containers() #Configuramos los contenedores que usaremos
-        # self.configure_items()
+        self.configure_items()
+        self.configure_styles()
+        
         self.insert_elements() #Insertamos los elementos en los contenedores
                 
         self.show_view(main_container[0], main_container[1])
         print("\n\nSetup ACTIVADO\n\n")
         
 
-    
     def generate_containers(self):
         #Contenedores clave para la visualización (lienzo, escena, layout)
         self.ui_graphics_view   = GraphicsView()
@@ -92,7 +94,7 @@ class Ui_subViewDicom(QMainWindow):
             propias del proyecto (Desarrolladas por el equipo)
     """   
     def show_view(self, MainWidget: QWidget, MainLayout: QLayout):
-        MainLayout.addWidget(self.ui_graphics_view.q_view)
+        MainLayout.addWidget(self.ui_graphics_view)
         
         # self.setCentralWidget(MainWidget)
         self.setWindowTitle("SubView DICOM")
@@ -156,24 +158,21 @@ class Ui_subViewDicom(QMainWindow):
     
     def configure_containers(self) -> None:
         #Configuramos las características del View
-        self.ui_graphics_view.configure_features(consVDcm.SCROLL_BAR_POLICY_DEFAULT, consVDcm.BACKGROUND_COLOR_DEFAULT, consVDcm.FRAME_STYLE_DEFAULT)
-        
-        #Configuramos las características únicas del View
-        self.ui_graphics_view.configure_features_scene(self.ui_graphics_scene.q_scene, consVDcm.SCENE_RECT_DEFAULT, 
-                                                        consVDcm.DEFAULT_CENTER_ON, consVDcm.DEFAULT_FIT_IN_VIEW)
+        self.ui_graphics_view.configure_features(consVDcm.SCROLL_BAR_POLICY_DEFAULT, consVDcm.FRAME_STYLE_DEFAULT)
         
         #Configuramos el comportamiento del View
         self.ui_graphics_view.configure_behaivor(consVDcm.SIZE_POLICY_DEFAULT, consVDcm.DRAG_MODE_DEFAULT, consVDcm.INTERACTIVE_DEFAULT,
                                               consVDcm.RESIZE_ANCHOR_DEFAULT,consVDcm.VIEW_PORT_UPDATE_MODE_DEFAULT)
         
         #Configuramos las características de la Scene
-        self.ui_graphics_scene.configure_features((600,500), consVDcm.SCENE_RECT_DEFAULT, consVDcm.BACKGROUND_COLOR_DEFAULT_2)
+        self.ui_graphics_scene.configure_features((600,500), consVDcm.SCENE_RECT_DEFAULT)
         
         #Configuramos el comportamiento de la Scene
         self.ui_graphics_scene.configure_behaivor(consVDcm.ITEM_INDEX_METHOD_DEFAULT)
-         
+        
         #Configuramos las características del GraphicsWidget
-        self.ui_graphics_widget.configure_features(self.ui_graphics_scene.q_scene)
+        self.ui_graphics_widget.configure_features(consVDcm.DEFAULT_WIDGET_MINIMUM_SIZE_X,
+                                                   consVDcm.DEFAULT_WIDGET_MINIMUM_SIZE_Y, consVDcm.SIZE_POLICY_DEFAULT)
         
         #Configuramos el comportamiento del GraphicsWidget
         self.ui_graphics_widget.configure_behaivor(consVDcm.SIZE_POLICY_DEFAULT)  
@@ -201,7 +200,9 @@ class Ui_subViewDicom(QMainWindow):
         
         #Configuramos las características del Layout Principal
         self.ui_layout_main.configure_features(consVDcm.LIST_DICT_ROWS_STRETCH, consVDcm.LIST_DICT_COLS_STRETCH, 
-                                               consVDcm.DEFAULT_SPACING_MAIN)
+                                               consVDcm.DEFAULT_SPACING_MAIN, 
+                                               consVDcm.DEFAULT_LEFT_MARGIN, consVDcm.DEFAULT_RIGHT_MARGIN,
+                                               consVDcm.DEFAULT_TOP_MARGIN, consVDcm.DEFAULT_BOTTOM_MARGIN)
                 
     """
     El método permite configurar los containers que tendrá la subInterfaz.
@@ -213,70 +214,70 @@ class Ui_subViewDicom(QMainWindow):
     """
     
     def configure_items(self) -> None:
-        self.ui_text_name.configure_features(consVDcm.DEFAULT_TEXT_FONT,
-                                             consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
+        self.ui_text_name.configure_features(consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
                                              consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
-                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y,
-                                             consVDcm.DEFAULT_TEXT_BACKGROUND_COLOR, consVDcm.DEFAULT_TEXT_COLOR)
-        self.ui_text_ID_Patient.configure_features(consVDcm.DEFAULT_TEXT_FONT,
-                                             consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
+                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y)
+        self.ui_text_ID_Patient.configure_features(consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
                                              consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
-                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y,
-                                             consVDcm.DEFAULT_TEXT_BACKGROUND_COLOR, consVDcm.DEFAULT_TEXT_COLOR)
-        self.ui_text_date_born.configure_features(consVDcm.DEFAULT_TEXT_FONT,
-                                             consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
+                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y)
+        self.ui_text_date_born.configure_features(consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
                                              consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
-                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y,
-                                             consVDcm.DEFAULT_TEXT_BACKGROUND_COLOR, consVDcm.DEFAULT_TEXT_COLOR)
-        self.ui_text_sex.configure_features(consVDcm.DEFAULT_TEXT_FONT,
-                                             consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
+                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y)
+        self.ui_text_sex.configure_features(consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
                                              consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
-                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y,
-                                             consVDcm.DEFAULT_TEXT_BACKGROUND_COLOR, consVDcm.DEFAULT_TEXT_COLOR)
-        self.ui_text_institution_name.configure_features(consVDcm.DEFAULT_TEXT_FONT,
-                                             consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
+                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y)
+        self.ui_text_institution_name.configure_features(consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
                                              consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
-                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y,
-                                             consVDcm.DEFAULT_TEXT_BACKGROUND_COLOR, consVDcm.DEFAULT_TEXT_COLOR)
-        self.ui_text_study_ID.configure_features(consVDcm.DEFAULT_TEXT_FONT,
-                                             consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
+                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y)
+        self.ui_text_study_ID.configure_features(consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
                                              consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
-                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y,
-                                             consVDcm.DEFAULT_TEXT_BACKGROUND_COLOR, consVDcm.DEFAULT_TEXT_COLOR)
-        self.ui_text_body_part.configure_features(consVDcm.DEFAULT_TEXT_FONT,
-                                             consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
+                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y)
+        self.ui_text_body_part.configure_features(consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
                                              consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
-                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y,
-                                             consVDcm.DEFAULT_TEXT_BACKGROUND_COLOR, consVDcm.DEFAULT_TEXT_COLOR)
-        self.ui_text_acquisition_test.configure_features(consVDcm.DEFAULT_TEXT_FONT,
-                                             consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
+                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y)
+        self.ui_text_acquisition_test.configure_features(consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
                                              consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
-                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y,
-                                             consVDcm.DEFAULT_TEXT_BACKGROUND_COLOR, consVDcm.DEFAULT_TEXT_COLOR)
-        self.ui_text_acquisition_time.configure_features(consVDcm.DEFAULT_TEXT_FONT,
-                                             consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
+                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y)
+        self.ui_text_acquisition_time.configure_features(consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
                                              consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
-                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y,
-                                             consVDcm.DEFAULT_TEXT_BACKGROUND_COLOR, consVDcm.DEFAULT_TEXT_COLOR)
-        self.ui_text_img.configure_features(consVDcm.DEFAULT_TEXT_FONT,
-                                             consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
+                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y)
+        self.ui_text_img.configure_features(consVDcm.DEFAULT_TEXT_SIZE_X, consVDcm.DEFAULT_TEXT_SIZE_Y,
                                              consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
-                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y,
-                                             consVDcm.DEFAULT_TEXT_BACKGROUND_COLOR, consVDcm.DEFAULT_TEXT_COLOR)
+                                             consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y)
         
     """
     El método configure_items permite configurar los elementos (items) que conforman a la subinterfaz
     
     """
     
-    
+    def configure_styles(self, path_style: str = consSty.STYLE_SUB_VIEW_DICOM) -> None:
+        widgets_to_style = [
+            self.ui_graphics_view,
+            self.ui_text_img.q_text,
+            self.ui_text_img_now.q_text,
+            self.ui_text_img_end.q_text,      
+            self.ui_text_name.q_text,
+            self.ui_text_ID_Patient.q_text,
+            self.ui_text_date_born.q_text,
+            self.ui_text_sex.q_text,
+            self.ui_text_institution_name.q_text,
+            self.ui_text_study_ID.q_text,
+            self.ui_text_body_part.q_text,
+            self.ui_text_acquisition_test.q_text,
+            self.ui_text_acquisition_time.q_text,
+            self.ui_slider.q_slider,
+            self.ui_img_dicom.q_pixmap #Label
+        ]
+        
+        apply_style_to_list(path=path_style, 
+                            list_elements=widgets_to_style) #Aplicamos el estilo a todos las partes necesarias de la interfaz
+        
     def insert_elements(self) -> None:
         #Insertamos la escena en el GraphicsView
         self.ui_graphics_view.insert_element(self.ui_graphics_scene.q_scene)
         
         #Insertamos el GraphicsWidget en el GraphicsScene
-        self.ui_graphics_scene.insert_element(self.ui_graphics_widget.q_widget)
-        
+        self.ui_graphics_scene.insert_element(self.ui_graphics_widget)
         #Insertamos todos los elementos necesarios en el GraphicsWidget
         # self.ui_graphics_widget.insert_element([self.ui_layout_main]) #En este caso no se inserta, debido a que el Layout_main será el encargado de tener a todos los elementos
         
@@ -391,3 +392,4 @@ class Ui_subViewDicom(QMainWindow):
                                     })
         
         return list_positions
+    

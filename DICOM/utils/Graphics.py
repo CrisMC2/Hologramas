@@ -1,6 +1,6 @@
 from typing import Union
-from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsLinearLayout, QGraphicsProxyWidget, QWidget, QLayout, QFrame, QSizePolicy
-from PyQt5.QtGui import QBrush
+from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget, QGraphicsLinearLayout, QGraphicsProxyWidget, QWidget, QLayout, QFrame, QSizePolicy
+from PyQt5.QtGui import QBrush, QPainter, QColor
 from PyQt5.QtCore import Qt, QRectF
 
 from abstracts.Ui.AbsGraphics import AbsGraphicsView, AbsGraphicsScene, AbsGraphicsWidget, AbsGraphicsProxyWidget
@@ -10,28 +10,20 @@ class GraphicsView(AbsGraphicsView):
     def __init__(self):
         super().__init__()
     
-    def configure_features(self, scroll_bar_policy: Qt.ScrollBarPolicy, background: QBrush, 
+    def configure_features(self, scroll_bar_policy: Qt.ScrollBarPolicy,
                            frame_style: QFrame.Shape):
-        self.q_view.setHorizontalScrollBarPolicy(scroll_bar_policy)
-        self.q_view.setVerticalScrollBarPolicy(scroll_bar_policy)
-        self.q_view.setBackgroundBrush(background)
-        self.q_view.setFrameStyle(frame_style)
-    
-    def configure_features_scene(self, scene: QGraphicsScene, scene_rect: QRectF, center_on: bool, fit_in_view: bool):
-        self.q_view.setSceneRect(scene_rect)
-        
-        if center_on:
-            self.q_view.centerOn(scene_rect.center())
-        elif fit_in_view:
-            self.q_view.fitInView(scene_rect, Qt.KeepAspectRatio)
+        self.setHorizontalScrollBarPolicy(scroll_bar_policy)
+        self.setVerticalScrollBarPolicy(scroll_bar_policy)
+        # self.setBackgroundBrush(background)
+        self.setFrameStyle(frame_style)
     
     def configure_behaivor(self, size_policy: QSizePolicy, drag, interactive: bool, resize_anchor: QGraphicsView.ViewportAnchor, 
                            portUpdateMode: QGraphicsView.ViewportUpdateMode):
-        # self.q_view.setSizePolicy(size_policy, size_policy)
-        self.q_view.setDragMode(drag)
-        self.q_view.setInteractive(interactive)
-        self.q_view.setResizeAnchor(resize_anchor)
-        self.q_view.setViewportUpdateMode(portUpdateMode)
+        self.setSizePolicy(size_policy, size_policy)
+        self.setDragMode(drag)
+        self.setInteractive(interactive)
+        self.setResizeAnchor(resize_anchor)
+        self.setViewportUpdateMode(portUpdateMode)
     
         """
     El método permite configurar una vista.
@@ -40,11 +32,10 @@ class GraphicsView(AbsGraphicsView):
         - drag (QGraphicsView.DragMode)  : Permite arrastrar o no una pestaña
         - interactive (bool)             : Permite habilitar la interactividad con la pestaña 
         
-    
     """
     
     def insert_element(self, scene: QGraphicsScene):
-        self.q_view.setScene(scene)
+        self.setScene(scene)
         
     """
     El método insert_element heredado en la clase GraphicsView
@@ -56,15 +47,39 @@ class GraphicsView(AbsGraphicsView):
     
     """
     
+    #Propio de QGraphicsView
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        
+        self.center_scene_in_view()
+
+        print("ViewRect", self.viewport().rect())
+        print("SceneRect:", self.scene().sceneRect())
+        print("ItemsBoundingRect:", self.scene().itemsBoundingRect()) 
+    """
+    El método resizeEvent, propio de la clase QGraphicsView, cumple la función de responsividad.
+    
+    - Si bien el QGraphicsView se adaptará al tamaño del layout al que esté adjuntado, sus elementos dentro no lo harán.
+        Por ello se sobreescribe el método resizeEvent, dejando su naturaleza original (super()), pero agregando acciones
+        cada que pase un redimensionado.
+        
+    """  
+    
+    def center_scene_in_view(self):
+        center_x, center_y = self.scene().width()/2, self.scene().height()/2
+        self.centerOn(center_x, center_y)
+    
 class GraphicsScene(AbsGraphicsScene):
     def __init__(self):
         super().__init__()
     
     
-    def configure_features(self, size: tuple[int, int], scene_rect: tuple[int, int, int, int], background: QBrush):
+    def configure_features(self, size: tuple[int, int], scene_rect: tuple[int, int, int, int]):
         # self.q_scene.setSceneRect(0, 0, size[0], size[1])
         # self.q_scene.setSceneRect(scene_rect[0], scene_rect[1], scene_rect[2], scene_rect[3])
-        self.q_scene.setBackgroundBrush(background)
+        bounding = self.q_scene.itemsBoundingRect()
+        bounding.setTop(0)
+        pass
     """"
     - Parámetros:
         - scene_rect (tuple) => x, y, w, h
@@ -74,10 +89,11 @@ class GraphicsScene(AbsGraphicsScene):
     def configure_behaivor(self, item_index_method: QGraphicsScene.ItemIndexMethod):
         self.q_scene.setItemIndexMethod(item_index_method)
 
-    
-    
-    def insert_element(self, element: QWidget):
+    def insert_element(self, element: QGraphicsWidget):
+        self.widget = element
         self.q_scene.addItem(element)
+        
+        self.center_widget_in_scene()
 
     """
     El método "insert_element" heredado en la clase GraphicsScene
@@ -88,7 +104,21 @@ class GraphicsScene(AbsGraphicsScene):
         - element (QWidget)     : Elemento GraphicsWidget (Layout) que será añadido al GraphicsScene
     
     """
+    def center_widget_in_scene(self):
+        scene_rect = self.q_scene.sceneRect()
+        bounding_rect = self.widget.boundingRect()
 
+        new_width = (scene_rect.width() - bounding_rect.width())/2
+        new_height = (scene_rect.height() - bounding_rect.height())/2
+        
+        self.widget.setPos(new_width, new_height)    
+
+    def cover_visible_area(self, visible_area: QRectF):
+        
+        
+    def extract_items(self):
+        return super().extract_items()
+        
 class GraphicsWidget(AbsGraphicsWidget):  
     """
     Constructor de la clase QGraphicsWidget.
@@ -105,18 +135,19 @@ class GraphicsWidget(AbsGraphicsWidget):
     def __init__(self, layout: QLayout):
         super().__init__()
         self.q_layout = layout #Establecemos el Layout como parte de la clase
-        self.q_widget.setLayout(self.q_layout)   #Seteamos el layout al widget
-        
-    def configure_features(self, geometry: QGraphicsScene):
-        self.q_widget.setGeometry(geometry.sceneRect())
+        self.setLayout(self.q_layout)   #Seteamos el layout al widget
+
+    def configure_features(self, minimum_size_x: int, minimum_size_y: int, size_policy: QSizePolicy):
+        self.setMinimumSize(minimum_size_x, minimum_size_y)
+        self.setSizePolicy(size_policy, size_policy)
     
     def configure_behaivor(self, size_policy: QSizePolicy):
-        self.q_widget.setSizePolicy(size_policy, size_policy)
+        self.setSizePolicy(size_policy, size_policy)
 
     def insert_element(self, elements: Union[list[QWidget], list[QGraphicsProxyWidget], list[QLayout]]):            
         for element in elements:
             ele = self.convert_correct_type_element(element)
-            self.q_layout.addItem(ele)     
+            self.q_layout.addItem(ele)
     """
     El método "insert element" permite agregar una serie de elementos al layout que representa el GraphicsWidget
     
@@ -158,6 +189,12 @@ class GraphicsWidget(AbsGraphicsWidget):
             en este insertaremos el elemento QLabel, y luego añadiremos el elemento QGraphicsProxyWidget en el QGraphicsWidget.
 
     """
+
+    def paint(self, painter, option, widget = None):
+        rect = self.boundingRect()
+        painter.setBrush(QBrush(QColor("lightblue")))
+        painter.setPen(QColor("black"))  # opcional: borde
+        painter.drawRect(rect)
     
 class GraphicsProxyWidget(AbsGraphicsProxyWidget):
     def __init__(self):

@@ -29,14 +29,7 @@ de la ejecución del programa.
 
 #=================================================================================================
 #Configuración Características de GraphicsView
-SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAlwaysOff
-
-
-BACKGROUND_COLOR_DEFAULT = QColor(70, 70, 70)
-"""
-Para poder utilizar un setBackgroundBrush necesitamos un valor Brush
-Y este puede utilizar un QColor, el cual permite utilizar colores en formato RGB
-"""
+SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAsNeeded
 
 FRAME_STYLE_DEFAULT = QFrame.NoFrame
 
@@ -84,14 +77,16 @@ setViewportUpdateMode(QGraphicsView.BoundingRectViewportUpdate): Optimiza la act
 #=================================================================================================
 #Configuración Características de GraphicScene
 SCENE_RECT_DEFAULT = QRectF(0, 0, 600,800)
-
-BACKGROUND_COLOR_DEFAULT_2 = QColor(0,0,0)
-
 ITEM_INDEX_METHOD_DEFAULT = QGraphicsScene.NoIndex
 
 
 
 #=================================================================================================
+#Configuración del QGraphicsWidget
+DEFAULT_WIDGET_MINIMUM_SIZE_X = 900
+DEFAULT_WIDGET_MINIMUM_SIZE_Y = 450
+
+
 #Configuración del Layout a usar en QGraphicsWidget
 #Configuración del Layout Principal (Main) (GridLayout)
 DEFAULT_ROWS_LAYOUT = 10
@@ -109,10 +104,10 @@ que tendrá el GridLayout.
 LIST_DICT_ROWS_STRETCH = [{"row": 1, "stretch": 1}, {"row": 2, "stretch": 1},
                              {"row": 3, "stretch": 1}, {"row": 4, "stretch": 1},
                              {"row": 5, "stretch": 1}, {"row": 6, "stretch": 1},
-                             {"row": 7, "stretch": 1}, {"row": 8, "stretch": 5},
+                             {"row": 7, "stretch": 1}, {"row": 8, "stretch": 1},#5
                              {"row": 9, "stretch": 1}, {"row": 10, "stretch": 1}] #Lista de diccionarios.
 
-LIST_DICT_COLS_STRETCH = [{"col": 1, "stretch": 1}, {"col": 2, "stretch": 7},
+LIST_DICT_COLS_STRETCH = [{"col": 1, "stretch": 1}, {"col": 2, "stretch": 1}, #7
                               {"col": 3, "stretch": 1}, {"col": 4, "stretch":1}]
 
 DEFAULT_SPACING_MAIN = 0
