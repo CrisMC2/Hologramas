@@ -25,8 +25,8 @@ class GraphicsView(AbsGraphicsView):
         self.setResizeAnchor(resize_anchor)
         self.setViewportUpdateMode(portUpdateMode)
     
-        """
-    El método permite configurar una vista.
+    """
+    El método "configure_behaivor" permite configurar el comportamiento del QGraphicsView.
     
     - Parámetros
         - drag (QGraphicsView.DragMode)  : Permite arrastrar o no una pestaña
@@ -53,9 +53,10 @@ class GraphicsView(AbsGraphicsView):
         
         self.center_scene_in_view()
 
-        print("ViewRect", self.viewport().rect())
-        print("SceneRect:", self.scene().sceneRect())
-        print("ItemsBoundingRect:", self.scene().itemsBoundingRect()) 
+        if hasattr(self.scene(), "cover_visible_area"):
+            print("Funcion==============")
+            self.scene().cover_visible_area(self.mapToScene(self.viewport().rect()).boundingRect())
+
     """
     El método resizeEvent, propio de la clase QGraphicsView, cumple la función de responsividad.
     
@@ -68,17 +69,25 @@ class GraphicsView(AbsGraphicsView):
     def center_scene_in_view(self):
         center_x, center_y = self.scene().width()/2, self.scene().height()/2
         self.centerOn(center_x, center_y)
+        print("\n\n\n")
+        print(center_x, center_y)
+        
+        print("\n\n\n")
+        print("Medidas: ",self.scene().width(), self.scene().height())
+    
+    
+
     
 class GraphicsScene(AbsGraphicsScene):
     def __init__(self):
         super().__init__()
-    
+        self.main_widget: QGraphicsWidget
     
     def configure_features(self, size: tuple[int, int], scene_rect: tuple[int, int, int, int]):
         # self.q_scene.setSceneRect(0, 0, size[0], size[1])
         # self.q_scene.setSceneRect(scene_rect[0], scene_rect[1], scene_rect[2], scene_rect[3])
-        bounding = self.q_scene.itemsBoundingRect()
-        bounding.setTop(0)
+        # bounding = self.q_scene.itemsBoundingRect()
+        # bounding.setTop(0)
         pass
     """"
     - Parámetros:
@@ -87,11 +96,11 @@ class GraphicsScene(AbsGraphicsScene):
     """
     
     def configure_behaivor(self, item_index_method: QGraphicsScene.ItemIndexMethod):
-        self.q_scene.setItemIndexMethod(item_index_method)
+        self.setItemIndexMethod(item_index_method)
 
-    def insert_element(self, element: QGraphicsWidget):
-        self.widget = element
-        self.q_scene.addItem(element)
+    def insert_element(self, main_widget: QGraphicsWidget):
+        self.main_widget = main_widget
+        self.addItem(self.main_widget)
         
         self.center_widget_in_scene()
 
@@ -104,17 +113,25 @@ class GraphicsScene(AbsGraphicsScene):
         - element (QWidget)     : Elemento GraphicsWidget (Layout) que será añadido al GraphicsScene
     
     """
-    def center_widget_in_scene(self):
-        scene_rect = self.q_scene.sceneRect()
-        bounding_rect = self.widget.boundingRect()
+    def center_widget_in_scene(self, scene: QRectF = None):
+        if scene:
+            scene_rect = scene
+        else:
+            scene_rect = self.sceneRect()
+        
+        bounding_rect = self.main_widget.boundingRect()
 
         new_width = (scene_rect.width() - bounding_rect.width())/2
         new_height = (scene_rect.height() - bounding_rect.height())/2
         
-        self.widget.setPos(new_width, new_height)    
-
-    def cover_visible_area(self, visible_area: QRectF):
+        self.main_widget.setPos(new_width, new_height)
         
+    def cover_visible_area(self, visible_area: QRectF):
+        print("Visible_Area: ", visible_area)
+        self.main_widget.setPreferredSize(visible_area.size())
+        self.main_widget.resize(visible_area.size())
+        
+        self.center_widget_in_scene()
         
     def extract_items(self):
         return super().extract_items()
@@ -192,7 +209,7 @@ class GraphicsWidget(AbsGraphicsWidget):
 
     def paint(self, painter, option, widget = None):
         rect = self.boundingRect()
-        painter.setBrush(QBrush(QColor("lightblue")))
+        painter.setBrush(QBrush(QColor("black")))
         painter.setPen(QColor("black"))  # opcional: borde
         painter.drawRect(rect)
     

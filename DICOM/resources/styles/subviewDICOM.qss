@@ -22,6 +22,26 @@ QLabel{
 
 }
 
-QSlider{
 
+QSlider{
+    background-color: rgb(179, 176, 176);
+    border: 1px;
+    border-color: rgb(71, 70, 70);
+}
+
+QSlider::groove:vertical{
+    width: 20px;
+    background: transparent;
+    margin: 2px;
+}
+
+QSlider::handle:vertical{
+    width: 20px;
+    height: 20px;
+    background-color: rgb(70,70,70);
+
+}
+
+QSlider::handle:vertical:pressed{
+    background-color: rgb(117, 117, 117);
 }

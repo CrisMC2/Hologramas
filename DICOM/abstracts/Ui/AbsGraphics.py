@@ -16,9 +16,9 @@ class AbsGraphicsView(QGraphicsView, AbsContainers, metaclass=MetaAbsQt):
     """
 
 
-class AbsGraphicsScene(AbsContainers):
+class AbsGraphicsScene(QGraphicsScene, AbsContainers, metaclass=MetaAbsQt):
     def __init__(self):
-        self.q_scene = QGraphicsScene()
+        super().__init__()
     """
     Aquí generamos el objeto QGraphicsScene sobre el cual se ejecutarán 
     todos los métodos

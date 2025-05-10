@@ -274,7 +274,7 @@ class Ui_subViewDicom(QWidget):
         
     def insert_elements(self) -> None:
         #Insertamos la escena en el GraphicsView
-        self.ui_graphics_view.insert_element(self.ui_graphics_scene.q_scene)
+        self.ui_graphics_view.insert_element(self.ui_graphics_scene)
         
         #Insertamos el GraphicsWidget en el GraphicsScene
         self.ui_graphics_scene.insert_element(self.ui_graphics_widget)

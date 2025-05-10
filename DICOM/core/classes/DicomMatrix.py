@@ -10,4 +10,5 @@ class DicomMatrix(DicomProccessing):
         
         #Shape => (profundidad, filas, columnas)
         lista_dicoms = np.array(lista_dicoms)
+        
         return lista_dicoms    
