@@ -1,5 +1,5 @@
-from typing import Union
-from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget, QGraphicsLinearLayout, QGraphicsProxyWidget, QWidget, QLayout, QFrame, QSizePolicy
+from typing import Union, overload
+from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget, QGraphicsLinearLayout, QGraphicsProxyWidget, QWidget, QLayout, QFrame, QSizePolicy, QGraphicsPixmapItem
 from PyQt5.QtGui import QBrush, QPainter, QColor
 from PyQt5.QtCore import Qt, QRectF
 
@@ -67,10 +67,11 @@ class GraphicsView(AbsGraphicsView):
     """  
     
     def center_scene_in_view(self):
-        center_x, center_y = self.scene().width()/2, self.scene().height()/2
-        self.centerOn(center_x, center_y)
+        # center_x, center_y = self.scene().width()/2, self.scene().height()/2
+        center = self.scene().sceneRect().center()
+        self.centerOn(center)
         print("\n\n\n")
-        print(center_x, center_y)
+        # print(center_x, center_y)
         
         print("\n\n\n")
         print("Medidas: ",self.scene().width(), self.scene().height())
@@ -81,7 +82,7 @@ class GraphicsView(AbsGraphicsView):
 class GraphicsScene(AbsGraphicsScene):
     def __init__(self):
         super().__init__()
-        self.main_widget: QGraphicsWidget
+        self.scene_layout = SceneLayoutHelper(self)
     
     def configure_features(self, size: tuple[int, int], scene_rect: tuple[int, int, int, int]):
         # self.q_scene.setSceneRect(0, 0, size[0], size[1])
@@ -98,11 +99,22 @@ class GraphicsScene(AbsGraphicsScene):
     def configure_behaivor(self, item_index_method: QGraphicsScene.ItemIndexMethod):
         self.setItemIndexMethod(item_index_method)
 
-    def insert_element(self, main_widget: QGraphicsWidget):
-        self.main_widget = main_widget
-        self.addItem(self.main_widget)
+    @overload
+    def insert_element(self, main_widget: QGraphicsWidget) -> None: ...
         
-        self.center_widget_in_scene()
+    @overload
+    def insert_element(self, widget: QGraphicsProxyWidget) -> None: ...
+    
+    @overload
+    def insert_element(self, widget: QGraphicsPixmapItem) -> None: ...
+    
+    def insert_element(self, widget: Union[QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem]):
+        if isinstance(widget, QGraphicsWidget):
+            self.main_widget = widget
+            
+        self.addItem(widget)
+        
+        self.scene_layout.center_widget(widget)
 
     """
     El método "insert_element" heredado en la clase GraphicsScene
@@ -113,28 +125,41 @@ class GraphicsScene(AbsGraphicsScene):
         - element (QWidget)     : Elemento GraphicsWidget (Layout) que será añadido al GraphicsScene
     
     """
-    def center_widget_in_scene(self, scene: QRectF = None):
-        if scene:
-            scene_rect = scene
-        else:
-            scene_rect = self.sceneRect()
-        
-        bounding_rect = self.main_widget.boundingRect()
-
-        new_width = (scene_rect.width() - bounding_rect.width())/2
-        new_height = (scene_rect.height() - bounding_rect.height())/2
-        
-        self.main_widget.setPos(new_width, new_height)
-        
+    
     def cover_visible_area(self, visible_area: QRectF):
         print("Visible_Area: ", visible_area)
         self.main_widget.setPreferredSize(visible_area.size())
         self.main_widget.resize(visible_area.size())
         
-        self.center_widget_in_scene()
+        # self.scene_layout.center_all_widgets()    
+    
+class SceneLayoutHelper():
+    def __init__(self, scene: QGraphicsScene):
+        self.scene = scene
         
-    def extract_items(self):
-        return super().extract_items()
+    def center_widget(self, widget: Union[QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem] = None):
+        if not widget:
+            raise TypeError("El elemento widget que intentas centrar no ha sido especificado, es None.")
+        
+        scene_rect = self.scene.sceneRect().center()
+        bounding = widget.boundingRect().center()
+        
+        mapScene = widget.mapToScene(bounding)
+        
+        offset = scene_rect - mapScene
+        # bounding_center = bounding.center()
+
+        # center_x = (scene_rect.width() - bounding.width())/2
+        # center_y = (scene_rect.height() - bounding.height())/2
+                
+        widget.setPos(widget.pos()+offset)
+    
+    def center_all_widgets(self):
+        if isinstance(self.scene, QGraphicsScene):
+            for item in self.scene.items():
+                if isinstance(item, (QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem)):
+                    self.center_widget(item)
+
         
 class GraphicsWidget(AbsGraphicsWidget):  
     """
@@ -207,11 +232,11 @@ class GraphicsWidget(AbsGraphicsWidget):
 
     """
 
-    def paint(self, painter, option, widget = None):
-        rect = self.boundingRect()
-        painter.setBrush(QBrush(QColor("black")))
-        painter.setPen(QColor("black"))  # opcional: borde
-        painter.drawRect(rect)
+    # def paint(self, painter, option, widget = None):
+    #     rect = self.boundingRect()
+    #     painter.setBrush(QBrush(QColor("black")))
+    #     painter.setPen(QColor("black"))  # opcional: borde
+    #     painter.drawRect(rect)
     
 class GraphicsProxyWidget(AbsGraphicsProxyWidget):
     def __init__(self):

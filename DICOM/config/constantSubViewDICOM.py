@@ -30,7 +30,7 @@ de la ejecución del programa.
 #=================================================================================================
 #Configuración Características de GraphicsView
 # SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAsNeeded
-SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAlwaysOff
+SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAsNeeded
 
 
 FRAME_STYLE_DEFAULT = QFrame.NoFrame
@@ -109,11 +109,12 @@ LIST_DICT_ROWS_STRETCH = [{"row": 1, "stretch": 1}, {"row": 2, "stretch": 1},
                              {"row": 7, "stretch": 1}, {"row": 8, "stretch": 1},#5
                              {"row": 9, "stretch": 1}, {"row": 10, "stretch": 1}] #Lista de diccionarios.
 
-LIST_DICT_COLS_STRETCH = [{"col": 1, "stretch": 1}, {"col": 2, "stretch": 1}, #7
-                              {"col": 3, "stretch": 1}, {"col": 4, "stretch":1}]
+LIST_DICT_COLS_STRETCH = [{"col": 1, "stretch": 1}, {"col": 2, "stretch": 0}, #7
+                              {"col": 3, "stretch": 2}, {"col": 4, "stretch":1}]
 
 DEFAULT_SPACING_MAIN = 0
 
+DEFAULT_ALIGNMENT = Qt.AlignRight
 
 #Configuración del Layout Izquierdo (LayoutItem)
 DEFAULT_ORIENTATION_LAYOUT_1 = "H" 
@@ -162,15 +163,34 @@ encontrará el slider.
 """
 
 #=================================================================================================
-#Configuración de los text
+#Configuración de los QLabel
 DEFAULT_TEXT_FONT = QFont("Arial")
 DEFAULT_TEXT_SIZE_X = 50
-DEFAULT_TEXT_SIZE_Y = 20
+DEFAULT_TEXT_SIZE_Y = 1
 DEFAULT_TEXT_MINIMUM_SIZE_X = 50
-DEFAULT_TEXT_MINIMUM_SIZE_Y = 20
-DEFAULT_TEXT_SIZE_POLICY_X = QSizePolicy.Expanding
+DEFAULT_TEXT_MINIMUM_SIZE_Y = 1
+DEFAULT_TEXT_SIZE_POLICY_X = QSizePolicy.Preferred
 DEFAULT_TEXT_SIZE_POLICY_Y = QSizePolicy.Fixed
-DEFAULT_TEXT_POSITION_X = 10
-DEFAULT_TEXT_POSITION_Y = 10
+DEFAULT_TEXT_POSITION_X = 40
+DEFAULT_TEXT_POSITION_Y = 2
 DEFAULT_TEXT_BACKGROUND_COLOR = QColor(255,255,255)
 DEFAULT_TEXT_COLOR = QColor(255,255,0)
+
+#=================================================================================================
+#Configuración de los QLabel del lado derecho
+DEFAULT_ALIGNMENT_RIGHT = Qt.AlignRight
+
+#=================================================================================================
+#Configuración de los QLabel del lado izquierdo
+DEFAULT_ALIGNMENT_LEFT = Qt.AlignLeft
+
+#=================================================================================================
+#Configuración del QLabel del QPixmap
+DEFAULT_PIXMAP_SIZE_POLICY_X = QSizePolicy.Ignored
+DEFAULT_PIXMAP_SIZE_POLICY_Y = QSizePolicy.Ignored
+
+
+#=================================================================================================
+#Configuración de los Spacer
+DEFAULT_SPACER_SIZE_POLICY_X = QSizePolicy.Expanding
+DEFAULT_SPACER_SIZE_POLICY_Y = QSizePolicy.Expanding

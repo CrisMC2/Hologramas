@@ -1,6 +1,6 @@
 from typing import List, Dict, Union
 
-from PyQt5.QtWidgets import QGraphicsLinearLayout, QGraphicsLayoutItem, QGraphicsGridLayout, QWidget, QGraphicsProxyWidget, QGraphicsPixmapItem
+from PyQt5.QtWidgets import QGraphicsLinearLayout, QGraphicsLayoutItem, QGraphicsGridLayout, QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem
 from PyQt5.QtCore import Qt
 
 from abstracts.Ui.AbsLayout import AbsLayout
@@ -47,9 +47,9 @@ class LinearLayout(AbsLayout):
     def configure_behaivor(self, size_constraint):
         pass
     
-    def insert_element(self, list_elements: list[Union[QWidget, QGraphicsProxyWidget, QGraphicsPixmapItem]]):
+    def insert_element(self, list_elements: list[Union[QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem]]):
         for ele in list_elements:
-            if isinstance(ele, (QWidget, QGraphicsProxyWidget, QGraphicsPixmapItem)):
+            if isinstance(ele, (QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem)):
                 self.q_layout.addItem(ele)
             
             else:
@@ -77,8 +77,7 @@ class GridLayout(AbsLayout):
             #Configuramos el valor de las filas (rows)
             for rows in rows_stretch: #Primero iteramos respecto a la lista
                 # for row, stretch in rows.keys(): #Y luego respecto a los items / elementos
-                
-                row, stretch = rows.keys()
+                row, stretch = rows.keys() #Usamos la función keys para identificar los nombres de las keys del diccionario
                 self.q_grid_layout.setRowStretchFactor(rows[row], rows[stretch])
             
             #Configuramos el valor de las columnas (col)
@@ -88,7 +87,8 @@ class GridLayout(AbsLayout):
             
             self.q_grid_layout.setSpacing(spacing)   
         
-        self.q_grid_layout.setContentsMargins(margin_left, margin_top, margin_right, margin_bottom)
+        # self.q_grid_layout.setContentsMargins(margin_left, margin_top, margin_right, margin_bottom)
+        self.q_grid_layout.setContentsMargins(10,0,10,0)
     
     """
     El método "configure_features" permite configurar las características base del GridLayout, 
@@ -124,13 +124,13 @@ class GridLayout(AbsLayout):
     def configure_behaivor(self):
         pass
     
-    def insert_element(self, elements_position: List[dict[QGraphicsProxyWidget, int, int, int, int]]):
+    def insert_element(self, elements_position: List[dict[QGraphicsProxyWidget, int, int, int, int]], alignment: Qt.Alignment):
         if elements_position:
             for element in elements_position:
                 ele, row, col, row_span, col_span = element.keys() #Iteramos en lugar de usar los valores directamente desde el diccionario.
                 self.q_grid_layout.addItem(element[ele], 
                                            element[row], element[col], 
-                                           element[row_span], element[col_span])
+                                           element[row_span], element[col_span], alignment=alignment)
         
     """
     El método insert_element instanciado en la clase GridLayout cumple la función de insertar una

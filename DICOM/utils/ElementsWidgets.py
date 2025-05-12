@@ -1,8 +1,8 @@
-from typing import Union, Callable
-from PyQt5.QtWidgets import QWidget, QLabel, QTextEdit, QSlider, QSizePolicy, QGraphicsProxyWidget
+from typing import Union, Callable, overload
+from PyQt5.QtWidgets import QLabel, QTextEdit, QSlider, QSizePolicy, QSpacerItem, QGraphicsWidget
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QColor, QFont
 
+from abstracts.Ui.AbsWidget import AbsWidget
 from abstracts.Ui.AbsSliderControl import AbsSliderControl
 from abstracts.Ui.AbsTextControl   import AbsTextControl
 
@@ -31,14 +31,13 @@ class TextWidget(AbsTextControl):
         else:
             raise TypeError("El tipo de elementos que intentas incluir no es un Widget de texto: QLabel, QTextEdit")
     
-    def configure_features(self, size_x: int, size_y: int,
-                           minimum_size_x: int, minimum_size_y: int,  
-                           size_policy_x: QSizePolicy, size_policy_y: QSizePolicy) -> None:
-        
-        self.q_text.setFixedSize(size_x, size_y)
+    def configure_features(self, minimum_size_x: int, minimum_size_y: int,  
+                           size_policy_x: QSizePolicy, size_policy_y: QSizePolicy, 
+                           alignment: Qt.Alignment) -> None:
         self.q_text.setMinimumSize(minimum_size_x, minimum_size_y)
-        self.q_text.setSizePolicy(size_policy_x, size_policy_y)       
-
+        self.q_text.setSizePolicy(size_policy_x, size_policy_y)
+        self.q_text.setAlignment(alignment)
+        
     def configure_behaivor(self, focus_policy: Qt):
         self.q_text.setFocusPolicy(focus_policy)
     
@@ -168,3 +167,29 @@ class SliderWidget(AbsSliderControl):
     
     def connect_change_value(self, function_connect: Callable[[int], None]) -> int:
         self.q_slider.valueChanged.connect(function_connect)
+        
+class SpacerWidget(AbsWidget):
+    @overload
+    def __init__(self, type_spacer: str) -> None: ...
+    
+    @overload
+    def __init__(self, graphics: bool) -> None: ...
+    
+    def __init__(self, type_spacer: str='H', graphics: bool = False):
+        if graphics:
+            self.q_spacer = QGraphicsWidget()
+            
+        else:    
+            if type_spacer == 'V':
+                self.q_spacer = QSpacerItem(Qt.Vertical)         
+            elif type_spacer == 'H':
+                self.q_spacer = QSpacerItem(Qt.Horizontal)
+            else:
+                raise TypeError("El tipo de Spacer que intentas crear no es compatible, intenta con: \"V\" | \"H\"")
+        
+    def configure_features(self, size_policy_x: QSizePolicy , size_policy_y: QSizePolicy):
+        self.q_spacer.setSizePolicy(size_policy_x, size_policy_y)
+    
+    def configure_behaivor(self, *args, **kwargs):
+        return super().configure_behaivor(*args, **kwargs)
+    

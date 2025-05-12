@@ -15,11 +15,14 @@ QGraphicsProxyWidget{
 
 QLabel{
     font-family: Arial;
-    font-size: 14px;
+    font-weight: bold;
+    font-size: 16px;
     color: yellow;
-    background-color: transparent;
+
+    background-color: rgb(233, 81, 182);
     border: 5px rgb(212, 200, 40);
 
+    padding: 5px;
 }
 
 

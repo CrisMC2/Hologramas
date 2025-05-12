@@ -1,6 +1,7 @@
 from typing import Union
-from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsPixmapItem
+from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsPixmapItem, QSizePolicy
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
 
 from abstracts.Ui.AbsPixmap import AbsUi_Pixmap
 
@@ -52,15 +53,18 @@ class PixmapUi(AbsUi_Pixmap):
     
     """
     
-    def configure_features(self):
+    def configure_features(self) -> None:
+        
+        # self.q_pixmap.setFixedSize(size_x, size_y)
+        # self.q_pixmap.setMinimumSize(minimum_size_x, minimum_size_y)
+        # self.q_pixmap.setSizePolicy(size_policy_x, size_policy_y)     
         pass
-    
-    
     def configure_behaivor(self):
         pass
     
     def insert_element(self, pixmap: QPixmap):
         self.q_pixmap.setPixmap(pixmap)
+        # self.q_pixmap.setPixmap(pixmap.scaled(self.q_pixmap.width(), self.q_pixmap.height(), Qt.KeepAspectRatio))
         
     """
     El método insert_element permite cargar el elemento Pixmap 

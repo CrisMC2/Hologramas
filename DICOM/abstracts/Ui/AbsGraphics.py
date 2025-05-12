@@ -24,15 +24,7 @@ class AbsGraphicsScene(QGraphicsScene, AbsContainers, metaclass=MetaAbsQt):
     todos los métodos
     
     """
-    
-    @abstractmethod
-    def extract_items(self):
-        pass
         
-    @abstractmethod
-    def center_widget_in_scene(self, *args, **kwargs):
-        pass
-    
 class AbsGraphicsWidget(QGraphicsWidget, AbsContainers, metaclass=MetaAbsQt):
     def __init__(self):
         # self.q_widget = QGraphicsWidget()
