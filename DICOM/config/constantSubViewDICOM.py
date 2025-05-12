@@ -144,6 +144,11 @@ DEFAULT_BOTTOM_MARGIN = 0
 
 DEFAULT_SPACING = 0
 
+#=================================================================================================
+#Configuración del QGraphicsProxyWidget
+DEFAULT_PROXY_SIZE_POLICY_X = QSizePolicy.Preferred
+DEFAULT_PROXY_SIZE_POLICY_Y = QSizePolicy.Preferred
+
 
 #=================================================================================================
 #Configuración del slider
@@ -167,7 +172,7 @@ encontrará el slider.
 DEFAULT_TEXT_FONT = QFont("Arial")
 DEFAULT_TEXT_SIZE_X = 50
 DEFAULT_TEXT_SIZE_Y = 1
-DEFAULT_TEXT_MINIMUM_SIZE_X = 50
+DEFAULT_TEXT_MINIMUM_SIZE_X = 10
 DEFAULT_TEXT_MINIMUM_SIZE_Y = 1
 DEFAULT_TEXT_SIZE_POLICY_X = QSizePolicy.Preferred
 DEFAULT_TEXT_SIZE_POLICY_Y = QSizePolicy.Fixed

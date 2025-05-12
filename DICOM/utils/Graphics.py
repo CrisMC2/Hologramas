@@ -1,6 +1,5 @@
 from typing import Union, overload
-from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget, QGraphicsLinearLayout, QGraphicsProxyWidget, QWidget, QLayout, QFrame, QSizePolicy, QGraphicsPixmapItem
-from PyQt5.QtGui import QBrush, QPainter, QColor
+from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget, QGraphicsProxyWidget, QWidget, QLayout, QFrame, QSizePolicy, QGraphicsPixmapItem
 from PyQt5.QtCore import Qt, QRectF
 
 from abstracts.Ui.AbsGraphics import AbsGraphicsView, AbsGraphicsScene, AbsGraphicsWidget, AbsGraphicsProxyWidget
@@ -186,7 +185,7 @@ class GraphicsWidget(AbsGraphicsWidget):
     def configure_behaivor(self, size_policy: QSizePolicy):
         self.setSizePolicy(size_policy, size_policy)
 
-    def insert_element(self, elements: Union[list[QWidget], list[QGraphicsProxyWidget], list[QLayout]]):            
+    def insert_element(self, elements: Union[list[QWidget], list[QGraphicsProxyWidget]]):            
         for element in elements:
             ele = self.convert_correct_type_element(element)
             self.q_layout.addItem(ele)
@@ -203,10 +202,7 @@ class GraphicsWidget(AbsGraphicsWidget):
         if isinstance (element, QWidget) and not isinstance(element, QGraphicsProxyWidget):
             proxy = QGraphicsProxyWidget()
             proxy.setWidget(element)
-        
-        elif isinstance(element, (QLayout, QGraphicsLinearLayout)):
-            proxy = element
-        
+            
         else:
             raise ValueError("El tipo de dato del elemento no corresponde a QWidget")
         
@@ -242,15 +238,16 @@ class GraphicsProxyWidget(AbsGraphicsProxyWidget):
     def __init__(self):
         super().__init__()
     
-    def configure_features(self, position_x: int, position_y: int):
-        self.q_proxy_widget.setPos(position_x, position_y)
+    def configure_features(self, size_policy_x: QSizePolicy, size_policy_y: QSizePolicy):
+        self.q_proxy_widget.setSizePolicy(size_policy_x, size_policy_y)
     
     def configure_behaivor(self, flag: bool):
         self.q_proxy_widget.setFlag(flag)
     
     def insert_element(self, element: QWidget):
-        if element:
-            self.q_proxy_widget.setWidget(element)
+        self.q_proxy_widget.setWidget(element)
+        self.q_proxy_widget.adjustSize()
+            
     
     """
     La instancia del método insert_element en la clase GraphicsProxyWidget

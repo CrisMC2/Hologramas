@@ -213,34 +213,29 @@ class Ui_subViewDicom(QWidget):
     """
     
     def configure_items(self) -> None:
-        items_right=[
-            self.ui_text_name,
-            self.ui_text_ID_Patient,
-            self.ui_text_date_born,
-            self.ui_text_sex,
-            self.ui_text_institution_name,
-            self.ui_text_study_ID,
-            self.ui_text_body_part,
-            self.ui_text_acquisition_test,
-            self.ui_text_acquisition_time
-        ]
+        items_right=[self.ui_text_name, self.ui_text_ID_Patient, self.ui_text_date_born,
+            self.ui_text_sex, self.ui_text_institution_name, self.ui_text_study_ID,
+            self.ui_text_body_part, self.ui_text_acquisition_test, self.ui_text_acquisition_time ]
         
-        items_left=[
-            self.ui_text_img,
+        proxys_right=[ self.ui_proxy_text_name, self.ui_proxy_text_ID_Patient, self.ui_proxy_text_date_born,
+            self.ui_proxy_text_sex, self.ui_proxy_text_institution_name, self.ui_proxy_text_study_ID,
+            self.ui_proxy_text_body_part, self.ui_proxy_text_acquisition_test, self.ui_proxy_text_acquisition_time]
+        
+        items_left=[self.ui_text_img,
             self.ui_text_img_now,
-            self.ui_text_img_end
-        ]
+            self.ui_text_img_end]
         
-        spacers=[
-            self.spacer_left,
+        spacers=[self.spacer_left,
             self.spacer_right_1,
-            self.spacer_right_2    
-        ]
+            self.spacer_right_2]
         
         for item_r in items_right:
             item_r.configure_features(consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
                                       consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y, consVDcm.DEFAULT_ALIGNMENT_RIGHT)
         
+        for proxy_r in proxys_right:
+            proxy_r.configure_features(consVDcm.DEFAULT_PROXY_SIZE_POLICY_X, consVDcm.DEFAULT_PROXY_SIZE_POLICY_Y)
+            
         for item_l in items_left:
             item_l.configure_features(consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
                                       consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y, consVDcm.DEFAULT_ALIGNMENT_LEFT)
