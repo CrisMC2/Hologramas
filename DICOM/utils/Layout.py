@@ -1,6 +1,6 @@
 from typing import List, Dict, Union
 
-from PyQt5.QtWidgets import QGraphicsLinearLayout, QGraphicsLayoutItem, QGraphicsGridLayout, QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem
+from PyQt5.QtWidgets import QGraphicsLinearLayout, QGraphicsLayoutItem, QGraphicsGridLayout, QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem, QSizePolicy
 from PyQt5.QtCore import Qt
 
 from abstracts.Ui.AbsLayout import AbsLayout
@@ -44,14 +44,14 @@ class LinearLayout(AbsLayout):
         self.q_layout.setContentsMargins(left_margin, right_margin, top_margin, bottom_margin)
         self.q_layout.setSpacing(spacing)
     
-    def configure_behaivor(self, size_constraint):
-        pass
+    def configure_behaivor(self, *args, **kwargs):
+        return super().configure_behaivor(*args, **kwargs)
     
     def insert_element(self, list_elements: list[Union[QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem]]):
         for ele in list_elements:
             if isinstance(ele, (QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem)):
                 self.q_layout.addItem(ele)
-            
+                
             else:
                 raise ValueError(f"El elemento: {ele} no pudo ser agregado al Layout al no ser un elemento derivado de QWidget")
         
@@ -86,9 +86,11 @@ class GridLayout(AbsLayout):
                 self.q_grid_layout.setColumnStretchFactor(columns[col], columns[stretch])
             
             self.q_grid_layout.setSpacing(spacing)   
+            self.q_grid_layout.setVerticalSpacing(spacing)            
         
         # self.q_grid_layout.setContentsMargins(margin_left, margin_top, margin_right, margin_bottom)
-        self.q_grid_layout.setContentsMargins(10,0,10,0)
+        self.q_grid_layout.setContentsMargins(margin_left, margin_top, margin_right, margin_bottom)
+        self.q_grid_layout.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
     
     """
     El método "configure_features" permite configurar las características base del GridLayout, 

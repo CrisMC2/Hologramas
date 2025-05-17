@@ -178,9 +178,8 @@ class GraphicsWidget(AbsGraphicsWidget):
         self.q_layout = layout #Establecemos el Layout como parte de la clase
         self.setLayout(self.q_layout)   #Seteamos el layout al widget
 
-    def configure_features(self, minimum_size_x: int, minimum_size_y: int, size_policy: QSizePolicy):
+    def configure_features(self, minimum_size_x: int, minimum_size_y: int):
         self.setMinimumSize(minimum_size_x, minimum_size_y)
-        self.setSizePolicy(size_policy, size_policy)
     
     def configure_behaivor(self, size_policy: QSizePolicy):
         self.setSizePolicy(size_policy, size_policy)
@@ -241,12 +240,14 @@ class GraphicsProxyWidget(AbsGraphicsProxyWidget):
     def configure_features(self, size_policy_x: QSizePolicy, size_policy_y: QSizePolicy):
         self.q_proxy_widget.setSizePolicy(size_policy_x, size_policy_y)
     
+    
     def configure_behaivor(self, flag: bool):
         self.q_proxy_widget.setFlag(flag)
     
     def insert_element(self, element: QWidget):
         self.q_proxy_widget.setWidget(element)
-        self.q_proxy_widget.adjustSize()
+        # self.q_proxy_widget.adjustSize()
+        # self.q_proxy_widget.setMaximumHeight(element.sizeHint().height())
             
     
     """

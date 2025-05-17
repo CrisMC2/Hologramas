@@ -38,9 +38,11 @@ class TextWidget(AbsTextControl):
         self.q_text.setSizePolicy(size_policy_x, size_policy_y)
         self.q_text.setAlignment(alignment)
         
-    def configure_behaivor(self, focus_policy: Qt, word_wrap: bool):
-        self.q_text.setFocusPolicy(focus_policy)
-        self.q_text.setWordWrap(word_wrap)
+    def configure_behaivor(self, word_wrap: bool, focus_policy: Qt = None):
+        # self.q_text.setFocusPolicy(focus_policy)
+        # self.q_text.setWordWrap(word_wrap)
+        # self.q_text.adjustSize()
+        pass
     
     
     def get_data(self):
@@ -59,8 +61,11 @@ class TextWidget(AbsTextControl):
     """
     def change_data(self, new_data: str):
         self.q_text.setText(new_data)
-        self.q_text.setWordWrap(True)
-        self.q_text.adjustSize()
+        # self.q_text.adjustSize()
+        
+        self.q_text.setMaximumHeight(self.q_text.sizeHint().height())
+        self.q_text.setMaximumWidth(self.q_text.sizeHint().width())
+        
     """
     El método change_data heredado en la clase TextWidget
     permite cambiar la data o el texto que tiene actualmente el elemento.

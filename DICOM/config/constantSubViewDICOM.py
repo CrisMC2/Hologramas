@@ -30,7 +30,7 @@ de la ejecución del programa.
 #=================================================================================================
 #Configuración Características de GraphicsView
 # SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAsNeeded
-SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAsNeeded
+SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAlwaysOn
 
 
 FRAME_STYLE_DEFAULT = QFrame.NoFrame
@@ -46,7 +46,7 @@ DEFAULT_FIT_IN_VIEW = False
 #=================================================================================================
 #Configuración Comportamiento de GraphicsView
 
-SIZE_POLICY_DEFAULT = QSizePolicy.Expanding
+DEFAULT_VIEW_SIZE_POLICY = QSizePolicy.Preferred
 
 DRAG_MODE_DEFAULT     = QGraphicsView.ScrollHandDrag
 """
@@ -88,6 +88,7 @@ ITEM_INDEX_METHOD_DEFAULT = QGraphicsScene.NoIndex
 DEFAULT_WIDGET_MINIMUM_SIZE_X = 900
 DEFAULT_WIDGET_MINIMUM_SIZE_Y = 450
 
+DEFAULT_G_VIEW_SIZE_POLICY = QSizePolicy.Ignored
 
 #Configuración del Layout a usar en QGraphicsWidget
 #Configuración del Layout Principal (Main) (GridLayout)
@@ -103,14 +104,14 @@ La configuración DEFAULT_COLS_LAYOUT permite configurar la cantidad de cols (co
 que tendrá el GridLayout.
 """
 
-LIST_DICT_ROWS_STRETCH = [{"row": 1, "stretch": 1}, {"row": 2, "stretch": 1},
-                             {"row": 3, "stretch": 1}, {"row": 4, "stretch": 1},
-                             {"row": 5, "stretch": 1}, {"row": 6, "stretch": 1},
-                             {"row": 7, "stretch": 1}, {"row": 8, "stretch": 1},#5
-                             {"row": 9, "stretch": 1}, {"row": 10, "stretch": 1}] #Lista de diccionarios.
+LIST_DICT_ROWS_STRETCH = [{"row": 1, "stretch": 0}, {"row": 2, "stretch": 0},
+                             {"row": 3, "stretch": 0}, {"row": 4, "stretch": 0},
+                             {"row": 5, "stretch": 0}, {"row": 6, "stretch": 0},
+                             {"row": 7, "stretch": 2}, {"row": 8, "stretch": 0},#5
+                             {"row": 9, "stretch": 0}, {"row": 10, "stretch": 0}] #Lista de diccionarios.
 
 LIST_DICT_COLS_STRETCH = [{"col": 1, "stretch": 1}, {"col": 2, "stretch": 0}, #7
-                              {"col": 3, "stretch": 2}, {"col": 4, "stretch":1}]
+                              {"col": 3, "stretch": 2}, {"col": 4, "stretch":0}]
 
 DEFAULT_SPACING_MAIN = 0
 
@@ -169,17 +170,11 @@ encontrará el slider.
 
 #=================================================================================================
 #Configuración de los QLabel
-DEFAULT_TEXT_FONT = QFont("Arial")
-DEFAULT_TEXT_SIZE_X = 50
-DEFAULT_TEXT_SIZE_Y = 1
 DEFAULT_TEXT_MINIMUM_SIZE_X = 10
-DEFAULT_TEXT_MINIMUM_SIZE_Y = 1
-DEFAULT_TEXT_SIZE_POLICY_X = QSizePolicy.Preferred
-DEFAULT_TEXT_SIZE_POLICY_Y = QSizePolicy.Fixed
-DEFAULT_TEXT_POSITION_X = 40
-DEFAULT_TEXT_POSITION_Y = 2
-DEFAULT_TEXT_BACKGROUND_COLOR = QColor(255,255,255)
-DEFAULT_TEXT_COLOR = QColor(255,255,0)
+DEFAULT_TEXT_MINIMUM_SIZE_Y = 10
+DEFAULT_TEXT_SIZE_POLICY_X = QSizePolicy.Expanding
+DEFAULT_TEXT_SIZE_POLICY_Y = QSizePolicy.Preferred
+DEFAULT_WRAP_MODE = True
 
 #=================================================================================================
 #Configuración de los QLabel del lado derecho
@@ -191,11 +186,16 @@ DEFAULT_ALIGNMENT_LEFT = Qt.AlignLeft
 
 #=================================================================================================
 #Configuración del QLabel del QPixmap
-DEFAULT_PIXMAP_SIZE_POLICY_X = QSizePolicy.Ignored
-DEFAULT_PIXMAP_SIZE_POLICY_Y = QSizePolicy.Ignored
+DEFAULT_PIXMAP_SIZE_POLICY_X = QSizePolicy.Fixed
+DEFAULT_PIXMAP_SIZE_POLICY_Y = QSizePolicy.Fixed
 
 
 #=================================================================================================
-#Configuración de los Spacer
-DEFAULT_SPACER_SIZE_POLICY_X = QSizePolicy.Expanding
-DEFAULT_SPACER_SIZE_POLICY_Y = QSizePolicy.Expanding
+#Configuración de los spacers horizontales
+DEFAULT_SPACER_H_SIZE_POLICY_X = QSizePolicy.Expanding
+DEFAULT_SPACER_H_SIZE_POLICY_Y = QSizePolicy.Preferred
+
+#=================================================================================================
+#Configuración de los spacers verticales
+DEFAULT_SPACER_V_SIZE_POLICY_X = QSizePolicy.Expanding
+DEFAULT_SPACER_V_SIZE_POLICY_Y = QSizePolicy.Expanding

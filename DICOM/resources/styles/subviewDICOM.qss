@@ -9,7 +9,6 @@ QGraphics{
 
 QGraphicsProxyWidget{
     background-color: transparent;
-    border: 5px rgb(212, 40, 198);
 
 }
 
@@ -18,10 +17,8 @@ QLabel{
     font-weight: bold;
     font-size: 16px;
     color: yellow;
-
-    background-color: rgb(233, 81, 182);
-    border: 5px rgb(212, 200, 40);
-
+    background-color: transparent;
+    border: 10px solid rgb(212, 40, 183);
     padding: 5px;
 }
 

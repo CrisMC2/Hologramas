@@ -45,13 +45,21 @@ class Ui_subViewDicom(QWidget):
         #Contenedores clave para la visualización (lienzo, escena, layout)
         self.ui_graphics_view   = GraphicsView()
         self.ui_graphics_scene  = GraphicsScene()
+        
         self.ui_layout_main = GridLayout(consVDcm.DEFAULT_ROWS_LAYOUT, consVDcm.DEFAULT_COLS_LAYOUT)
-        self.ui_graphics_widget = GraphicsWidget(self.ui_layout_main.q_grid_layout)  #Como layout principal configuramos al GridLayout creado anteriormente
-       
+        
         #Contenedores para el posicionamiento de los elementos
         self.ui_layout_left = LinearLayout(QGraphicsLinearLayout, consVDcm.DEFAULT_ORIENTATION_LAYOUT_1) #Utilizamos la constante del tipo de Layout que tendrá el Widget
         self.ui_layout_right_1 = LinearLayout(QGraphicsLinearLayout, consVDcm.DEFAULT_ORIENTATION_LAYOUT_1)
         self.ui_layout_right_2 = LinearLayout(QGraphicsLinearLayout, consVDcm.DEFAULT_ORIENTATION_LAYOUT_1)
+        self.ui_layout_V_center = LinearLayout(QGraphicsLinearLayout, consVDcm.DEFAULT_ORIENTATION_LAYOUT_2)
+        
+        
+        self.ui_graphics_widget_main = GraphicsWidget(self.ui_layout_main.q_grid_layout)  #Como layout principal configuramos al GridLayout creado anteriormente
+       
+        self.ui_graphics_widget_l = GraphicsWidget(self.ui_layout_left.q_layout)
+        self.ui_graphics_widget_r_1 = GraphicsWidget(self.ui_layout_right_1.q_layout)
+        self.ui_graphics_widget_r_2 = GraphicsWidget(self.ui_layout_right_2.q_layout)
         
         #Contenedores para la inserción de Widgets (Elementos o Items) en las instancias Graphics
         self.ui_proxy_text_name = GraphicsProxyWidget()
@@ -126,9 +134,10 @@ class Ui_subViewDicom(QWidget):
         
         self.ui_img_dicom = PixmapUi(QGraphicsPixmapItem()) #Generamos un contenedor que mostrará al elemento "Pixmap"
         
-        self.spacer_left = SpacerWidget(graphics=True)
-        self.spacer_right_1 = SpacerWidget(graphics=True)
-        self.spacer_right_2 = SpacerWidget(graphics=True)
+        self.spacer_H_left = SpacerWidget(graphics=True)
+        self.spacer_H_right_1 = SpacerWidget(graphics=True)
+        self.spacer_H_right_2 = SpacerWidget(graphics=True)
+        self.spacer_V = SpacerWidget(graphics=True)
         
     
     """
@@ -165,7 +174,7 @@ class Ui_subViewDicom(QWidget):
         self.ui_graphics_view.configure_features(consVDcm.SCROLL_BAR_POLICY_DEFAULT, consVDcm.FRAME_STYLE_DEFAULT)
         
         #Configuramos el comportamiento del View
-        self.ui_graphics_view.configure_behaivor(consVDcm.SIZE_POLICY_DEFAULT, consVDcm.DRAG_MODE_DEFAULT, consVDcm.INTERACTIVE_DEFAULT,
+        self.ui_graphics_view.configure_behaivor(consVDcm.DEFAULT_VIEW_SIZE_POLICY, consVDcm.DRAG_MODE_DEFAULT, consVDcm.INTERACTIVE_DEFAULT,
                                               consVDcm.RESIZE_ANCHOR_DEFAULT,consVDcm.VIEW_PORT_UPDATE_MODE_DEFAULT)
         
         #Configuramos las características de la Scene
@@ -175,11 +184,15 @@ class Ui_subViewDicom(QWidget):
         self.ui_graphics_scene.configure_behaivor(consVDcm.ITEM_INDEX_METHOD_DEFAULT)
         
         #Configuramos las características del GraphicsWidget
-        self.ui_graphics_widget.configure_features(consVDcm.DEFAULT_WIDGET_MINIMUM_SIZE_X,
-                                                   consVDcm.DEFAULT_WIDGET_MINIMUM_SIZE_Y, consVDcm.SIZE_POLICY_DEFAULT)
+        self.ui_graphics_widget_main.configure_features(consVDcm.DEFAULT_WIDGET_MINIMUM_SIZE_X,
+                                                   consVDcm.DEFAULT_WIDGET_MINIMUM_SIZE_Y)
         
         #Configuramos el comportamiento del GraphicsWidget
-        self.ui_graphics_widget.configure_behaivor(consVDcm.SIZE_POLICY_DEFAULT)  
+        self.ui_graphics_widget_main.configure_behaivor(consVDcm.DEFAULT_G_VIEW_SIZE_POLICY)  
+        
+        self.ui_graphics_widget_l.configure_behaivor(consVDcm.DEFAULT_G_VIEW_SIZE_POLICY)
+        self.ui_graphics_widget_r_1.configure_behaivor(consVDcm.DEFAULT_G_VIEW_SIZE_POLICY)
+        self.ui_graphics_widget_r_2.configure_behaivor(consVDcm.DEFAULT_G_VIEW_SIZE_POLICY)
         
         #Configuramos las características del Layout Izquierdo
         self.ui_layout_left.configure_features(consVDcm.DEFAULT_LEFT_MARGIN, consVDcm.DEFAULT_RIGHT_MARGIN,
@@ -196,6 +209,10 @@ class Ui_subViewDicom(QWidget):
         self.ui_layout_right_2.configure_features(consVDcm.DEFAULT_LEFT_MARGIN, consVDcm.DEFAULT_RIGHT_MARGIN,
                                                   consVDcm.DEFAULT_TOP_MARGIN, consVDcm.DEFAULT_BOTTOM_MARGIN,
                                                   consVDcm.DEFAULT_SPACING)
+        
+        self.ui_layout_V_center.configure_features(consVDcm.DEFAULT_LEFT_MARGIN, consVDcm.DEFAULT_RIGHT_MARGIN,
+                                                   consVDcm.DEFAULT_TOP_MARGIN, consVDcm.DEFAULT_BOTTOM_MARGIN,
+                                                   consVDcm.DEFAULT_SPACING)
         
         #Configuramos las características del Layout Principal
         self.ui_layout_main.configure_features(consVDcm.LIST_DICT_ROWS_STRETCH, consVDcm.LIST_DICT_COLS_STRETCH, 
@@ -216,32 +233,43 @@ class Ui_subViewDicom(QWidget):
         items_right=[self.ui_text_name, self.ui_text_ID_Patient, self.ui_text_date_born,
             self.ui_text_sex, self.ui_text_institution_name, self.ui_text_study_ID,
             self.ui_text_body_part, self.ui_text_acquisition_test, self.ui_text_acquisition_time ]
-        
-        proxys_right=[ self.ui_proxy_text_name, self.ui_proxy_text_ID_Patient, self.ui_proxy_text_date_born,
-            self.ui_proxy_text_sex, self.ui_proxy_text_institution_name, self.ui_proxy_text_study_ID,
-            self.ui_proxy_text_body_part, self.ui_proxy_text_acquisition_test, self.ui_proxy_text_acquisition_time]
-        
+            
         items_left=[self.ui_text_img,
             self.ui_text_img_now,
             self.ui_text_img_end]
         
-        spacers=[self.spacer_left,
-            self.spacer_right_1,
-            self.spacer_right_2]
+        proxys=[ self.ui_proxy_text_name, self.ui_proxy_text_ID_Patient, self.ui_proxy_text_date_born,
+            self.ui_proxy_text_sex, self.ui_proxy_text_institution_name, self.ui_proxy_text_study_ID,
+            self.ui_proxy_text_body_part, self.ui_proxy_text_acquisition_test, self.ui_proxy_text_acquisition_time,
+            self.ui_proxy_text_img, self.ui_proxy_text_img_now, self.ui_proxy_text_img_end]
+         
+        spacers_H=[self.spacer_H_left,
+            self.spacer_H_right_1,
+            self.spacer_H_right_2]
+        
+        spacers_V=[self.spacer_V]
         
         for item_r in items_right:
             item_r.configure_features(consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
                                       consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y, consVDcm.DEFAULT_ALIGNMENT_RIGHT)
-        
-        for proxy_r in proxys_right:
-            proxy_r.configure_features(consVDcm.DEFAULT_PROXY_SIZE_POLICY_X, consVDcm.DEFAULT_PROXY_SIZE_POLICY_Y)
-            
+
+            item_r.configure_behaivor(consVDcm.DEFAULT_WRAP_MODE)
+
         for item_l in items_left:
             item_l.configure_features(consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
                                       consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y, consVDcm.DEFAULT_ALIGNMENT_LEFT)
-       
-        for item_spacer in spacers:
-            item_spacer.configure_features(consVDcm.DEFAULT_SPACER_SIZE_POLICY_X, consVDcm.DEFAULT_SPACER_SIZE_POLICY_Y)
+
+            item_l.configure_behaivor(consVDcm.DEFAULT_WRAP_MODE)
+            
+                    
+        for proxy_r in proxys:
+            proxy_r.configure_features(consVDcm.DEFAULT_PROXY_SIZE_POLICY_X, consVDcm.DEFAULT_PROXY_SIZE_POLICY_Y)
+            
+        for item_spacer_H in spacers_H:
+            item_spacer_H.configure_features(consVDcm.DEFAULT_SPACER_H_SIZE_POLICY_X, consVDcm.DEFAULT_SPACER_H_SIZE_POLICY_Y)
+        
+        for item_spacer_V in spacers_V:
+            item_spacer_V.configure_features(consVDcm.DEFAULT_SPACER_V_SIZE_POLICY_X, consVDcm.DEFAULT_SPACER_V_SIZE_POLICY_Y)
         
     """
     El método configure_items permite configurar los elementos (items) que conforman a la subinterfaz
@@ -291,14 +319,15 @@ class Ui_subViewDicom(QWidget):
         
         #Insertamos los elementos correspondientes en los layout correspondientes
         self.ui_layout_left.insert_element([self.ui_proxy_text_img.q_proxy_widget, self.ui_proxy_text_img_now.q_proxy_widget, 
-                                            self.ui_proxy_text_img_end.q_proxy_widget, self.spacer_left.q_spacer])
+                                            self.ui_proxy_text_img_end.q_proxy_widget, self.spacer_H_left.q_spacer])
         
-        self.ui_layout_right_1.insert_element([self.spacer_right_1.q_spacer, self.ui_proxy_text_date_born.q_proxy_widget, 
+        self.ui_layout_right_1.insert_element([self.spacer_H_right_1.q_spacer, self.ui_proxy_text_date_born.q_proxy_widget, 
                                                self.ui_proxy_text_sex.q_proxy_widget])
         
-        self.ui_layout_right_2.insert_element([self.spacer_right_2.q_spacer, self.ui_proxy_text_acquisition_test.q_proxy_widget, 
+        self.ui_layout_right_2.insert_element([self.spacer_H_right_2.q_spacer, self.ui_proxy_text_acquisition_test.q_proxy_widget, 
                                                self.ui_proxy_text_acquisition_time.q_proxy_widget])
         
+        self.ui_layout_V_center.insert_element([self.spacer_V.q_spacer])
         # self.ui_layout_center.insert_element([self.ui_img_dicom.q_pixmap])                
         
         #El layout principal es en el que se establecerán todos los elementos, siendo el layout del QGraphicsWidget
@@ -310,7 +339,7 @@ class Ui_subViewDicom(QWidget):
         
         #Insertamos el GraphicsWidget en el GraphicsScene
         self.ui_graphics_scene.insert_element(self.ui_img_dicom.q_pixmap)
-        self.ui_graphics_scene.insert_element(self.ui_graphics_widget)
+        self.ui_graphics_scene.insert_element(self.ui_graphics_widget_main)
         #Insertamos todos los elementos necesarios en el GraphicsWidget
         # self.ui_graphics_widget.insert_element([self.ui_layout_main]) #En este caso no se inserta, debido a que el Layout_main será el encargado de tener a todos los elementos
         
@@ -329,7 +358,7 @@ class Ui_subViewDicom(QWidget):
     def define_positions_items(self) -> list[dict]:
         list_positions = list()
         
-        list_positions.append({"element": self.ui_layout_left.q_layout, 
+        list_positions.append({"element": self.ui_graphics_widget_l, 
                                    "row": 1, 
                                    "col": 1, 
                                    "rows_span": 1, 
@@ -353,7 +382,7 @@ class Ui_subViewDicom(QWidget):
                                    "rows_span": 1, 
                                    "col_span": 1})
                               
-        list_positions.append({"element": self.ui_layout_right_1.q_layout, 
+        list_positions.append({"element": self.ui_graphics_widget_r_1, 
                                    "row": 3, 
                                    "col": 3, 
                                    "rows_span": 1, 
@@ -376,8 +405,15 @@ class Ui_subViewDicom(QWidget):
                                    "col": 3, 
                                    "rows_span": 1, 
                                    "col_span": 1})
-                              
-        list_positions.append({"element": self.ui_layout_right_2.q_layout,
+        
+        list_positions.append({"element": self.ui_layout_V_center.q_layout,
+                                   "row": 7,
+                                   "col": 1,
+                                   "rows_span": 1,
+                                   "col_span": 1
+                                   })
+        
+        list_positions.append({"element": self.ui_graphics_widget_r_2,
                                    "row": 10,
                                    "col": 3,
                                    "rows_span": 1,
@@ -392,4 +428,3 @@ class Ui_subViewDicom(QWidget):
                                     })
         
         return list_positions
-    
