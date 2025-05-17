@@ -43,9 +43,11 @@ class LinearLayout(AbsLayout):
                             top_margin: float, bottom_margin: float, spacing: float):
         self.q_layout.setContentsMargins(left_margin, right_margin, top_margin, bottom_margin)
         self.q_layout.setSpacing(spacing)
+        # self.q_layout.setAlignment(Qt.AlignRight)
     
-    def configure_behaivor(self, *args, **kwargs):
-        return super().configure_behaivor(*args, **kwargs)
+    def configure_behaivor(self, size_policy_x: QSizePolicy, size_policy_y: QSizePolicy):
+        self.q_layout.setSizePolicy(size_policy_x, size_policy_y)
+        
     
     def insert_element(self, list_elements: list[Union[QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem]]):
         for ele in list_elements:
@@ -54,6 +56,8 @@ class LinearLayout(AbsLayout):
                 
             else:
                 raise ValueError(f"El elemento: {ele} no pudo ser agregado al Layout al no ser un elemento derivado de QWidget")
+        
+        
         
 
 class GridLayout(AbsLayout):
@@ -90,7 +94,6 @@ class GridLayout(AbsLayout):
         
         # self.q_grid_layout.setContentsMargins(margin_left, margin_top, margin_right, margin_bottom)
         self.q_grid_layout.setContentsMargins(margin_left, margin_top, margin_right, margin_bottom)
-        self.q_grid_layout.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
     
     """
     El método "configure_features" permite configurar las características base del GridLayout, 

@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsLinearLayout, QLayout
 #Importamos clases del mismo proyecto (Programa nuestro)
 from utils.Graphics import GraphicsView, GraphicsScene, GraphicsWidget, GraphicsProxyWidget
 from utils.Layout import LinearLayout, GridLayout, QGraphicsPixmapItem
-from utils.ElementsWidgets import TextWidget, SliderWidget, SpacerWidget
+from utils.ElementsWidgets import TextWidget, SliderWidget
 from utils.PixmapUi import PixmapUi
 
 from config import constantSubViewDICOM as consVDcm
@@ -134,11 +134,6 @@ class Ui_subViewDicom(QWidget):
         
         self.ui_img_dicom = PixmapUi(QGraphicsPixmapItem()) #Generamos un contenedor que mostrará al elemento "Pixmap"
         
-        self.spacer_H_left = SpacerWidget(graphics=True)
-        self.spacer_H_right_1 = SpacerWidget(graphics=True)
-        self.spacer_H_right_2 = SpacerWidget(graphics=True)
-        self.spacer_V = SpacerWidget(graphics=True)
-        
     
     """
     El método generate_items está diseñado para generar todos los elementos que 
@@ -198,17 +193,20 @@ class Ui_subViewDicom(QWidget):
         self.ui_layout_left.configure_features(consVDcm.DEFAULT_LEFT_MARGIN, consVDcm.DEFAULT_RIGHT_MARGIN,
                                                consVDcm.DEFAULT_TOP_MARGIN, consVDcm.DEFAULT_BOTTOM_MARGIN,
                                                consVDcm.DEFAULT_SPACING)
+        self.ui_layout_left.configure_behaivor(consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_X, consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_Y)
         
         #Configuramoas las características del primer Layout Derecho
         self.ui_layout_right_1.configure_features(consVDcm.DEFAULT_LEFT_MARGIN, consVDcm.DEFAULT_RIGHT_MARGIN,
                                                   consVDcm.DEFAULT_TOP_MARGIN, consVDcm.DEFAULT_BOTTOM_MARGIN,
                                                   consVDcm.DEFAULT_SPACING)
         
+        self.ui_layout_right_1.configure_behaivor(consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_X, consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_Y)
         
         #Configuramoas las características del segundo Layout Derecho
         self.ui_layout_right_2.configure_features(consVDcm.DEFAULT_LEFT_MARGIN, consVDcm.DEFAULT_RIGHT_MARGIN,
                                                   consVDcm.DEFAULT_TOP_MARGIN, consVDcm.DEFAULT_BOTTOM_MARGIN,
                                                   consVDcm.DEFAULT_SPACING)
+        self.ui_layout_right_2.configure_behaivor(consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_X, consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_Y)
         
         self.ui_layout_V_center.configure_features(consVDcm.DEFAULT_LEFT_MARGIN, consVDcm.DEFAULT_RIGHT_MARGIN,
                                                    consVDcm.DEFAULT_TOP_MARGIN, consVDcm.DEFAULT_BOTTOM_MARGIN,
@@ -242,12 +240,7 @@ class Ui_subViewDicom(QWidget):
             self.ui_proxy_text_sex, self.ui_proxy_text_institution_name, self.ui_proxy_text_study_ID,
             self.ui_proxy_text_body_part, self.ui_proxy_text_acquisition_test, self.ui_proxy_text_acquisition_time,
             self.ui_proxy_text_img, self.ui_proxy_text_img_now, self.ui_proxy_text_img_end]
-         
-        spacers_H=[self.spacer_H_left,
-            self.spacer_H_right_1,
-            self.spacer_H_right_2]
-        
-        spacers_V=[self.spacer_V]
+
         
         for item_r in items_right:
             item_r.configure_features(consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
@@ -264,13 +257,6 @@ class Ui_subViewDicom(QWidget):
                     
         for proxy_r in proxys:
             proxy_r.configure_features(consVDcm.DEFAULT_PROXY_SIZE_POLICY_X, consVDcm.DEFAULT_PROXY_SIZE_POLICY_Y)
-            
-        for item_spacer_H in spacers_H:
-            item_spacer_H.configure_features(consVDcm.DEFAULT_SPACER_H_SIZE_POLICY_X, consVDcm.DEFAULT_SPACER_H_SIZE_POLICY_Y)
-        
-        for item_spacer_V in spacers_V:
-            item_spacer_V.configure_features(consVDcm.DEFAULT_SPACER_V_SIZE_POLICY_X, consVDcm.DEFAULT_SPACER_V_SIZE_POLICY_Y)
-        
     """
     El método configure_items permite configurar los elementos (items) que conforman a la subinterfaz
     
@@ -318,20 +304,21 @@ class Ui_subViewDicom(QWidget):
         # self.ui_proxy_img_dicom.insert_element(self.ui_img_dicom.q_pixmap)
         
         #Insertamos los elementos correspondientes en los layout correspondientes
-        self.ui_layout_left.insert_element([self.ui_proxy_text_img.q_proxy_widget, self.ui_proxy_text_img_now.q_proxy_widget, 
-                                            self.ui_proxy_text_img_end.q_proxy_widget, self.spacer_H_left.q_spacer])
+        self.ui_graphics_widget_l.insert_element([self.ui_proxy_text_img.q_proxy_widget, self.ui_proxy_text_img_now.q_proxy_widget, 
+                                            self.ui_proxy_text_img_end.q_proxy_widget])
         
-        self.ui_layout_right_1.insert_element([self.spacer_H_right_1.q_spacer, self.ui_proxy_text_date_born.q_proxy_widget, 
+        self.ui_graphics_widget_r_1.insert_element([self.ui_proxy_text_date_born.q_proxy_widget, 
                                                self.ui_proxy_text_sex.q_proxy_widget])
         
-        self.ui_layout_right_2.insert_element([self.spacer_H_right_2.q_spacer, self.ui_proxy_text_acquisition_test.q_proxy_widget, 
+        self.ui_graphics_widget_r_2.insert_element([self.ui_proxy_text_acquisition_test.q_proxy_widget, 
                                                self.ui_proxy_text_acquisition_time.q_proxy_widget])
         
-        self.ui_layout_V_center.insert_element([self.spacer_V.q_spacer])
+        # self.ui_layout_V_center.insert_element([self.spacer_V.q_spacer])
         # self.ui_layout_center.insert_element([self.ui_img_dicom.q_pixmap])                
         
         #El layout principal es en el que se establecerán todos los elementos, siendo el layout del QGraphicsWidget
-        self.ui_layout_main.insert_element(self.define_positions_items(), consVDcm.DEFAULT_ALIGNMENT)
+        self.ui_layout_main.insert_element(self.define_positions_items_left(), consVDcm.DEFAULT_ALIGNMENT_LEFT)
+        self.ui_layout_main.insert_element(self.define_positions_items_right(), consVDcm.DEFAULT_ALIGNMENT_RIGHT)
         
         
          #Insertamos la escena en el GraphicsView
@@ -355,76 +342,80 @@ class Ui_subViewDicom(QWidget):
         - Graphics_Widget: En este contenedor insertamos todos los elementos que conformarán la interfaz.
     """
     
-    def define_positions_items(self) -> list[dict]:
-        list_positions = list()
+    def define_positions_items_left(self) -> list[dict]:
+        list_positions_left = list()
         
-        list_positions.append({"element": self.ui_graphics_widget_l, 
+        
+        list_positions_left.append({"element": self.ui_graphics_widget_l, 
                                    "row": 1, 
                                    "col": 1, 
                                    "rows_span": 1, 
                                    "col_span": 1})
+        
+        return list_positions_left
+        
+    def define_positions_items_right(self) -> tuple[list, list]:
+        list_positions_right = list()
                               
         # list_positions.append({"element": self.ui_layout_center.q_layout, 
         #                            "row": 1, 
         #                            "col": 2, 
         #                            "rows_span": 10, 
         #                            "col_span": 1})
-                              
-        list_positions.append({"element": self.ui_proxy_text_name.q_proxy_widget, 
+        list_positions_right.append({"element": self.ui_layout_V_center.q_layout,
+                                   "row": 7,
+                                   "col": 1,
+                                   "rows_span": 1,
+                                   "col_span": 1})
+        
+        list_positions_right.append({"element": self.ui_proxy_text_name.q_proxy_widget, 
                                    "row": 1, 
                                    "col": 3, 
                                    "rows_span": 1, 
                                    "col_span": 1})
                               
-        list_positions.append({"element": self.ui_proxy_text_ID_Patient.q_proxy_widget, 
+        list_positions_right.append({"element": self.ui_proxy_text_ID_Patient.q_proxy_widget, 
                                    "row": 2, 
                                    "col": 3, 
                                    "rows_span": 1, 
                                    "col_span": 1})
                               
-        list_positions.append({"element": self.ui_graphics_widget_r_1, 
+        list_positions_right.append({"element": self.ui_graphics_widget_r_1, 
                                    "row": 3, 
                                    "col": 3, 
                                    "rows_span": 1, 
                                    "col_span": 1})
                               
-        list_positions.append({"element": self.ui_proxy_text_institution_name.q_proxy_widget, 
+        list_positions_right.append({"element": self.ui_proxy_text_institution_name.q_proxy_widget, 
                                    "row": 4, 
                                    "col": 3, 
                                    "rows_span": 1, 
                                    "col_span": 1})
                               
-        list_positions.append({"element": self.ui_proxy_text_study_ID.q_proxy_widget, 
+        list_positions_right.append({"element": self.ui_proxy_text_study_ID.q_proxy_widget, 
                                    "row": 5, 
                                    "col": 3, 
                                    "rows_span": 1, 
                                    "col_span": 1})
                               
-        list_positions.append({"element": self.ui_proxy_text_body_part.q_proxy_widget, 
+        list_positions_right.append({"element": self.ui_proxy_text_body_part.q_proxy_widget, 
                                    "row": 6, 
                                    "col": 3, 
                                    "rows_span": 1, 
                                    "col_span": 1})
         
-        list_positions.append({"element": self.ui_layout_V_center.q_layout,
-                                   "row": 7,
-                                   "col": 1,
-                                   "rows_span": 1,
-                                   "col_span": 1
-                                   })
-        
-        list_positions.append({"element": self.ui_graphics_widget_r_2,
+        list_positions_right.append({"element": self.ui_graphics_widget_r_2,
                                    "row": 10,
                                    "col": 3,
                                    "rows_span": 1,
                                    "col_span": 1
                                    })
         
-        list_positions.append({"element": self.ui_proxy_slider.q_proxy_widget,
+        list_positions_right.append({"element": self.ui_proxy_slider.q_proxy_widget,
                                     "row": 1,
                                     "col": 4,
                                     "rows_span": 10,
                                     "cols_span": 1
                                     })
         
-        return list_positions
+        return list_positions_right

@@ -1,6 +1,7 @@
 from typing import Union, overload
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget, QGraphicsProxyWidget, QWidget, QLayout, QFrame, QSizePolicy, QGraphicsPixmapItem
 from PyQt5.QtCore import Qt, QRectF
+from PyQt5.QtGui import QBrush, QColor
 
 from abstracts.Ui.AbsGraphics import AbsGraphicsView, AbsGraphicsScene, AbsGraphicsWidget, AbsGraphicsProxyWidget
 
@@ -136,7 +137,7 @@ class SceneLayoutHelper():
     def __init__(self, scene: QGraphicsScene):
         self.scene = scene
         
-    def center_widget(self, widget: Union[QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem] = None):
+    def center_widget(self, widget: Union[QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem]):
         if not widget:
             raise TypeError("El elemento widget que intentas centrar no ha sido especificado, es None.")
         
@@ -151,7 +152,7 @@ class SceneLayoutHelper():
         # center_x = (scene_rect.width() - bounding.width())/2
         # center_y = (scene_rect.height() - bounding.height())/2
                 
-        widget.setPos(widget.pos()+offset)
+        widget.setPos(widget.pos()+offset/2)
     
     def center_all_widgets(self):
         if isinstance(self.scene, QGraphicsScene):
@@ -177,7 +178,7 @@ class GraphicsWidget(AbsGraphicsWidget):
         super().__init__()
         self.q_layout = layout #Establecemos el Layout como parte de la clase
         self.setLayout(self.q_layout)   #Seteamos el layout al widget
-
+        
     def configure_features(self, minimum_size_x: int, minimum_size_y: int):
         self.setMinimumSize(minimum_size_x, minimum_size_y)
     
@@ -188,6 +189,7 @@ class GraphicsWidget(AbsGraphicsWidget):
         for element in elements:
             ele = self.convert_correct_type_element(element)
             self.q_layout.addItem(ele)
+        self.adjustSize()
     """
     El método "insert element" permite agregar una serie de elementos al layout que representa el GraphicsWidget
     
@@ -198,7 +200,10 @@ class GraphicsWidget(AbsGraphicsWidget):
     """  
     
     def convert_correct_type_element(self, element: QWidget):
-        if isinstance (element, QWidget) and not isinstance(element, QGraphicsProxyWidget):
+        if  isinstance(element, (QGraphicsProxyWidget, QGraphicsWidget)):
+            return element
+        
+        elif isinstance (element, QWidget):
             proxy = QGraphicsProxyWidget()
             proxy.setWidget(element)
             
@@ -229,7 +234,7 @@ class GraphicsWidget(AbsGraphicsWidget):
 
     # def paint(self, painter, option, widget = None):
     #     rect = self.boundingRect()
-    #     painter.setBrush(QBrush(QColor("black")))
+    #     painter.setBrush(QBrush(QColor("skyblue")))
     #     painter.setPen(QColor("black"))  # opcional: borde
     #     painter.drawRect(rect)
     

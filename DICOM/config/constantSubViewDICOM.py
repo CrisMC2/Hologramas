@@ -88,7 +88,7 @@ ITEM_INDEX_METHOD_DEFAULT = QGraphicsScene.NoIndex
 DEFAULT_WIDGET_MINIMUM_SIZE_X = 900
 DEFAULT_WIDGET_MINIMUM_SIZE_Y = 450
 
-DEFAULT_G_VIEW_SIZE_POLICY = QSizePolicy.Ignored
+DEFAULT_G_VIEW_SIZE_POLICY = QSizePolicy.Fixed
 
 #Configuración del Layout a usar en QGraphicsWidget
 #Configuración del Layout Principal (Main) (GridLayout)
@@ -115,7 +115,13 @@ LIST_DICT_COLS_STRETCH = [{"col": 1, "stretch": 1}, {"col": 2, "stretch": 0}, #7
 
 DEFAULT_SPACING_MAIN = 0
 
-DEFAULT_ALIGNMENT = Qt.AlignRight
+#=================================================================================================
+#Configuración de los Elementos del lado derecho
+DEFAULT_ALIGNMENT_RIGHT = Qt.AlignRight
+
+#=================================================================================================
+#Configuración de los Elementos del lado izquierdo
+DEFAULT_ALIGNMENT_LEFT = Qt.AlignLeft
 
 #Configuración del Layout Izquierdo (LayoutItem)
 DEFAULT_ORIENTATION_LAYOUT_1 = "H" 
@@ -144,6 +150,9 @@ DEFAULT_TOP_MARGIN    = 0
 DEFAULT_BOTTOM_MARGIN = 0
 
 DEFAULT_SPACING = 0
+
+DEFAULT_LAYOUT_SIZE_POLICY_X = QSizePolicy.Preferred
+DEFAULT_LAYOUT_SIZE_POLICY_Y = QSizePolicy.Fixed
 
 #=================================================================================================
 #Configuración del QGraphicsProxyWidget
@@ -176,13 +185,7 @@ DEFAULT_TEXT_SIZE_POLICY_X = QSizePolicy.Expanding
 DEFAULT_TEXT_SIZE_POLICY_Y = QSizePolicy.Preferred
 DEFAULT_WRAP_MODE = True
 
-#=================================================================================================
-#Configuración de los QLabel del lado derecho
-DEFAULT_ALIGNMENT_RIGHT = Qt.AlignRight
 
-#=================================================================================================
-#Configuración de los QLabel del lado izquierdo
-DEFAULT_ALIGNMENT_LEFT = Qt.AlignLeft
 
 #=================================================================================================
 #Configuración del QLabel del QPixmap

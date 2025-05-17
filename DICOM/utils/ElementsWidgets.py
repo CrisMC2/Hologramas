@@ -175,29 +175,3 @@ class SliderWidget(AbsSliderControl):
     
     def connect_change_value(self, function_connect: Callable[[int], None]) -> int:
         self.q_slider.valueChanged.connect(function_connect)
-        
-class SpacerWidget(AbsWidget):
-    @overload
-    def __init__(self, type_spacer: str) -> None: ...
-    
-    @overload
-    def __init__(self, graphics: bool) -> None: ...
-    
-    def __init__(self, type_spacer: str='H', graphics: bool = False):
-        if graphics:
-            self.q_spacer = QGraphicsWidget()
-            
-        else:    
-            if type_spacer == 'V':
-                self.q_spacer = QSpacerItem(Qt.Vertical)         
-            elif type_spacer == 'H':
-                self.q_spacer = QSpacerItem(Qt.Horizontal)
-            else:
-                raise TypeError("El tipo de Spacer que intentas crear no es compatible, intenta con: \"V\" | \"H\"")
-        
-    def configure_features(self, size_policy_x: QSizePolicy , size_policy_y: QSizePolicy):
-        self.q_spacer.setSizePolicy(size_policy_x, size_policy_y)
-    
-    def configure_behaivor(self, *args, **kwargs):
-        return super().configure_behaivor(*args, **kwargs)
-    
