@@ -142,17 +142,23 @@ class SceneLayoutHelper():
             raise TypeError("El elemento widget que intentas centrar no ha sido especificado, es None.")
         
         scene_rect = self.scene.sceneRect().center()
-        bounding = widget.boundingRect().center()
         
-        mapScene = widget.mapToScene(bounding)
-        
-        offset = scene_rect - mapScene
-        # bounding_center = bounding.center()
+        if isinstance(widget, QGraphicsPixmapItem):
+            pixmap = widget.pixmap()
+            pixmap_size = pixmap.size()
 
-        # center_x = (scene_rect.width() - bounding.width())/2
-        # center_y = (scene_rect.height() - bounding.height())/2
-                
-        widget.setPos(widget.pos()+offset/2)
+            center_x = (scene_rect.x() - pixmap_size.width()/2)
+            center_y = (scene_rect.y() - pixmap_size.height()/2)
+
+            print(f"Pixmap: {center_x}, {center_y}")
+            widget.setPos(center_x, center_y)
+        else:
+            bounding = widget.boundingRect().center()
+            mapScene = widget.mapToScene(bounding)
+            
+            offset = scene_rect - mapScene
+                    
+            widget.setPos(widget.pos()+offset)
     
     def center_all_widgets(self):
         if isinstance(self.scene, QGraphicsScene):
