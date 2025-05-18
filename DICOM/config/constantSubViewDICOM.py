@@ -30,7 +30,7 @@ de la ejecución del programa.
 #=================================================================================================
 #Configuración Características de GraphicsView
 # SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAsNeeded
-SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAlwaysOn
+SCROLL_BAR_POLICY_DEFAULT = Qt.ScrollBarAlwaysOff
 
 
 FRAME_STYLE_DEFAULT = QFrame.NoFrame

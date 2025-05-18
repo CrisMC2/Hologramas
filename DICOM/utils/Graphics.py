@@ -56,6 +56,7 @@ class GraphicsView(AbsGraphicsView):
         if hasattr(self.scene(), "cover_visible_area"):
             print("Funcion==============")
             self.scene().cover_visible_area(self.mapToScene(self.viewport().rect()).boundingRect())
+            self.scene().center_widgets(filter=(QGraphicsWidget, QGraphicsPixmapItem), cant=2)
 
     """
     El método resizeEvent, propio de la clase QGraphicsView, cumple la función de responsividad.
@@ -103,10 +104,7 @@ class GraphicsScene(AbsGraphicsScene):
     def insert_element(self, main_widget: QGraphicsWidget) -> None: ...
         
     @overload
-    def insert_element(self, widget: QGraphicsProxyWidget) -> None: ...
-    
-    @overload
-    def insert_element(self, widget: QGraphicsPixmapItem) -> None: ...
+    def insert_element(self, widget: Union[QGraphicsProxyWidget, QGraphicsPixmapItem]) -> None: ...
     
     def insert_element(self, widget: Union[QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem]):
         if isinstance(widget, QGraphicsWidget):
@@ -114,7 +112,7 @@ class GraphicsScene(AbsGraphicsScene):
             
         self.addItem(widget)
         
-        self.scene_layout.center_widget(widget)
+        self.center_widgets(widget)
 
     """
     El método "insert_element" heredado en la clase GraphicsScene
@@ -133,6 +131,20 @@ class GraphicsScene(AbsGraphicsScene):
         
         # self.scene_layout.center_all_widgets()    
     
+    @overload
+    def center_widgets(self, widget: Union[QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem]) -> None :...
+    
+    @overload
+    def center_widgets(self, filter: Union[type[QGraphicsWidget], type[QGraphicsProxyWidget], type[QGraphicsPixmapItem]], cant: int) -> None:...
+    
+    def center_widgets(self, widget: Union[QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem] = None, 
+                       filter: Union[type[QGraphicsWidget], type[QGraphicsProxyWidget], type[QGraphicsPixmapItem]] = None, cant: int=None):
+        if widget:
+            self.scene_layout.center_widget(widget)
+        
+        elif filter and cant:
+            self.scene_layout.center_all_widgets(filter, cant)
+    
 class SceneLayoutHelper():
     def __init__(self, scene: QGraphicsScene):
         self.scene = scene
@@ -147,6 +159,8 @@ class SceneLayoutHelper():
             pixmap = widget.pixmap()
             pixmap_size = pixmap.size()
 
+            print("\n\n",pixmap_size)
+            
             center_x = (scene_rect.x() - pixmap_size.width()/2)
             center_y = (scene_rect.y() - pixmap_size.height()/2)
 
@@ -160,11 +174,20 @@ class SceneLayoutHelper():
                     
             widget.setPos(widget.pos()+offset)
     
-    def center_all_widgets(self):
+    def center_all_widgets(self, filter: Union[type[QGraphicsWidget], type[QGraphicsProxyWidget], type[QGraphicsPixmapItem]],
+                           cant: int = -1):
         if isinstance(self.scene, QGraphicsScene):
+            cant_center: int=0
+            if cant == -1:
+                cant = len(self.scene.items())
+            
             for item in self.scene.items():
-                if isinstance(item, (QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem)):
+                if isinstance(item, filter):
                     self.center_widget(item)
+                    cant_center+=1
+                
+                if cant_center >=cant:
+                    break
 
         
 class GraphicsWidget(AbsGraphicsWidget):  
