@@ -10,6 +10,7 @@ sys.path.append(_append)
 #Importamos clases propias del proyecto
 from core.abstracts.AbsDicomRead import AbsDicomRead
 from abstracts.classes.AbsPath        import AbsPath 
+from config import constantViewDICOM as ConsVDcm
 
 class DicomPathsExists(AbsPath):
     
@@ -55,8 +56,24 @@ class DicomPathsExists(AbsPath):
 #TEMPLATE
 class ExtractDicomPath():
     
+    
+    def extract_dicom_paths(self, path_folder: str) -> None | list:
+        try:
+            list_ = glob(os.path.join(path_folder,"**",ConsVDcm.EXTENTION_DICOM), recursive=True)
+            
+            if not list_:
+                print(f"La dirección especificada {path_folder} no contiene ningún archivo DICOM.")
+
+            return list_
+        except:
+            print(f"No se pudo extraer los archivos desde la dirección especificada {path_folder}.")
+            return None
     """
-    El método extrae todos los archivos con extensión '.dcm' desde una ruta especificada.
+    El método "extract_dicom_paths" de la clase ExtractDicomPath
+    extrae todos los archivos con extensión '.dcm' desde una ruta especificada y sus subdirectorios.
+    
+    - Para lograr la extracción de elementos mediante desde la misma carpeta y subcarpetas utilizamos: 
+            glob("carpeta/**/*.dcm", recursive=True)  
     
     
     Parámetros:
@@ -70,16 +87,6 @@ class ExtractDicomPath():
         - NotFoundException         : Si la dirección no puede ser leída.
         
     """
-    def extract_dicom_paths(self, path_folder: str) -> None | list:
-        try:
-            list_ = glob(os.path.join(path_folder,"*.dcm"))
-            if not list_:
-                print(f"La dirección especificada {path_folder} no contiene ningún archivo DICOM.")
-
-            return list_
-        except:
-            print(f"No se pudo extraer los archivos desde la dirección especificada {path_folder}.")
-            return None
      
      
 class DicomConvertByPath ():
