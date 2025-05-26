@@ -1,6 +1,0 @@
-Las metaclases nos permiten poder heredar varias clases que pertenezcan a distintan metaclases.
-
-Por ejemplo, si queremos que una clase sea abstracta, pero también herede de Qt, tendremos un error.
-
-ABC (necesaria para hacer abstracta una clase) tiene de metaclase a: ABCMeta
-Qt (UI) tiene de metaclase a:

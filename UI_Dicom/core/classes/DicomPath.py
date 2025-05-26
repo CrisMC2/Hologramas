@@ -1,0 +1,129 @@
+#Importamos clases
+import os
+import sys
+from glob import glob
+
+
+# _append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+# sys.path.append(_append)
+
+#Importamos clases propias del proyecto
+from core.classes.DicomRead import DicomRead
+from abstracts.classes.AbsPath import AbsPath 
+from config import constantViewDICOM as ConsVDcm
+
+class DicomPathsExists(AbsPath):
+    
+    #Leer la documentación proveniente del AbsPath
+    def exists_path(self, path: str, create: bool):
+        try:
+            if os.path.exists(path):
+                return True
+            elif create:
+                os.makedirs(path)
+                return True
+            else:
+                return False
+        except:
+            print("La ubicación proporcionada no pudo ser leída.")
+    
+    """
+    El método exists_path de la clase DicomPathsExists permite verificar si un path (dirección)
+    existe o no existe en el dispositivo.
+    
+    - Parámetros:
+        - self (DicomPathsExists)   :   
+    """
+
+    def exists_dicom_in_list(self, folder: list):
+        if all(self.exists_path(path, False) for path in folder): #Primero verificamos si todas las direcciones existen
+            return any(os.path.splitext(file)[1] == '.dcm' for file in folder) # "any" retornar True si al menos uno de los archivos cumplen con la condición 
+
+    """
+    El siguiente método permite verificar si al menos existe un archivo DICOM (".dcm") 
+    en un grupo de direcciones especificadas.
+    
+    Parámetros:
+        - self (AbsDicomPathsExists)    : Instancia de la clase AbsDicomPathsExists
+        - path_folder (List<String>)    : Dirección del folder en el que se encuentran los archivos DICOM
+    
+    Retorno:
+        - Bool          : True si al menos una dirección cumple con tener la extensión ".dcm"
+                          False si ninguna dirección cumple con la condición
+    
+    """
+
+#TEMPLATE
+class ExtractDicomPath():
+    def extract_dicom_paths(self, path_folder: str) -> None | list:
+        try:
+            list_ = glob(os.path.join(path_folder,"**",ConsVDcm.EXTENTION_DICOM), recursive=True)
+            
+            if not list_:
+                print(f"La dirección especificada {path_folder} no contiene ningún archivo DICOM.")
+
+            return list_
+        except:
+            print(f"No se pudo extraer los archivos desde la dirección especificada {path_folder}.")
+            return None
+    """
+    El método "extract_dicom_paths" de la clase ExtractDicomPath
+    extrae todos los archivos con extensión '.dcm' desde una ruta especificada y sus subdirectorios.
+    
+    - Para lograr la extracción de elementos mediante desde la misma carpeta y subcarpetas utilizamos: 
+            glob("carpeta/**/*.dcm", recursive=True)  
+    
+    
+    Parámetros:
+        - self (DicomExtract_)      : Instancia de la clase AbsExtractDicomPath_
+        - path_folder (String)      : Dirección del folder donde se encuentran los archivos DICOM
+        
+    Retonar:
+        - list_ (Lista)             : Todos las rutas de archivos DICOM que fueron encontradas.
+    
+    Excepción:
+        - NotFoundException         : Si la dirección no puede ser leída.
+        
+    """
+     
+     
+class DicomConvertByPath ():
+    """
+    Constructor de la clase AbsDicomConvertByPath.
+    
+    - Genera una instancia de la clase abstracta AbsDicomRead_
+    """
+    def __init__(self):
+        self.read = DicomRead()
+        
+     
+    def convert_dicoms_list_path(self, list_paths: list[str]) -> list:
+        # list_dicoms = list(map(lambda file : file if os.path.splitext(file)[1] == '.dcm' else None), list_paths)
+        # list_dicoms = list(file for file in list_dicoms if file is not None)    
+        
+        list_dicoms = list(file for file in list_paths if os.path.splitext(file)[1] == ".dcm") #Si falla cambia la "list()"" por "[]"
+        
+        if (list_dicoms):
+            list_dicoms = [self.read.read_dicom(file_dicom) for file_dicom in list_dicoms] #Convertimos cada elemento en un archivo dicom
+        else:
+            print(f"(Class) DicomConvertByPath->convert_dicoms_list_path:\n Ninguna dirección en la lista de direcciones: {list_paths} Cumple con la extensión \"dicom\"")
+           
+        return list_dicoms
+    
+    """
+    El método convert_dicoms_list_path de la clase DicomConvertByPath tiene como función convertir una 
+    lista de direcciones (paths) en archivos dicom.
+    
+    - El método permite leer múltiples direcciones (paths) a partir de una lista.
+    - La lista de direcciones (paths) será filtrada a solo los elementos con extensión ".dcm"
+    - Todos aquellos elementos filtrados serán convertidos en archivo dicom.
+    - La librería usada es Pydicom
+    
+    Parámetros:
+        - self  (DicomConvertByPath)   : Instancia de la clase AbsDicomConvertByPath.
+        - list_paths (List<String>) : Lista de direcciones de archivos dicom.
+        
+    Retornar:
+        - list_dicoms (List<dicom>) : Lista de los archivos dicom que fueron procesados a partir de las direcciones.
+    
+    """  
