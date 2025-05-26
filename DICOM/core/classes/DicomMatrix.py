@@ -1,6 +1,4 @@
 import numpy as np
-import os
-import sys
 
 from core.classes.DicomProcessing import DicomProccessing
 
@@ -11,4 +9,4 @@ class DicomMatrix(DicomProccessing):
         #Shape => (profundidad, filas, columnas)
         lista_dicoms = np.array(lista_dicoms)
         
-        return lista_dicoms    
+        return lista_dicoms

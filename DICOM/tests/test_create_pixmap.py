@@ -7,7 +7,7 @@ sys.path.append(_append)
 import matplotlib.pyplot as plt
 import numpy as np
 
-from core.abstracts.AbsDicomRead import AbsDicomRead
+from DICOM.core.classes.DicomRead import AbsDicomRead
 from core.classes.DicomMatrix import DicomMatrix
 from core.classes.DicomProcessing import DicomProccessing
 from DICOM.utils.Pixmap import Pixmap

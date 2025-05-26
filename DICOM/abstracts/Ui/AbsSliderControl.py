@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
 
-from PyQt5.QtWidgets import QSlider
-
 class AbsSliderControl(ABC):    
     # @abstractmethod
     # def create_slider(self):

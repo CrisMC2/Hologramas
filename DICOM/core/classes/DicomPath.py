@@ -4,12 +4,12 @@ import sys
 from glob import glob
 
 
-_append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
-sys.path.append(_append)
+# _append = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+# sys.path.append(_append)
 
 #Importamos clases propias del proyecto
-from core.abstracts.AbsDicomRead import AbsDicomRead
-from abstracts.classes.AbsPath        import AbsPath 
+from core.classes.DicomRead import DicomRead
+from abstracts.classes.AbsPath import AbsPath 
 from config import constantViewDICOM as ConsVDcm
 
 class DicomPathsExists(AbsPath):
@@ -35,9 +35,9 @@ class DicomPathsExists(AbsPath):
         - self (DicomPathsExists)   :   
     """
 
-    def exists_dicom_in_path(self, path_folder: list):
-        if all(self.exists_path(path, False) for path in path_folder): #Primero verificamos si todas las direcciones existen
-            return any(os.path.splitext(file)[1] == '.dcm' for file in path_folder) # "any" retornar True si al menos uno de los archivos cumplen con la condición 
+    def exists_dicom_in_list(self, folder: list):
+        if all(self.exists_path(path, False) for path in folder): #Primero verificamos si todas las direcciones existen
+            return any(os.path.splitext(file)[1] == '.dcm' for file in folder) # "any" retornar True si al menos uno de los archivos cumplen con la condición 
 
     """
     El siguiente método permite verificar si al menos existe un archivo DICOM (".dcm") 
@@ -55,8 +55,6 @@ class DicomPathsExists(AbsPath):
 
 #TEMPLATE
 class ExtractDicomPath():
-    
-    
     def extract_dicom_paths(self, path_folder: str) -> None | list:
         try:
             list_ = glob(os.path.join(path_folder,"**",ConsVDcm.EXTENTION_DICOM), recursive=True)
@@ -96,7 +94,7 @@ class DicomConvertByPath ():
     - Genera una instancia de la clase abstracta AbsDicomRead_
     """
     def __init__(self):
-        self.read = AbsDicomRead()
+        self.read = DicomRead()
         
      
     def convert_dicoms_list_path(self, list_paths: list[str]) -> list:
@@ -108,7 +106,7 @@ class DicomConvertByPath ():
         if (list_dicoms):
             list_dicoms = [self.read.read_dicom(file_dicom) for file_dicom in list_dicoms] #Convertimos cada elemento en un archivo dicom
         else:
-            print(f"Ninguna dirección en la lista de direcciones: \n\n{list_paths}\n\n Cumple con la extensión \"dicom\"")
+            print(f"(Class) DicomConvertByPath->convert_dicoms_list_path:\n Ninguna dirección en la lista de direcciones: {list_paths} Cumple con la extensión \"dicom\"")
            
         return list_dicoms
     

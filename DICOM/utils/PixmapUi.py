@@ -59,7 +59,7 @@ class PixmapUi(AbsUi_Pixmap):
         # self.q_pixmap.setMinimumSize(minimum_size_x, minimum_size_y)
         # self.q_pixmap.setSizePolicy(size_policy_x, size_policy_y)     
         pass
-    def configure_behaivor(self):
+    def configure_behavior(self):
         pass
     
     def insert_element(self, pixmap: QPixmap):

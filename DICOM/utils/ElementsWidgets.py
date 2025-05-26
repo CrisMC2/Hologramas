@@ -38,7 +38,7 @@ class TextWidget(AbsTextControl):
         self.q_text.setSizePolicy(size_policy_x, size_policy_y)
         self.q_text.setAlignment(alignment)
         
-    def configure_behaivor(self, word_wrap: bool, focus_policy: Qt = None):
+    def configure_behavior(self, word_wrap: bool, focus_policy: Qt = None):
         # self.q_text.setFocusPolicy(focus_policy)
         # self.q_text.setWordWrap(word_wrap)
         # self.q_text.adjustSize()

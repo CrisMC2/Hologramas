@@ -1,9 +1,15 @@
 import pydicom as dicom
 import numpy as np
 
-from typing import Union
+from typing import Union, overload
+
 #Procesado de la imagen dicom  
 class DicomProccessing():
+    
+    @overload
+    def proccessing_dicom(self, file_dicom: dicom.FileDataset, hounsmin: int=-200, hounsmax:int=200) -> None: ...
+    @overload
+    def proccessing_dicom(self, file_dicom: np.array, hounsmin: int=-200, hounsmax:int=200) -> None: ...
     
     def processing_dicom(self, file_dicom: Union[dicom.FileDataset, np.array], hounsmin=-200, hounsmax=200):
         if isinstance(file_dicom, dicom.FileDataset): #Si es instancia de pydicom

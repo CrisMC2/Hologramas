@@ -26,6 +26,6 @@ class AbsWidget(ABC):
         pass
     
     @abstractmethod
-    def configure_behaivor(self, *args, **kwargs):
+    def configure_behavior(self, *args, **kwargs):
         pass
     

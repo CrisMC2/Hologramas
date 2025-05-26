@@ -45,7 +45,7 @@ class LinearLayout(AbsLayout):
         self.q_layout.setSpacing(spacing)
         # self.q_layout.setAlignment(Qt.AlignRight)
     
-    def configure_behaivor(self, size_policy_x: QSizePolicy, size_policy_y: QSizePolicy):
+    def configure_behavior(self, size_policy_x: QSizePolicy, size_policy_y: QSizePolicy):
         self.q_layout.setSizePolicy(size_policy_x, size_policy_y)
         
     
@@ -126,7 +126,7 @@ class GridLayout(AbsLayout):
     
     """
         
-    def configure_behaivor(self):
+    def configure_behavior(self):
         pass
     
     def insert_element(self, elements_position: List[dict[QGraphicsProxyWidget, int, int, int, int]], alignment: Qt.Alignment):

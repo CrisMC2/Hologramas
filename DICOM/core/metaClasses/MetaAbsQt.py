@@ -1,4 +1,4 @@
-from abc import ABC, ABCMeta
+from abc import ABCMeta
 from PyQt5.QtWidgets import QWidget
 
 class MetaAbsQt(ABCMeta, type(QWidget)):

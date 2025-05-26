@@ -1,7 +1,3 @@
-#Importamos librerías
-import sys
-import os
-
 #Importamos parte de una librería
 from abc import ABC, abstractmethod
 

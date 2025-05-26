@@ -38,7 +38,6 @@ class Ui_subViewDicom(QWidget):
         self.insert_elements() #Insertamos los elementos en los contenedores
                 
         self.show_view(main_container[0], main_container[1])
-        print("\n\nSetup ACTIVADO\n\n")
         
 
     def generate_containers(self):
@@ -169,44 +168,44 @@ class Ui_subViewDicom(QWidget):
         self.ui_graphics_view.configure_features(consVDcm.SCROLL_BAR_POLICY_DEFAULT, consVDcm.FRAME_STYLE_DEFAULT)
         
         #Configuramos el comportamiento del View
-        self.ui_graphics_view.configure_behaivor(consVDcm.DEFAULT_VIEW_SIZE_POLICY, consVDcm.DRAG_MODE_DEFAULT, consVDcm.INTERACTIVE_DEFAULT,
+        self.ui_graphics_view.configure_behavior(consVDcm.DEFAULT_VIEW_SIZE_POLICY, consVDcm.DRAG_MODE_DEFAULT, consVDcm.INTERACTIVE_DEFAULT,
                                               consVDcm.RESIZE_ANCHOR_DEFAULT,consVDcm.VIEW_PORT_UPDATE_MODE_DEFAULT)
         
         #Configuramos las características de la Scene
         self.ui_graphics_scene.configure_features((600,500), consVDcm.SCENE_RECT_DEFAULT)
         
         #Configuramos el comportamiento de la Scene
-        self.ui_graphics_scene.configure_behaivor(consVDcm.ITEM_INDEX_METHOD_DEFAULT)
+        self.ui_graphics_scene.configure_behavior(consVDcm.ITEM_INDEX_METHOD_DEFAULT)
         
         #Configuramos las características del GraphicsWidget
         self.ui_graphics_widget_main.configure_features(consVDcm.DEFAULT_WIDGET_MINIMUM_SIZE_X,
                                                    consVDcm.DEFAULT_WIDGET_MINIMUM_SIZE_Y)
         
         #Configuramos el comportamiento del GraphicsWidget
-        self.ui_graphics_widget_main.configure_behaivor(consVDcm.DEFAULT_G_VIEW_SIZE_POLICY)  
+        self.ui_graphics_widget_main.configure_behavior(consVDcm.DEFAULT_G_VIEW_SIZE_POLICY)  
         
-        self.ui_graphics_widget_l.configure_behaivor(consVDcm.DEFAULT_G_VIEW_SIZE_POLICY)
-        self.ui_graphics_widget_r_1.configure_behaivor(consVDcm.DEFAULT_G_VIEW_SIZE_POLICY)
-        self.ui_graphics_widget_r_2.configure_behaivor(consVDcm.DEFAULT_G_VIEW_SIZE_POLICY)
+        self.ui_graphics_widget_l.configure_behavior(consVDcm.DEFAULT_G_VIEW_SIZE_POLICY)
+        self.ui_graphics_widget_r_1.configure_behavior(consVDcm.DEFAULT_G_VIEW_SIZE_POLICY)
+        self.ui_graphics_widget_r_2.configure_behavior(consVDcm.DEFAULT_G_VIEW_SIZE_POLICY)
         
         #Configuramos las características del Layout Izquierdo
         self.ui_layout_left.configure_features(consVDcm.DEFAULT_LEFT_MARGIN, consVDcm.DEFAULT_RIGHT_MARGIN,
                                                consVDcm.DEFAULT_TOP_MARGIN, consVDcm.DEFAULT_BOTTOM_MARGIN,
                                                consVDcm.DEFAULT_SPACING)
-        self.ui_layout_left.configure_behaivor(consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_X, consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_Y)
+        self.ui_layout_left.configure_behavior(consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_X, consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_Y)
         
         #Configuramoas las características del primer Layout Derecho
         self.ui_layout_right_1.configure_features(consVDcm.DEFAULT_LEFT_MARGIN, consVDcm.DEFAULT_RIGHT_MARGIN,
                                                   consVDcm.DEFAULT_TOP_MARGIN, consVDcm.DEFAULT_BOTTOM_MARGIN,
                                                   consVDcm.DEFAULT_SPACING)
         
-        self.ui_layout_right_1.configure_behaivor(consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_X, consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_Y)
+        self.ui_layout_right_1.configure_behavior(consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_X, consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_Y)
         
         #Configuramoas las características del segundo Layout Derecho
         self.ui_layout_right_2.configure_features(consVDcm.DEFAULT_LEFT_MARGIN, consVDcm.DEFAULT_RIGHT_MARGIN,
                                                   consVDcm.DEFAULT_TOP_MARGIN, consVDcm.DEFAULT_BOTTOM_MARGIN,
                                                   consVDcm.DEFAULT_SPACING)
-        self.ui_layout_right_2.configure_behaivor(consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_X, consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_Y)
+        self.ui_layout_right_2.configure_behavior(consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_X, consVDcm.DEFAULT_LAYOUT_SIZE_POLICY_Y)
         
         self.ui_layout_V_center.configure_features(consVDcm.DEFAULT_LEFT_MARGIN, consVDcm.DEFAULT_RIGHT_MARGIN,
                                                    consVDcm.DEFAULT_TOP_MARGIN, consVDcm.DEFAULT_BOTTOM_MARGIN,
@@ -246,13 +245,13 @@ class Ui_subViewDicom(QWidget):
             item_r.configure_features(consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
                                       consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y, consVDcm.DEFAULT_ALIGNMENT_RIGHT)
 
-            item_r.configure_behaivor(consVDcm.DEFAULT_WRAP_MODE)
+            item_r.configure_behavior(consVDcm.DEFAULT_WRAP_MODE)
 
         for item_l in items_left:
             item_l.configure_features(consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_X, consVDcm.DEFAULT_TEXT_MINIMUM_SIZE_Y,
                                       consVDcm.DEFAULT_TEXT_SIZE_POLICY_X,consVDcm.DEFAULT_TEXT_SIZE_POLICY_Y, consVDcm.DEFAULT_ALIGNMENT_LEFT)
 
-            item_l.configure_behaivor(consVDcm.DEFAULT_WRAP_MODE)
+            item_l.configure_behavior(consVDcm.DEFAULT_WRAP_MODE)
             
                     
         for proxy_r in proxys:

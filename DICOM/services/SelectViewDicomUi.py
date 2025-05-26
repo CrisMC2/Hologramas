@@ -39,6 +39,9 @@ class SelectView(AbsMenus):
         self.action_SaggitalView.triggered.connect(lambda : self.emit_signal(self.action_SaggitalView))
         self.action_CoronalView.triggered.connect(lambda : self.emit_signal(self.action_CoronalView))
 
+    def enable_menu(self, enable, menu):
+        return super().enable_menu(enable, menu)
+    
     #Herencia de AbsActions
     def check_action(self, list_actions):
         for act in list_actions:

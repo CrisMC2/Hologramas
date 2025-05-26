@@ -1,5 +1,5 @@
 #=============================================
-#Importamos Librerías
+#Importamos Librerías de Python
 import sys
 import os
 
@@ -8,11 +8,10 @@ import os
 _append = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(_append)
 
-import numpy as np
-import matplotlib.pyplot as plt
 #=============================================
-#Importamos partes de librerías
-from typing import Union, List
+#Importamos partes de librerías de Python
+from typing import Union
+from functools import partial
 
 from PyQt5.QtWidgets import QApplication, QMainWindow #No eliminar QApplication, se utiliza en los test
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout
@@ -25,10 +24,10 @@ from views.subViewDICOM import Ui_subViewDicom     #Importamos la interfaz princ
 
 from methods.GenerateInformationDicom import GenerateInformation
 from methods.DefineViewDicom import DefineViewDicom
-
 from utils.SignalData import Emit_Data
-
+from utils.ExtraThreads import MakeThread
 from config import constantSubViewDICOM as consSVDcm #Importamos las constantes de la subView
+
 
 class Ui_subViewDicomController(Ui_subViewDicom):
     """
@@ -54,6 +53,9 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         self.define_view = DefineViewDicom()
 
         self.obj_emit = Emit_Data()
+        self.new_thread_1 = MakeThread()
+        self.new_thread_2 = MakeThread()
+        
 
 
     def define_widget_main(self, widget: QWidget, 
@@ -86,24 +88,53 @@ class Ui_subViewDicomController(Ui_subViewDicom):
     
     
     @pyqtSlot(object)
-    def setupUiController(self, path: object):
+    def setupUiController(self, path: object):        
         #==================================
         #Generamos la información
-        dicom_list, self.matrix = self.generate_information.generate_dicoms_matrix3D(path=path) #Generamos la matriz y el conjunto de dicoms
-        dict_info_patient, dict_info_study = self.generate_information.generate_information_dicom(dicom_list[consSVDcm.DEFAULT_NUM_DICOM]) #Generamos la información del paciente y estudio
+        # try:
+            self.ui_slider.set_value(consSVDcm.DEFAULT_VALUE_SLIDER)
+            
+            # self.new_thread.start_(self.generate_information.generate_dicoms_matrix(path=path), True)            
+            func_new_thread_2 = partial(self.generate_information.generate_dicoms_matrix, path=path)
+            func_new_thread_1 = partial(self.generate_information.generate_dicoms_matrix, path=path, cant_elements=80)
+            
+            func_after = partial(self.switch_init)
+            
+            self.new_thread_1.start_(func=func_new_thread_1, func_return=True)
+            self.new_thread_1.connect_signal(func_after)
+            self.new_thread_2.start_(func=func_new_thread_2, func_return=True)
+            self.new_thread_2.connect_signal(func_after)
+            self.new_thread_2.connect_signal(self.connect_signal)
+            
+            dicom_list, matrix = self.generate_information.generate_dicoms_matrix(path=path, cant_elements=20) #Generamos la matriz y el conjunto de dicoms
 
-        #===================================
-        #Cambiamos la Información
-        self.change_static_info(dict_info_patient, dict_info_study)
-        self.switch_view(consSVDcm.DEFAULT_VIEW_DICOM)
-        
-        #Emitimos la señal
-        self.obj_emit.emit_signal(True)
-        self.ui_slider.connect_change_value(self.switch_value_img)
+            
+            self.switch_init(dicom_list, matrix)
+            
+        # except:
+        #     print("Algo salió mal")
 
     """
     No es obligatorio agregar pyqtSlot(object), pero es una buena práctica para saber que aquí está llegando una señal
     """
+    def connect_signal(self):
+        #Emitimos la señal
+        self.obj_emit.emit_signal(True) #De esta manera se permitirá el cambio de vista
+        
+    def switch_init(self, dicom_list, matrix):
+        self.matrix = matrix
+        
+        self.dict_info_patient, self.dict_info_study = self.generate_information.generate_information_dicom(
+                                                            dicom_list[consSVDcm.DEFAULT_NUM_DICOM]) #Generamos la información del paciente y estudio
+        #===================================
+        #Cambiamos la Información
+        self.change_static_info(self.dict_info_patient, self.dict_info_study)
+        self.switch_view(consSVDcm.DEFAULT_VIEW_DICOM)
+            
+        #Emitimos la señal
+        self.obj_emit.emit_signal(False) #De esta manera la interfaz se mostrará
+        self.ui_slider.connect_change_value(self.switch_value_img)
+    
     @pyqtSlot(object)
     def switch_view(self, new_view: str):
         consSVDcm.VIEW_DICOM_INCONSTANT = new_view
@@ -114,10 +145,10 @@ class Ui_subViewDicomController(Ui_subViewDicom):
     def switch_value_img(self, new_value: int):
         matrix_2d = self.define_view.return_view(self.matrix, new_value, 
                                                     consSVDcm.VIEW_DICOM_INCONSTANT)
-        self.pixmap = self.generate_information.generate_pixmap(matrix_2d)
+        pixmap = self.generate_information.generate_pixmap(matrix_2d)
         
         self.change_dinamic_info(new_value+consSVDcm.DEFAULT_DIFFERENCE_VALUE_SLIDER,
-                                 self.pixmap)
+                                 pixmap)
 
 
     #Intenta mejorarlo (Ahora mismo está hecho con muchas pinzas, sobre todo por el diccionario)
@@ -135,8 +166,6 @@ class Ui_subViewDicomController(Ui_subViewDicom):
     def change_semi_dinamic_info(self, end_value_dicom_view: int):
         self.define_values_items_semi_dinamic(text_img_end=str(end_value_dicom_view),
                                                   value_end_slider=end_value_dicom_view-1) #Le restamos 1
-        
-        print(f"Valor final DICOM: {end_value_dicom_view}")
     
     """
     Disparador => Cambiar la vista del folder dicom (Axial, Coronal y Sagital)
@@ -169,7 +198,6 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         self.ui_text_img.change_data(text_img)
         
         self.ui_slider.set_value(value_slider_now)
-        print(f"\n\nValor Slider: {self.ui_slider.get_value()}")
     """
     El método "define_values_items_static" cumplea la función de darle valor
     a los elementos que conforman la vista DICOM.

@@ -1,5 +1,6 @@
 import pydicom as dicom
 import numpy as np
+import threading #Para múltiples hilos
 
 from typing import Union, List, Dict 
 from PyQt5.QtGui import QPixmap
@@ -35,15 +36,16 @@ class GenerateInformation():
         - self.obj_pixmap (Pixmap)              : Instancia de la clase Pixmap, encargada de encapsular la lógica para
                                                     crear un elemento Pixmap utilizable.
     """
-    def generate_dicoms_matrix3D(self, path: Union[str, List]) -> tuple[List, np.array]:
-        dicoms_utilities = self.obj_dicom_extract.extract_dicoms(path)
-        matrix_dicom = self.obj_dicom_matrix.generate_matrix(dicoms_utilities)
+    
+    def generate_dicoms_matrix(self, path: Union[str, List], cant_elements: int = -1) -> None |tuple[List, np.array]:
+        dicoms_utilities = self.obj_dicom_extract.extract_dicoms(path, cant_elements)
         
-        return dicoms_utilities, matrix_dicom
+        if dicoms_utilities:
+            matrix_dicom = self.obj_dicom_matrix.generate_matrix(dicoms_utilities)
+            return dicoms_utilities, matrix_dicom
+        
+        return None
 
-    def generate_matrix2D(self):
-        pass
-        
     def generate_pixmap(self, matrix_2d: np.array) -> QPixmap:
         pixmap = self.obj_pixmap.create_pixmap(matrix_2d)
 

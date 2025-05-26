@@ -1,6 +1,3 @@
-import sys
-import os
-
 from abc import abstractmethod
 from abstracts.Ui.AbsWidget import AbsWidget #Abstracción Principal (DICOM.abstracts.Ui.AbsWidget)
 

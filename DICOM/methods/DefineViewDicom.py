@@ -1,14 +1,14 @@
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt #Para arreglar errores
 
-from core.classes.DicomView import ViewAxial, ViewCoronal, ViewSagittal  
+from core.classes.DicomView import AxialView, CoronalView, SagittalView  
 from config import constantViewDICOM as consVDcm 
 
 class DefineViewDicom():
     def __init__(self):
-        self.obj_axial = ViewAxial()
-        self.obj_saggital = ViewSagittal()
-        self.obj_coronal = ViewCoronal()
+        self.obj_axial = AxialView()
+        self.obj_saggital = SagittalView()
+        self.obj_coronal = CoronalView()
         
     def return_view(self, matrix_3d: np.array, iterator_matrix: int, view: str) -> np.array:
         # img_array = np.zeros(1)

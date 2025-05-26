@@ -74,11 +74,9 @@ class MenuUploadFiles(AbsMenus):
 
         if folder != None:
             self.emit_signal(folder)
-            print("Directorio Carpeta: "+folder)
             
         elif file != None:
             self.emit_signal(file)
-            print("Directorio Archivo: "+file[0])
         # else:
         #     raise ValueError("Intentas emitir un elemento nulo.")
     
@@ -100,7 +98,7 @@ class FolderUploader(AbsUploadData):
         
         if self.folder_name and self.folder_name != self.directory_search: #Evitamos que el usuario utilice la misma carpeta 2 veces (directory_search no se limpia en cada selección)
             self.directory_selected = self.folder_name
-            print("Nueva carpeta agregada")
+
             if not self.keep_directory_initial:
                 self.directory_search = self.directory_selected
     """

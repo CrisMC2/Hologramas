@@ -74,12 +74,14 @@ class Ui_viewDicomController():
     
     def connect_signals_views(self):
         self.subUi.obj_emit.obj_signal.connect(self.activate_menus)
+        self.subUi.obj_emit.obj_signal.connect(self.activate_view)
+        
 
     def activate_menus(self, activate: bool = False):
-        if activate:
-            self.__obj_menu_cant_view.enable_menu(True, self._menu_cant_view)
-            self.__obj_menu_view.enable_menu(True, self._menu_view)
+        self.__obj_menu_cant_view.enable_menu(activate, self._menu_cant_view)
+        self.__obj_menu_view.enable_menu(activate, self._menu_view)
         
+    def activate_view(self):        
         self.ui.StackedViews.setCurrentIndex(1)
     """
     El método activate_menu, propio de la clase Ui_viewDicomController permite

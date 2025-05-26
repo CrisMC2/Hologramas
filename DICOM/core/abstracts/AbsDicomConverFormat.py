@@ -2,27 +2,27 @@ from abc import ABC, abstractmethod
 
 class AbsDicomConvert(ABC):
     @abstractmethod
-    def convert_dicom(self):
+    def convert_dicom(self, *args, **kwargs):
         pass    
     
     @abstractmethod
-    def save_convert(self):
+    def save_convert(self, *args, **kwargs):
         pass
     
     @abstractmethod
-    def extract_features(self):
+    def extract_features(self, *args, **kwargs):
         pass
  
 class AbsFeaturesVideo(ABC):
     @abstractmethod
-    def define_shape(self):
+    def define_shape(self, *args, **kwargs):
         pass
     
     @abstractmethod
-    def define_mode(self, format: str):
+    def define_mode(self, *args, **kwargs):
         pass
     
     @abstractmethod
-    def define_codec(self):
+    def define_codec(self, *args, **kwargs):
         pass
     

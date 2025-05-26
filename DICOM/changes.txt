@@ -1,0 +1,9 @@
+Cambié:
+
+- Name: configure_behaivor => configure_behavior
+
+- Ubicación y Nombre: AbsDicomRead (core.abstracts) => DicomRead (core.classes)
+
+- Name: ViewAxial => AxialView
+- Name: ViewSaggital => SaggitalView
+- Name: ViewCorornal => CoronalView

@@ -1,9 +1,4 @@
-import sys
-import os
-
 from abc import abstractmethod
-
-from PyQt5.QtWidgets import QLabel
 
 #Importancias de clases del proyecto
 from abstracts.Ui.AbsWidget import AbsWidget

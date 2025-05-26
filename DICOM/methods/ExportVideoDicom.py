@@ -1,8 +1,8 @@
 from core.abstracts.AbsDicomConverFormat import AbsDicomConvert, AbsFeaturesVideo
 from services.DicomExtract import DicomExtract
-from core.classes.DicomProcessing import AbsDicomOrder
+from core.classes.DicomProcessing import DicomOrder
 
-class DicomConvertVideo(AbsDicomConvert, AbsFeaturesVideo, AbsDicomOrder, DicomExtract):     
+class DicomConvertVideo(AbsDicomConvert, AbsFeaturesVideo, DicomOrder, DicomExtract):     
     def extract_features(self, path_file):
         name = self.read_dicom(path_file)
         name = name.PatientName

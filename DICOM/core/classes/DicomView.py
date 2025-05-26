@@ -1,11 +1,8 @@
-import os
-import sys
-
 import numpy as np
 
 from core.abstracts.AbsDicomView import AbsDicomView
 
-class ViewAxial(AbsDicomView):
+class AxialView(AbsDicomView):
     def define_aspect(self, label: str):
         pass
     
@@ -41,7 +38,7 @@ class ViewAxial(AbsDicomView):
     
     """
     
-class ViewSagittal(AbsDicomView):
+class SagittalView(AbsDicomView):
     def define_aspect(self, label: str):
         pass
     
@@ -68,7 +65,7 @@ class ViewSagittal(AbsDicomView):
     
     """
 
-class ViewCoronal(AbsDicomView):
+class CoronalView(AbsDicomView):
     def define_aspect(self, label: str):
         pass
     

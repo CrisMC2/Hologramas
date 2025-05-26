@@ -17,7 +17,7 @@ class GraphicsView(AbsGraphicsView):
         # self.setBackgroundBrush(background)
         self.setFrameStyle(frame_style)
     
-    def configure_behaivor(self, size_policy: QSizePolicy, drag, interactive: bool, resize_anchor: QGraphicsView.ViewportAnchor, 
+    def configure_behavior(self, size_policy: QSizePolicy, drag, interactive: bool, resize_anchor: QGraphicsView.ViewportAnchor, 
                            portUpdateMode: QGraphicsView.ViewportUpdateMode):
         self.setSizePolicy(size_policy, size_policy)
         self.setDragMode(drag)
@@ -54,7 +54,6 @@ class GraphicsView(AbsGraphicsView):
         self.center_scene_in_view()
 
         if hasattr(self.scene(), "cover_visible_area"):
-            print("Funcion==============")
             self.scene().cover_visible_area(self.mapToScene(self.viewport().rect()).boundingRect())
             self.scene().center_widgets(filter=(QGraphicsWidget, QGraphicsPixmapItem), cant=2)
 
@@ -71,15 +70,7 @@ class GraphicsView(AbsGraphicsView):
         # center_x, center_y = self.scene().width()/2, self.scene().height()/2
         center = self.scene().sceneRect().center()
         self.centerOn(center)
-        print("\n\n\n")
-        # print(center_x, center_y)
-        
-        print("\n\n\n")
-        print("Medidas: ",self.scene().width(), self.scene().height())
-    
-    
-
-    
+            
 class GraphicsScene(AbsGraphicsScene):
     def __init__(self):
         super().__init__()
@@ -97,7 +88,7 @@ class GraphicsScene(AbsGraphicsScene):
         - background (QBrush) => 
     """
     
-    def configure_behaivor(self, item_index_method: QGraphicsScene.ItemIndexMethod):
+    def configure_behavior(self, item_index_method: QGraphicsScene.ItemIndexMethod):
         self.setItemIndexMethod(item_index_method)
 
     @overload
@@ -125,7 +116,6 @@ class GraphicsScene(AbsGraphicsScene):
     """
     
     def cover_visible_area(self, visible_area: QRectF):
-        print("Visible_Area: ", visible_area)
         self.main_widget.setPreferredSize(visible_area.size())
         self.main_widget.resize(visible_area.size())
         
@@ -159,12 +149,10 @@ class SceneLayoutHelper():
             pixmap = widget.pixmap()
             pixmap_size = pixmap.size()
 
-            print("\n\n",pixmap_size)
             
             center_x = (scene_rect.x() - pixmap_size.width()/2)
             center_y = (scene_rect.y() - pixmap_size.height()/2)
 
-            print(f"Pixmap: {center_x}, {center_y}")
             widget.setPos(center_x, center_y)
         else:
             bounding = widget.boundingRect().center()
@@ -211,7 +199,7 @@ class GraphicsWidget(AbsGraphicsWidget):
     def configure_features(self, minimum_size_x: int, minimum_size_y: int):
         self.setMinimumSize(minimum_size_x, minimum_size_y)
     
-    def configure_behaivor(self, size_policy: QSizePolicy):
+    def configure_behavior(self, size_policy: QSizePolicy):
         self.setSizePolicy(size_policy, size_policy)
 
     def insert_element(self, elements: Union[list[QWidget], list[QGraphicsProxyWidget]]):            
@@ -275,7 +263,7 @@ class GraphicsProxyWidget(AbsGraphicsProxyWidget):
         self.q_proxy_widget.setSizePolicy(size_policy_x, size_policy_y)
     
     
-    def configure_behaivor(self, flag: bool):
+    def configure_behavior(self, flag: bool):
         self.q_proxy_widget.setFlag(flag)
     
     def insert_element(self, element: QWidget):

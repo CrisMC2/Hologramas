@@ -1,7 +1,4 @@
 from abc import ABC, abstractmethod
-import pydicom as dicom
-
-from core.abstracts.AbsDicomRead import AbsDicomRead
 
 #Toda la información de DICOM
 class AbsDicomInformation (ABC):
@@ -10,21 +7,7 @@ class AbsDicomInformation (ABC):
     
     - Genera una instancia de la clase AbsDicomRead()
     """
-    def __init__(self):
-        self.read= AbsDicomRead()
     
-    """
-    El método get_information permite obtener información de un archivo Pydicom.
-    
-    - A partir de valores booleanos podemos obtener los datos que necesitamos o requerimos.
-    
-    Parámetros:
-        - self (AbsDicomInformation)        : Instancia de la claseAbsDicomInformation
-        
-    Información de Instancia:
-        - List<bool>            : Se tiene pensado que el método tenga una serie de valores booleanos
-                                    los cuales dependiendo de la instancia devuelvan uno u otro valor.
-    """
     @abstractmethod
     def get_information(self, *args, **kwargs) -> dict:
         pass
@@ -48,8 +31,7 @@ class AbsDicomInformation (ABC):
 
 class AbsDicomAnonimize(ABC):
     @abstractmethod
-    def anonymize_dicom(self, dc: dicom, PatientName="Desconocido", PatientID="Nan", PatientBirthDate="Nan", PatientSex="Nan", 
-                        StudyDate="Nan", StudyTime="Nan", InstitutionName="Nan", InstitutionAdress="Nan"):
+    def anonymize_dicom(self, *args, **kwargs):
         pass   
     
     """

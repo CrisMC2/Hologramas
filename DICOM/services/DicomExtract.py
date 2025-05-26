@@ -18,24 +18,24 @@ class DicomExtract():
     
     
     
-    def extract_dicoms(self, folder: Union[str, list]) -> None | list:
+    def extract_dicoms(self, folder: Union[str, list], cant_dicoms: int = -1) -> None | list:
         list_paths = list()
         if isinstance(folder, str):
             if self.dicom_path_exists.exists_path(folder, False): #Agregamos el path e impedimos que en caso de no existir, se cree.
                 list_paths = self.extract_dicom_path.extract_dicom_paths(folder)
                 
         elif isinstance(folder, list):
-            if self.dicom_path_exists.exists_dicom_in_path(folder): #verificamos que haya al menos un archivo dicom en la lista
+            if self.dicom_path_exists.exists_dicom_in_list(folder): #verificamos que haya al menos un archivo dicom en la lista
                 list_paths = folder
         
         else: #En caso de no tener una instancia de un string o una lista, lanzamos un error.
             raise TypeError("El tipo de dato que intentas ingresar para el parámetro folder no es válido, intenta con: String | list")
 
-        
         if list_paths:
-            list_dicoms = self.dicom_convert_by_path.convert_dicoms_list_path(list_paths=list_paths)
-            list_dicoms = self.dicom_order.order_dicom_folder(list_dicoms) #Puede que sea necesario poner True
-            return list_dicoms                 
+            list_dicoms = self.dicom_convert_by_path.convert_dicoms_list_path(list_paths=list_paths[:cant_dicoms]) #El +1 es necesario para no 
+            list_dicoms = self.dicom_order.order_dicom_folder(list_dicoms, True) #Puede que sea necesario poner True
+
+            return list_dicoms
     """
     El siguiente método permite extraer archivos dicom a partir de la dirección de 
     un folder o carpeta que contenga todas las direcciones de los dicom.
