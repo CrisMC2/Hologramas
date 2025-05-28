@@ -1,53 +1,6 @@
-import mediapipe as mp
 import cv2
 import numpy as np
 from math import acos, degrees
-
-class Hands():
-    def __init__(self, static_image_mode: bool, max_num_hands: int, detection_confidence=0.5, tracking_confidence=0.5):
-        self.mp_hands = mp.solutions.hands
-        self.drawing_hands = mp.solutions.drawing_utils
-        self.hands = self.mp_hands.Hands(static_image_mode = static_image_mode, 
-                                         max_num_hands = max_num_hands,
-                                         min_detection_confidence= detection_confidence, 
-                                         min_tracking_confidence= tracking_confidence)
-    
-    def find_landmark(self, img, rescale=False, handNo=0, draw=False):
-        list_landmark=list()
-        self.result = self.hands.process(img)
-        
-        height, width, _ = img.shape
-        if self.result.multi_hand_landmarks:
-            landmark = self.result.multi_hand_landmarks[handNo]
-            for id, lm in enumerate(landmark.landmark):
-                x = lm.x
-                y = lm.y
-                z = lm.z
-                
-                if rescale:
-                    x = int(x*width)
-                    y = int(y*height)
-                    
-                if draw:
-                    self.drawing_hands.draw_landmarks(
-                        img, 
-                        landmark,
-                        self.mp_hands.HAND_CONNECTIONS
-                    )
-                list_landmark.append([x, y, z])
-                
-        return list_landmark
-        
-    def rescale_landmark(self, img, list_lm):
-        height, width, _ = img.shape
-        list_tempo_1 = list()
-        
-        #Recorremos cada frame
-        for i in list_lm:
-            #Recogemos los 21 listas de 2 datos cada una de cada frame
-            list_tempo = [[int(values[0]*width), int(values[1]*height)] for values in i]
-            list_tempo_1.append(list_tempo)
-        return list_tempo_1
 
 class PositionFingers():
     def __init__ (self):

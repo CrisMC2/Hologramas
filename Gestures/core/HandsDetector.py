@@ -16,28 +16,38 @@ class HandsDetector():
                                          min_detection_confidence = self.detection_confidence,
                                          min_tracking_confidence = self.tracking_confidence)
     
-    def drawHands(self, frame: cv2.typing.MatLike, draw: bool =False):
+    def proccess_frame(self, frame: cv2.typing.MatLike):
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        # frame = cv2.flip(frame, 1) #Al no incluir esta línea de código, los videos de la mano derecha serán de la mano izquierda
-        
         self.result = self.hands.process(frame)
-        
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        if self.result.multi_hand_landmarks:
-            for id, landmark in enumerate(self.result.multi_hand_landmarks):                
-                if draw: 
+    
+    def drawHands(self, frame: cv2.typing.MatLike, proccess: bool =False, landmark=None):
+        if proccess:
+            self.proccess_frame(frame)
+            
+            if self.result.multi_hand_landmarks:
+                for id, landmark in enumerate(self.result.multi_hand_landmarks):                
                     # print(self.result.multi_handedness[id].classification[0].label)
                     self.mp_drawing.draw_landmarks(
                         frame, 
                         landmark,
                         self.mp_hands.HAND_CONNECTIONS
                     )
-        
+        else:
+            if landmark:
+                self.mp_drawing.draw_landmarks(
+                    frame, 
+                    landmark,
+                    self.mp_hands.HAND_CONNECTIONS
+                )
+            
         return frame
     
-    def findLandmark(self, draw=True, handNo=0):
+    def findLandmark(self, frame: cv2.typing.MatLike, handNo=0, proccess=True):
         listLandmark = list()
-        
+        if proccess:
+            self.proccess_frame(frame)
+                
         if self.result.multi_hand_landmarks:
             #HandNo hace referencia a la mano que quieres usar 
                 #En caso de especificar 0, significa que usarás la primera mano en ser detectada
@@ -49,15 +59,25 @@ class HandsDetector():
                 y = lm.y
                 z = lm.z
                 listLandmark.append([x, y, z])  
+            
+        else:
+            print("HandsDetector->findLandmark: Self.result no está inicializado o no encuentra landmarks en la imagen.")
+
         return listLandmark
+
+    def rescale_landmark(self, img, list_lm):
+        height, width, _ = img.shape
+        list_tempo_1 = list()
+        
+        #Recorremos cada frame
+        for i in list_lm:
+            #Recogemos los 21 listas de 2 datos cada una de cada frame
+            list_tempo = [[int(values[0]*width), int(values[1]*height)] for values in i]
+            list_tempo_1.append(list_tempo)
+        return list_tempo_1
     
     
-    
-    
-    
-    
-#==============================================================================================
-#esta clase actualmente no se utiliza    
+#==============================================================================================  
 class HandsCatch(HandsDetector):
     """
     La clase HandsCatch
@@ -69,30 +89,29 @@ class HandsCatch(HandsDetector):
                          tracking_confidence=tracking_confidence)
         
         self.listLm = list()
-        self.video_frame = 0 #Sirve para resetear
+        self.frame_overall = 0
         # self.Hands_Detector = HandsDetector(static_image_mode=maxHands, detection_confidence, tracking_confidence)
     
 
     def guardar_frames(self, frame: cv2.typing.MatLike, cant_frames: int):
-        if self.video_frame == 0:
+        # self.proccess_frame(frame) #Esto generará al self.result
+        
+        if self.frame_overall == 0:
             self.listLm.clear()
         
         if self.result.multi_hand_landmarks:
-            # if self.video_frame <=15:
-            #     cv2.putText(frame, "Cargando...", (10,50), cv2.FONT_HERSHEY_COMPLEX, 2, (231, 154,36), 2)
-                
-            # else:
-            lm = self.findLandmark(draw=False) 
+            lm = self.findLandmark(frame=frame, proccess=False) 
+            
+            
             self.listLm.append(lm) #No es necesario confirmar si existe o no, porque self.result ya se encarga de ello
 
             if len(self.listLm) == cant_frames:
                 cv2.putText(frame, "Procesando", (10,50), cv2.FONT_HERSHEY_COMPLEX, 2, (67, 218,115), 2)
-                self.video_frame=0
-                
+                self.frame_overall = 0
                 return self.listLm
-
-            # print(self.video_frame)
-            self.video_frame+=1
+            
+            self.frame_overall+=1 
+            
         else:
             if self.listLm:
-                self.video_frame=0
+                self.frame_overall =0

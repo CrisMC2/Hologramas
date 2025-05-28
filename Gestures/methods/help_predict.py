@@ -1,11 +1,13 @@
 import cv2
 import numpy as np
-from methods.position_hands import PositionFingers, Hands, PositionHands
+from core.HandsDetector import HandsDetector
+from methods.position_hands import PositionFingers, PositionHands
 
 class HelpPredict():
     def __init__(self, static_image_mode, max_num_hands):
         self.positionFingers = PositionFingers()
-        self.hands = Hands(static_image_mode, max_num_hands)
+        self.hands = HandsDetector(static_image_mode=static_image_mode, 
+                                   maxHands=max_num_hands)
         self.positionsHands = PositionHands()
         
     def predicts(self, list_predict: np.array, label_predict: list, img, list_landmark):
