@@ -28,3 +28,18 @@ actor_plane: Un actor que contiene el plano, al que se le ha asignado su mapper 
 
 renderer_stl: Otro renderizador, pero este se utiliza para visualizar el modelo STL en la parte principal de la ventana. Tiene un fondo blanco y ocupa el 70% de la ventana.
 """
+
+VIEWPORT_RENDER: list[float, float, float, float] = [0.0, 0.0, 1.0, 1.0]
+"""
+La propiedad VIEPORT_RENDER delimita la posición y la cantidad de espacio que utilizará el "Actor". 
+list[float_1, float_2, float_3, float_4]
+
+- float_1 => Posición de inicio en el Eje "X" (0.0 => Top Left)
+- float_2 => Posición de inicio en el Eje "Y" (0.0 => Top Bottom)
+- float_3 => Cantidad de espacio % que utilizará el actor en el eje "X"
+- float_4 => Cantidad de espacio % que utilizará el actor en el eje "Y"
+
+"""
+
+BACKGROUND_RENDER: list[float, float, float] = [0.2, 0.2, 0.2]
+SIZE_RENDER_WINDOW: list[int, int] = [1280, 720]

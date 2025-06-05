@@ -1,7 +1,6 @@
-import cv2
 import numpy as np
-from core.HandsDetector import HandsDetector
-from methods.position_hands import PositionFingers, PositionHands
+from Gestures.core.HandsDetector import HandsDetector
+from Gestures.methods.position_hands import PositionFingers, PositionHands
 
 class HelpPredict():
     def __init__(self, static_image_mode, max_num_hands):

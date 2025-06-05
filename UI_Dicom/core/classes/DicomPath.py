@@ -1,6 +1,5 @@
 #Importamos clases
 import os
-import sys
 from glob import glob
 
 
@@ -9,32 +8,9 @@ from glob import glob
 
 #Importamos clases propias del proyecto
 from core.classes.DicomRead import DicomRead
-from abstracts.classes.AbsPath import AbsPath 
 from config import constantViewDICOM as ConsVDcm
 
-class DicomPathsExists(AbsPath):
-    
-    #Leer la documentación proveniente del AbsPath
-    def exists_path(self, path: str, create: bool):
-        try:
-            if os.path.exists(path):
-                return True
-            elif create:
-                os.makedirs(path)
-                return True
-            else:
-                return False
-        except:
-            print("La ubicación proporcionada no pudo ser leída.")
-    
-    """
-    El método exists_path de la clase DicomPathsExists permite verificar si un path (dirección)
-    existe o no existe en el dispositivo.
-    
-    - Parámetros:
-        - self (DicomPathsExists)   :   
-    """
-
+class ExistDicom():
     def exists_dicom_in_list(self, folder: list):
         if all(self.exists_path(path, False) for path in folder): #Primero verificamos si todas las direcciones existen
             return any(os.path.splitext(file)[1] == '.dcm' for file in folder) # "any" retornar True si al menos uno de los archivos cumplen con la condición 

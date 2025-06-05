@@ -3,11 +3,11 @@ import tensorflow as tf
 import cv2
 
 from typing import List
-from config import ConstantDefineModel as consDefMo
-from core.HandsDetector import HandsCatch
-from methods.help_predict import HelpPredict
+from Gestures.config import ConstantDefineModel as consDefMo
+from Gestures.core.HandsDetector import HandsCatch
+from Gestures.methods.help_predict import HelpPredict
 
-from config import ConstantDefineModel as consDefMod
+from Gestures.config import ConstantDefineModel as consDefMod
 
 class DefineModel():
     def __init__(self):

@@ -2,7 +2,7 @@ from functools import partial
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtCore import QObject, QThread 
 
-from utils.SignalData import Emit_Data
+from Shared.classes.SignalData import Emit_Data
 
 class WorkerThread(QObject):
     def __init__(self):

@@ -24,7 +24,7 @@ from views.subViewDICOM import Ui_subViewDicom     #Importamos la interfaz princ
 
 from methods.GenerateInformationDicom import GenerateInformation
 from methods.DefineViewDicom import DefineViewDicom
-from utils.SignalData import Emit_Data
+from Shared.classes.SignalData import Emit_Data
 from utils.ExtraThreads import MakeThread
 from config import constantSubViewDICOM as consSVDcm #Importamos las constantes de la subView
 

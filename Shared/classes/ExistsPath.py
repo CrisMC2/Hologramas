@@ -1,7 +1,20 @@
-from abc import ABC, abstractmethod
+import os
 
-class AbsPath(ABC):
-    
+class ExistsPath():
+    def exists(self, path: str, create: bool=False):
+        if path:
+            if os.path.exists(path):
+                return True
+            
+            elif create:
+                os.makedirs(path)
+                return True
+            
+            else:
+                return False
+        
+        else:
+            raise ValueError("ExistsPath-> exists: El path indicado no existe")
     """
     El siguiente método verifica si una dirección existe
     
@@ -16,6 +29,4 @@ class AbsPath(ABC):
         - bool          : 'True' si la dirección existe o es creada
                           'False' si la dirección no existe y se espicifica que no debe ser creada
     """
-    @abstractmethod
-    def exists_path(self, path: str, create: bool):
-        pass
+        

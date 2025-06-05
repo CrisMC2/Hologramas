@@ -1,7 +1,7 @@
 import numpy as np
 from typing import overload
 
-from abstracts.classes.AbsSignal import AbsEmisor, AbsReceptor
+from Shared.abstracts.AbsSignal import AbsEmisor, AbsReceptor
 
 class Emit_Data(AbsEmisor):
     """"

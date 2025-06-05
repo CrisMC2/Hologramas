@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget #QApplication se 
 from views.viewDICOM  import Ui_viewDicom
 from controllers.subViewDicomController import Ui_subViewDicomController
 
-from services.UploadFilesUi import MenuUploadFiles
+from UI_Dicom.services.UploadFilesUi import MenuUploadFiles
 from services.CantViewDicomUi import SelectCantViews
 from services.SelectViewDicomUi import SelectView
 

@@ -1,11 +1,13 @@
 from typing import Union, overload
 
-from core.classes.DicomPath import DicomPathsExists, ExtractDicomPath, DicomConvertByPath
+from Shared.classes.ExistsPath import ExistsPath
+from core.classes.DicomPath import ExistDicom, ExtractDicomPath, DicomConvertByPath
 from core.classes.DicomProcessing import DicomOrder
 
 class DicomExtract():
     def __init__(self):
-        self.dicom_path_exists = DicomPathsExists()
+        self.exists_path = ExistsPath()
+        self.dicom_path_exists = ExistDicom()
         self.extract_dicom_path = ExtractDicomPath()
         self.dicom_convert_by_path = DicomConvertByPath()
         self.dicom_order = DicomOrder()
@@ -21,7 +23,7 @@ class DicomExtract():
     def extract_dicoms(self, folder: Union[str, list], cant_dicoms: int = -1) -> None | list:
         list_paths = list()
         if isinstance(folder, str):
-            if self.dicom_path_exists.exists_path(folder, False): #Agregamos el path e impedimos que en caso de no existir, se cree.
+            if self.exists_path.exists(path=folder): #Agregamos el path e impedimos que en caso de no existir, se cree.
                 list_paths = self.extract_dicom_path.extract_dicom_paths(folder)
                 
         elif isinstance(folder, list):
