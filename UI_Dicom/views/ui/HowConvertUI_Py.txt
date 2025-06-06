@@ -2,6 +2,3 @@ pyuic5 -x viewDICOM.ui -o ../viewDICOM.py
 pyuic5 -x ui/viewDICOM.ui -o viewDICOM.py
 
 pyuic5 -o interfaz_actual.py UI_Mostrar_Views.ui
-
-
-

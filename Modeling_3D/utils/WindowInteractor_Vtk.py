@@ -2,14 +2,14 @@ import vtk
 from PyQt5.QtWidgets import QWidget, QVBoxLayout
 from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 
-class WindowInteractor_Vtk(QWidget):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+class WindowInteractor_Vtk():
+    def __init__(self, widget_main: QWidget):
+        self.widget = widget_main
         self.vl = QVBoxLayout()
         
-        self.vtkWidget = QVTKRenderWindowInteractor(self)
+        self.vtkWidget = QVTKRenderWindowInteractor(self.widget)
         self.vl.addWidget(self.vtkWidget)
-        self.setLayout(self.vl)
+        self.widget.setLayout(self.vl)
 
         # self.renderWindowInteractor = self.vtkWidget.GetRenderWindow()
         self.render_window= self.vtkWidget.GetRenderWindow()

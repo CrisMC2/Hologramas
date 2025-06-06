@@ -27,11 +27,4 @@ class EmitGest():
                 self.obj_emit.emit_signal(frame, predict)
         
         video.release()
-        cv2.destroyAllWindows()
-        
-if __name__ == "__main__":
-    frame, predict = execute()
-    print(predict)
-    
-    
-    
+        cv2.destroyAllWindows()    

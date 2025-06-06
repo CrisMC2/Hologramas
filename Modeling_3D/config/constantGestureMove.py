@@ -43,3 +43,11 @@ list[float_1, float_2, float_3, float_4]
 
 BACKGROUND_RENDER: list[float, float, float] = [0.2, 0.2, 0.2]
 SIZE_RENDER_WINDOW: list[int, int] = [1280, 720]
+
+START_TIMER: int = 30
+"""
+La propiedad START_TIMER representa la cantidad de milisegundos que usará el timer para ejecutarse.
+"""
+
+DEFAULT_CAP_WIDTH = 320
+DEFAULT_CAP_HEIGHT = 240

@@ -7,7 +7,6 @@ import vtk
 from PyQt5.QtCore import pyqtSignal
 from Modeling_3D.config import constantGestureMove as consGesMo
 from vtkmodules.vtkCommonCore import vtkOutputWindow
-from Gestures.main_ import EmitGest
 
 # # Clase personalizada para manejar los mensajes de salida de VTK (evitar errores en consola)
 class MyVTKOutputWindow(vtkOutputWindow):
@@ -38,7 +37,7 @@ class GestureInteractorStyle(vtk.vtkInteractorStyleTrackballCamera):
     """
         
         
-    def on_signal(self, frame: cv2.typing.MatLike, gesture: str) -> None:
+    def on_signal(self, gesture: str) -> None:
         self.apply_gesture(gesture)  # Aplicar la transformación correspondiente al modelo 3D
         # self.update_camera_texture(frame)
         # self.renderer_cam.GetRenderWindow().Render()

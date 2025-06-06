@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>viewModel3D</class>
+ <widget class="QMainWindow" name="viewModel3D">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,9 +14,15 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,8">
     <item>
      <widget class="QWidget" name="cam_Widget" native="true">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,7,0">
        <property name="spacing">
         <number>0</number>
@@ -100,13 +106,25 @@
         </widget>
        </item>
        <item>
-        <widget class="QFrame" name="camWidget_Video">
+        <widget class="QFrame" name="camVideo_Widget">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QLabel" name="camVideo_Label">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
@@ -133,7 +151,14 @@
      </widget>
     </item>
     <item>
-     <widget class="QWidget" name="model_Widget" native="true"/>
+     <widget class="QWidget" name="model_Widget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>600</width>
+        <height>0</height>
+       </size>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
