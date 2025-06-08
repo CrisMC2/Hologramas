@@ -48,7 +48,7 @@ class DefineModel():
             if decision:
                 print(f"Predicción: {decision[0]}")
                 print(f"Valor: {decision[1]}")
-                return frame, decision[0]
+                return frame, decision
             else:
                 print("Gesto confuso o no definido")
         

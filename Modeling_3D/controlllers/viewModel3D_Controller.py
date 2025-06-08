@@ -1,7 +1,8 @@
 import cv2
 
-from PyQt5.QtWidgets import QWidget, QMainWindow
+from functools import partial
 
+from Modeling_3D.core.secondThread import ExtraThread
 from Modeling_3D.utils.VideoWidget import VideoWidget
 from Modeling_3D.utils.Model3D_Vtk import Model3D_Vtk
 from Modeling_3D.utils.WindowInteractor_Vtk import WindowInteractor_Vtk
@@ -11,7 +12,7 @@ from Modeling_3D.views.viewModel3D import Ui_viewModel3D
 from Modeling_3D.config import constantGestureMove as consGesMo
 
 class viewModel3D_Controller(Ui_viewModel3D):
-    def __init__(self, main_window: QMainWindow):
+    def __init__(self):
         super().__init__()
         # self.setupUi(main_window)
         
@@ -19,6 +20,11 @@ class viewModel3D_Controller(Ui_viewModel3D):
         
     def __define_objects(self):
         self.video_widget = VideoWidget()
+        self.extra_thread = ExtraThread()
+    
+    def execute(self, path_model_stl: str, cap: cv2.VideoCapture):
+        self.generate_interactor(path=path_model_stl)
+        self.show_video(cap=cap)
     
     def generate_interactor(self, path: str):
         #Crear el modelo 3D para 
@@ -51,10 +57,19 @@ class viewModel3D_Controller(Ui_viewModel3D):
         # return window_interactor
     
     def show_video(self, cap: cv2.VideoCapture):
-        self.video_widget.define_components(cap_insert=cap, 
+        
+        function_model = partial(self.video_widget.define_components, cap_insert=cap, 
                                             video_label=self.camVideo_Label, 
                                             size_cap=[consGesMo.DEFAULT_CAP_WIDTH, 
-                                                      consGesMo.DEFAULT_CAP_HEIGHT])   
-        self.style_vtk.connect_execute(self.video_widget.signal.obj_signal)
+                                                      consGesMo.DEFAULT_CAP_HEIGHT])
+
+        self.extra_thread.start_(func=function_model, func_return=True)
+        self.extra_thread.connect_signal(self.style_vtk.on_signal)
+        self.extra_thread.connect_signal(self.__complete_information)
         
+        self.video_widget.start_timer()
     
+    def __complete_information(self):
+        if hasattr(self.video_widget, "predict") and hasattr(self.video_widget, "value_predict"):
+            self.label_prediction_info.setText(self.video_widget.predict)
+            self.label_security_info.setText(self.video_widget.value_predict)

@@ -26,7 +26,8 @@ class VideoWidget(QWidget):
         if size_cap:
             self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, size_cap[0])
             self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, size_cap[1])
-            
+    
+    def start_timer(self):    
         #Aquí se dispara el __update_frame
         self.timer.start(consGesMo.START_TIMER)
                 
@@ -38,11 +39,14 @@ class VideoWidget(QWidget):
         
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         
-        frame, predict = self.model.proccess_model(frame)
+        frame, list_predict = self.model.proccess_model(frame)
         
-        if predict:
+        if list_predict:
+            self.predict = list_predict[0]
+            self.value_predict = list_predict[1]
+        
             print("VideoWidget->__update_frame: Emitiendo señal.")
-            self.signal.emit_signal(predict)
+            self.signal.emit_signal(self.predict)
         
         pixmap = self.__convert_frame_pixmap(frame)
         

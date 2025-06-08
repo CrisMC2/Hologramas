@@ -9,7 +9,7 @@ from Modeling_3D.controlllers.viewModel3D_Controller import viewModel3D_Controll
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     main_window = QMainWindow()
-    ui = viewModel3D_Controller(main_window)
+    ui = viewModel3D_Controller()
     ui.setupUi(main_window)
     main_window.show()
     
