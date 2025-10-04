@@ -3,8 +3,8 @@ from typing import Union, List
 
 from PyQt5.QtWidgets import QFileDialog, QMenu, QAction
 
-from abstracts.Ui.AbsMenus import AbsMenus
-from abstracts.Ui.AbsUploadData import AbsUploadData
+from UI_Dicom.abstracts.Ui.AbsMenus import AbsMenus
+from UI_Dicom.abstracts.Ui.AbsUploadData import AbsUploadData
 
 class MenuUploadFiles(AbsMenus):
     """

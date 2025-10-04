@@ -3,15 +3,15 @@ from PyQt5.QtWidgets import QApplication, QMainWindow #No eliminar el QApplicati
 from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsLinearLayout, QLayout
 
 #Importamos clases del mismo proyecto (Programa nuestro)
-from utils.Graphics import GraphicsView, GraphicsScene, GraphicsWidget, GraphicsProxyWidget
-from utils.Layout import LinearLayout, GridLayout, QGraphicsPixmapItem
-from utils.ElementsWidgets import TextWidget, SliderWidget
-from utils.PixmapUi import PixmapUi
+from UI_Dicom.utils.Graphics import GraphicsView, GraphicsScene, GraphicsWidget, GraphicsProxyWidget
+from UI_Dicom.utils.Layout import LinearLayout, GridLayout, QGraphicsPixmapItem
+from UI_Dicom.utils.ElementsWidgets import TextWidget, SliderWidget
+from UI_Dicom.utils.PixmapUi import PixmapUi
 
-from config import constantSubViewDICOM as consVDcm
-from config import constantStyles as consSty
+from UI_Dicom.config import constantSubViewDICOM as consVDcm
+from UI_Dicom.config import constantStyles as consSty
 
-from resources.load_styles import apply_style_to_list
+from UI_Dicom.resources.load_styles import apply_style_to_list
 
 class Ui_subViewDicom(QWidget):
     """

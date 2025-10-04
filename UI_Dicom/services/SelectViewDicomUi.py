@@ -2,8 +2,8 @@ import numpy as np
 
 from PyQt5.QtWidgets import QMenu, QAction
 
-from abstracts.Ui.AbsMenus import AbsMenus
-from config import constantViewDICOM as consVDcm 
+from UI_Dicom.abstracts.Ui.AbsMenus import AbsMenus
+from UI_Dicom.config import constantViewDICOM as consVDcm 
 
 class SelectView(AbsMenus):
     def __init__(self, view_default: str):

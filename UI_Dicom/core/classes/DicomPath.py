@@ -7,8 +7,8 @@ from glob import glob
 # sys.path.append(_append)
 
 #Importamos clases propias del proyecto
-from core.classes.DicomRead import DicomRead
-from config import constantViewDICOM as ConsVDcm
+from UI_Dicom.core.classes.DicomRead import DicomRead
+from UI_Dicom.config import constantViewDICOM as ConsVDcm
 
 class ExistDicom():
     def exists_dicom_in_list(self, folder: list):

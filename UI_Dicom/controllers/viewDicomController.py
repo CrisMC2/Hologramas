@@ -7,15 +7,19 @@ sys.path.append(uiDicom)
 from typing import List
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget #QApplication se utiliza en el test, NO ELIMINAR
-from views.viewDICOM  import Ui_viewDicom
-from controllers.subViewDicomController import Ui_subViewDicomController
+from UI_Dicom.views.viewDICOM  import Ui_viewDicom
+from UI_Dicom.controllers.subViewDicomController import Ui_subViewDicomController
 
 from UI_Dicom.services.UploadFilesUi import MenuUploadFiles
-from services.CantViewDicomUi import SelectCantViews
-from services.SelectViewDicomUi import SelectView
+from UI_Dicom.services.CantViewDicomUi import SelectCantViews
+from UI_Dicom.services.SelectViewDicomUi import SelectView
 
-from config import constantViewDICOM as consVDcm
-from config import constantSubViewDICOM as consSubVdcm
+from UI_Dicom.config import constantViewDICOM as consVDcm
+from UI_Dicom.config import constantSubViewDICOM as consSubVdcm
+
+#=============================================
+#Importamos clases/Métodos/Elementos de otros Monolitos
+from Modeling_3D.main import execute
 
 class Ui_viewDicomController():
     def __init__(self):
@@ -57,6 +61,8 @@ class Ui_viewDicomController():
         self._menu_view = self.__obj_menu_view.create_menu()
         self.__obj_menu_view.enable_menu(False, self._menu_view)
         self.ui.SelectView.setMenu(self._menu_view)
+        
+    
 
     """
     En esta parte definimos los menus.
@@ -81,8 +87,11 @@ class Ui_viewDicomController():
         self.__obj_menu_cant_view.enable_menu(activate, self._menu_cant_view)
         self.__obj_menu_view.enable_menu(activate, self._menu_view)
         
+        
     def activate_view(self):        
         self.ui.StackedViews.setCurrentIndex(1)
+                    
+        self.ui.pushButton.clicked.connect(lambda: execute(self.subUi.dicom_list))
     """
     El método activate_menu, propio de la clase Ui_viewDicomController permite
     activar los menús que inicialmente se plantean como desactivados.

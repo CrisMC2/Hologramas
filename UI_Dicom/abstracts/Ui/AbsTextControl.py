@@ -1,7 +1,7 @@
 from abc import abstractmethod
 
 #Importancias de clases del proyecto
-from abstracts.Ui.AbsWidget import AbsWidget
+from UI_Dicom.abstracts.Ui.AbsWidget import AbsWidget
 
 class AbsTextControl(AbsWidget):
     def __init__(self):

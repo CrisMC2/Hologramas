@@ -2,7 +2,7 @@ import numpy as np
 
 from PyQt5.QtWidgets import QMenu, QAction
 
-from abstracts.Ui.AbsMenus import AbsMenus
+from UI_Dicom.abstracts.Ui.AbsMenus import AbsMenus
 
 class SelectCantViews(AbsMenus):
     def __init__(self, cant_view_default: int):

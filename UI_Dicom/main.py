@@ -1,14 +1,14 @@
 import sys
 
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from controllers.viewDicomController import Ui_viewDicomController #Con esta ruta definimos que vista será la elegida
+from UI_Dicom.controllers.viewDicomController import Ui_viewDicomController #Con esta ruta definimos que vista será la elegida
 
 """
 Aquí podemos determinar que vista mostrar.
 
 """
 
-if __name__ == "__main__":
+def execute():
     app = QApplication(sys.argv)
     window = QMainWindow()
     ui = Ui_viewDicomController()

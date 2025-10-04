@@ -3,8 +3,8 @@ from abc import abstractmethod
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget, QGraphicsProxyWidget
 
 #Importación de clases del mismo proyecto
-from core.metaClasses.MetaAbsQt import MetaAbsQt
-from abstracts.Ui.AbsContainers import AbsContainers
+from UI_Dicom.core.metaClasses.MetaAbsQt import MetaAbsQt
+from UI_Dicom.abstracts.Ui.AbsContainers import AbsContainers
     
 class AbsGraphicsView(QGraphicsView, AbsContainers, metaclass=MetaAbsQt):
     def __init__(self):

@@ -20,13 +20,14 @@ from PyQt5.QtCore import pyqtSlot
 
 #=============================================
 #Importamos clases/Métodos/Elementos del mismo proyecto
-from views.subViewDICOM import Ui_subViewDicom     #Importamos la interfaz principal
+from UI_Dicom.views.subViewDICOM import Ui_subViewDicom     #Importamos la interfaz principal
 
-from methods.GenerateInformationDicom import GenerateInformation
-from methods.DefineViewDicom import DefineViewDicom
+from UI_Dicom.methods.GenerateInformationDicom import GenerateInformation
+from UI_Dicom.methods.DefineViewDicom import DefineViewDicom
 from Shared.classes.SignalData import Emit_Data
-from utils.ExtraThreads import MakeThread
-from config import constantSubViewDICOM as consSVDcm #Importamos las constantes de la subView
+from UI_Dicom.utils.ExtraThreads import MakeThread
+from UI_Dicom.config import constantSubViewDICOM as consSVDcm #Importamos las constantes de la subView
+
 
 
 class Ui_subViewDicomController(Ui_subViewDicom):
@@ -106,11 +107,11 @@ class Ui_subViewDicomController(Ui_subViewDicom):
             self.new_thread_2.connect_signal(func_after)
             self.new_thread_2.connect_signal(self.connect_signal)
             
-            dicom_list, matrix = self.generate_information.generate_dicoms_matrix(path=path, cant_elements=20) #Generamos la matriz y el conjunto de dicoms
+            self.dicom_list, matrix = self.generate_information.generate_dicoms_matrix(path=path, cant_elements=20) #Generamos la matriz y el conjunto de dicoms
 
             
-            self.switch_init(dicom_list, matrix)
-            
+            self.switch_init(self.dicom_list, matrix)
+
         # except:
         #     print("Algo salió mal")
 

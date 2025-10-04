@@ -12,20 +12,21 @@ class WorkerThread(QObject):
     def run(self, func, func_return: bool):
         if func_return:
             result = func()
+            print(result)
             self.emit_data.emit_signal(result)
         
         else:
             func()
     
-class ExtraThread():
+class ExtraThread(QObject):
     def __init__(self):
+        super().__init__()
         self.worker  = None
         self.thread_ = None
     
     def start_(self, func, func_return: bool=False):
-        if not self.worker and not self.thread_:
-            self.worker = WorkerThread()
-            self.thread_ = QThread()
+        self.worker = WorkerThread()
+        self.thread_ = QThread()
         
         self.worker.moveToThread(self.thread_)
      
@@ -33,11 +34,14 @@ class ExtraThread():
         self.thread_.started.connect(function_)
         self.finish_()
         self.thread_.start()
-        
+
     def finish_(self):
-        self.thread_.quit()
-        self.thread_.finished.connect(self.worker.deleteLater)
-        self.thread_.finished.connect(self.thread_.deleteLater)
+        if self.thread_ and self.thread_.isRunning():
+            self.thread_.quit()
+            self.thread_.wait()
+            
+            self.thread_.finished.connect(self.thread_.deleteLater)
+            self.thread_.finished.connect(self.worker.deleteLater)
     
     def connect_signal(self, func):
         if self.worker:

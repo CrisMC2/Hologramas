@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsWidget, QGra
 from PyQt5.QtCore import Qt, QRectF
 from PyQt5.QtGui import QBrush, QColor
 
-from abstracts.Ui.AbsGraphics import AbsGraphicsView, AbsGraphicsScene, AbsGraphicsWidget, AbsGraphicsProxyWidget
+from UI_Dicom.abstracts.Ui.AbsGraphics import AbsGraphicsView, AbsGraphicsScene, AbsGraphicsWidget, AbsGraphicsProxyWidget
 
 
 class GraphicsView(AbsGraphicsView):

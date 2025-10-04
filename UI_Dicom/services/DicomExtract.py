@@ -1,8 +1,8 @@
 from typing import Union, overload
 
 from Shared.classes.ExistsPath import ExistsPath
-from core.classes.DicomPath import ExistDicom, ExtractDicomPath, DicomConvertByPath
-from core.classes.DicomProcessing import DicomOrder
+from UI_Dicom.core.classes.DicomPath import ExistDicom, ExtractDicomPath, DicomConvertByPath
+from UI_Dicom.core.classes.DicomProcessing import DicomOrder
 
 class DicomExtract():
     def __init__(self):

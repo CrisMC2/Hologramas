@@ -3,7 +3,7 @@ from typing import List, Dict, Union
 from PyQt5.QtWidgets import QGraphicsLinearLayout, QGraphicsLayoutItem, QGraphicsGridLayout, QGraphicsWidget, QGraphicsProxyWidget, QGraphicsPixmapItem, QSizePolicy
 from PyQt5.QtCore import Qt
 
-from abstracts.Ui.AbsLayout import AbsLayout
+from UI_Dicom.abstracts.Ui.AbsLayout import AbsLayout
 
 class LinearLayout(AbsLayout):
     """

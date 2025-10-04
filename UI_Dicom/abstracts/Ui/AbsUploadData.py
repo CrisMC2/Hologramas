@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from PyQt5.QtWidgets import QWidget
 
-from core.metaClasses.MetaAbsQt import MetaAbsQt
+from UI_Dicom.core.metaClasses.MetaAbsQt import MetaAbsQt
 
 class AbsUploadData(ABC, QWidget, metaclass= MetaAbsQt):
     """

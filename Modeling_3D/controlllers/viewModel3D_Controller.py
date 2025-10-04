@@ -1,11 +1,15 @@
 import cv2
+import numpy as np
 
+from typing import Union
 from functools import partial
 
 from Modeling_3D.core.secondThread import ExtraThread
+from Modeling_3D.core.GenerateSTL import GenerateSTL
 from Modeling_3D.utils.VideoWidget import VideoWidget
 from Modeling_3D.utils.Model3D_Vtk import Model3D_Vtk
 from Modeling_3D.utils.WindowInteractor_Vtk import WindowInteractor_Vtk
+from Modeling_3D.utils.ConvertFormat import ConvertFormat
 from Modeling_3D.Shared.Gesture_Vtk import GestureInteractorStyle
 from Modeling_3D.views.viewModel3D import Ui_viewModel3D
 
@@ -21,16 +25,28 @@ class viewModel3D_Controller(Ui_viewModel3D):
     def __define_objects(self):
         self.video_widget = VideoWidget()
         self.extra_thread = ExtraThread()
+        
+        self.gen_stl = GenerateSTL()
+        self.convert_format = ConvertFormat()
     
     def execute(self, path_model_stl: str, cap: cv2.VideoCapture):
-        self.generate_interactor(path=path_model_stl)
+        self.generate_interactor(data=path_model_stl)
         self.show_video(cap=cap)
     
-    def generate_interactor(self, path: str):
+    def generate_stl(self, array: list):
+        mesh = self.gen_stl.execute(array)
+        vtk_mesh = self.convert_format.trimesh_to_vtk(mesh)
+        return vtk_mesh
+        
+    def generate_interactor(self, data: Union[str, list]):
         #Crear el modelo 3D para 
         model_vtk = Model3D_Vtk()
         model_vtk.create_render()
-        model_vtk.config_scential(path= path)
+        
+        if isinstance(data, list): #En caso de que se haya pasado un arreglo, debemos generar el stl
+            data = self.generate_stl(data)
+        
+        model_vtk.config_scential(data= data)
         model_vtk.config_render(consGesMo.VIEWPORT_RENDER, 
                                 consGesMo.BACKGROUND_RENDER, consGesMo.SIZE_RENDER_WINDOW)
         

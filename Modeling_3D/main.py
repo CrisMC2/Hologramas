@@ -1,9 +1,25 @@
-from Modeling_3D.config import constantGestureMove as consGesMo
-from Modeling_3D.core.secondThread import ExtraThread
+import cv2
+import sys
+import numpy as np
 
-from Modeling_3D.Shared.Gesture_Vtk import GestureInteractorStyle
-from Modeling_3D.utils.Model3D_Vtk import Model3D_Vtk
-from Modeling_3D.utils.WindowInteractor_Vtk import WindowInteractor_Vtk
+from typing import Union
+from PyQt5.QtWidgets import QApplication, QMainWindow
 
-from Gestures.main_ import EmitGest
+from Modeling_3D.controlllers.viewModel3D_Controller import viewModel3D_Controller
+from Modeling_3D.core.GenerateSTL import GenerateSTL
 
+def execute(data: Union[str, np.array]):
+    app = QApplication(sys.argv)
+    main_window = QMainWindow()
+    ui = viewModel3D_Controller()
+    
+    ui.setupUi(main_window)
+    main_window.show()
+
+    cap = cv2.VideoCapture(0)
+    
+    ui.execute(path_model_stl=data, 
+               cap=cap)
+
+    
+    sys.exit(app.exec_())

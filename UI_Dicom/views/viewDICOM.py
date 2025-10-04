@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui\viewDICOM.ui'
+# Form implementation generated from reading ui file 'ui/viewDICOM.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -404,7 +404,7 @@ class Ui_viewDicom(object):
         self.UploadFiles.setInputMethodHints(QtCore.Qt.ImhHiddenText)
         self.UploadFiles.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("ui\\../resources/img/viewDICOM/carga-de-carpeta.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("UI_Dicom/resources/img/viewDICOM/carga-de-carpeta.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.UploadFiles.setIcon(icon)
         self.UploadFiles.setIconSize(QtCore.QSize(30, 30))
         self.UploadFiles.setCheckable(True)
@@ -420,7 +420,7 @@ class Ui_viewDicom(object):
         self.SelectView.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.SelectView.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("ui\\../resources/img/viewDICOM/tomografia-computarizada.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("UI_Dicom/resources/img/viewDICOM/tomografia-computarizada.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.SelectView.setIcon(icon1)
         self.SelectView.setIconSize(QtCore.QSize(30, 30))
         self.SelectView.setPopupMode(QtWidgets.QToolButton.MenuButtonPopup)
@@ -432,13 +432,38 @@ class Ui_viewDicom(object):
         self.CantViews.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.CantViews.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("ui\\../resources/img/viewDICOM/categoria-alternativa.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("UI_Dicom/resources/img/viewDICOM/categoria-alternativa.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.CantViews.setIcon(icon2)
         self.CantViews.setIconSize(QtCore.QSize(30, 30))
         self.CantViews.setPopupMode(QtWidgets.QToolButton.MenuButtonPopup)
         self.CantViews.setObjectName("CantViews")
         self.horizontalLayout_3.addWidget(self.CantViews)
         self.horizontalLayout_2.addWidget(self.OptionsFirst)
+        self.OptionExtra = QtWidgets.QWidget(self.options_Frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.OptionExtra.sizePolicy().hasHeightForWidth())
+        self.OptionExtra.setSizePolicy(sizePolicy)
+        self.OptionExtra.setObjectName("OptionExtra")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.OptionExtra)
+        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.pushButton = QtWidgets.QPushButton(self.OptionExtra)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
+        self.pushButton.setSizePolicy(sizePolicy)
+        self.pushButton.setMinimumSize(QtCore.QSize(0, 40))
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("UI_Dicom/resources/img/viewDICOM/stl.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton.setIcon(icon3)
+        self.pushButton.setIconSize(QtCore.QSize(30, 30))
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_4.addWidget(self.pushButton)
+        self.horizontalLayout_2.addWidget(self.OptionExtra)
         self.verticalLayout.addWidget(self.options_Frame)
         self.StackedViews = QtWidgets.QStackedWidget(self.viewDicom_Frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
@@ -505,6 +530,7 @@ class Ui_viewDicom(object):
         _translate = QtCore.QCoreApplication.translate
         viewDicom.setWindowTitle(_translate("viewDicom", "Views DICOM"))
         viewDicom.setToolTip(_translate("viewDicom", "<html><head/><body><p>Ventana Principal</p></body></html>"))
+        self.pushButton.setText(_translate("viewDicom", "STL"))
 
 
 if __name__ == "__main__":

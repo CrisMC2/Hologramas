@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 
 #Importamos la clase AbsConnection de la siguiente manera debido a que luego para 
 #   su utilizaciòn es necesario que provenga de una carpeta "superior" (Que no tenga profundidad)
-from abstracts.Ui.AbsActions import AbsActions
-from abstracts.classes.AbsSignal import AbsEmisor
+from UI_Dicom.abstracts.Ui.AbsActions import AbsActions
+from Shared.abstracts.AbsSignal import AbsEmisor
 from PyQt5.QtWidgets import QMenu
 
 class AbsMenus(AbsEmisor, AbsActions):

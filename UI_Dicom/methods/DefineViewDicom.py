@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt #Para arreglar errores
 
-from core.classes.DicomView import AxialView, CoronalView, SagittalView  
-from config import constantViewDICOM as consVDcm 
+from UI_Dicom.core.classes.DicomView import AxialView, CoronalView, SagittalView  
+from UI_Dicom.config import constantViewDICOM as consVDcm 
 
 class DefineViewDicom():
     def __init__(self):

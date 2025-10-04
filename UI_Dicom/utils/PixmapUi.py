@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsPixmapItem, QSizePolicy
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
-from abstracts.Ui.AbsPixmap import AbsUi_Pixmap
+from UI_Dicom.abstracts.Ui.AbsPixmap import AbsUi_Pixmap
 
 class PixmapUi(AbsUi_Pixmap):
     """

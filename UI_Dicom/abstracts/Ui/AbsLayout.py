@@ -2,7 +2,7 @@
 from abc import ABC, abstractmethod
 
 #Importamos una clase del mismo proyecto
-from abstracts.Ui.AbsContainers import AbsContainers
+from UI_Dicom.abstracts.Ui.AbsContainers import AbsContainers
 
 
 class AbsLayout(AbsContainers):

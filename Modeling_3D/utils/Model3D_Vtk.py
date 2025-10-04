@@ -1,5 +1,7 @@
 import vtk
 
+from typing import Union, overload
+
 class Model3D_Vtk():
     def __init__(self):
         self.create_scential()
@@ -22,10 +24,20 @@ class Model3D_Vtk():
         if render_window:
             self.render_window = vtk.vtkRenderWindow()
             self.render_window.AddRenderer(self.render)
-        
-    def config_scential(self, path:str):
-        self.reader.SetFileName(path)
-        self.mapper.SetInputConnection(self.reader.GetOutputPort())
+    
+    @overload  
+    def config_scential(self, data: str) -> None:...
+    @overload
+    def config_scential(self, data: vtk.vtkPolyData) -> None:...
+    
+    def config_scential(self, data: Union[str, vtk.vtkPolyData]):
+        if isinstance(data, str):
+            self.reader.SetFileName(data)
+            self.mapper.SetInputConnection(self.reader.GetOutputPort())
+            
+        elif isinstance(data, vtk.vtkPolyData):
+            self.mapper.SetInputData(data)
+            
         self.actor.SetMapper(self.mapper)
     
     def config_render(self, viewport_render: list[float, float, float, float], background: list[float, float, float],

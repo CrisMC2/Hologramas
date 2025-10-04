@@ -2,9 +2,9 @@ from typing import Union, Callable, overload
 from PyQt5.QtWidgets import QLabel, QTextEdit, QSlider, QSizePolicy, QSpacerItem, QGraphicsWidget
 from PyQt5.QtCore import Qt
 
-from abstracts.Ui.AbsWidget import AbsWidget
-from abstracts.Ui.AbsSliderControl import AbsSliderControl
-from abstracts.Ui.AbsTextControl   import AbsTextControl
+from UI_Dicom.abstracts.Ui.AbsWidget import AbsWidget
+from UI_Dicom.abstracts.Ui.AbsSliderControl import AbsSliderControl
+from UI_Dicom.abstracts.Ui.AbsTextControl   import AbsTextControl
 
 class TextWidget(AbsTextControl):
     """

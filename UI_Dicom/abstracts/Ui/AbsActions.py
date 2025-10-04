@@ -2,8 +2,8 @@ from abc import abstractmethod
 
 from PyQt5.QtWidgets import QAction, QWidget
 # from PyQt5.QtCore import QObject 
-from abstracts.Ui.AbsConnection import AbsConnection
-from core.metaClasses.MetaAbsQt import MetaAbsQt
+from UI_Dicom.abstracts.Ui.AbsConnection import AbsConnection
+from UI_Dicom.core.metaClasses.MetaAbsQt import MetaAbsQt
 
 #Absconnection ya es abstracta (hereda de ABC), por lo que no hace falta ponerlo de nuevo
 class AbsActions(AbsConnection, QWidget, metaclass=MetaAbsQt):

@@ -5,10 +5,10 @@ import threading #Para múltiples hilos
 from typing import Union, List, Dict 
 from PyQt5.QtGui import QPixmap
 
-from services.DicomExtract import DicomExtract
-from services.InformationDicom import InformationPatient, InformationStudySerie, InformationImage
-from core.classes.DicomMatrix import DicomMatrix
-from utils.Pixmap import Pixmap
+from UI_Dicom.services.DicomExtract import DicomExtract
+from UI_Dicom.services.InformationDicom import InformationPatient, InformationStudySerie, InformationImage
+from UI_Dicom.core.classes.DicomMatrix import DicomMatrix
+from UI_Dicom.utils.Pixmap import Pixmap
 
 class GenerateInformation():
     def __init__(self):

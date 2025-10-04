@@ -1,7 +1,7 @@
 import numpy as np
 
 from PyQt5.QtGui import QImage, QPixmap
-from abstracts.Ui.AbsPixmap import AbsProccessPixmap
+from UI_Dicom.abstracts.Ui.AbsPixmap import AbsProccessPixmap
 
 class Pixmap(AbsProccessPixmap):
     

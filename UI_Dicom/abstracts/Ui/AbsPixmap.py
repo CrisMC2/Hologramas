@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 from PyQt5.QtWidgets import QWidget
 
 #Importación de clases del mismo proyecto
-from abstracts.Ui.AbsContainers import AbsContainers   
+from UI_Dicom.abstracts.Ui.AbsContainers import AbsContainers   
 
 class AbsUi_Pixmap(AbsContainers):
     """

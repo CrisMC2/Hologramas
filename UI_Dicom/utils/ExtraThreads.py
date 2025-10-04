@@ -42,13 +42,6 @@ class MakeThread(QObject):
         self.thread_ = None
 
     def start_(self, func, func_return: bool=False):
-        if self.worker:
-            self.worker.canceled = True
-        
-        if self.thread_:
-            self.thread_.quit()
-            self.thread_.wait()
-        
         self.worker = WorkerThread()
         self.thread_ = QThread()
         self.worker.moveToThread(self.thread_)
@@ -63,6 +56,11 @@ class MakeThread(QObject):
             self.worker.emit_data.obj_signal_2.connect(func)
                     
     def finish_(self):
-        self.thread_.quit()
-        self.thread_.finished.connect(self.thread_.deleteLater)
-        self.thread_.finished.connect(self.worker.deleteLater)
+        if self.worker:
+            self.worker.canceled = True
+        
+        if self.thread_ and self.thread_.isRunning():
+            self.thread_.quit()
+            self.thread_.wait()
+            self.thread_.finished.connect(self.thread_.deleteLater)
+            self.thread_.finished.connect(self.worker.deleteLater)

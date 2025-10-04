@@ -1,6 +1,6 @@
 import numpy as np
 
-from core.classes.DicomProcessing import DicomProccessing
+from UI_Dicom.core.classes.DicomProcessing import DicomProccessing
 
 class DicomMatrix(DicomProccessing):
     def generate_matrix (self, lista_dicoms: list, hounsmin=-200, hounsmax=200) -> np.array:

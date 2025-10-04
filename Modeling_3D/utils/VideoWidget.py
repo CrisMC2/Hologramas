@@ -15,10 +15,13 @@ class VideoWidget(QWidget):
         
         
         self.timer = QTimer()
-        self.timer.timeout.connect(self.__update_frame)
+        
 
         self.signal = Emit_Data()
         self.model = create_model()
+        
+        self.timer.timeout.connect(self.__update_frame)
+        
     def define_components(self, cap_insert: cv2.VideoCapture, video_label: QLabel, size_cap: list[int, int]=None):
         self.cap = cap_insert
         self.label = video_label
@@ -26,11 +29,15 @@ class VideoWidget(QWidget):
         if size_cap:
             self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, size_cap[0])
             self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, size_cap[1])
-    
+        
     def start_timer(self):    
         #Aquí se dispara el __update_frame
         self.timer.start(consGesMo.START_TIMER)
-                
+    
+    def stop_timer(self):
+        if self.timer.isActive():
+            self.timer.stop()
+        
     def __update_frame(self):
         ret, frame = self.cap.read()
         
@@ -64,8 +71,9 @@ class VideoWidget(QWidget):
         
         return pixmap
     
-    # def closeEvent(self, event):
-    #     if self.cap:
-    #         self.cap.release()
+    def closeEvent(self, event):
+        if self.cap:
+            self.cap.release()
+            self.stop_timer()
             
-    #     super().closeEvent(event)
+        super().closeEvent(event)
