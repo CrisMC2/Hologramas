@@ -58,3 +58,15 @@ pip install -r requirements.txt
 **Verificación:** La instalación procederá **solo bajo el prefijo `(venv)`**. Esto garantiza que todas las librerías se instalen en el entorno aislado `venv`.
 
 -----
+
+4. Ejecución del Proyecto
+Una vez que todas las dependencias estén instaladas, el proyecto se ejecuta llamando al script principal, main.py, desde el entorno virtual activo.
+
+Ejecuta el script principal:
+
+Bash
+
+```bash
+(venv) python main.py
+```
+El script comenzará la ejecución del modelo de IA/ML.
