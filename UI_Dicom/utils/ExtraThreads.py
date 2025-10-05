@@ -41,6 +41,12 @@ class MakeThread(QObject):
         self.worker = None
         self.thread_ = None
 
+    """
+    @param function func - función que ejecutará el segundo hilo 
+    @param bool func_return - Determina si el hilo retornará un valor o no 
+    
+    Nota => En caso de que el parámetro "func_return" sea true, el parámetro "func" debe sí o sí ser una función que retorne 2 valores
+    """
     def start_(self, func, func_return: bool=False):
         self.worker = WorkerThread()
         self.thread_ = QThread()
@@ -51,6 +57,11 @@ class MakeThread(QObject):
         self.finish_()
         self.thread_.start()
     
+    """
+    Conecta el segundo hilo a una función que se desee
+    
+    @param function func - Función a la que se conectará el segundo hilo
+    """
     def connect_signal(self, func):
         if self.worker:
             self.worker.emit_data.obj_signal_2.connect(func)

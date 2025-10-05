@@ -29,7 +29,7 @@ class GenerateSTL():
         return dicoms
 
     # Convertir imágenes DICOM a volumen en unidades Hounsfield (HU)
-    def convertir_a_hu(self, slices: np.ndarray) -> np.ndarray:
+    def convertir_a_hu(self, slices: list) -> np.ndarray:
         # volume = np.stack([s.pixel_array for s in slices]).astype(np.int16)
         volume = np.stack([s.pixel_array[:380,:] for s in slices]).astype(np.int16)
         
@@ -96,8 +96,8 @@ class GenerateSTL():
             return mesh
 
 # Ejemplo de uso
-dicom_folder = r"C:\Users\MSI\Downloads\RADIOGRAFIAS\COLUMNA LUMBRAR\2597 SOLANO CHUQUILLANQUI EDITH\CT Cuerpo 1.0"
-output_folder = r"C:\Users\MSI\Downloads\RADIOGRAFIAS\STL CONVERTIDOS"
-stl_filename = "SOLANO CHUQUILLANQUI EDITH"
+# dicom_folder = r"C:\Users\MSI\Downloads\RADIOGRAFIAS\COLUMNA LUMBRAR\2597 SOLANO CHUQUILLANQUI EDITH\CT Cuerpo 1.0"
+# output_folder = r"C:\Users\MSI\Downloads\RADIOGRAFIAS\STL CONVERTIDOS"
+# stl_filename = "SOLANO CHUQUILLANQUI EDITH"
 
 # dicom_to_stl_bone(dicom_folder, output_folder, stl_filename)

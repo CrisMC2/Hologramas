@@ -1,5 +1,7 @@
 .venv
 .venv-linux
+.venv-test
+
 App
 
 voxel_slices_skeleton

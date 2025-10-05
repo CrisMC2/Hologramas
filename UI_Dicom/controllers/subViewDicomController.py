@@ -93,23 +93,26 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         #==================================
         #Generamos la información
         # try:
+            # Seteamos el valor del slide
             self.ui_slider.set_value(consSVDcm.DEFAULT_VALUE_SLIDER)
             
             # self.new_thread.start_(self.generate_information.generate_dicoms_matrix(path=path), True)            
-            func_new_thread_2 = partial(self.generate_information.generate_dicoms_matrix, path=path)
-            func_new_thread_1 = partial(self.generate_information.generate_dicoms_matrix, path=path, cant_elements=80)
+            func_new_thread_2 = partial(self.generate_information.generate_dicoms_matrix, path=path) #Generamos una función anónima con su parámetro (Crear todo el arreglo de dicoms)
+            func_new_thread_1 = partial(self.generate_information.generate_dicoms_matrix, path=path, cant_elements=80) #Generamos una función anónima con sus parámetros (Crear una pequeña cantidad de dicoms)
             
-            func_after = partial(self.switch_init)
+            func_after = partial(self.switch_init) # Hacemos que sea una función anónima para que así pueda ser conectada a una señal
             
-            self.new_thread_1.start_(func=func_new_thread_1, func_return=True)
-            self.new_thread_1.connect_signal(func_after)
-            self.new_thread_2.start_(func=func_new_thread_2, func_return=True)
-            self.new_thread_2.connect_signal(func_after)
-            self.new_thread_2.connect_signal(self.connect_signal)
+            self.new_thread_1.start_(func=func_new_thread_1, func_return=True) # Iniciamos el primer hilo
+            self.new_thread_1.connect_signal(func_after) # Conectamos al cambio de vista
+            self.new_thread_2.start_(func=func_new_thread_2, func_return=True) # Iniciamos el segundo hilo
+            self.new_thread_2.connect_signal(func_after) # Conectamos al cambio de vista
             
+            self.new_thread_2.connect_signal(self.connect_signal) # Una vez que se genere la matriz completa, llamamos a la señal principal del controlador 
+            
+            # Adicional a los otros hilos, hacemos que el hilo principal solo genere 20 registros (para no sobrecargarlo)
             self.dicom_list, matrix = self.generate_information.generate_dicoms_matrix(path=path, cant_elements=20) #Generamos la matriz y el conjunto de dicoms
 
-            
+            # Cambia el estado de la interfaz a la inicial
             self.switch_init(self.dicom_list, matrix)
 
         # except:
@@ -122,6 +125,15 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         #Emitimos la señal
         self.obj_emit.emit_signal(True) #De esta manera se permitirá el cambio de vista
         
+    """
+    El estado inicial de la interfaz se da cuando la interfaz obtiene toda la información necesaria.
+    
+    La información necesaria es la lista de DICOMS y la matrix es la combinación de todas las matrices que tenían los archivos DICOM en solo una representación 3D.
+    
+    @param self - Instancia de la clase UI_subViewDicomController
+    @dicoms_list - Lista de dicoms
+    @matrix - Matriz 3D formada a partir de todas las matrices de la lista de dicoms
+    """
     def switch_init(self, dicom_list, matrix):
         self.matrix = matrix
         
@@ -133,7 +145,7 @@ class Ui_subViewDicomController(Ui_subViewDicom):
         self.switch_view(consSVDcm.DEFAULT_VIEW_DICOM)
             
         #Emitimos la señal
-        self.obj_emit.emit_signal(False) #De esta manera la interfaz se mostrará
+        self.obj_emit.emit_signal(False) #De esta manera la interfaz se mostrará sin que los menús se activen
         self.ui_slider.connect_change_value(self.switch_value_img)
     
     @pyqtSlot(object)

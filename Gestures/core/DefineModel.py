@@ -53,6 +53,3 @@ class DefineModel():
                 print("Gesto confuso o no definido")
         
         return frame, None
-
-            
-        

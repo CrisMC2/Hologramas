@@ -41,7 +41,7 @@ class VideoWidget(QWidget):
     def __update_frame(self):
         ret, frame = self.cap.read()
         
-        if ret == None:
+        if not ret:
             print("No se pudo capturar el Frame")
         
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

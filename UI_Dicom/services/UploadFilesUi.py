@@ -6,6 +6,9 @@ from PyQt5.QtWidgets import QFileDialog, QMenu, QAction
 from UI_Dicom.abstracts.Ui.AbsMenus import AbsMenus
 from UI_Dicom.abstracts.Ui.AbsUploadData import AbsUploadData
 
+"""
+Por defecto la clase AbsMenus también cuenta con la lógica de las clases para enviar datos por medio de señales
+"""
 class MenuUploadFiles(AbsMenus):
     """
     

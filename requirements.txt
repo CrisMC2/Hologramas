@@ -1,8 +1,10 @@
 # En un entorno Python 3.10
+
+
+PyQt5==5.15.11
 opencv-python==4.9.0.80
 # opencv-python==4.7.0.72 // Estable
 
-PyQt5==5.15.11
 pydicom==3.0.1
 trimesh==4.8.3
 scikit-learn==1.7.2
@@ -19,3 +21,10 @@ numpy==1.26.4
 tensorflow==2.16.1 #Compatible con el modelo .keras
 # tensorflow==2.10 // Estable
 mediapipe==0.10.5
+
+# WINDOWS
+# tensorflow==2.18 #Compatible con el modelo .keras
+# tensorflow==2.10 // Estable
+# mediapipe==0.10.21
+# protobuf==4.25.8
+# opencv-python==4.12.0.88

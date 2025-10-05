@@ -16,7 +16,7 @@ def execute():
     window.setCentralWidget(ui.widget_main)
 
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
 # if __name__ == "__main__":
 #     app = vDcmC.QApplication(sys.argv) #Agregamos el sys.argv

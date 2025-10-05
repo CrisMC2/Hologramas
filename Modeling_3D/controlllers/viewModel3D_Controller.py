@@ -13,6 +13,8 @@ from Modeling_3D.utils.ConvertFormat import ConvertFormat
 from Modeling_3D.Shared.Gesture_Vtk import GestureInteractorStyle
 from Modeling_3D.views.viewModel3D import Ui_viewModel3D
 
+from Gestures.main_ import EmitGest;
+
 from Modeling_3D.config import constantGestureMove as consGesMo
 
 class viewModel3D_Controller(Ui_viewModel3D):
@@ -24,14 +26,16 @@ class viewModel3D_Controller(Ui_viewModel3D):
         
     def __define_objects(self):
         self.video_widget = VideoWidget()
-        self.extra_thread = ExtraThread()
+        self.extra_thread_video = ExtraThread()
+        self.extra_thread_gesture = ExtraThread()
+        self.emit_gest = EmitGest()
         
         self.gen_stl = GenerateSTL()
         self.convert_format = ConvertFormat()
     
     def execute(self, path_model_stl: str, cap: cv2.VideoCapture):
         self.generate_interactor(data=path_model_stl)
-        self.show_video(cap=cap)
+        self.show_video(cap=cap)  
     
     def generate_stl(self, array: list):
         mesh = self.gen_stl.execute(array)
@@ -63,14 +67,13 @@ class viewModel3D_Controller(Ui_viewModel3D):
         # window_interactor.show()
         window_interactor.render()
 
-        ###Necesitamos un nuevo render que pueda tener al método de los gestos
+        #Necesitamos un nuevo render que pueda tener al método de los gestos
         # gest = EmitGest()
-        # thread = ExtraThread()
         
-        # thread.start_(gest.execute, True)
-        # thread.connect_signal(style_vtk.connect_execute)
+        # self.extra_thread_gesture.start_(self.emit_gest.execute, True)
+        # self.extra_thread_gesture.connect_signal(self.style_vtk.connect_execute)
         
-        # return window_interactor
+        return window_interactor
     
     def show_video(self, cap: cv2.VideoCapture):
         
@@ -78,10 +81,10 @@ class viewModel3D_Controller(Ui_viewModel3D):
                                             video_label=self.camVideo_Label, 
                                             size_cap=[consGesMo.DEFAULT_CAP_WIDTH, 
                                                       consGesMo.DEFAULT_CAP_HEIGHT])
-
-        self.extra_thread.start_(func=function_model, func_return=True)
-        self.extra_thread.connect_signal(self.style_vtk.on_signal)
-        self.extra_thread.connect_signal(self.__complete_information)
+        
+        self.extra_thread_video.start_(func=function_model, func_return=True)
+        self.extra_thread_video.connect_signal(self.style_vtk.on_signal)
+        self.extra_thread_video.connect_signal(self.__complete_information)
         
         self.video_widget.start_timer()
     
@@ -89,3 +92,7 @@ class viewModel3D_Controller(Ui_viewModel3D):
         if hasattr(self.video_widget, "predict") and hasattr(self.video_widget, "value_predict"):
             self.label_prediction_info.setText(self.video_widget.predict)
             self.label_security_info.setText(self.video_widget.value_predict)
+    
+    def _stop_working(self):
+        self.extra_thread_video.stop()
+        self.extra_thread_gesture.stop()
