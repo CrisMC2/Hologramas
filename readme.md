@@ -1,6 +1,3 @@
-¡Tienes razón\! Una guía robusta debe asegurar que el desarrollador **vea exactamente lo que sucede** y ofrecer **consejos específicos de herramientas**, como Visual Studio Code (VS Code).
-
-Aquí tienes la guía revisada, haciendo hincapié en la activación visible y añadiendo el flujo de trabajo para VS Code, de modo que solo necesiten copiar y pegar los comandos:
 
 -----
 
