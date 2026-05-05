@@ -14,7 +14,7 @@ from Modeling_3D.config import constantGenerateSTL as consGenStl
 
 class GenerateSTL():
     def __init__(self, bone_threshold: int = 
-                 consGenStl.BONE_THRESHOLD):
+                consGenStl.BONE_THRESHOLD):
 
         self.bone_threshold = bone_threshold
         
@@ -61,7 +61,17 @@ class GenerateSTL():
     # Generar malla 3D a partir de la máscara
     def generar_malla(self, mask: np.ndarray) -> trimesh.Trimesh:
         verts, faces, normals, _ = measure.marching_cubes(mask, level=0)
-        return trimesh.Trimesh(vertices=verts, faces=faces, vertex_normals=normals)
+        verts, faces, normals, _ = measure.marching_cubes(
+            mask, 
+            level=0.5, 
+            step_size=1, 
+            allow_degenerate=False
+        )
+
+        mesh = trimesh.Trimesh(vertices=verts, faces=faces, vertex_normals=normals)
+        mesh = trimesh.smoothing.filter_laplacian(mesh, iterations=10)
+
+        return mesh
 
     # Exportar malla 3D a archivo STL
     def exportar_stl(self, mesh: trimesh.Trimesh, output_path: str, stl_filename: str="Output") -> None:

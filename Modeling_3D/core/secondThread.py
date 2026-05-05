@@ -1,7 +1,6 @@
 from functools import partial
 from PyQt5.QtCore import QThread, QObject
 
-from Gestures.controller.CreateModel import create_model
 from Shared.classes.SignalData import Emit_Data
 
 class WorkerThread(QObject):

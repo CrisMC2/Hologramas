@@ -30,7 +30,7 @@ Es **obligatorio** aislar las dependencias del proyecto. Usaremos `venv` para cr
 Crea el entorno virtual llamado `venv` dentro de la carpeta del proyecto:
 
 ```bash
-python -m venv venv
+python -m venv .venv
 ```
 
 **Paso 2.2: Activar el Entorno Virtual**
@@ -39,15 +39,15 @@ python -m venv venv
 
 | Sistema Operativo | Comando de Activación (Copiar y Pegar) |
 | :--- | :--- |
-| **Linux/macOS** | `source venv/bin/activate` |
-| **Windows (CMD o Git Bash)** | `venv\Scripts\activate` |
-| **Windows (PowerShell)** | `.\venv\Scripts\Activate.ps1` |
+| **Linux/macOS** | `source .venv/bin/activate` |
+| **Windows (CMD o Git Bash)** | `.venv\Scripts\activate` |
+| **Windows (PowerShell)** | `.\.venv\Scripts\Activate.ps1` |
 
 Una vez ejecutado, tu terminal cambiará a algo como: `(venv) C:\ruta\a\tu\proyecto>`.
 
 ### 3\. Instalación de Dependencias
 
-Con el entorno `(venv)` **activo y visible** en tu terminal, puedes proceder a instalar todas las librerías necesarias utilizando el archivo **`requirements.txt`**.
+Con el entorno `(.venv)` **activo y visible** en tu terminal, puedes proceder a instalar todas las librerías necesarias utilizando el archivo **`requirements.txt`**.
 
 **Instala las dependencias:**
 
@@ -55,7 +55,7 @@ Con el entorno `(venv)` **activo y visible** en tu terminal, puedes proceder a i
 pip install -r requirements.txt
 ```
 
-**Verificación:** La instalación procederá **solo bajo el prefijo `(venv)`**. Esto garantiza que todas las librerías se instalen en el entorno aislado `venv`.
+**Verificación:** La instalación procederá **solo bajo el prefijo `(.venv)`**. Esto garantiza que todas las librerías se instalen en el entorno aislado `.venv`.
 
 -----
 

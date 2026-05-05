@@ -1,6 +1,5 @@
 import cv2
 
-from Gestures.controller.CreateModel import create_model
 from Shared.classes.SignalData import Emit_Data
 
 class EmitGest():
@@ -8,6 +7,7 @@ class EmitGest():
         self.obj_emit = Emit_Data()
         
     def execute(self):
+        from Gestures.controller.CreateModel import create_model
         define_model = create_model()
         
         video = cv2.VideoCapture(0)

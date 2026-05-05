@@ -136,7 +136,7 @@ class Ui_subViewDicomController(Ui_subViewDicom):
     """
     def switch_init(self, dicom_list, matrix):
         self.matrix = matrix
-        
+        self.dicom_list = dicom_list
         self.dict_info_patient, self.dict_info_study = self.generate_information.generate_information_dicom(
                                                             dicom_list[consSVDcm.DEFAULT_NUM_DICOM]) #Generamos la información del paciente y estudio
         #===================================

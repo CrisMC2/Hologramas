@@ -280,8 +280,8 @@ class Ui_subViewDicom(QWidget):
             # self.ui_img_dicom.q_pixmap #Label
         ]
         
-        apply_style_to_list(path=path_style, 
-                            list_elements=widgets_to_style) #Aplicamos el estilo a todos las partes necesarias de la interfaz
+        # apply_style_to_list(path=path_style, 
+        #                     list_elements=widgets_to_style) #Aplicamos el estilo a todos las partes necesarias de la interfaz
         
     def insert_elements(self) -> None:
         #Insertamos los elementos "Q" en sus respectivos QGraphicsProxyWidget

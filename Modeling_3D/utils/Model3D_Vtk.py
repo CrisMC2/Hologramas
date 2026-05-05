@@ -41,7 +41,7 @@ class Model3D_Vtk():
         self.actor.SetMapper(self.mapper)
     
     def config_render(self, viewport_render: list[float, float, float, float], background: list[float, float, float],
-                      size_render_window: list[int, int]=None):
+                        size_render_window: list[int, int]=None):
         
         self.render.SetViewport(viewport_render[0], viewport_render[1], viewport_render[2], viewport_render[3])
         self.render.SetBackground(background[0], background[1], background[2])
@@ -51,11 +51,7 @@ class Model3D_Vtk():
     
     def addRender(self, render: vtk.vtkRenderWindow):
         self.render_window.AddRenderer(render)
-    
-    
-    
-    
-            
+
 #     # Función principal para cargar el modelo 3D, configurar la ventana y manejar la interacción con la cámara
 # def lector_vtk(path: str):
 #         # STL

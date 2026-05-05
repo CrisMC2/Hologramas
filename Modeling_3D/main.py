@@ -26,14 +26,14 @@ class Execute_Modeling3D:
         
         self.views.append(main_window)
         
-        main_window.show()
-
-        cap = cv2.VideoCapture(1)
+        cap = cv2.VideoCapture(0)
         
         self.ui.execute(path_model_stl=data,
                 cap=cap)
+                
+        main_window.show()
         
-        # En caso el main_window sea cerrado
+        # # En caso el main_window sea cerrado
         main_window.destroyed.connect(self.close_window)
 
     def close_window(self):

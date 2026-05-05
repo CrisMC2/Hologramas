@@ -4,9 +4,12 @@ import numpy as np
 from typing import Union
 from functools import partial
 
+from PyQt5.QtWidgets import QApplication
+from PyQt5 import QtCore
+
 from Modeling_3D.core.secondThread import ExtraThread
 from Modeling_3D.core.GenerateSTL import GenerateSTL
-from Modeling_3D.utils.VideoWidget import VideoWidget
+# from Modeling_3D.utils.VideoWidget import VideoWidget
 from Modeling_3D.utils.Model3D_Vtk import Model3D_Vtk
 from Modeling_3D.utils.WindowInteractor_Vtk import WindowInteractor_Vtk
 from Modeling_3D.utils.ConvertFormat import ConvertFormat
@@ -25,17 +28,18 @@ class viewModel3D_Controller(Ui_viewModel3D):
         self.__define_objects()
         
     def __define_objects(self):
-        self.video_widget = VideoWidget()
+        # self.video_widget = VideoWidget()
         self.extra_thread_video = ExtraThread()
         self.extra_thread_gesture = ExtraThread()
-        self.emit_gest = EmitGest()
+        # self.emit_gest = EmitGest()
         
         self.gen_stl = GenerateSTL()
         self.convert_format = ConvertFormat()
     
     def execute(self, path_model_stl: str, cap: cv2.VideoCapture):
         self.generate_interactor(data=path_model_stl)
-        self.show_video(cap=cap)  
+        # self.show_video(cap=cap)  
+        # pass
     
     def generate_stl(self, array: list):
         mesh = self.gen_stl.execute(array)
@@ -54,18 +58,20 @@ class viewModel3D_Controller(Ui_viewModel3D):
         model_vtk.config_render(consGesMo.VIEWPORT_RENDER, 
                                 consGesMo.BACKGROUND_RENDER, consGesMo.SIZE_RENDER_WINDOW)
         
-        #Creamos la ventana interactiva (Que pueda utilizarse con QT)
+        # #Creamos la ventana interactiva (Que pueda utilizarse con QT)
         window_interactor = WindowInteractor_Vtk(self.model_Widget)
         render_window = window_interactor.render_window
         render_window.AddRenderer(model_vtk.render)
         
-        #Establecemos el Estilo que tendrá el Render
+        # #Establecemos el Estilo que tendrá el Render
         self.style_vtk = GestureInteractorStyle(renderer_stl=model_vtk.render, actor=model_vtk.actor,
                                         renderer_cam=None, texture=None)
         
         window_interactor.set_Style(self.style_vtk, model_vtk.render)
-        # window_interactor.show()
+        # self.model_Widget.show()
+        QApplication.processEvents()
         window_interactor.render()
+        # window_interactor.render(model_vtk.render)
 
         #Necesitamos un nuevo render que pueda tener al método de los gestos
         # gest = EmitGest()
@@ -80,7 +86,7 @@ class viewModel3D_Controller(Ui_viewModel3D):
         function_model = partial(self.video_widget.define_components, cap_insert=cap, 
                                             video_label=self.camVideo_Label, 
                                             size_cap=[consGesMo.DEFAULT_CAP_WIDTH, 
-                                                      consGesMo.DEFAULT_CAP_HEIGHT])
+                                                        consGesMo.DEFAULT_CAP_HEIGHT])
         
         self.extra_thread_video.start_(func=function_model, func_return=True)
         self.extra_thread_video.connect_signal(self.style_vtk.on_signal)

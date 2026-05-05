@@ -1,9 +1,6 @@
-import sys
-import cv2
-from PyQt5.QtWidgets import QApplication, QMainWindow
-
 # from Modeling_3D.Shared.Gesture_Vtk import lector_vtk
 # from Modeling_3D.main import execute
+
 from UI_Dicom.main import execute
 # from UI_Dicom.main import EmitGest
 

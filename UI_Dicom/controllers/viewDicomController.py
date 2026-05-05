@@ -111,7 +111,7 @@ class Ui_viewDicomController():
         if (activate):
             print("Ejecución activates_view")
             # Conectamos a la siguiente interfaz
-            self.ui.pushButton.clicked.connect(lambda: self.modeling_3D.execute(self.subUi.dicom_list))
+            self.ui.pushButton.clicked.connect(lambda: self.modeling_3D.execute(self.subUi.dicom_list[200:])) # Limitamos la cantidad para solo renderizar la columna lumbar
         
     """
     El método activate_menu, propio de la clase Ui_viewDicomController permite

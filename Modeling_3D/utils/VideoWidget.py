@@ -13,10 +13,8 @@ class VideoWidget(QWidget):
     def __init__(self):
         super().__init__()
         
-        
         self.timer = QTimer()
         
-
         self.signal = Emit_Data()
         self.model = create_model()
         
@@ -65,8 +63,8 @@ class VideoWidget(QWidget):
         
         #QImage(frame, width, height, bytes_per_line, format)
         image = QImage(frame, width, height, 
-                       bytes_per_line, 
-                       QImage.Format_RGB888)
+                        bytes_per_line, 
+                        QImage.Format_RGB888)
         pixmap = QPixmap.fromImage(image)
         
         return pixmap
